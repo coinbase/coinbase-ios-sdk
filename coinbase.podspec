@@ -1,6 +1,6 @@
 
 Pod::Spec.new do |s|
-  s.name             = "coinbase"
+  s.name             = "coinbase-official"
   s.version          = "1.0"
   s.summary          = "Integrate bitcoin into your iOS application."
   s.description      = <<-DESC
