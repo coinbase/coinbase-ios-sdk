@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "coinbase/Coinbase.h"
 
 @interface CoinbaseViewController : UIViewController
+
+- (IBAction)startAuthentication:(id)sender;
+- (void)authenticationComplete:(NSDictionary *)response;
+- (IBAction)refreshTokens:(id)sender;
+
+@property (weak) IBOutlet UILabel *emailLabel;
+@property (weak) IBOutlet UILabel *balanceLabel;
+@property (strong) NSString *refreshToken;
 
 @end

@@ -1,15 +1,12 @@
 # coinbase
 
-[![CI Status](http://img.shields.io/travis/Isaac Waller/coinbase.svg?style=flat)](https://travis-ci.org/Isaac Waller/coinbase)
-[![Version](https://img.shields.io/cocoapods/v/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
-[![License](https://img.shields.io/cocoapods/l/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
-[![Platform](https://img.shields.io/cocoapods/p/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
-
-## Usage
+Integrate bitcoin into your iOS application with Coinbase's fully featured bitcoin payments API. Coinbase allows all major operations in bitcoin through one API. For more information, visit https://coinbase.com/docs/api/overview.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+[![Version](https://img.shields.io/cocoapods/v/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
+[![License](https://img.shields.io/cocoapods/l/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
+[![Platform](https://img.shields.io/cocoapods/p/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
 
 ## Installation
 
@@ -18,9 +15,81 @@ it, simply add the following line to your Podfile:
 
     pod "coinbase"
 
-## Author
+## Authentication
 
-Isaac Waller, isaac@siriusapplications.com
+The Coinbase iOS SDK can be used with both Coinbase API keys and OAuth2 authentication. Use API keys if you only need to access your own Coinbase account from within your application. Use OAuth2 if you need to access your user's accounts. Most iOS apps will need to use OAuth2.
+
+### API key authentication
+
+Simply use `coinbaseWithApiKey:secret:`. Example:
+
+```objective-c
+Coinbase *apiClient = [Coinbase coinbaseWithApiKey:myKey secret:mySecret];
+```
+
+### OAuth2
+
+To use OAuth2 you will need to add a custom URI scheme to your application. This URI scheme must start with your app's bundle identifier. For example, if your bundle ID is "com.example.app", your URI scheme could be "com.example.app.coinbase-oauth". To add a URI scheme:
+
+1. In Xcode, click on your project in the Project Navigator
+2. Select your app's target
+3. Click Info
+4. Open URL Types
+5. Click "+" to create a new URL Type
+6. Enter your new URL scheme in both Identifier and URL Schemes
+
+You now need to create an OAuth2 application for your iOS application at [https://www.coinbase.com/oauth/applications](https://www.coinbase.com/oauth/applications). Click `+ Create an Application` and enter a name for your application. In `Permitted Redirect URIs`, you should enter "your_scheme://coinbase-oauth" - for example, if your custom URI scheme is "com.example.app.coinbase-oauth", then you should enter "com.example.app.coinbase-oauth://coinbase-oauth". Save the application and take note of the Client ID and Secret.
+
+You can now integrate the OAuth2 sign in flow into your application. Use `startOAuthAuthenticationWithClientId:scope:redirectUri:meta:` to start the external sign in process.
+
+```objective-c
+// Launch the web browser or Coinbase app to authenticate the user.
+[Coinbase startOAuthAuthenticationWithClientId:@"your client ID"
+                                         scope:@"user balance"
+                                   redirectUri:@"com.example.app.coinbase-oauth://coinbase-oauth" // Same as entered into Create Application
+                                          meta:nil];
+```
+
+You must override `openURL` in your application delegate to receive the OAuth authorization grant code and pass it back in to the Coinbase SDK.
+
+```objective-c
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+
+    if ([[url scheme] isEqualToString:@"com.example.app.coinbase-oauth"]) {
+        // This is a redirect from the Coinbase OAuth web page or app.
+        [Coinbase finishOAuthAuthenticationForUrl:url
+                                                clientId:@"your client ID"
+                                            clientSecret:@"your client secret"
+                                                 success:^(NSDictionary *result) {
+            // Tokens successfully obtained!
+            // Do something with them (store them, etc.)
+            Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:[result objectForKey:@"access_token"]];
+        } failure:^(NSError *error) {
+            // Could not authenticate.
+        }];
+        return YES;
+    }
+    return NO;
+
+}
+```
+
+See the `Example` folder for a fully functional example.
+
+## Usage
+
+After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://www.coinbase.com/api/doc](https://www.coinbase.com/api/doc) can be called using the `doGet`, `doPost`, `goPut` and `doDelete` methods on `Coinbase`. Example:
+
+```objective-c
+[apiClient doGet:@"account/balance" parameters:nil success:^(NSDictionary *result) {
+    NSLog(@"Balance: %@", [result objectForKey:@"amount"]);
+} failure:^(NSError *error) {
+    NSLog(@"Could not load balance: %@", error);
+}];
+```
 
 ## License
 

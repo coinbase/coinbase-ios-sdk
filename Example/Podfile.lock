@@ -1,11 +1,35 @@
 PODS:
-  - coinbase (0.1.0)
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - coinbase (0.1.0):
+    - AFNetworking (~> 2.3)
+    - TPKeyboardAvoiding (= 1.2.4)
   - Expecta (0.3.1)
   - Expecta+Snapshots (1.2.1):
     - Expecta
     - FBSnapshotTestCase
   - FBSnapshotTestCase (1.1)
   - Specta (0.2.1)
+  - TPKeyboardAvoiding (1.2.4)
 
 DEPENDENCIES:
   - coinbase (from `../`)
@@ -19,10 +43,12 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  coinbase: 4dcb627e45804b11dfa5d5daff92adbe6302a146
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  coinbase: 90c74253b6766407a56f199bd0fbdb4815f59a1e
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   Expecta+Snapshots: 30c28e3d8104665ee70e32df1cfc030bb37a8a6c
   FBSnapshotTestCase: 9053afee1d66b4c7c313fcb0ae582a5e47bea9d0
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+  TPKeyboardAvoiding: 925e1e1912597d1a4956697eec3bd9656552153c
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4
