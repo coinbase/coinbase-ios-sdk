@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 coinbase is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "coinbase"
+    pod "coinbase-official"
 
 ## Authentication
 
