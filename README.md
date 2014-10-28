@@ -4,9 +4,9 @@ Integrate bitcoin into your iOS application with Coinbase's fully featured bitco
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-[![Version](https://img.shields.io/cocoapods/v/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
-[![License](https://img.shields.io/cocoapods/l/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
-[![Platform](https://img.shields.io/cocoapods/p/coinbase.svg?style=flat)](http://cocoadocs.org/docsets/coinbase)
+[![Version](https://img.shields.io/cocoapods/v/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
+[![License](https://img.shields.io/cocoapods/l/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
+[![Platform](https://img.shields.io/cocoapods/p/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
 
 ## Installation
 
