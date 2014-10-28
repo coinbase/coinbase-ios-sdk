@@ -94,12 +94,7 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
                               @"redirect_uri": redirectUri,
                               @"client_id": clientId,
                               @"client_secret": clientSecret };
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:@"https://www.coinbase.com/oauth/token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
+    [Coinbase doOAuthPostToPath:@"token" withParams:params success:success failure:failure];
 }
 
 + (void)getOAuthTokensForRefreshToken:(NSString *)refreshToken
@@ -111,12 +106,7 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
                               @"refresh_token": refreshToken,
                               @"client_id": clientId,
                               @"client_secret": clientSecret };
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:@"https://www.coinbase.com/oauth/token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
+    [Coinbase doOAuthPostToPath:@"token" withParams:params success:success failure:failure];
 }
 
 
@@ -146,8 +136,15 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
             [params setValue:[meta objectForKey:key] forKey:[NSString stringWithFormat:@"&meta[%@]", key]];
         }
     }
+    [Coinbase doOAuthPostToPath:@"authorize/with_credentials" withParams:params success:success failure:failure];
+}
+
++ (void)doOAuthPostToPath:(NSString *)path
+               withParams:(NSDictionary *)params
+                  success:(CoinbaseSuccessBlock)success
+                  failure:(CoinbaseFailureBlock)failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:@"https://www.coinbase.com/oauth/authorize/with_credentials" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
