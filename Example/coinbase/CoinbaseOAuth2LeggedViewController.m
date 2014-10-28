@@ -7,7 +7,7 @@
 //
 
 #import "CoinbaseOAuth2LeggedViewController.h"
-#import "Coinbase.h"
+#import "CoinbaseOAuth.h"
 #import "CoinbaseAppDelegate.h"
 
 @interface CoinbaseOAuth2LeggedViewController ()
@@ -26,21 +26,21 @@
 
 - (void)signIn:(id)sender {
     self.status.text = @"Requesting authorization code";
-    [Coinbase doOAuthAuthenticationWithUsername:self.email.text
-                                       password:self.password.text
-                                          token:self.token.text
-                                       clientId:kCoinbaseDemoClientID
-                                   clientSecret:kCoinbaseDemoClientSecret
-                                          scope:@"all"
-                                    redirectUri:nil
-                                           meta:nil
-                                        success:^(NSDictionary *response) {
-                                            
-                                            [self getTokensWithCode:[response objectForKey:@"code"]];
-                                        }
-                                        failure:^(NSError *error) {
-                                            NSLog(@"Received error %@", error);
-                                        }];
+    [CoinbaseOAuth doOAuthAuthenticationWithUsername:self.email.text
+                                            password:self.password.text
+                                               token:self.token.text
+                                            clientId:kCoinbaseDemoClientID
+                                        clientSecret:kCoinbaseDemoClientSecret
+                                               scope:@"all"
+                                         redirectUri:nil
+                                                meta:nil
+                                             success:^(NSDictionary *response) {
+                                                 
+                                                 [self getTokensWithCode:[response objectForKey:@"code"]];
+                                             }
+                                             failure:^(NSError *error) {
+                                                 NSLog(@"Received error %@", error);
+                                             }];
 }
 
 - (void)getTokensWithCode:(NSString *)code {

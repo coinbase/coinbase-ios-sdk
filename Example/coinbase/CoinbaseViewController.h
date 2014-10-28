@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "coinbase/Coinbase.h"
 
 @interface CoinbaseViewController : UIViewController
 

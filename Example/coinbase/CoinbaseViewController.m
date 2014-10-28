@@ -7,6 +7,7 @@
 //
 
 #import "CoinbaseAppDelegate.h"
+#import "CoinbaseOAuth.h"
 #import "CoinbaseViewController.h"
 
 @interface CoinbaseViewController ()
@@ -17,7 +18,7 @@
 
 - (IBAction)startAuthentication:(id)sender {
     // Launch the web browser or Coinbase app to authenticate the user.
-    [Coinbase startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
+    [CoinbaseOAuth startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
                                              scope:@"user balance"
                                        redirectUri:@"org.cocoapods.demo.coinbase.coinbase-oauth://coinbase-oauth"
                                               meta:nil];
@@ -47,7 +48,7 @@
 
 - (void)refreshTokens:(id)sender {
     self.emailLabel.text = @"Refreshing tokens...";
-    [Coinbase getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret success:^(NSDictionary *response) {
+    [CoinbaseOAuth getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret success:^(NSDictionary *response) {
         // New tokens obtained
         self.emailLabel.text = @"Got new tokens, loading email";
         self.refreshToken = [response objectForKey:@"refresh_token"];

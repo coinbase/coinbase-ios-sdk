@@ -8,6 +8,7 @@
 
 #import "CoinbaseAppDelegate.h"
 #import "Coinbase.h"
+#import "CoinbaseOAuth.h"
 #import "CoinbaseViewController.h"
 
 @implementation CoinbaseAppDelegate
@@ -24,7 +25,7 @@
     
     if ([[url scheme] isEqualToString:@"org.cocoapods.demo.coinbase.coinbase-oauth"]) {
         // This is a redirect from the Coinbase OAuth web page or app.
-        [Coinbase finishOAuthAuthenticationForUrl:url
+        [CoinbaseOAuth finishOAuthAuthenticationForUrl:url
                                                 clientId:kCoinbaseDemoClientID
                                             clientSecret:kCoinbaseDemoClientSecret
                                                  success:^(NSDictionary *result) {

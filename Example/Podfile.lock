@@ -20,35 +20,32 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - coinbase (0.1.0):
+  - coinbase-official (1.0):
     - AFNetworking (~> 2.3)
-    - TPKeyboardAvoiding (= 1.2.4)
   - Expecta (0.3.1)
   - Expecta+Snapshots (1.2.1):
     - Expecta
     - FBSnapshotTestCase
   - FBSnapshotTestCase (1.1)
   - Specta (0.2.1)
-  - TPKeyboardAvoiding (1.2.4)
 
 DEPENDENCIES:
-  - coinbase (from `../`)
+  - coinbase-official (from `../`)
   - Expecta
   - Expecta+Snapshots
   - FBSnapshotTestCase
   - Specta (~> 0.2.1)
 
 EXTERNAL SOURCES:
-  coinbase:
+  coinbase-official:
     :path: ../
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  coinbase: 90c74253b6766407a56f199bd0fbdb4815f59a1e
+  coinbase-official: fbc3b8b882ff58197d0bc19bfea2651d7f52ed23
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   Expecta+Snapshots: 30c28e3d8104665ee70e32df1cfc030bb37a8a6c
   FBSnapshotTestCase: 9053afee1d66b4c7c313fcb0ae582a5e47bea9d0
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
-  TPKeyboardAvoiding: 925e1e1912597d1a4956697eec3bd9656552153c
 
 COCOAPODS: 0.34.4

@@ -1,9 +1,9 @@
 target 'coinbase', :exclusive => true do
-  pod "coinbase", :path => "../"
+  pod "coinbase-official", :path => "../"
 end
 
 target 'Tests', :exclusive => true do
-  pod "coinbase", :path => "../"
+  pod "coinbase-official", :path => "../"
 
   pod 'Specta', '~> 0.2.1'
   pod 'Expecta'
