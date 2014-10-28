@@ -81,7 +81,7 @@ See the `Example` folder for a fully functional example.
 
 ## Usage
 
-After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://www.coinbase.com/api/doc](https://www.coinbase.com/api/doc) can be called using the `doGet`, `doPost`, `goPut` and `doDelete` methods on `Coinbase`. Example:
+After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://www.coinbase.com/api/doc](https://www.coinbase.com/api/doc) can be called using the `doGet`, `doPost`, `doPut` and `doDelete` methods on `Coinbase`. Example:
 
 ```objective-c
 [apiClient doGet:@"account/balance" parameters:nil success:^(NSDictionary *result) {
