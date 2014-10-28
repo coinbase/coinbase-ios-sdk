@@ -117,9 +117,4 @@ typedef NS_ENUM(NSInteger, CoinbaseErrorCode) {
                       success:(CoinbaseSuccessBlock)success
                       failure:(CoinbaseFailureBlock)failure;
 
-@property CoinbaseAuthenticationType authenticationType;
-@property (strong) NSString *apiKey;
-@property (strong) NSString *apiSecret;
-@property (strong) NSString *accessToken;
-
 @end

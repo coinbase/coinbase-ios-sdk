@@ -3,6 +3,15 @@
 
 NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
 
+@interface Coinbase ()
+
+@property CoinbaseAuthenticationType authenticationType;
+@property (strong) NSString *apiKey;
+@property (strong) NSString *apiSecret;
+@property (strong) NSString *accessToken;
+
+@end
+
 @implementation Coinbase
 
 + (void)startOAuthAuthenticationWithClientId:(NSString *)clientId
