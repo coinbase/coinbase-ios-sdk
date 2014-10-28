@@ -47,7 +47,7 @@
 
 - (void)refreshTokens:(id)sender {
     self.emailLabel.text = @"Refreshing tokens...";
-    [Coinbase getOAuthTokenForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret success:^(NSDictionary *response) {
+    [Coinbase getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret success:^(NSDictionary *response) {
         // New tokens obtained
         self.emailLabel.text = @"Got new tokens, loading email";
         self.refreshToken = [response objectForKey:@"refresh_token"];

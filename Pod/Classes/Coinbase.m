@@ -71,9 +71,24 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
     }
     
     // Make token request
-    // Obtain original redirect URI by 
+    // Obtain original redirect URI by removing 'code' parameter from URI
     NSString *redirectUri = [[url absoluteString] stringByReplacingOccurrencesOfString:[url query] withString:@""];
     redirectUri = [redirectUri substringToIndex:redirectUri.length - 1]; // Strip off trailing '?'
+    [Coinbase getOAuthTokensForCode:code
+                        redirectUri:redirectUri
+                           clientId:clientId
+                       clientSecret:clientSecret
+                            success:success
+                            failure:failure];
+    return;
+}
+
++ (void)getOAuthTokensForCode:(NSString *)code
+                  redirectUri:(NSString *)redirectUri
+                     clientId:(NSString *)clientId
+                 clientSecret:(NSString *)clientSecret
+                      success:(CoinbaseSuccessBlock)success
+                      failure:(CoinbaseFailureBlock)failure {
     NSDictionary *params = @{ @"grant_type": @"authorization_code",
                               @"code": code,
                               @"redirect_uri": redirectUri,
@@ -85,21 +100,54 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
     }];
-    
-    return;
 }
 
-+ (void)getOAuthTokenForRefreshToken:(NSString *)refreshToken
-                            clientId:(NSString *)clientId
-                        clientSecret:(NSString *)clientSecret
-                             success:(CoinbaseSuccessBlock)success
-                             failure:(CoinbaseFailureBlock)failure {
++ (void)getOAuthTokensForRefreshToken:(NSString *)refreshToken
+                             clientId:(NSString *)clientId
+                         clientSecret:(NSString *)clientSecret
+                              success:(CoinbaseSuccessBlock)success
+                              failure:(CoinbaseFailureBlock)failure {
     NSDictionary *params = @{ @"grant_type": @"refresh_token",
                               @"refresh_token": refreshToken,
                               @"client_id": clientId,
                               @"client_secret": clientSecret };
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:@"https://www.coinbase.com/oauth/token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+}
+
+
++ (void)doOAuthAuthenticationWithUsername:(NSString *)username
+                                 password:(NSString *)password
+                                    token:(NSString *)token
+                                 clientId:(NSString *)clientId
+                             clientSecret:(NSString *)clientSecret
+                                    scope:(NSString *)scope
+                              redirectUri:(NSString *)redirectUri
+                                     meta:(NSDictionary *)meta
+                                  success:(CoinbaseSuccessBlock)success
+                                  failure:(CoinbaseFailureBlock)failure {
+    NSMutableDictionary *params = [@{ @"client_id": clientId,
+                                      @"client_secret": clientSecret,
+                                      @"username": username,
+                                      @"password": password,
+                                      @"scope": scope } mutableCopy];
+    if (token) {
+        [params setValue:token forKey:@"token"];
+    }
+    if (redirectUri) {
+        [params setValue:redirectUri forKey:@"redirect_uri"];
+    }
+    if (meta) {
+        for (NSString *key in meta) {
+            [params setValue:[meta objectForKey:key] forKey:[NSString stringWithFormat:@"&meta[%@]", key]];
+        }
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:@"https://www.coinbase.com/oauth/authorize/with_credentials" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);

@@ -56,11 +56,37 @@ typedef NS_ENUM(NSInteger, CoinbaseErrorCode) {
                                 failure:(CoinbaseFailureBlock)failure;
 
 /// Get new tokens using a refresh token.
-+ (void)getOAuthTokenForRefreshToken:(NSString *)refreshToken
-                            clientId:(NSString *)clientId
-                        clientSecret:(NSString *)clientSecret
-                             success:(CoinbaseSuccessBlock)success
-                             failure:(CoinbaseFailureBlock)failure;
++ (void)getOAuthTokensForRefreshToken:(NSString *)refreshToken
+                             clientId:(NSString *)clientId
+                         clientSecret:(NSString *)clientSecret
+                              success:(CoinbaseSuccessBlock)success
+                              failure:(CoinbaseFailureBlock)failure;
+
+/// Get new tokens using an authorization code.
++ (void)getOAuthTokensForCode:(NSString *)code
+                  redirectUri:(NSString *)redirectUri
+                     clientId:(NSString *)clientId
+                 clientSecret:(NSString *)clientSecret
+                      success:(CoinbaseSuccessBlock)success
+                      failure:(CoinbaseFailureBlock)failure;
+
+/// Get an OAauth authorization code for the user using a non-interactive login process. Most apps
+/// should not use this. Only use this method if you cannot implement the standard OAuth authentication process.
+/// This method requires that the user enters their username and password inside your app, which is insecure
+/// behaviour and is discouraged.
+///
+/// After receiving a successful callback from this method, you will need to exchange the code for access
+/// and refresh tokens using `getOAuthTokensForCode`.
++ (void)doOAuthAuthenticationWithUsername:(NSString *)username
+                                 password:(NSString *)password
+                                    token:(NSString *)token
+                                 clientId:(NSString *)clientId
+                             clientSecret:(NSString *)clientSecret
+                                    scope:(NSString *)scope
+                              redirectUri:(NSString *)redirectUri
+                                     meta:(NSDictionary *)meta
+                                  success:(CoinbaseSuccessBlock)success
+                                  failure:(CoinbaseFailureBlock)failure;
 
 /// Create a Coinbase object for an OAuth access token. Please note that when this access token
 /// expires, requests made on this object will start failing with a 401 Unauthorized error. Obtain new tokens
