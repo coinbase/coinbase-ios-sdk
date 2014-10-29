@@ -53,27 +53,34 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     return self;
 }
 
-- (void)requestSuccess:(AFHTTPRequestOperation *)operation
-              response:(id)responseObject
+- (void)requestSuccess:(NSHTTPURLResponse *)operation
+              response:(NSData *)data
                success:(CoinbaseSuccessBlock)success
                failure:(CoinbaseFailureBlock)failure {
     NSError *error = nil;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&error];
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if (error) {
-        failure(error);
-        return;
-    }
-    if ([response objectForKey:@"error"] || [response objectForKey:@"errors"]) {
+        // Do nothing
+    } else if ([response objectForKey:@"error"] || [response objectForKey:@"errors"]) {
         NSDictionary *userInfo;
         if ([response objectForKey:@"error"]) {
             userInfo = @{ @"error": [response objectForKey:@"error"] };
         } else {
             userInfo = @{ @"errors": [response objectForKey:@"errors"] };
         }
-        failure([NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo]);
-        return;
+        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
+    } else if ([operation statusCode] >= 300) {
+        NSDictionary *userInfo = @{ @"statusCode": [NSNumber numberWithInteger: [operation statusCode]], @"response": response };
+        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
     }
-    success(response);
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (error) {
+            failure(error);
+        } else {
+            success(response);
+        }
+    });
 }
 
 // http://stackoverflow.com/a/16458798/764272
@@ -102,7 +109,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
               success:(CoinbaseSuccessBlock)success
               failure:(CoinbaseFailureBlock)failure {
     
-    NSString *body = nil;
+    NSData *body = nil;
     if (type == CoinbaseRequestTypeGet || type == CoinbaseRequestTypeDelete) {
         // Parameters need to be appended to URL
         NSMutableArray *parts = [NSMutableArray array];
@@ -116,7 +123,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     } else if (parameters) {
         // POST body is encoded as JSON
         NSError *error = nil;
-        body = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error] encoding:NSUTF8StringEncoding];
+        body = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
         if (error) {
             failure(error);
             return;
@@ -127,7 +134,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     NSURL *URL = [NSURL URLWithString:path relativeToURL:baseURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     if (body) {
-        [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:body];
     }
     switch (type) {
         case CoinbaseRequestTypeGet:
@@ -157,14 +164,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
         [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
     }
 
-
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self requestSuccess:operation response:responseObject success:success failure:failure];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
-    [op start];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURLSessionDataTask *task;
+    task = [session dataTaskWithRequest:request
+                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                         if (error) {
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                                 failure(error);
+                             });
+                             return;
+                         }
+                         [self requestSuccess:(NSHTTPURLResponse*)response response:data success:success failure:failure];
+                     }];
+    [task resume];
 }
 
 - (void)doGet:(NSString *)path

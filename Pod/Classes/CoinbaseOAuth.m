@@ -174,25 +174,27 @@
     task = [session uploadTaskWithRequest:request
                                  fromData:data
                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                            if (error) {
-                                failure(error);
-                                return;
+                            if (!error) {
+                                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                                NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                if (!error) {
+                                    if ([parsedBody objectForKey:@"error"] || [httpResponse statusCode] > 300) {
+                                        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"] };
+                                        error = [NSError errorWithDomain:CoinbaseErrorDomain
+                                                                    code:CoinbaseOAuthError
+                                                                userInfo:userInfo];
+                                    } else {
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            success(parsedBody);
+                                        });
+                                        return;
+                                    }
+                                }
                             }
-                            NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-                            NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                            if (error) {
+
+                            dispatch_async(dispatch_get_main_queue(), ^{
                                 failure(error);
-                                return;
-                            }
-                            if ([parsedBody objectForKey:@"error"] || [httpResponse statusCode] > 300) {
-                                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"] };
-                                NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
-                                                                     code:CoinbaseOAuthError
-                                                                 userInfo:userInfo];
-                                failure(error);
-                                return;
-                            }
-                            success(parsedBody);
+                            });
                         }];
     [task resume];
 }
