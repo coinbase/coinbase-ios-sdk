@@ -148,12 +148,45 @@
                withParams:(NSDictionary *)params
                   success:(CoinbaseSuccessBlock)success
                   failure:(CoinbaseFailureBlock)failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path]];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+
+    // Create POST data (OAuth APIs only accept standard URL-format data, not JSON)
+    NSMutableArray *components = [NSMutableArray new];
+    NSString *encodedKey, *encodedValue;
+    for (NSString *key in params) {
+        encodedKey = [key stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        encodedValue = [[params objectForKey:key] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [components addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+    }
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    request.HTTPMethod = @"POST";
+    NSError *error = nil;
+    NSData *data = [[components componentsJoinedByString:@"&"] dataUsingEncoding:NSUTF8StringEncoding];
+    if (error) {
         failure(error);
-    }];
+        return;
+    }
+    NSURLSessionUploadTask *task;
+    task = [session uploadTaskWithRequest:request
+                                 fromData:data
+                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                            if (error) {
+                                failure(error);
+                                return;
+                            }
+                            NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                            NSLog(@"Got %@", parsedBody);
+                            if (error) {
+                                failure(error);
+                            } else {
+                                success(parsedBody);
+                            }
+                        }];
+    [task resume];
 }
 
 @end
