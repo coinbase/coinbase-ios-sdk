@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
 
 /// Block type that takes a JSON object. Used when an API request has been successful.
 typedef void (^CoinbaseSuccessBlock)(NSDictionary *jsonObject);
