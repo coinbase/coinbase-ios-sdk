@@ -22,7 +22,7 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
 ///
 /// If you pass your client secret to `clientSecret`, the OAuth access grant will be exchanged for tokens
 /// on the device and returned to your in the `success` callback. If you pass nil to `clientSecret`, the
-/// OAuth access grant code will be returned to your `success` callback, so you can send it to your server and
+/// OAuth authorization code will be returned to your `success` callback, so you can send it to your server and
 /// exchange it for tokens there. If your application has a server side component, the second approach is recommended,
 /// as it prevents disclosure of the client secret to the client side.
 + (void)finishOAuthAuthenticationForUrl:(NSURL *)url

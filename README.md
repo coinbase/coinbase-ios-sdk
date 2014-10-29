@@ -44,7 +44,7 @@ You can now integrate the OAuth2 sign in flow into your application. Use `startO
 
 ```objective-c
 // Launch the web browser or Coinbase app to authenticate the user.
-[Coinbase startOAuthAuthenticationWithClientId:@"your client ID"
+[CoinbaseOAuth startOAuthAuthenticationWithClientId:@"your client ID"
                                          scope:@"user balance"
                                    redirectUri:@"com.example.app.coinbase-oauth://coinbase-oauth" // Same as entered into Create Application
                                           meta:nil];
@@ -60,13 +60,14 @@ You must override `openURL` in your application delegate to receive the OAuth au
 
     if ([[url scheme] isEqualToString:@"com.example.app.coinbase-oauth"]) {
         // This is a redirect from the Coinbase OAuth web page or app.
-        [Coinbase finishOAuthAuthenticationForUrl:url
+        [CoinbaseOAuth finishOAuthAuthenticationForUrl:url
                                                 clientId:@"your client ID"
                                             clientSecret:@"your client secret"
                                                  success:^(NSDictionary *result) {
             // Tokens successfully obtained!
             // Do something with them (store them, etc.)
             Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:[result objectForKey:@"access_token"]];
+            // Note that you should also store 'expire_in' and refresh the token using [CoinbaseOAuth getOAuthTokensForRefreshToken] when it expires
         } failure:^(NSError *error) {
             // Could not authenticate.
         }];
