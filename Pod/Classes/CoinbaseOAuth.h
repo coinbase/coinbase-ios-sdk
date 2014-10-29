@@ -57,7 +57,6 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
                                  password:(NSString *)password
                                     token:(NSString *)token
                                  clientId:(NSString *)clientId
-                             clientSecret:(NSString *)clientSecret
                                     scope:(NSString *)scope
                               redirectUri:(NSString *)redirectUri
                                      meta:(NSDictionary *)meta

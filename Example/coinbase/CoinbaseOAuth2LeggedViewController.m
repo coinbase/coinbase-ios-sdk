@@ -30,7 +30,6 @@
                                             password:self.password.text
                                                token:self.token.text
                                             clientId:kCoinbaseDemoClientID
-                                        clientSecret:kCoinbaseDemoClientSecret
                                                scope:@"all"
                                          redirectUri:nil
                                                 meta:nil

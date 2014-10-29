@@ -119,14 +119,12 @@
                                  password:(NSString *)password
                                     token:(NSString *)token
                                  clientId:(NSString *)clientId
-                             clientSecret:(NSString *)clientSecret
                                     scope:(NSString *)scope
                               redirectUri:(NSString *)redirectUri
                                      meta:(NSDictionary *)meta
                                   success:(CoinbaseOAuthCodeSuccessBlock)success
                                   failure:(CoinbaseFailureBlock)failure {
     NSMutableDictionary *params = [@{ @"client_id": clientId,
-                                      @"client_secret": clientSecret,
                                       @"username": username,
                                       @"password": password,
                                       @"scope": scope } mutableCopy];
