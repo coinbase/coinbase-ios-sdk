@@ -30,21 +30,25 @@ typedef NS_ENUM(NSInteger, CoinbaseErrorCode) {
 + (Coinbase *)coinbaseWithApiKey:(NSString *)key
                           secret:(NSString *)secret;
 
+/// Make a GET request to the Coinbase API.
 - (void)doGet:(NSString *)path
                 parameters:(NSDictionary *)parameters
                    success:(CoinbaseSuccessBlock)success
                    failure:(CoinbaseFailureBlock)failure;
 
+/// Make a POST request to the Coinbase API.
 - (void)doPost:(NSString *)path
                  parameters:(NSDictionary *)parameters
                     success:(CoinbaseSuccessBlock)success
                     failure:(CoinbaseFailureBlock)failure;
 
+/// Make a PUT request to the Coinbase API.
 - (void)doPut:(NSString *)path
                 parameters:(NSDictionary *)parameters
                    success:(CoinbaseSuccessBlock)success
                    failure:(CoinbaseFailureBlock)failure;
 
+/// Make a DELETE request to the Coinbase API.
 - (void)doDelete:(NSString *)path
                    parameters:(NSDictionary *)parameters
                       success:(CoinbaseSuccessBlock)success
