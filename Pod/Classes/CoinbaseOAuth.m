@@ -178,13 +178,21 @@
                                 failure(error);
                                 return;
                             }
+                            NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
                             NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                            NSLog(@"Got %@", parsedBody);
                             if (error) {
                                 failure(error);
-                            } else {
-                                success(parsedBody);
+                                return;
                             }
+                            if ([parsedBody objectForKey:@"error"] || [httpResponse statusCode] > 300) {
+                                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"] };
+                                NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
+                                                                     code:CoinbaseOAuthError
+                                                                 userInfo:userInfo];
+                                failure(error);
+                                return;
+                            }
+                            success(parsedBody);
                         }];
     [task resume];
 }
