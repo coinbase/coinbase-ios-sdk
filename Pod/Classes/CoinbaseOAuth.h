@@ -9,6 +9,10 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
 /// using `[Coinbase coinbaseWithOAuthAccessToken:]`.
 @interface CoinbaseOAuth : NSObject
 
+/// Test if the Coinbase app is installed and if the OAuth authentication process will use the Coinbase
+/// app to offer an easier authentication process. Can be used to make the Coinbase OAuth sign in action
+/// more prominent if the app is installed (thus indicating the user has an interest in Coinbase).
++ (BOOL)isAppOAuthAuthenticationAvailable;
 
 /// Start the OAuth authentication process. This will open a different application to complete the
 /// authentication flow.
