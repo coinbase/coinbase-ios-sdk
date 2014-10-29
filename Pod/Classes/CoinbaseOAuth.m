@@ -123,7 +123,7 @@
                                     scope:(NSString *)scope
                               redirectUri:(NSString *)redirectUri
                                      meta:(NSDictionary *)meta
-                                  success:(CoinbaseSuccessBlock)success
+                                  success:(CoinbaseOAuthCodeSuccessBlock)success
                                   failure:(CoinbaseFailureBlock)failure {
     NSMutableDictionary *params = [@{ @"client_id": clientId,
                                       @"client_secret": clientSecret,
@@ -141,7 +141,9 @@
             [params setValue:[meta objectForKey:key] forKey:[NSString stringWithFormat:@"&meta[%@]", key]];
         }
     }
-    [CoinbaseOAuth doOAuthPostToPath:@"authorize/with_credentials" withParams:params success:success failure:failure];
+    [CoinbaseOAuth doOAuthPostToPath:@"authorize/with_credentials" withParams:params success:^(NSDictionary * response) {
+        success([response objectForKey:@"code"]);
+    } failure:failure];
 }
 
 + (void)doOAuthPostToPath:(NSString *)path
@@ -157,8 +159,8 @@
     NSMutableArray *components = [NSMutableArray new];
     NSString *encodedKey, *encodedValue;
     for (NSString *key in params) {
-        encodedKey = [key stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        encodedValue = [[params objectForKey:key] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        encodedKey = [CoinbaseOAuth URLEncodedStringFromString:key];
+        encodedValue = [CoinbaseOAuth URLEncodedStringFromString:[params objectForKey:key]];
         [components addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
 
@@ -195,6 +197,14 @@
                             success(parsedBody);
                         }];
     [task resume];
+}
+
++ (NSString *)URLEncodedStringFromString:(NSString *)string
+{
+    static CFStringRef charset = CFSTR("!@#$%&*()+'\";:=,/?[] ");
+    CFStringRef str = (__bridge CFStringRef)string;
+    CFStringEncoding encoding = kCFStringEncodingUTF8;
+    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, str, NULL, charset, encoding));
 }
 
 @end

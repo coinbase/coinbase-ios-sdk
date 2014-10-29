@@ -34,17 +34,40 @@
                                                scope:@"all"
                                          redirectUri:nil
                                                 meta:nil
-                                             success:^(NSDictionary *response) {
-                                                 
-                                                 [self getTokensWithCode:[response objectForKey:@"code"]];
+                                             success:^(NSString *code) {
+                                                 [self gotCode:code];
                                              }
                                              failure:^(NSError *error) {
                                                  NSLog(@"Received error %@", error);
                                              }];
 }
 
-- (void)getTokensWithCode:(NSString *)code {
-    
+- (void)gotCode:(NSString *)code {
+    self.status.text = @"Got code, requesting tokens";
+    [CoinbaseOAuth getOAuthTokensForCode:code
+                             redirectUri:@"2_legged"
+                                clientId:kCoinbaseDemoClientID
+                            clientSecret:kCoinbaseDemoClientSecret
+                                 success:^(NSDictionary *success) {
+                                     [self gotTokens:success];
+                                 }
+                                 failure:^(NSError *error) {
+                                     NSLog(@"Received error %@", error);
+                                 }];
+}
+
+- (void)gotTokens:(NSDictionary *)tokens {
+    self.status.text = @"Got tokens, making request";
+    NSString *accessToken = [tokens objectForKey:@"access_token"];
+    Coinbase *coinbase = [Coinbase coinbaseWithOAuthAccessToken:accessToken];
+    [coinbase doGet:@"account/balance"
+         parameters:nil
+            success:^(NSDictionary *response) {
+                self.status.text = [NSString stringWithFormat:@"%@ %@", [response objectForKey:@"amount"], [response objectForKey:@"currency"]];
+            }
+            failure:^(NSError *error) {
+                NSLog(@"Received error %@", error);
+            }];
 }
 
 @end

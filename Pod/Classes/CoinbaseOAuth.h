@@ -1,6 +1,9 @@
 #import <Foundation/Foundation.h>
 #import "Coinbase.h"
 
+/// Block type used for successful authorization code requests.
+typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
+
 /// `CoinbaseOAuth` contains methods to authenticate users through OAuth2. After obtaining an
 /// access token using this class, you can call Coinbase API methods
 /// using `[Coinbase coinbaseWithOAuthAccessToken:]`.
@@ -58,7 +61,7 @@
                                     scope:(NSString *)scope
                               redirectUri:(NSString *)redirectUri
                                      meta:(NSDictionary *)meta
-                                  success:(CoinbaseSuccessBlock)success
+                                  success:(CoinbaseOAuthCodeSuccessBlock)success
                                   failure:(CoinbaseFailureBlock)failure;
 
 @end
