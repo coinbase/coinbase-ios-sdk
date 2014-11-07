@@ -59,9 +59,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                failure:(CoinbaseFailureBlock)failure {
     NSError *error = nil;
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error) {
-        // Do nothing
-    } else if ([response objectForKey:@"error"] || [response objectForKey:@"errors"]) {
+    if ([response objectForKey:@"error"] || [response objectForKey:@"errors"]) {
         NSDictionary *userInfo;
         if ([response objectForKey:@"error"]) {
             userInfo = @{ @"error": [response objectForKey:@"error"] };
@@ -70,6 +68,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
         }
         error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
     } else if ([operation statusCode] >= 300) {
+        if (response == nil) {
+            response = @{};
+        }
         NSDictionary *userInfo = @{ @"statusCode": [NSNumber numberWithInteger: [operation statusCode]], @"response": response };
         error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
     }
@@ -115,11 +116,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
         NSMutableArray *parts = [NSMutableArray array];
         NSString *encodedKey, *encodedValue;
         for (NSString *key in parameters) {
-            encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            encodedValue = [[parameters objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            encodedKey = [Coinbase URLEncodedStringFromString:key];
+            encodedValue = [Coinbase URLEncodedStringFromString:[parameters objectForKey:key]];
             [parts addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
         }
-        path = [[parts componentsJoinedByString:@"&"] stringByAppendingString:path];
+        if (parts.count > 0) {
+            path = [path stringByAppendingString:@"?"];
+            path = [path stringByAppendingString:[parts componentsJoinedByString:@"&"]];
+        }
     } else if (parameters) {
         // POST body is encoded as JSON
         NSError *error = nil;
@@ -142,12 +146,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
             break;
         case CoinbaseRequestTypePost:
             [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             break;
         case CoinbaseRequestTypeDelete:
             [request setHTTPMethod:@"DELETE"];
             break;
         case CoinbaseRequestTypePut:
             [request setHTTPMethod:@"PUT"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
             break;
     }
 
@@ -206,6 +212,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
          success:(CoinbaseSuccessBlock)success
          failure:(CoinbaseFailureBlock)failure {
     [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters success:success failure:failure];
+}
+
++ (NSString *)URLEncodedStringFromString:(NSString *)string
+{
+    static CFStringRef charset = CFSTR("!@#$%&*()+'\";:=,/?[] ");
+    CFStringRef str = (__bridge CFStringRef)string;
+    CFStringEncoding encoding = kCFStringEncodingUTF8;
+    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, str, NULL, charset, encoding));
 }
 
 @end
