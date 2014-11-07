@@ -8,13 +8,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeOAuth
 };
 
-typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
-    CoinbaseRequestTypeGet,
-    CoinbaseRequestTypePost,
-    CoinbaseRequestTypePut,
-    CoinbaseRequestTypeDelete
-};
-
 @interface Coinbase ()
 
 @property CoinbaseAuthenticationType authenticationType;

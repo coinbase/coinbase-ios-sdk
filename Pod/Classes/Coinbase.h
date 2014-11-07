@@ -16,6 +16,14 @@ typedef NS_ENUM(NSInteger, CoinbaseErrorCode) {
     CoinbaseServerErrorWithMessage
 };
 
+/// HTTP methods for use with the Coinbase API.
+typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
+    CoinbaseRequestTypeGet,
+    CoinbaseRequestTypePost,
+    CoinbaseRequestTypePut,
+    CoinbaseRequestTypeDelete
+};
+
 /// The `Coinbase` class is the interface to the Coinbase API. Create a `Coinbase` object using
 /// `coinbaseWithOAuthAccessToken:` or `coinbaseWithApiKey:secret:` to call API methods.
 @interface Coinbase : NSObject
@@ -52,5 +60,12 @@ typedef NS_ENUM(NSInteger, CoinbaseErrorCode) {
                    parameters:(NSDictionary *)parameters
                       success:(CoinbaseSuccessBlock)success
                       failure:(CoinbaseFailureBlock)failure;
+
+/// Make a request to the Coinbase API. Specify the HTTP method as a CoinbaseRequestType enum member.
+- (void)doRequestType:(CoinbaseRequestType)type
+                 path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              success:(CoinbaseSuccessBlock)success
+              failure:(CoinbaseFailureBlock)failure;
 
 @end
