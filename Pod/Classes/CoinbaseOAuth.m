@@ -148,6 +148,16 @@
     } failure:failure];
 }
 
++ (void)sendTwoFactorTokenWithUsername:(NSString *)username
+                              password:(NSString *)password
+                              clientId:(NSString *)clientId
+                               success:(CoinbaseSuccessBlock)success
+                               failure:(CoinbaseFailureBlock)failure {
+    [CoinbaseOAuth doOAuthPostToPath:@"authorize/with_credentials/sms_token" withParams:@{ @"username": username, @"password": password, @"client_id": clientId } success:^(NSDictionary * response) {
+        success(response);
+    } failure:failure];
+}
+
 + (void)doOAuthPostToPath:(NSString *)path
                withParams:(NSDictionary *)params
                   success:(CoinbaseSuccessBlock)success

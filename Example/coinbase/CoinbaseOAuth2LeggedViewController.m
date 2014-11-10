@@ -41,6 +41,19 @@
                                              }];
 }
 
+- (void)send2fa:(id)sender {
+    self.status.text = @"Sending 2fa";
+    [CoinbaseOAuth sendTwoFactorTokenWithUsername:self.email.text
+                                         password:self.password.text
+                                         clientId:kCoinbaseDemoClientID
+                                          success:^(NSDictionary *response) {
+                                              self.status.text = @"2fa sent.";
+                                          }
+                                          failure:^(NSError *error) {
+                                              NSLog(@"Received error %@", error);
+                                          }];
+}
+
 - (void)gotCode:(NSString *)code {
     self.status.text = @"Got code, requesting tokens";
     [CoinbaseOAuth getOAuthTokensForCode:code

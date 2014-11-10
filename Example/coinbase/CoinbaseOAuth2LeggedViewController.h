@@ -17,5 +17,6 @@
 
 - (IBAction)close:(id)sender;
 - (IBAction)signIn:(id)sender;
+- (IBAction)send2fa:(id)sender;
 
 @end

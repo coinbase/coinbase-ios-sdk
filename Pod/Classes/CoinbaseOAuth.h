@@ -67,4 +67,12 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
                                   success:(CoinbaseOAuthCodeSuccessBlock)success
                                   failure:(CoinbaseFailureBlock)failure;
 
+/// For use with `doOAuthAuthenticationWithUsername`. This will send a two factor token to the user over SMS if
+/// they use SMS for two factor.
++ (void)sendTwoFactorTokenWithUsername:(NSString *)username
+                              password:(NSString *)password
+                              clientId:(NSString *)clientId
+                               success:(CoinbaseSuccessBlock)success
+                               failure:(CoinbaseFailureBlock)failure;
+
 @end
