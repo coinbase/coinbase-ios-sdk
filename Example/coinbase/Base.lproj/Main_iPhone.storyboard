@@ -130,7 +130,13 @@
                             <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uQF-m4-1mn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B"/>
+                    <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B">
+                        <barButtonItem key="rightBarButtonItem" title="2 legged" id="8Ua-9D-MGF">
+                            <connections>
+                                <segue destination="gEp-b4-Mfb" kind="push" id="Lkc-ys-edH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="balanceLabel" destination="VeZ-FK-bWU" id="2lX-jx-ojH"/>
                         <outlet property="emailLabel" destination="h0J-N9-5b6" id="t3b-yX-Hgx"/>
@@ -140,7 +146,7 @@
             </objects>
             <point key="canvasLocation" x="281" y="569"/>
         </scene>
-        <!--CoinbaseO Auth2 Legged View Controller-->
+        <!--2-Legged Example-->
         <scene sceneID="WAq-bQ-DN6">
             <objects>
                 <viewController id="gEp-b4-Mfb" customClass="CoinbaseOAuth2LeggedViewController" sceneMemberID="viewController">
@@ -207,50 +213,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFF-iW-kTh">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="2-legged demo" id="UDm-eS-bur">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="pgy-s8-VOt">
-                                            <connections>
-                                                <action selector="close:" destination="gEp-b4-Mfb" id="jvb-We-TKQ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Send 2fa" id="Qur-bV-dOY">
-                                            <connections>
-                                                <action selector="send2fa:" destination="gEp-b4-Mfb" id="qY2-uY-DYq"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="qUX-M8-c3e" secondAttribute="centerX" id="06E-k1-QuZ"/>
                             <constraint firstItem="Q1V-aI-hDY" firstAttribute="trailing" secondItem="kgh-DN-L6F" secondAttribute="trailingMargin" id="2Of-K4-dx5"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="pFF-iW-kTh" secondAttribute="centerX" id="7Bk-Pa-Lcs"/>
                             <constraint firstItem="Q1V-aI-hDY" firstAttribute="leading" secondItem="kgh-DN-L6F" secondAttribute="leadingMargin" id="9XT-47-wsk"/>
                             <constraint firstItem="qjg-6P-eNK" firstAttribute="top" secondItem="NHr-PU-8cS" secondAttribute="bottom" constant="8" id="CtV-op-3y9"/>
                             <constraint firstItem="WCX-FO-W15" firstAttribute="top" secondItem="nVV-j5-fU2" secondAttribute="bottom" constant="18" id="DpQ-bd-GBT"/>
                             <constraint firstItem="nVV-j5-fU2" firstAttribute="top" secondItem="qjg-6P-eNK" secondAttribute="bottom" constant="8" id="Eo4-rA-dSy"/>
-                            <constraint firstItem="pFF-iW-kTh" firstAttribute="top" secondItem="JAw-pj-ejq" secondAttribute="bottom" id="INh-WK-ezb"/>
                             <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="nVV-j5-fU2" secondAttribute="centerX" id="Ou4-vX-l8M"/>
+                            <constraint firstItem="NHr-PU-8cS" firstAttribute="top" secondItem="JAw-pj-ejq" secondAttribute="bottom" constant="19" id="TkN-SA-EME"/>
                             <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="NHr-PU-8cS" secondAttribute="centerX" id="alG-7T-4E5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pFF-iW-kTh" secondAttribute="trailing" constant="-16" id="bmq-5j-V6l"/>
-                            <constraint firstItem="qUX-M8-c3e" firstAttribute="centerX" secondItem="pFF-iW-kTh" secondAttribute="centerX" id="cMe-P3-GFX"/>
                             <constraint firstItem="Q1V-aI-hDY" firstAttribute="top" secondItem="WCX-FO-W15" secondAttribute="bottom" constant="24" id="lln-4z-Xa8"/>
-                            <constraint firstItem="pFF-iW-kTh" firstAttribute="trailing" secondItem="JAw-pj-ejq" secondAttribute="trailing" id="mO6-Ug-Z5q"/>
-                            <constraint firstItem="pFF-iW-kTh" firstAttribute="leading" secondItem="JAw-pj-ejq" secondAttribute="leading" id="n4t-is-aJ3"/>
-                            <constraint firstAttribute="centerX" secondItem="pFF-iW-kTh" secondAttribute="centerX" id="pxR-7h-6T7"/>
                             <constraint firstItem="c7k-0d-Kvi" firstAttribute="top" secondItem="qUX-M8-c3e" secondAttribute="bottom" id="sdd-Fy-dgI"/>
                             <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="qjg-6P-eNK" secondAttribute="centerX" id="sqT-m9-adV"/>
-                            <constraint firstItem="pFF-iW-kTh" firstAttribute="leading" secondItem="kgh-DN-L6F" secondAttribute="leadingMargin" constant="-16" id="uA9-22-ezW"/>
+                            <constraint firstAttribute="centerX" secondItem="NHr-PU-8cS" secondAttribute="centerX" id="vql-C2-FIX"/>
                             <constraint firstItem="WCX-FO-W15" firstAttribute="top" secondItem="kgh-DN-L6F" secondAttribute="top" constant="207" id="yKl-zb-70F"/>
-                            <constraint firstItem="pFF-iW-kTh" firstAttribute="top" secondItem="JAw-pj-ejq" secondAttribute="bottom" id="zJq-J9-JEe"/>
-                            <constraint firstItem="NHr-PU-8cS" firstAttribute="top" secondItem="JAw-pj-ejq" secondAttribute="bottom" constant="63" id="zsE-hC-WiB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qNJ-DA-5Go"/>
+                    <navigationItem key="navigationItem" title="2-Legged Example" id="qNJ-DA-5Go"/>
                     <connections>
                         <outlet property="email" destination="NHr-PU-8cS" id="EbM-rm-PDW"/>
                         <outlet property="password" destination="qjg-6P-eNK" id="b7A-qu-Lsv"/>
