@@ -1,9 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "Coinbase.h"
 
-/// Block type used for successful authorization code requests.
-typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
-
 /// `CoinbaseOAuth` contains methods to authenticate users through OAuth2. After obtaining an
 /// access token using this class, you can call Coinbase API methods
 /// using `[Coinbase coinbaseWithOAuthAccessToken:]`.
@@ -32,22 +29,19 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
 + (void)finishOAuthAuthenticationForUrl:(NSURL *)url
                                clientId:(NSString *)clientId
                            clientSecret:(NSString *)clientSecret
-                                success:(CoinbaseSuccessBlock)success
-                                failure:(CoinbaseFailureBlock)failure;
+                             completion:(CoinbaseCompletionBlock)completion;
 
 /// Get new tokens using a refresh token.
 + (void)getOAuthTokensForRefreshToken:(NSString *)refreshToken
                              clientId:(NSString *)clientId
                          clientSecret:(NSString *)clientSecret
-                              success:(CoinbaseSuccessBlock)success
-                              failure:(CoinbaseFailureBlock)failure;
+                           completion:(CoinbaseCompletionBlock)completion;
 
 /// Get new tokens using an authorization code.
 + (void)getOAuthTokensForCode:(NSString *)code
                   redirectUri:(NSString *)redirectUri
                      clientId:(NSString *)clientId
                  clientSecret:(NSString *)clientSecret
-                      success:(CoinbaseSuccessBlock)success
-                      failure:(CoinbaseFailureBlock)failure;
+                   completion:(CoinbaseCompletionBlock)completion;
 
 @end

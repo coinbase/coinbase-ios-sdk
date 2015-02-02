@@ -43,8 +43,7 @@
 + (void)finishOAuthAuthenticationForUrl:(NSURL *)url
                                clientId:(NSString *)clientId
                            clientSecret:(NSString *)clientSecret
-                                success:(CoinbaseSuccessBlock)success
-                                failure:(CoinbaseFailureBlock)failure {
+                             completion:(CoinbaseCompletionBlock)completion {
     
     // Get code from URL and check for error.
     NSString *code = nil;
@@ -62,7 +61,7 @@
             NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
                                                  code:CoinbaseOAuthError
                                              userInfo:userInfo];
-            failure(error);
+            completion(nil, error);
             return;
         }
     }
@@ -71,11 +70,11 @@
         NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
                                              code:CoinbaseOAuthError
                                          userInfo:userInfo];
-        failure(error);
+        completion(nil, error);
         return;
     } else if (!clientId) {
         // Do not make token request on client side
-        success(@{@"code": code});
+        completion(@{@"code": code}, nil);
         return;
     }
     
@@ -87,8 +86,7 @@
                              redirectUri:redirectUri
                                 clientId:clientId
                             clientSecret:clientSecret
-                                 success:success
-                                 failure:failure];
+                              completion:completion];
     return;
 }
 
@@ -96,32 +94,29 @@
                   redirectUri:(NSString *)redirectUri
                      clientId:(NSString *)clientId
                  clientSecret:(NSString *)clientSecret
-                      success:(CoinbaseSuccessBlock)success
-                      failure:(CoinbaseFailureBlock)failure {
+                   completion:(CoinbaseCompletionBlock)completion {
     NSDictionary *params = @{ @"grant_type": @"authorization_code",
                               @"code": code,
                               @"redirect_uri": redirectUri,
                               @"client_id": clientId,
                               @"client_secret": clientSecret };
-    [CoinbaseOAuth doOAuthPostToPath:@"token" withParams:params success:success failure:failure];
+    [CoinbaseOAuth doOAuthPostToPath:@"token" withParams:params completion:completion];
 }
 
 + (void)getOAuthTokensForRefreshToken:(NSString *)refreshToken
                              clientId:(NSString *)clientId
                          clientSecret:(NSString *)clientSecret
-                              success:(CoinbaseSuccessBlock)success
-                              failure:(CoinbaseFailureBlock)failure {
+                           completion:(CoinbaseCompletionBlock)completion {
     NSDictionary *params = @{ @"grant_type": @"refresh_token",
                               @"refresh_token": refreshToken,
                               @"client_id": clientId,
                               @"client_secret": clientSecret };
-    [CoinbaseOAuth doOAuthPostToPath:@"token" withParams:params success:success failure:failure];
+    [CoinbaseOAuth doOAuthPostToPath:@"token" withParams:params completion:completion];
 }
 
 + (void)doOAuthPostToPath:(NSString *)path
                withParams:(NSDictionary *)params
-                  success:(CoinbaseSuccessBlock)success
-                  failure:(CoinbaseFailureBlock)failure {
+               completion:(CoinbaseCompletionBlock)completion {
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path]];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -141,7 +136,7 @@
     NSError *error = nil;
     NSData *data = [[components componentsJoinedByString:@"&"] dataUsingEncoding:NSUTF8StringEncoding];
     if (error) {
-        failure(error);
+        completion(nil, error);
         return;
     }
     NSURLSessionUploadTask *task;
@@ -159,7 +154,7 @@
                                                                 userInfo:userInfo];
                                     } else {
                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                            success(parsedBody);
+                                            completion(parsedBody, nil);
                                         });
                                         return;
                                     }
@@ -167,7 +162,7 @@
                             }
 
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                failure(error);
+                                completion(nil, error);
                             });
                         }];
     [task resume];

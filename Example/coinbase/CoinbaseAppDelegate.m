@@ -28,13 +28,15 @@
         [CoinbaseOAuth finishOAuthAuthenticationForUrl:url
                                                 clientId:kCoinbaseDemoClientID
                                             clientSecret:kCoinbaseDemoClientSecret
-                                                 success:^(id result) {
-            // Tokens successfully obtained!
-            CoinbaseViewController *controller = (CoinbaseViewController *)[(UINavigationController *)self.window.rootViewController visibleViewController];
-            [controller authenticationComplete:result];
-        } failure:^(NSError *error) {
-            // Could not authenticate.
-            [[[UIAlertView alloc] initWithTitle:@"OAuth Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                                              completion:^(id result, NSError *error) {
+            if (error) {
+              // Could not authenticate.
+              [[[UIAlertView alloc] initWithTitle:@"OAuth Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            } else {
+              // Tokens successfully obtained!
+              CoinbaseViewController *controller = (CoinbaseViewController *)[(UINavigationController *)self.window.rootViewController visibleViewController];
+              [controller authenticationComplete:result];
+            }
         }];
         return YES;
     }

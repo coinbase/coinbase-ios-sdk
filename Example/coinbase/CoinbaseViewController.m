@@ -63,20 +63,22 @@
 
 - (void)refreshTokens:(id)sender {
     self.emailLabel.text = @"Refreshing tokens...";
-    [CoinbaseOAuth getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret success:^(NSDictionary *response) {
-        // New tokens obtained
-        self.emailLabel.text = @"Got new tokens, loading email";
-        self.refreshToken = [response objectForKey:@"refresh_token"];
-        self.client = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
-        [self.client doGet:@"users" parameters:nil completion:^(id result, NSError *error) {
-            if (error) {
-                NSLog(@"Could not load: %@", error);
-            } else {
-                self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
-            }
-        }];
-    } failure:^(NSError *error) {
-        NSLog(@"Could not refresh tokens: %@", error);
+    [CoinbaseOAuth getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret completion:^(id response, NSError *error) {
+        if (error) {
+            NSLog(@"Could not refresh tokens: %@", error);
+        } else {
+            // New tokens obtained
+            self.emailLabel.text = @"Got new tokens, loading email";
+            self.refreshToken = [response objectForKey:@"refresh_token"];
+            self.client = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
+            [self.client doGet:@"users" parameters:nil completion:^(id result, NSError *error) {
+                if (error) {
+                    NSLog(@"Could not load: %@", error);
+                } else {
+                    self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
+                }
+            }];
+        }
     }];
 }
 

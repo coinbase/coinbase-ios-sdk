@@ -1,11 +1,5 @@
 #import <Foundation/Foundation.h>
 
-/// Block type that takes either a NSDictionary or NSArray. Used when an API request has been successful.
-typedef void (^CoinbaseSuccessBlock)(id response);
-
-/// Block type that takes a NSError. Used when an API request has failed.
-typedef void (^CoinbaseFailureBlock)(NSError *error);
-
 /// If the API request is successful, `response` will be either a NSDictionary or NSArray, and `error` will be nil.
 /// Otherwise, `error` will be non-nil.
 typedef void (^CoinbaseCompletionBlock)(id response, NSError *error);
