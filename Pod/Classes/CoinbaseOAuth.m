@@ -72,7 +72,7 @@
                                          userInfo:userInfo];
         completion(nil, error);
         return;
-    } else if (!clientId) {
+    } else if (!clientSecret) {
         // Do not make token request on client side
         completion(@{@"code": code}, nil);
         return;
