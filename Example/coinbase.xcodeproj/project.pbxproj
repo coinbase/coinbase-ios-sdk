@@ -23,7 +23,6 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		CF185B5A804A457BAE31F869 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F327F2398745008B5DCBBC /* libPods-Tests.a */; };
-		D12862F91A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12862F81A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.m */; };
 		D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,8 +63,6 @@
 		8C63D9ACB21B4EED9337C9C3 /* coinbase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = coinbase.podspec; path = ../coinbase.podspec; sourceTree = "<group>"; };
 		AFB33DC936A14BAF8E91DF6D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B3F3A067BE0B55C822CADEFE /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D12862F71A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseOAuth2LeggedViewController.h; sourceTree = "<group>"; };
-		D12862F81A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseOAuth2LeggedViewController.m; sourceTree = "<group>"; };
 		D1A38C4D1A8032770086BFE7 /* coinbase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "coinbase-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinbaseCurrenciesViewController.swift; sourceTree = "<group>"; };
 		E03CDC14D3414A0DB0FC5378 /* libPods-coinbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-coinbase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +151,6 @@
 				6003F5A5195388D20070C39A /* CoinbaseViewController.h */,
 				6003F5A6195388D20070C39A /* CoinbaseViewController.m */,
 				D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */,
-				D12862F71A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.h */,
-				D12862F81A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -368,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* CoinbaseAppDelegate.m in Sources */,
-				D12862F91A00235900AD9C27 /* CoinbaseOAuth2LeggedViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* CoinbaseViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */,

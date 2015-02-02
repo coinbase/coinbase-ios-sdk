@@ -130,13 +130,7 @@
                             <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uQF-m4-1mn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B">
-                        <barButtonItem key="rightBarButtonItem" title="2 legged" id="8Ua-9D-MGF">
-                            <connections>
-                                <segue destination="gEp-b4-Mfb" kind="push" id="Lkc-ys-edH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B"/>
                     <connections>
                         <outlet property="balanceLabel" destination="VeZ-FK-bWU" id="2lX-jx-ojH"/>
                         <outlet property="emailLabel" destination="h0J-N9-5b6" id="t3b-yX-Hgx"/>
@@ -145,104 +139,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="281" y="569"/>
-        </scene>
-        <!--2-Legged Example-->
-        <scene sceneID="WAq-bQ-DN6">
-            <objects>
-                <viewController id="gEp-b4-Mfb" customClass="CoinbaseOAuth2LeggedViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JAw-pj-ejq"/>
-                        <viewControllerLayoutGuide type="bottom" id="c7k-0d-Kvi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kgh-DN-L6F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUX-M8-c3e">
-                                <rect key="frame" x="16" y="371" width="288" height="197"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="197" id="Kr6-N8-wFP"/>
-                                    <constraint firstAttribute="width" constant="288" id="u8J-tX-zbu"/>
-                                </constraints>
-                                <string key="text">OAuth 2-legged is an alternative sign in method that directly passes the user's username and password to the Coinbase API. It is not recommended for the vast majority of apps and should not be used unless it is impossible to use the standard 3-legged OAuth2 API. </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHr-PU-8cS">
-                                <rect key="frame" x="16" y="83" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="84z-9L-a9z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qjg-6P-eNK">
-                                <rect key="frame" x="16" y="121" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="dcO-w8-LK1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2-factor token" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nVV-j5-fU2">
-                                <rect key="frame" x="16" y="159" width="288" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="9tx-bZ-fgf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCX-FO-W15">
-                                <rect key="frame" x="108" y="207" width="105" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="105" id="grA-Rt-iC6"/>
-                                </constraints>
-                                <state key="normal" title="Sign In">
-                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signIn:" destination="gEp-b4-Mfb" eventType="touchUpInside" id="Oyt-D6-gJY"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1V-aI-hDY">
-                                <rect key="frame" x="16" y="261" width="288" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="qUX-M8-c3e" secondAttribute="centerX" id="06E-k1-QuZ"/>
-                            <constraint firstItem="Q1V-aI-hDY" firstAttribute="trailing" secondItem="kgh-DN-L6F" secondAttribute="trailingMargin" id="2Of-K4-dx5"/>
-                            <constraint firstItem="Q1V-aI-hDY" firstAttribute="leading" secondItem="kgh-DN-L6F" secondAttribute="leadingMargin" id="9XT-47-wsk"/>
-                            <constraint firstItem="qjg-6P-eNK" firstAttribute="top" secondItem="NHr-PU-8cS" secondAttribute="bottom" constant="8" id="CtV-op-3y9"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="top" secondItem="nVV-j5-fU2" secondAttribute="bottom" constant="18" id="DpQ-bd-GBT"/>
-                            <constraint firstItem="nVV-j5-fU2" firstAttribute="top" secondItem="qjg-6P-eNK" secondAttribute="bottom" constant="8" id="Eo4-rA-dSy"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="nVV-j5-fU2" secondAttribute="centerX" id="Ou4-vX-l8M"/>
-                            <constraint firstItem="NHr-PU-8cS" firstAttribute="top" secondItem="JAw-pj-ejq" secondAttribute="bottom" constant="19" id="TkN-SA-EME"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="NHr-PU-8cS" secondAttribute="centerX" id="alG-7T-4E5"/>
-                            <constraint firstItem="Q1V-aI-hDY" firstAttribute="top" secondItem="WCX-FO-W15" secondAttribute="bottom" constant="24" id="lln-4z-Xa8"/>
-                            <constraint firstItem="c7k-0d-Kvi" firstAttribute="top" secondItem="qUX-M8-c3e" secondAttribute="bottom" id="sdd-Fy-dgI"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="centerX" secondItem="qjg-6P-eNK" secondAttribute="centerX" id="sqT-m9-adV"/>
-                            <constraint firstAttribute="centerX" secondItem="NHr-PU-8cS" secondAttribute="centerX" id="vql-C2-FIX"/>
-                            <constraint firstItem="WCX-FO-W15" firstAttribute="top" secondItem="kgh-DN-L6F" secondAttribute="top" constant="207" id="yKl-zb-70F"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="2-Legged Example" id="qNJ-DA-5Go"/>
-                    <connections>
-                        <outlet property="email" destination="NHr-PU-8cS" id="EbM-rm-PDW"/>
-                        <outlet property="password" destination="qjg-6P-eNK" id="b7A-qu-Lsv"/>
-                        <outlet property="status" destination="Q1V-aI-hDY" id="Ua5-t0-ato"/>
-                        <outlet property="token" destination="nVV-j5-fU2" id="dIQ-B4-Lzr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SMg-4B-m2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="644" y="569"/>
         </scene>
         <!--Currencies Example-->
         <scene sceneID="tQc-Ok-Jtz">
@@ -282,7 +178,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FED-lm-m0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="1211"/>
+            <point key="canvasLocation" x="662" y="569"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

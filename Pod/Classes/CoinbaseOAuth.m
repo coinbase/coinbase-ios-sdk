@@ -118,46 +118,6 @@
     [CoinbaseOAuth doOAuthPostToPath:@"token" withParams:params success:success failure:failure];
 }
 
-
-+ (void)doOAuthAuthenticationWithUsername:(NSString *)username
-                                 password:(NSString *)password
-                                    token:(NSString *)token
-                                 clientId:(NSString *)clientId
-                                    scope:(NSString *)scope
-                              redirectUri:(NSString *)redirectUri
-                                     meta:(NSDictionary *)meta
-                                  success:(CoinbaseOAuthCodeSuccessBlock)success
-                                  failure:(CoinbaseFailureBlock)failure {
-    NSMutableDictionary *params = [@{ @"client_id": clientId,
-                                      @"username": username,
-                                      @"password": password,
-                                      @"scope": scope } mutableCopy];
-    if (token) {
-        [params setValue:token forKey:@"token"];
-    }
-    if (redirectUri) {
-        [params setValue:redirectUri forKey:@"redirect_uri"];
-    }
-    if (meta) {
-        for (NSString *key in meta) {
-            [params setValue:[meta objectForKey:key] forKey:[NSString stringWithFormat:@"&meta[%@]", key]];
-        }
-    }
-    [CoinbaseOAuth doOAuthPostToPath:@"authorize/with_credentials" withParams:params success:^(NSDictionary * response) {
-        success([response objectForKey:@"code"]);
-    } failure:failure];
-}
-
-+ (void)sendTwoFactorTokenWithUsername:(NSString *)username
-                              password:(NSString *)password
-                              clientId:(NSString *)clientId
-                               success:(CoinbaseSuccessBlock)success
-                               failure:(CoinbaseFailureBlock)failure {
-    [CoinbaseOAuth doOAuthPostToPath:@"authorize/with_credentials/sms_token" withParams:@{ @"username": username, @"password": password, @"client_id": clientId } success:^(NSDictionary * response) {
-        success(response);
-    } failure:failure];
-}
-
 + (void)doOAuthPostToPath:(NSString *)path
                withParams:(NSDictionary *)params
                   success:(CoinbaseSuccessBlock)success

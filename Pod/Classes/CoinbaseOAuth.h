@@ -50,29 +50,4 @@ typedef void (^CoinbaseOAuthCodeSuccessBlock)(NSString *code);
                       success:(CoinbaseSuccessBlock)success
                       failure:(CoinbaseFailureBlock)failure;
 
-/// Get an OAauth authorization code for the user using a non-interactive login process. Most apps
-/// should not use this. Only use this method if you cannot implement the standard OAuth authentication process.
-/// This method requires that the user enters their username and password inside your app, which is insecure
-/// behaviour and is discouraged.
-///
-/// After receiving a successful callback from this method, you will need to exchange the code for access
-/// and refresh tokens using `getOAuthTokensForCode`.
-+ (void)doOAuthAuthenticationWithUsername:(NSString *)username
-                                 password:(NSString *)password
-                                    token:(NSString *)token
-                                 clientId:(NSString *)clientId
-                                    scope:(NSString *)scope
-                              redirectUri:(NSString *)redirectUri
-                                     meta:(NSDictionary *)meta
-                                  success:(CoinbaseOAuthCodeSuccessBlock)success
-                                  failure:(CoinbaseFailureBlock)failure;
-
-/// For use with `doOAuthAuthenticationWithUsername`. This will send a two factor token to the user over SMS if
-/// they use SMS for two factor.
-+ (void)sendTwoFactorTokenWithUsername:(NSString *)username
-                              password:(NSString *)password
-                              clientId:(NSString *)clientId
-                               success:(CoinbaseSuccessBlock)success
-                               failure:(CoinbaseFailureBlock)failure;
-
 @end
