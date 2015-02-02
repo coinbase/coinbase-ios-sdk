@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gdq-L8-F43">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Coinbase View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="xcZ-Fi-GFU">
+            <objects>
+                <navigationController id="Gdq-L8-F43" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RoI-Al-lel">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="gxf-zf-z4K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bS0-M7-Cao" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-96" y="569"/>
+        </scene>
+        <!--Coinbase SDK Example-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="CoinbaseViewController" sceneMemberID="viewController">
@@ -25,18 +41,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5i-Wv-RoP">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Coinbase SDK Example" id="cZA-mH-7MJ">
-                                        <barButtonItem key="rightBarButtonItem" title="2-legged" id="h0x-Sr-GC3">
-                                            <connections>
-                                                <segue destination="gEp-b4-Mfb" kind="modal" id="Hmv-Cq-C5f"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ums-zU-T7z">
                                 <rect key="frame" x="48" y="236" width="225" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,7 +68,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-N9-5b6" userLabel="User name">
-                                <rect key="frame" x="16" y="473" width="288" height="21"/>
+                                <rect key="frame" x="16" y="443" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="HnJ-oD-Hsz"/>
                                 </constraints>
@@ -73,7 +77,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-FK-bWU" userLabel="User balance">
-                                <rect key="frame" x="16" y="502" width="288" height="29"/>
+                                <rect key="frame" x="16" y="472" width="288" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="wGq-sW-AXw"/>
                                 </constraints>
@@ -82,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hij-Ag-xV0">
-                                <rect key="frame" x="96" y="527" width="128" height="30"/>
+                                <rect key="frame" x="96" y="497" width="128" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Mr7-MT-ImZ"/>
                                     <constraint firstAttribute="width" constant="128" id="lf1-1z-nyd"/>
@@ -94,6 +98,15 @@
                                     <action selector="refreshTokens:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2To-qu-Px5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
+                                <rect key="frame" x="105" y="527" width="110" height="30"/>
+                                <state key="normal" title="Load currencies">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bby-w9-l4I" kind="push" id="lE3-RC-feM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -102,24 +115,25 @@
                             <constraint firstItem="VeZ-FK-bWU" firstAttribute="top" secondItem="h0J-N9-5b6" secondAttribute="bottom" constant="8" id="G1H-1X-YpD"/>
                             <constraint firstItem="ums-zU-T7z" firstAttribute="top" secondItem="WL5-4Q-XhC" secondAttribute="bottom" constant="17" id="IiF-LF-bLr"/>
                             <constraint firstAttribute="centerX" secondItem="ums-zU-T7z" secondAttribute="centerX" constant="-0.5" id="KU1-yf-6Uk"/>
+                            <constraint firstItem="WL5-4Q-XhC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="13" id="Kzu-Xa-wLV"/>
                             <constraint firstItem="YeJ-Jz-Pa8" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="MIx-RB-Ocv"/>
                             <constraint firstAttribute="centerX" secondItem="hij-Ag-xV0" secondAttribute="centerX" id="Np0-ik-5yZ"/>
-                            <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="YeJ-Jz-Pa8" secondAttribute="bottom" constant="50" id="UKC-p4-Ybc"/>
+                            <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="YeJ-Jz-Pa8" secondAttribute="bottom" constant="20" id="UKC-p4-Ybc"/>
                             <constraint firstItem="YeJ-Jz-Pa8" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="8" id="YYk-7N-5gM"/>
                             <constraint firstItem="hij-Ag-xV0" firstAttribute="top" secondItem="VeZ-FK-bWU" secondAttribute="bottom" constant="-4" id="ZuW-aG-FYR"/>
-                            <constraint firstAttribute="centerX" secondItem="q5i-Wv-RoP" secondAttribute="centerX" id="aV8-PX-hSw"/>
-                            <constraint firstItem="WL5-4Q-XhC" firstAttribute="top" secondItem="q5i-Wv-RoP" secondAttribute="bottom" constant="13" id="dZf-wZ-ibP"/>
+                            <constraint firstAttribute="centerX" secondItem="anT-2f-Ukd" secondAttribute="centerX" id="e7f-vm-U3T"/>
+                            <constraint firstItem="anT-2f-Ukd" firstAttribute="top" secondItem="hij-Ag-xV0" secondAttribute="bottom" id="kxd-ED-ybR"/>
                             <constraint firstItem="WL5-4Q-XhC" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="paH-M8-V63"/>
-                            <constraint firstAttribute="width" secondItem="q5i-Wv-RoP" secondAttribute="width" id="ptK-mD-kQ2"/>
                             <constraint firstItem="WL5-4Q-XhC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="r56-Ge-NG7"/>
-                            <constraint firstItem="q5i-Wv-RoP" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="rUJ-Ej-cu2"/>
                             <constraint firstItem="VeZ-FK-bWU" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="tdU-n3-xlS"/>
                             <constraint firstItem="h0J-N9-5b6" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="teu-9w-7hP"/>
                             <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uQF-m4-1mn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B"/>
                     <connections>
                         <outlet property="balanceLabel" destination="VeZ-FK-bWU" id="2lX-jx-ojH"/>
+                        <outlet property="currenciesButton" destination="anT-2f-Ukd" id="5U7-ul-fWf"/>
                         <outlet property="emailLabel" destination="h0J-N9-5b6" id="t3b-yX-Hgx"/>
                     </connections>
                 </viewController>
@@ -248,6 +262,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMg-4B-m2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="569"/>
+        </scene>
+        <!--Currencies Example-->
+        <scene sceneID="tQc-Ok-Jtz">
+            <objects>
+                <tableViewController id="bby-w9-l4I" customClass="CoinbaseCurrenciesViewController" customModule="coinbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kca-3W-YYv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="currency" id="sgf-I3-rqQ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sgf-I3-rqQ" id="IGc-ai-I0p">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States Dollar (USD)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZz-e5-UaB">
+                                            <rect key="frame" x="14" y="11" width="292" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="tZz-e5-UaB" secondAttribute="centerY" constant="0.5" id="4rO-6U-DH9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tZz-e5-UaB" secondAttribute="trailing" constant="6" id="BcY-eH-98m"/>
+                                        <constraint firstItem="tZz-e5-UaB" firstAttribute="leading" secondItem="IGc-ai-I0p" secondAttribute="leadingMargin" constant="6" id="nHX-S3-hRk"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bby-w9-l4I" id="mpB-tr-Ygz"/>
+                            <outlet property="delegate" destination="bby-w9-l4I" id="j19-a1-6so"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Currencies Example" id="ZqY-jy-1VF"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FED-lm-m0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="281" y="1211"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

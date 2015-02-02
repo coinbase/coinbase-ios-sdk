@@ -74,7 +74,7 @@
     Coinbase *coinbase = [Coinbase coinbaseWithOAuthAccessToken:accessToken];
     [coinbase doGet:@"account/balance"
          parameters:nil
-            success:^(NSDictionary *response) {
+            success:^(id response) {
                 self.status.text = [NSString stringWithFormat:@"%@ %@", [response objectForKey:@"amount"], [response objectForKey:@"currency"]];
             }
             failure:^(NSError *error) {

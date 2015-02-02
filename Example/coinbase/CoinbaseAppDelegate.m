@@ -28,9 +28,9 @@
         [CoinbaseOAuth finishOAuthAuthenticationForUrl:url
                                                 clientId:kCoinbaseDemoClientID
                                             clientSecret:kCoinbaseDemoClientSecret
-                                                 success:^(NSDictionary *result) {
+                                                 success:^(id result) {
             // Tokens successfully obtained!
-            CoinbaseViewController *controller = (CoinbaseViewController *)self.window.rootViewController;
+            CoinbaseViewController *controller = (CoinbaseViewController *)[(UINavigationController *)self.window.rootViewController visibleViewController];
             [controller authenticationComplete:result];
         } failure:^(NSError *error) {
             // Could not authenticate.

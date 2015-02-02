@@ -1,10 +1,14 @@
 #import <Foundation/Foundation.h>
 
-/// Block type that takes a JSON object. Used when an API request has been successful.
-typedef void (^CoinbaseSuccessBlock)(NSDictionary *jsonObject);
+/// Block type that takes either a NSDictionary or NSArray. Used when an API request has been successful.
+typedef void (^CoinbaseSuccessBlock)(id response);
 
 /// Block type that takes a NSError. Used when an API request has failed.
 typedef void (^CoinbaseFailureBlock)(NSError *error);
+
+/// If the API request is successful, `response` will be either a NSDictionary or NSArray, and `error` will be nil.
+/// Otherwise, `error` will be non-nil.
+typedef void (^CoinbaseCompletionBlock)(id response, NSError *error);
 
 /// NSError domain for Coinbase errors.
 extern NSString *const CoinbaseErrorDomain;
@@ -40,32 +44,27 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Make a GET request to the Coinbase API.
 - (void)doGet:(NSString *)path
                 parameters:(NSDictionary *)parameters
-                   success:(CoinbaseSuccessBlock)success
-                   failure:(CoinbaseFailureBlock)failure;
+                completion:(CoinbaseCompletionBlock)completion;
 
 /// Make a POST request to the Coinbase API.
 - (void)doPost:(NSString *)path
-                 parameters:(NSDictionary *)parameters
-                    success:(CoinbaseSuccessBlock)success
-                    failure:(CoinbaseFailureBlock)failure;
+    parameters:(NSDictionary *)parameters
+    completion:(CoinbaseCompletionBlock)completion;
 
 /// Make a PUT request to the Coinbase API.
 - (void)doPut:(NSString *)path
-                parameters:(NSDictionary *)parameters
-                   success:(CoinbaseSuccessBlock)success
-                   failure:(CoinbaseFailureBlock)failure;
+   parameters:(NSDictionary *)parameters
+   completion:(CoinbaseCompletionBlock)completion;
 
 /// Make a DELETE request to the Coinbase API.
 - (void)doDelete:(NSString *)path
-                   parameters:(NSDictionary *)parameters
-                      success:(CoinbaseSuccessBlock)success
-                      failure:(CoinbaseFailureBlock)failure;
+      parameters:(NSDictionary *)parameters
+      completion:(CoinbaseCompletionBlock)completion;
 
 /// Make a request to the Coinbase API. Specify the HTTP method as a CoinbaseRequestType enum member.
 - (void)doRequestType:(CoinbaseRequestType)type
                  path:(NSString *)path
            parameters:(NSDictionary *)parameters
-              success:(CoinbaseSuccessBlock)success
-              failure:(CoinbaseFailureBlock)failure;
+           completion:(CoinbaseCompletionBlock)completion;
 
 @end

@@ -48,32 +48,28 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 - (void)requestSuccess:(NSHTTPURLResponse *)operation
               response:(NSData *)data
-               success:(CoinbaseSuccessBlock)success
-               failure:(CoinbaseFailureBlock)failure {
+            completion:(CoinbaseCompletionBlock)completion {
     NSError *error = nil;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if ([response objectForKey:@"error"] || [response objectForKey:@"errors"]) {
-        NSDictionary *userInfo;
+    id response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (response == nil) {
+        response = @{};
+    }
+
+    // Check for errors
+    NSMutableDictionary *errorUserInfo = [@{ @"statusCode": [NSNumber numberWithInteger: [operation statusCode]], @"response": response } mutableCopy];
+    if ([response isKindOfClass:[NSDictionary class]] && ([response objectForKey:@"error"] || [response objectForKey:@"errors"])) {
         if ([response objectForKey:@"error"]) {
-            userInfo = @{ @"error": [response objectForKey:@"error"] };
+            errorUserInfo[@"errors"] = @[ [response objectForKey:@"error"] ];
         } else {
-            userInfo = @{ @"errors": [response objectForKey:@"errors"] };
+            errorUserInfo[@"errors"] = [response objectForKey:@"errors"];
         }
-        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
+        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:errorUserInfo];
     } else if ([operation statusCode] >= 300) {
-        if (response == nil) {
-            response = @{};
-        }
-        NSDictionary *userInfo = @{ @"statusCode": [NSNumber numberWithInteger: [operation statusCode]], @"response": response };
-        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:userInfo];
+        error = [NSError errorWithDomain:CoinbaseErrorDomain code:CoinbaseServerErrorWithMessage userInfo:errorUserInfo];
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (error) {
-            failure(error);
-        } else {
-            success(response);
-        }
+        completion(response, error);
     });
 }
 
@@ -100,8 +96,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 - (void)doRequestType:(CoinbaseRequestType)type
                  path:(NSString *)path
            parameters:(NSDictionary *)parameters
-              success:(CoinbaseSuccessBlock)success
-              failure:(CoinbaseFailureBlock)failure {
+           completion:(CoinbaseCompletionBlock)completion {
     
     NSData *body = nil;
     if (type == CoinbaseRequestTypeGet || type == CoinbaseRequestTypeDelete) {
@@ -122,7 +117,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         NSError *error = nil;
         body = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
         if (error) {
-            failure(error);
+            completion(nil, error);
             return;
         }
     }
@@ -170,41 +165,37 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                          if (error) {
                              dispatch_async(dispatch_get_main_queue(), ^{
-                                 failure(error);
+                                 completion(nil, error);
                              });
                              return;
                          }
-                         [self requestSuccess:(NSHTTPURLResponse*)response response:data success:success failure:failure];
+                         [self requestSuccess:(NSHTTPURLResponse*)response response:data completion: completion];
                      }];
     [task resume];
 }
 
 - (void)doGet:(NSString *)path
    parameters:(NSDictionary *)parameters
-      success:(CoinbaseSuccessBlock)success
-      failure:(CoinbaseFailureBlock)failure {
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters success:success failure:failure];
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters completion:completion];
 }
 
 - (void)doPost:(NSString *)path
     parameters:(NSDictionary *)parameters
-       success:(CoinbaseSuccessBlock)success
-       failure:(CoinbaseFailureBlock)failure {
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters success:success failure:failure];
+    completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters completion:completion];
 }
 
 - (void)doPut:(NSString *)path
    parameters:(NSDictionary *)parameters
-      success:(CoinbaseSuccessBlock)success
-      failure:(CoinbaseFailureBlock)failure {
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters success:success failure:failure];
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters completion:completion];
 }
 
 - (void)doDelete:(NSString *)path
       parameters:(NSDictionary *)parameters
-         success:(CoinbaseSuccessBlock)success
-         failure:(CoinbaseFailureBlock)failure {
-    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters success:success failure:failure];
+      completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters completion:completion];
 }
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

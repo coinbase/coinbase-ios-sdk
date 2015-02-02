@@ -9,8 +9,11 @@
 #import "CoinbaseAppDelegate.h"
 #import "CoinbaseOAuth.h"
 #import "CoinbaseViewController.h"
+#import "coinbase-Swift.h"
 
 @interface CoinbaseViewController ()
+
+@property (nonatomic, retain) Coinbase *client;
 
 @end
 
@@ -33,17 +36,30 @@
     self.refreshToken = refreshToken;
     
     // Now that we are authenticated, load some data
-    Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:accessToken];
-    [apiClient doGet:@"account/balance" parameters:nil success:^(NSDictionary *result) {
-        self.balanceLabel.text = [[result objectForKey:@"amount"] stringByAppendingFormat:@" %@", [result objectForKey:@"currency"]];
-    } failure:^(NSError *error) {
-        NSLog(@"Could not load: %@", error);
+    self.client = [Coinbase coinbaseWithOAuthAccessToken:accessToken];
+    [self.client doGet:@"accounts" parameters:nil completion:^(id result, NSError *error) {
+        if (error) {
+            NSLog(@"Could not load: %@", error);
+        } else {
+            NSArray *accounts = result[@"accounts"];
+            NSString *text = @"";
+            for (NSDictionary *account in accounts) {
+                NSString *name = account[@"name"];
+                NSDictionary *balance = account[@"balance"];
+                text = [text stringByAppendingString:[NSString stringWithFormat:@"%@: %@ %@\n", name, balance[@"amount"], balance[@"currency"]]];
+            }
+            self.balanceLabel.text = text;
+        }
     }];
-    [apiClient doGet:@"users" parameters:nil success:^(NSDictionary *result) {
-        self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
-    } failure:^(NSError *error) {
-        NSLog(@"Could not load: %@", error);
+
+    [self.client doGet:@"users" parameters:nil completion:^(id result, NSError *error) {
+        if (error) {
+            NSLog(@"Could not load: %@", error);
+        } else {
+            self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
+        }
     }];
+    self.currenciesButton.enabled = YES;
 }
 
 - (void)refreshTokens:(id)sender {
@@ -52,15 +68,22 @@
         // New tokens obtained
         self.emailLabel.text = @"Got new tokens, loading email";
         self.refreshToken = [response objectForKey:@"refresh_token"];
-        Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
-        [apiClient doGet:@"users" parameters:nil success:^(NSDictionary *result) {
-            self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
-        } failure:^(NSError *error) {
-            NSLog(@"Could not load: %@", error);
+        self.client = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
+        [self.client doGet:@"users" parameters:nil completion:^(id result, NSError *error) {
+            if (error) {
+                NSLog(@"Could not load: %@", error);
+            } else {
+                self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
+            }
         }];
     } failure:^(NSError *error) {
         NSLog(@"Could not refresh tokens: %@", error);
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    CoinbaseCurrenciesViewController *controller = [segue destinationViewController];
+    controller.coinbaseClient = self.client;
 }
 
 @end
