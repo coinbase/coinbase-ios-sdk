@@ -5,7 +5,8 @@ NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
-    CoinbaseAuthenticationTypeOAuth
+    CoinbaseAuthenticationTypeOAuth,
+    CoinbaseAuthenticationTypeNone
 };
 
 @interface Coinbase ()
@@ -25,6 +26,19 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 + (Coinbase *)coinbaseWithApiKey:(NSString *)key secret:(NSString *)secret {
     return [[self alloc] initWithApiKey:key secret:secret];
+}
+
+// equivalent to [Coinbase new]
++ (Coinbase *)unauthenticatedCoinbase {
+    return [[self alloc] init];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.authenticationType = CoinbaseAuthenticationTypeNone;
+    }
+    return self;
 }
 
 - (instancetype)initWithOAuthAccessToken:(NSString *)accessToken {
@@ -153,7 +167,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         [request setValue:self.apiKey forHTTPHeaderField:@"ACCESS_KEY"];
         [request setValue:signature forHTTPHeaderField:@"ACCESS_SIGNATURE"];
         [request setValue:[NSString stringWithFormat:@"%ld", (long)nonce] forHTTPHeaderField:@"ACCESS_NONCE"];
-    } else {
+    } else if (self.authenticationType == CoinbaseAuthenticationTypeOAuth) {
         // OAuth
         [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
     }

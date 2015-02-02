@@ -59,7 +59,6 @@
             self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
         }
     }];
-    self.currenciesButton.enabled = YES;
 }
 
 - (void)refreshTokens:(id)sender {
@@ -79,11 +78,6 @@
     } failure:^(NSError *error) {
         NSLog(@"Could not refresh tokens: %@", error);
     }];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CoinbaseCurrenciesViewController *controller = [segue destinationViewController];
-    controller.coinbaseClient = self.client;
 }
 
 @end

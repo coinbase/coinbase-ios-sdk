@@ -98,7 +98,7 @@
                                     <action selector="refreshTokens:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2To-qu-Px5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
                                 <rect key="frame" x="105" y="527" width="110" height="30"/>
                                 <state key="normal" title="Load currencies">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,7 +133,6 @@
                     <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B"/>
                     <connections>
                         <outlet property="balanceLabel" destination="VeZ-FK-bWU" id="2lX-jx-ojH"/>
-                        <outlet property="currenciesButton" destination="anT-2f-Ukd" id="5U7-ul-fWf"/>
                         <outlet property="emailLabel" destination="h0J-N9-5b6" id="t3b-yX-Hgx"/>
                     </connections>
                 </viewController>
