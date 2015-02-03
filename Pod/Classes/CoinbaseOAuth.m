@@ -11,7 +11,7 @@
 @implementation CoinbaseOAuth
 
 + (BOOL)isAppOAuthAuthenticationAvailable {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize:/authorize"]];
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize://authorize"]];
 }
 
 + (void)startOAuthAuthenticationWithClientId:(NSString *)clientId
