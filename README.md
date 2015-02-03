@@ -63,13 +63,15 @@ You must override `openURL` in your application delegate to receive the OAuth au
         [CoinbaseOAuth finishOAuthAuthenticationForUrl:url
                                                 clientId:@"your client ID"
                                             clientSecret:@"your client secret"
-                                                 success:^(NSDictionary *result) {
-            // Tokens successfully obtained!
-            // Do something with them (store them, etc.)
-            Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:[result objectForKey:@"access_token"]];
-            // Note that you should also store 'expire_in' and refresh the token using [CoinbaseOAuth getOAuthTokensForRefreshToken] when it expires
-        } failure:^(NSError *error) {
-            // Could not authenticate.
+                                              completion:^(id result, NSError *error) {
+            if (error) {
+                // Could not authenticate.
+            } else {
+                // Tokens successfully obtained!
+                // Do something with them (store them, etc.)
+                Coinbase *apiClient = [Coinbase coinbaseWithOAuthAccessToken:[result objectForKey:@"access_token"]];
+                // Note that you should also store 'expire_in' and refresh the token using [CoinbaseOAuth getOAuthTokensForRefreshToken] when it expires
+            }
         }];
         return YES;
     }
@@ -85,10 +87,13 @@ See the `Example` folder for a fully functional example.
 After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://developers.coinbase.com/api](https://developers.coinbase.com/api) can be called using the `doGet`, `doPost`, `doPut` and `doDelete` methods on `Coinbase`. Example:
 
 ```objective-c
-[apiClient doGet:@"account/balance" parameters:nil success:^(id result) {
-    NSLog(@"Balance: %@", [result objectForKey:@"amount"]);
-} failure:^(NSError *error) {
-    NSLog(@"Could not load balance: %@", error);
+<<<<<<< HEAD
+[apiClient doGet:@"users/self" parameters:nil completion:^(id result, NSError *error) {
+    if (error) {
+        NSLog(@"Could not load user: %@", error);
+    } else {
+        NSLog(@"Signed in as: %@", [[result objectForKey:@"user"] objectForKey:@"email"]);
+    }
 }];
 ```
 
