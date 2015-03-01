@@ -20,14 +20,14 @@
                                         meta:(NSDictionary *)meta {
     NSString *path = [NSString stringWithFormat: @"/oauth/authorize?response_type=code&client_id=%@", clientId];
     if (scope) {
-        path = [path stringByAppendingFormat:@"&scope=%@", [scope stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        path = [path stringByAppendingFormat:@"&scope=%@", [self URLEncodedStringFromString:scope]];
     }
     if (redirectUri) {
-        path = [path stringByAppendingFormat:@"&redirect_uri=%@", [redirectUri stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        path = [path stringByAppendingFormat:@"&redirect_uri=%@", [self URLEncodedStringFromString:redirectUri]];
     }
     if (meta) {
         for (NSString *key in meta) {
-            path = [path stringByAppendingFormat:@"&meta[%@]=%@", [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[meta objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            path = [path stringByAppendingFormat:@"&meta[%@]=%@", [self URLEncodedStringFromString:key], [self URLEncodedStringFromString:meta[key]]];
         }
     }
     
