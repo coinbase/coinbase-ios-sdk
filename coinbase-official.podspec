@@ -20,4 +20,8 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
+
+  s.subspec 'OAuth' do |ss|
+    ss.source_files = 'Pod/Classes/{CoinbaseOAuth,CoinbaseDefines}.[hm]'
+  end
 end
