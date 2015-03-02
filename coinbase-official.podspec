@@ -1,4 +1,3 @@
-
 Pod::Spec.new do |s|
   s.name             = "coinbase-official"
   s.version          = "2.0.1"
@@ -20,4 +19,8 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
+
+  s.subspec 'OAuth' do |ss|
+    ss.source_files = 'Pod/Classes/{CoinbaseOAuth,CoinbaseDefines}.[hm]'
+  end
 end

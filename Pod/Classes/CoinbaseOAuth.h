@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "Coinbase.h"
+#import "CoinbaseDefines.h"
 
 /// `CoinbaseOAuth` contains methods to authenticate users through OAuth2. After obtaining an
 /// access token using this class, you can call Coinbase API methods
