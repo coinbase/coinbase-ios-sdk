@@ -14,7 +14,7 @@
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize://authorize"]];
 }
 
-+ (void)startOAuthAuthenticationWithClientId:(NSString *)clientId
++ (BOOL)startOAuthAuthenticationWithClientId:(NSString *)clientId
                                        scope:(NSString *)scope
                                  redirectUri:(NSString *)redirectUri
                                         meta:(NSDictionary *)meta {
@@ -31,13 +31,19 @@
         }
     }
     
+    BOOL appSwitchSuccessful = NO;
     NSURL *coinbaseAppUrl = [NSURL URLWithString:[NSString stringWithFormat:@"com.coinbase.oauth-authorize:%@", path]];
     if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl]) {
-        [[UIApplication sharedApplication] openURL:coinbaseAppUrl];
-    } else {
-        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
-        [[UIApplication sharedApplication] openURL:webUrl];
+        appSwitchSuccessful = [[UIApplication sharedApplication] openURL:coinbaseAppUrl];
     }
+
+    BOOL browserSwitchSuccessful = NO;
+    if (!appSwitchSuccessful) {
+        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
+        browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
+    }
+
+    return appSwitchSuccessful || browserSwitchSuccessful;
 }
 
 + (void)finishOAuthAuthenticationForUrl:(NSURL *)url

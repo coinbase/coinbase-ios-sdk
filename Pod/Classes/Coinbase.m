@@ -1,8 +1,6 @@
 #import "Coinbase.h"
 #import <CommonCrypto/CommonHMAC.h>
 
-NSString *const CoinbaseErrorDomain = @"CoinbaseErrorDomain";
-
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
     CoinbaseAuthenticationTypeOAuth,
