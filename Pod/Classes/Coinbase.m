@@ -160,7 +160,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     if (self.authenticationType == CoinbaseAuthenticationTypeAPIKey) {
         // HMAC auth
         NSInteger nonce = [[NSDate date] timeIntervalSince1970] * 100000;
-        NSString *toBeSigned = [NSString stringWithFormat:@"%ld%@%@", (long)nonce, [URL absoluteString], body ? body : @""];
+        NSString *toBeSigned = [NSString stringWithFormat:@"%ld%@%@", (long)nonce, [URL absoluteString], body ? [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding] : @""];
         NSString *signature = [self generateSignature: toBeSigned];
         [request setValue:self.apiKey forHTTPHeaderField:@"ACCESS_KEY"];
         [request setValue:signature forHTTPHeaderField:@"ACCESS_SIGNATURE"];
