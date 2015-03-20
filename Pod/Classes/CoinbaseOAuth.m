@@ -8,16 +8,18 @@
 
 #import "CoinbaseOAuth.h"
 
+NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
+
 @implementation CoinbaseOAuth
 
 + (BOOL)isAppOAuthAuthenticationAvailable {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize://authorize"]];
 }
 
-+ (BOOL)startOAuthAuthenticationWithClientId:(NSString *)clientId
-                                       scope:(NSString *)scope
-                                 redirectUri:(NSString *)redirectUri
-                                        meta:(NSDictionary *)meta {
++ (CoinbaseOAuthAuthenticationMechanism)startOAuthAuthenticationWithClientId:(NSString *)clientId
+                                                                       scope:(NSString *)scope
+                                                                 redirectUri:(NSString *)redirectUri
+                                                                        meta:(NSDictionary *)meta {
     NSString *path = [NSString stringWithFormat: @"/oauth/authorize?response_type=code&client_id=%@", clientId];
     if (scope) {
         path = [path stringByAppendingFormat:@"&scope=%@", [self URLEncodedStringFromString:scope]];
@@ -30,48 +32,55 @@
             path = [path stringByAppendingFormat:@"&meta[%@]=%@", [self URLEncodedStringFromString:key], [self URLEncodedStringFromString:meta[key]]];
         }
     }
-    
-    BOOL appSwitchSuccessful = NO;
+
+    CoinbaseOAuthAuthenticationMechanism mechanism = CoinbaseOAuthMechanismNone;
     NSURL *coinbaseAppUrl = [NSURL URLWithString:[NSString stringWithFormat:@"com.coinbase.oauth-authorize:%@", path]];
+    BOOL appSwitchSuccessful = NO;
     if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl]) {
         appSwitchSuccessful = [[UIApplication sharedApplication] openURL:coinbaseAppUrl];
+        if (appSwitchSuccessful) {
+            mechanism = CoinbaseOAuthMechanismApp;
+        }
     }
 
-    BOOL browserSwitchSuccessful = NO;
     if (!appSwitchSuccessful) {
         NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
-        browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
+        BOOL browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
+        if (browserSwitchSuccessful) {
+            mechanism = CoinbaseOAuthMechanismBrowser;
+        }
     }
 
-    return appSwitchSuccessful || browserSwitchSuccessful;
+    return mechanism;
 }
 
 + (void)finishOAuthAuthenticationForUrl:(NSURL *)url
                                clientId:(NSString *)clientId
                            clientSecret:(NSString *)clientSecret
                              completion:(CoinbaseCompletionBlock)completion {
-    
-    // Get code from URL and check for error.
-    NSString *code = nil;
+    // Parse params from URL's query string
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     for (NSString *param in [url.query componentsSeparatedByString:@"&"]) {
         NSArray *elts = [param componentsSeparatedByString:@"="];
         NSString *key = [elts objectAtIndex:0];
         NSString *value = [elts objectAtIndex:1];
-        
-        if ([key isEqualToString:@"code"]) {
-            code = value;
-        } else if ([key isEqualToString:@"error_description"]) {
-            value = [value stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: value };
-            NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
-                                                 code:CoinbaseOAuthError
-                                             userInfo:userInfo];
-            completion(nil, error);
-            return;
-        }
+
+        params[key] = value;
     }
-    if (!code) {
+
+    // Get code from URL and check for error.
+    NSString *code = params[@"code"];
+    
+    if (params[@"error_description"] != nil) {
+        NSString *errorDescription = [[params[@"error_description"] stringByReplacingOccurrencesOfString:@"+" withString:@" "]
+                                      stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: errorDescription, CoinbaseOAuthErrorUserInfoKey: (params[@"error"] ?: [NSNull null]) };
+        NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
+                                             code:CoinbaseOAuthError
+                                         userInfo:userInfo];
+        completion(nil, error);
+        return;
+    } else if (!code) {
         NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: @"Malformed URL." };
         NSError *error = [NSError errorWithDomain:CoinbaseErrorDomain
                                              code:CoinbaseOAuthError

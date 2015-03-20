@@ -1,6 +1,23 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseDefines.h"
 
+///  Indicates where user authentication takes place
+typedef NS_ENUM(NSInteger, CoinbaseOAuthAuthenticationMechanism){
+    ///  Neither app switch nor authentication occured
+    CoinbaseOAuthMechanismNone = NO,
+    ///  The user authenticated with Coinbase in Mobile Safari
+    CoinbaseOAuthMechanismBrowser,
+    /// The user authenticated with Coinbase in the Coinbase app
+    CoinbaseOAuthMechanismApp,
+};
+
+///  The key in an NSError userInfo dictionary where the coinbase specific error code is returned.
+///
+///  For example, when the return URL contains error=acccess_denied, the error you receive in
+///  finishOAuthAuthenticationForUrl:clientId:clientSecret:completion: will contain @"access_denied"
+///  in the userInfo dictionary.
+extern NSString *const CoinbaseOAuthErrorUserInfoKey;
+
 /// `CoinbaseOAuth` contains methods to authenticate users through OAuth2. After obtaining an
 /// access token using this class, you can call Coinbase API methods
 /// using `[Coinbase coinbaseWithOAuthAccessToken:]`.
@@ -15,10 +32,12 @@
 
 /// Start the OAuth authentication process. This will open a different application to complete the
 /// authentication flow.
-+ (BOOL)startOAuthAuthenticationWithClientId:(NSString *)clientId
-                                       scope:(NSString *)scope
-                                 redirectUri:(NSString *)redirectUri
-                                        meta:(NSDictionary *)meta;
+///
+/// @return the mechanism of authentication. Example: CoinbaseOAuthMechanismApp
++ (CoinbaseOAuthAuthenticationMechanism)startOAuthAuthenticationWithClientId:(NSString *)clientId
+                                                                       scope:(NSString *)scope
+                                                                 redirectUri:(NSString *)redirectUri
+                                                                        meta:(NSDictionary *)meta;
 
 /// Finish the OAuth authentication process. This should be called when your application is opened
 /// for a Coinbase OAuth URI.
