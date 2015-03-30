@@ -10,6 +10,7 @@
 #import "CoinbaseOAuth.h"
 #import "CoinbaseViewController.h"
 #import "coinbase-Swift.h"
+#import "Coinbase.h"
 
 @interface CoinbaseViewController ()
 
