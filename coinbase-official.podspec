@@ -14,7 +14,9 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
+  s.source_files = 'Pod/Classes/CoinbaseDefines.[hm]'
   s.resources = 'Pod/Assets'
+
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 
@@ -23,6 +25,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'OAuth' do |ss|
-    ss.source_files = 'Pod/Classes/{CoinbaseOAuth,CoinbaseDefines}.[hm]'
+    ss.source_files = 'Pod/Classes/CoinbaseOAuth.[hm]'
   end
 end
