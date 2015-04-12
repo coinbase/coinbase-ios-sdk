@@ -45,10 +45,41 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
       parameters:(NSDictionary *)parameters
       completion:(CoinbaseCompletionBlock)completion;
 
+/// Make a GET request to the Coinbase API.
+- (void)doGet:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion;
+
+/// Make a POST request to the Coinbase API.
+- (void)doPost:(NSString *)path
+    parameters:(NSDictionary *)parameters
+       headers:(NSDictionary *)headers
+    completion:(CoinbaseCompletionBlock)completion;
+
+/// Make a PUT request to the Coinbase API.
+- (void)doPut:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion;
+
+/// Make a DELETE request to the Coinbase API.
+- (void)doDelete:(NSString *)path
+      parameters:(NSDictionary *)parameters
+         headers:(NSDictionary *)headers
+      completion:(CoinbaseCompletionBlock)completion;
+
 /// Make a request to the Coinbase API. Specify the HTTP method as a CoinbaseRequestType enum member.
 - (void)doRequestType:(CoinbaseRequestType)type
                  path:(NSString *)path
            parameters:(NSDictionary *)parameters
+           completion:(CoinbaseCompletionBlock)completion;
+
+/// Make a request to the Coinbase API. Specify the HTTP method as a CoinbaseRequestType enum member.
+- (void)doRequestType:(CoinbaseRequestType)type
+                 path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              headers:(NSDictionary *)headers
            completion:(CoinbaseCompletionBlock)completion;
 
 @end

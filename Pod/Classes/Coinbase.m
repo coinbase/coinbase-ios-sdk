@@ -109,6 +109,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                  path:(NSString *)path
            parameters:(NSDictionary *)parameters
            completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:type path:path parameters:parameters headers:nil completion:completion];
+}
+
+- (void)doRequestType:(CoinbaseRequestType)type
+                 path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              headers:(NSDictionary *)headers
+           completion:(CoinbaseCompletionBlock)completion {
     
     NSData *body = nil;
     if (type == CoinbaseRequestTypeGet || type == CoinbaseRequestTypeDelete) {
@@ -170,6 +178,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
     }
 
+    if (headers != nil) {
+        for (NSString *header in [headers keyEnumerator]) {
+            [request setValue:headers[header] forKey:header];
+        }
+    }
+
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
     NSURLSessionDataTask *task;
@@ -208,6 +222,34 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
       parameters:(NSDictionary *)parameters
       completion:(CoinbaseCompletionBlock)completion {
     [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters completion:completion];
+}
+
+- (void)doGet:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doPost:(NSString *)path
+    parameters:(NSDictionary *)parameters
+       headers:(NSDictionary *)headers
+    completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doPut:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doDelete:(NSString *)path
+      parameters:(NSDictionary *)parameters
+         headers:(NSDictionary *)headers
+      completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters headers:headers completion:completion];
 }
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

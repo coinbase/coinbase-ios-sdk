@@ -65,4 +65,9 @@ extern NSString *const CoinbaseOAuthErrorUserInfoKey;
                  clientSecret:(NSString *)clientSecret
                    completion:(CoinbaseCompletionBlock)completion;
 
+/// Make a request to a Coinbase OAuth API.
++ (void)doOAuthPostToPath:(NSString *)path
+               withParams:(NSDictionary *)params
+               completion:(CoinbaseCompletionBlock)completion;
+
 @end
