@@ -32,11 +32,11 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("currency") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("currency") as? UITableViewCell
 
-        let label = cell.viewWithTag(1) as! UILabel
-        label.text = currencies?[indexPath.row][0]
+        let label = cell?.viewWithTag(1) as? UILabel
+        label?.text = currencies?[indexPath.row][0]
 
-        return cell
+        return cell!
     }
 }
