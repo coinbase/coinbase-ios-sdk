@@ -19,11 +19,12 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 
-  s.subspec 'client' do |ss|
-    ss.source_files = 'Pod/Classes/{Coinbase,CoinbaseDefines}.[hm]'
-  end
-
   s.subspec 'OAuth' do |ss|
     ss.source_files = 'Pod/Classes/{CoinbaseOAuth,CoinbaseDefines}.[hm]'
+  end
+
+  s.subspec 'client' do |ss|
+    ss.dependency 'coinbase-official/OAuth'
+    ss.source_files = 'Pod/Classes/Coinbase.[hm]'
   end
 end

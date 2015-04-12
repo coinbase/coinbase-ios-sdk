@@ -1,6 +1,9 @@
 PODS:
   - coinbase-official (2.1.2):
+    - coinbase-official/client (= 2.1.2)
     - coinbase-official/OAuth (= 2.1.2)
+  - coinbase-official/client (2.1.2):
+    - coinbase-official/OAuth
   - coinbase-official/OAuth (2.1.2)
   - Expecta (0.3.2)
   - Expecta+Snapshots (1.3.2):
@@ -21,7 +24,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  coinbase-official: ea44fc78bf8a592d0576df1740c91e10d818177c
+  coinbase-official: 36eb1ed3f43e8a5597ce89eac1e53f1a6d5a1af0
   Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
