@@ -594,6 +594,43 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Subscribers
+
+-(void) getSubscribers:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getSubscribersWithAccountID:(NSString *)accountID
+                         completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) subscriptionWithID:(NSString *)subscriptionID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"subscribers/%@", subscriptionID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) subscriptionWithID:(NSString *)subscriptionID
+                 accountID:(NSString *)accountID
+                completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"subscribers/%@", subscriptionID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
