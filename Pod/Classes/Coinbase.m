@@ -594,6 +594,38 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Withdrawals
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"payment_method_id" : paymentMethodID,
+                                 @"account_id" : accountID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+                commit:(BOOL)commit
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"payment_method_id" : paymentMethodID,
+                                 @"account_id" : accountID,
+                                 @"commit" : commit ? @"true" : @"false"
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

@@ -316,4 +316,22 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Withdrawals
+
+///
+/// Withdraw USD or EUR - Authenticated resource that lets you withdraw USD or EUR from a USD or EUR wallet.
+/// Required scope: withdraw
+///
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+                commit:(BOOL)commit
+            completion:(CoinbaseCompletionBlock)completion;
+
 @end
