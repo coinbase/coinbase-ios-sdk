@@ -594,6 +594,23 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Tokens
+
+-(void) createToken:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypePost path:@"tokens" parameters:nil headers:nil completion:completion];
+}
+
+-(void) redeemTokenWithID:(NSString *)tokenID completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"token_id" : tokenID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"tokens/redeem" parameters:parameters headers:nil completion:completion];
+
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
