@@ -316,4 +316,143 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Transactions
+
+///
+/// List transactions - Authenticated resource which returns the user’s most recent transactions.
+/// Required scope: transactions
+///
+
+-(void) getTransactions:(CoinbaseCompletionBlock)completion;
+
+-(void) getTransactionsWithPage:(NSUInteger)page
+                          limit:(NSUInteger)limit
+                      accountID:(NSString *)accountID
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a transaction - Authenticated resource which returns the details of an individual transaction.
+/// Required scope: transactions
+///
+
+-(void) transactionWithID:(NSString *)transactionID
+               completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transactionWithID:(NSString *)transactionID
+                accountID:(NSString *)accountID
+               completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Send money - Authenticated resource which lets you send money to an email address, bitcoin address or Coinbase account ID.
+/// Required scope: send
+///
+
+-(void) sendAmount:(double)amount
+                to:(NSString *)to
+        completion:(CoinbaseCompletionBlock)completion;
+
+/// Bitcoin amount
+
+-(void) sendAmount:(double)amount
+                to:(NSString *)to
+             notes:(NSString *)notes
+           userFee:(double)userFee
+        referrerID:(NSString *)referrerID
+              idem:(NSString *)idem
+        instantBuy:(BOOL)instantBuy
+           orderID:(NSString *)orderID
+         accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+/// Currency amount
+
+-(void) sendAmount:(double)amount
+ amountCurrencyISO:(NSString *)amountCurrencyISO
+                to:(NSString *)to
+             notes:(NSString *)notes
+           userFee:(double)userFee
+        referrerID:(NSString *)referrerID
+              idem:(NSString *)idem
+        instantBuy:(BOOL)instantBuy
+           orderID:(NSString *)orderID
+         accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Transfer money between accounts - Authenticated resource which lets you transfer bitcoin between authenticated user’s accounts.
+/// Required scope: transfer
+///
+
+-(void) transferAmount:(double)amount
+                    to:(NSString *)to
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transferAmount:(double)amount
+                    to:(NSString *)to
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Request money - Authenticated resource which lets the user request money from an email address.
+/// Required scope: request
+///
+
+-(void) requestAmount:(double)amount
+                 from:(NSString *)from
+           completion:(CoinbaseCompletionBlock)completion;
+
+/// Bitcoin amount
+
+-(void) requestAmount:(double)amount
+                 from:(NSString *)from
+                notes:(NSString *)notes
+            accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+/// Currency amount
+
+-(void) requestAmount:(double)amount
+    amountCurrencyISO:(NSString *)amountCurrencyISO
+                 from:(NSString *)from
+                notes:(NSString *)notes
+            accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Resend bitcoin request - Authenticated resource which lets the user resend a money request.
+/// Required scope: request
+///
+
+-(void) resendRequestWithID:(NSString *)transactionID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) resendRequestWithID:(NSString *)transactionID
+                  accountID:(NSString *)accountID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Complete bitcoin request - Authenticated resource which lets the recipient of a money request complete the request by sending money to the user who requested the money.
+/// Required scope: request
+///
+
+-(void) completeRequestWithID:(NSString *)transactionID
+                   completion:(CoinbaseCompletionBlock)completion;
+
+-(void) completeRequestWithID:(NSString *)transactionID
+                    accountID:(NSString *)accountID
+                   completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Cancel bitcoin request - Authenticated resource which lets a user cancel a money request.
+/// Required scope: request
+///
+
+-(void) cancelRequestWithID:(NSString *)transactionID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) cancelRequestWithID:(NSString *)transactionID
+                  accountID:(NSString *)accountID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+
 @end
