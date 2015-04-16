@@ -316,4 +316,50 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Reports
+
+///
+/// List all reports - Authenticated resource which returns a list of the reports that a user has generated.
+/// Required scope: reports
+///
+
+-(void) getReports:(CoinbaseCompletionBlock)completion;
+
+-(void) getReportsWithPage:(NSUInteger)page
+                     limit:(NSUInteger)limit
+                completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a report - Authenticated resource which returns report details.
+/// Required scope: reports
+///
+
+-(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Generate a new report - Authenticated resource which creates and returns a new CSV report
+/// Required scope: reports
+///
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                  completion:(CoinbaseCompletionBlock)completion;
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                   accountID:(NSString *)accountID
+                 callbackURL:(NSString *)callbackURL
+                   timeRange:(NSString *)timeRange
+              timeRangeStart:(NSString *)timeRangeStart
+                timeRangeEnd:(NSString *)timeRangeEnd
+                   startType:(NSString *)startType
+                 nextRunDate:(NSString *)nextRunDate
+                 nextRunTime:(NSString *)nextRunTime
+                      repeat:(NSString *)repeat
+                       times:(NSUInteger)times
+                  completion:(CoinbaseCompletionBlock)completion;
+
+
+
+
 @end

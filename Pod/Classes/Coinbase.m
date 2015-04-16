@@ -594,6 +594,71 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Reports
+
+-(void) getReports:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getReportsWithPage:(NSUInteger)page
+                     limit:(NSUInteger)limit
+                completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"reports/%@", reportID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                  completion:(CoinbaseCompletionBlock)completion
+{
+
+}
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                   accountID:(NSString *)accountID
+                 callbackURL:(NSString *)callbackURL
+                   timeRange:(NSString *)timeRange
+              timeRangeStart:(NSString *)timeRangeStart
+                timeRangeEnd:(NSString *)timeRangeEnd
+                   startType:(NSString *)startType
+                 nextRunDate:(NSString *)nextRunDate
+                 nextRunTime:(NSString *)nextRunTime
+                      repeat:(NSString *)repeat
+                       times:(NSUInteger)times
+                  completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"report" :
+                                     @{@"type" : type,
+                                       @"email": email,
+                                       @"callback_url": callbackURL,
+                                       @"time_range": timeRange,
+                                       @"time_range_start": timeRangeStart,
+                                       @"time_range_end": timeRangeEnd,
+                                       @"start_type": startType,
+                                       @"next_run_date": nextRunDate,
+                                       @"next_run_time": nextRunTime,
+                                       @"repeat": repeat,
+                                       @"times": [NSNumber numberWithUnsignedInteger:times]
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
