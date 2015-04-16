@@ -21,7 +21,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   coinbase-official:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   coinbase-official: 36eb1ed3f43e8a5597ce89eac1e53f1a6d5a1af0

@@ -12,7 +12,7 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
     override func viewDidAppear(animated: Bool) {
 
         // Load currencies
-        Coinbase().doGet("currencies", parameters: [:]) {
+        Coinbase().getSupportedCurrencies() {
             (response: AnyObject?, error: NSError?) in
             if let error = error {
                 NSLog("Error: \(error)")
