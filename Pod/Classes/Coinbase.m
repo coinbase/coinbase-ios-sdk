@@ -89,19 +89,19 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 - (NSString *)generateSignature:(NSString *)body {
     const char *cKey  = [self.apiSecret cStringUsingEncoding:NSASCIIStringEncoding];
     const char *cData = [body cStringUsingEncoding:NSASCIIStringEncoding];
-    
+
     unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
-    
+
     CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-    
+
     NSData *HMACData = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
-    
+
     const unsigned char *buffer = (const unsigned char *)[HMACData bytes];
     NSString *HMAC = [NSMutableString stringWithCapacity:HMACData.length * 2];
-    
+
     for (int i = 0; i < HMACData.length; ++i)
         HMAC = [HMAC stringByAppendingFormat:@"%02lx", (unsigned long)buffer[i]];
-    
+
     return HMAC;
 }
 
@@ -117,7 +117,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
            parameters:(NSDictionary *)parameters
               headers:(NSDictionary *)headers
            completion:(CoinbaseCompletionBlock)completion {
-    
+
     NSData *body = nil;
     if (type == CoinbaseRequestTypeGet || type == CoinbaseRequestTypeDelete) {
         // Parameters need to be appended to URL
@@ -188,69 +188,413 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
     NSURLSessionDataTask *task;
     task = [session dataTaskWithRequest:request
-                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                         if (error) {
-                             dispatch_async(dispatch_get_main_queue(), ^{
-                                 completion(nil, error);
-                             });
-                             return;
-                         }
-                         [self requestSuccess:(NSHTTPURLResponse*)response response:data completion: completion];
-                     }];
+                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                          if (error) {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  completion(nil, error);
+                              });
+                              return;
+                          }
+                          [self requestSuccess:(NSHTTPURLResponse*)response response:data completion: completion];
+                      }];
     [task resume];
 }
 
-- (void)doGet:(NSString *)path
-   parameters:(NSDictionary *)parameters
-   completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters completion:completion];
+#pragma mark - Accounts
+
+-(void) getAccountsList:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"accounts" parameters:nil headers:nil completion:completion];
 }
 
-- (void)doPost:(NSString *)path
-    parameters:(NSDictionary *)parameters
-    completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters completion:completion];
+-(void) getAccountsListWithPage:(NSUInteger)page
+                          limit:(NSUInteger)limit
+                    allAccounts:(NSUInteger)allAccounts
+                     completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"all_accounts" : [@(allAccounts)  stringValue]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"accounts" parameters:parameters headers:nil completion:completion];
 }
 
-- (void)doPut:(NSString *)path
-   parameters:(NSDictionary *)parameters
-   completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters completion:completion];
+-(void) getAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"accounts/%@", accountID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
 
-- (void)doDelete:(NSString *)path
-      parameters:(NSDictionary *)parameters
-      completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters completion:completion];
+-(void) getPrimaryAccount:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"accounts/primary" parameters:nil headers:nil completion:completion];
 }
 
-- (void)doGet:(NSString *)path
-   parameters:(NSDictionary *)parameters
-      headers:(NSDictionary *)headers
-   completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:headers completion:completion];
+-(void) createAccountWithName:(NSString *)name
+                   completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"account" :
+                                     @{@"name" : name}};
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"accounts" parameters:parameters headers:nil completion:completion];
 }
 
-- (void)doPost:(NSString *)path
-    parameters:(NSDictionary *)parameters
-       headers:(NSDictionary *)headers
-    completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:headers completion:completion];
+-(void) getBalanceForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"accounts/%@/balance", accountID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
 
-- (void)doPut:(NSString *)path
-   parameters:(NSDictionary *)parameters
-      headers:(NSDictionary *)headers
-   completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:headers completion:completion];
+-(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"accounts/%@/address", accountID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
 
-- (void)doDelete:(NSString *)path
-      parameters:(NSDictionary *)parameters
-         headers:(NSDictionary *)headers
-      completion:(CoinbaseCompletionBlock)completion {
-    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters headers:headers completion:completion];
+-(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    [self createBitcoinAddressForAccount:accountID label:nil callBackURL:nil completion:completion];
 }
+
+-(void) createBitcoinAddressForAccount:(NSString *)accountID
+                                 label:(NSString *)label
+                           callBackURL:(NSString *)callBackURL
+                            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"address" :
+                                     @{@"label" : label,
+                                       @"callback_url" : callBackURL
+                                       }};
+
+    NSString *path = [NSString stringWithFormat:@"accounts/%@/address", accountID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
+}
+
+-(void) modifyAccount:(NSString *)accountID
+                 name:(NSString *)name
+           completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"account" :
+                                     @{@"name" : name}};
+
+    NSString *path = [NSString stringWithFormat:@"accounts/%@", accountID];
+
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:completion];
+}
+
+-(void) setAccountAsPrimary:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"accounts/%@/primary", accountID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) deleteAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"accounts/%@", accountID];
+
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:nil headers:nil completion:completion];
+}
+
+#pragma mark - Account Changes
+
+-(void) getAccountChanges:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getAccountChangesWithPage:(NSUInteger)page
+                            limit:(NSUInteger)limit
+                        accountId:(NSString *)accountId
+                       completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"account_id" : accountId
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Addresses
+
+-(void) getAccountAddresses:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"addresses" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getAccountAddressesWithPage:(NSUInteger)page
+                              limit:(NSUInteger)limit
+                          accountId:(NSString *)accountId
+                              query:(NSString *)query
+                         completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"account_id" : accountId,
+                                 @"query" : query,
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"addresses" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getAddressWithAddressOrID:(NSString *) addressOrID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"addresses/%@", addressOrID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) getAddressWithAddressOrID:(NSString *)addressOrID
+                        accountId:(NSString *)accountId
+                       completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"addresses/%@", addressOrID];
+
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountId,
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Authorization
+
+-(void) getAuthorizationInformation:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"authorization" parameters:nil headers:nil completion:completion];
+}
+
+#pragma mark - Buys
+
+-(void) buy:(double)quantity completion:(CoinbaseCompletionBlock)completion
+{
+    NSNumber *quantityNumber = [NSNumber numberWithDouble:quantity];
+
+    NSDictionary *parameters = @{
+                                 @"qty" : [quantityNumber stringValue]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:completion];
+}
+
+-(void)                 buy:(double)quantity
+                  accountID:(NSString *)accountID
+                   currency:(NSString *)currency
+       agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
+                     commit:(BOOL)commit
+            paymentMethodID:(NSString *)paymentMethodID
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
+                                 @"account_id" : accountID,
+                                 @"currency" : currency,
+                                 @"agree_btc_amount_varies" : agreeBTCAmountVaries ? @"true" : @"false",
+                                 @"commit" : commit ? @"true" : @"false",
+                                 @"paymentMethodID" : paymentMethodID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Contacts
+
+
+-(void) getContacts:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getContactsWithPage:(NSUInteger)page
+                      limit:(NSUInteger)limit
+                      query:(NSString *)query
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"query" : query,
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:parameters headers:nil completion:completion];
+
+}
+
+#pragma mark - Currencies
+
+-(void) getSupportedCurrencies:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getExchangeRates:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"exchange_rates" parameters:nil headers:nil completion:completion];
+}
+
+#pragma mark - Deposits
+
+-(void) makeDepositToAccount:(NSString *)accountID
+                      amount:(double)amount
+             paymentMethodId:(NSString *)paymentMethodId
+                      commit:(BOOL)commit
+                  completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID,
+                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"payment_method_id" : paymentMethodId,
+                                 @"commit" : commit ? @"true" : @"false",
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"deposits" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Multisig
+
+-(void) createMultiSigAccountWithName:(NSString *)name
+                                 type:(NSString *)type
+                   requiredSignatures:(NSUInteger)requiredSignatures
+                             xPubKeys:(NSArray *)xPubKeys
+                           completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"account" :
+                                     @{@"name" : name,
+                                       @"type": type,
+                                       @"m" : [[NSNumber numberWithUnsignedInteger:requiredSignatures] stringValue],
+                                       @"xpubkeys": xPubKeys}
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"accounts" parameters:parameters headers:nil completion:completion];
+}
+
+#warning Todo - Create a multisig transaction
+
+-(void) getSignatureHashesWithTransactionID:(NSString *)transactionID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", transactionID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) getSignatureHashesWithTransactionID:(NSString *)transactionID accountID:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", transactionID];
+
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID,
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
+-(void) signaturesForMultiSigTransaction:(NSString *)transactionID
+                              signatures:(NSArray *)signatures
+                              completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"signatures": signatures
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/signatures", transactionID];
+
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - OAuth Applications
+
+
+-(void) getOAuthApplications:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:nil headers:nil completion:completion];
+
+}
+
+-(void) getOAuthApplicationsWithPage:(NSUInteger)page
+                               limit:(NSUInteger)limit
+                          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getOAuthApplicationWithID:(NSString *)applicationID
+                       completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"oauth/applications/%@", applicationID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) createOAuthApplicationWithName:(NSString *)name
+                           reDirectURL:(NSString *)reDirectURL
+                            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"application" :
+                                     @{@"name" : name,
+                                       @"redirect_uri": reDirectURL
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"oauth/applications" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Orders
+
+-(void) getOrders:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getOrdersWithPage:(NSUInteger)page
+                    limit:(NSUInteger)limit
+                accountID:(NSString *)accountID
+               completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"account_id" : accountID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getOrderWithID:(NSString *)customFieldOrID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"orders/%@", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) getOrderWithID:(NSString *)customFieldOrID
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
 {
