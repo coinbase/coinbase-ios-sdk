@@ -594,6 +594,73 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Prices
+
+-(void) getBuyPrice:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getBuyPriceWithQuantity:(double)qty
+                              currency:(NSString *)currency
+                            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getSellPrice:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:completion];
+}
+
+
+-(void) getSellPriceWithQuantity:(double)qty
+                               currency:(NSString *)currency
+                             completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getSpotRate:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getSpotRateWithCurrency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getHistoricalSpotRate:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/historical" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getHistoricalSpotRateWithPage:(NSUInteger)page
+                           completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [NSNumber numberWithUnsignedInteger:page]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/historical" parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

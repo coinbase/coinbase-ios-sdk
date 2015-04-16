@@ -316,4 +316,44 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Prices
+
+///
+/// Get the buy price for bitcoin - Resource that tells you the total price to buy some amount of bitcoin.
+///
+
+-(void) getBuyPrice:(CoinbaseCompletionBlock)completion;
+
+-(void) getBuyPriceWithQuantity:(double)qty
+                       currency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the sell price - Resource that tells you the total amount you can get if you sell some bitcoin.
+///
+
+-(void) getSellPrice:(CoinbaseCompletionBlock)completion;
+
+-(void) getSellPriceWithQuantity:(double)qty
+                        currency:(NSString *)currency
+                      completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the spot price of bitcoin - Unauthenticated resource that tells you the current price of bitcoin.
+///
+
+-(void) getSpotRate:(CoinbaseCompletionBlock)completion;
+
+-(void) getSpotRateWithCurrency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the historical spot price - Unauthenticated resource that displays historical spot rates for bitcoin in USD.
+///
+
+-(void) getHistoricalSpotRate:(CoinbaseCompletionBlock)completion;
+
+-(void) getHistoricalSpotRateWithPage:(NSUInteger)page
+                           completion:(CoinbaseCompletionBlock)completion;
+
 @end
