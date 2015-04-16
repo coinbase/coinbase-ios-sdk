@@ -594,6 +594,69 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Transfers
+
+-(void) getTransfers:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"transfers" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getTransfersWithPage:(NSUInteger)page
+                       limit:(NSUInteger)limit
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"account_id" : accountID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"transfers" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) transferWithID:(NSString *)transferID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"transfers/%@", transferID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) transferWithID:(NSString *)transferID
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transfers/%@", transferID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
+-(void) commitTransferWithID:(NSString *)transferID
+                  completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", transferID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) commitTransferWithID:(NSString *)transferID
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : accountID
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", transferID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
