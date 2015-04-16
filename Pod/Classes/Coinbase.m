@@ -594,6 +594,36 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+-(void) sellQuantity:(double)quantity
+          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) sellQuantity:(double)quantity
+           accountID:(NSString *)accountID
+            currency:(NSString *)currency
+              commit:(BOOL)commit
+agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
+     paymentMethodID:(NSString *)paymentMethodID
+          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
+                                 @"account_id" : accountID,
+                                 @"currency" : currency,
+                                 @"commit" : commit ? @"true" : @"false",
+                                 @"agree_btc_amount_varies" : agreeBTCAmountVaries ? @"true" : @"false",
+                                 @"payment_method_id" : paymentMethodID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string
