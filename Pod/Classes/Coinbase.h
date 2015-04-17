@@ -510,5 +510,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) recurringPaymentWithID:(NSString *)recurringPaymentID
                     completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Refunds
+
+///
+/// Show a refund - Authenticated resource that shows the details for a refund.
+/// Required scope: merchant or orders
+///
+
+-(void) refundWithID:(NSString *)refundID
+          completion:(CoinbaseCompletionBlock)completion;
 
 @end
