@@ -581,4 +581,28 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
      paymentMethodID:(NSString *)paymentMethodID
           completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Subscriptions
+
+///
+/// List subscriptions - Authenticated resource that lets you (as a merchant) list all the subscriptions customers have made with you.
+/// Required scopes: recurring_payments or merchant
+///
+
+-(void) getSubscribers:(CoinbaseCompletionBlock)completion;
+
+-(void) getSubscribersWithAccountID:(NSString *)accountID
+                         completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a subscription - Authenticated resource that lets you (as a merchant) show an individual subscription than a customer has created with you.
+/// Required scopes: recurring_payments or merchant
+///
+
+-(void) subscriptionWithID:(NSString *)subscriptionID completion:(CoinbaseCompletionBlock)completion;
+
+-(void) subscriptionWithID:(NSString *)subscriptionID
+                 accountID:(NSString *)accountID
+                completion:(CoinbaseCompletionBlock)completion;
+
+
 @end
