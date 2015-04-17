@@ -373,6 +373,104 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:@"authorization" parameters:nil headers:nil completion:completion];
 }
 
+#pragma mark - Button
+
+-(void) createButtonWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"button" :
+                                     @{@"name" : name,
+                                       @"price_string": price,
+                                       @"price_currency_iso" : priceCurrencyISO
+                                       }
+                                 };
+    
+    [self doRequestType:CoinbaseRequestTypeGet path:@"buttons" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) createButtonWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                  accountID:(NSString *)accountID
+                       type:(NSString *)type
+               subscription:(BOOL)subscription
+                     repeat:(NSString *)repeat
+                      style:(NSString *)style
+                       text:(NSString *)text
+                description:(NSString *)description
+                     custom:(NSString *)custom
+               customSecure:(BOOL)customSecure
+                callbackURL:(NSString *)callbackURL
+                 successURL:(NSString *)successURL
+                  cancelURL:(NSString *)cancelURL
+                    infoURL:(NSString *)infoURL
+               autoRedirect:(BOOL)autoRedirect
+        autoRedirectSuccess:(BOOL)autoRedirectSuccess
+         autoRedirectCancel:(BOOL)autoRedirectCancel
+              variablePrice:(BOOL)variablePrice
+             includeAddress:(BOOL)includeAddress
+               includeEmail:(BOOL)includeEmail
+                choosePrice:(BOOL)choosePrice
+                     price1:(NSString *)price1
+                     price2:(NSString *)price2
+                     price3:(NSString *)price3
+                     price4:(NSString *)price4
+                     price5:(NSString *)price5
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"button" :
+                                     @{@"name" : name,
+                                       @"price_string": price,
+                                       @"price_currency_iso" : priceCurrencyISO,
+                                       @"account_id" : accountID,
+                                       @"type" : type,
+                                       @"subscription" : subscription ? @"true" : @"false",
+                                       @"repeat" : repeat,
+                                       @"style" : style,
+                                       @"text" : text,
+                                       @"description" : description,
+                                       @"custom" : custom,
+                                       @"custom_secure" : customSecure ? @"true" : @"false",
+                                       @"callback_url" : callbackURL,
+                                       @"success_url" : successURL,
+                                       @"cancel_url" : cancelURL,
+                                       @"info_url" : infoURL,
+                                       @"auto_redirect" : autoRedirect ? @"true" : @"false",
+                                       @"auto_redirect_success" : autoRedirectSuccess ? @"true" : @"false",
+                                       @"auto_redirect_cancel" : autoRedirectCancel ? @"true" : @"false",
+                                       @"variable_price" : variablePrice ? @"true" : @"false",
+                                       @"include_address" : includeAddress ? @"true" : @"false",
+                                       @"include_email" : includeEmail ? @"true" : @"false",
+                                       @"choose_price" : choosePrice ? @"true" : @"false",
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"buttons" parameters:parameters headers:nil completion:completion];
+}
+
+-(void)getButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"buttons/%@", customValueOrID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"buttons/%@/create_order", customValueOrID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"buttons/%@/orders", customValueOrID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
 #pragma mark - Buys
 
 -(void) buy:(double)quantity completion:(CoinbaseCompletionBlock)completion
@@ -573,6 +671,81 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:completion];
 }
 
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"button" :
+                                     @{@"name" : name,
+                                       @"price_string": price,
+                                       @"price_currency_iso" : priceCurrencyISO
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                  accountID:(NSString *)accountID
+                       type:(NSString *)type
+               subscription:(BOOL)subscription
+                     repeat:(NSString *)repeat
+                      style:(NSString *)style
+                       text:(NSString *)text
+                description:(NSString *)description
+                     custom:(NSString *)custom
+               customSecure:(BOOL)customSecure
+                callbackURL:(NSString *)callbackURL
+                 successURL:(NSString *)successURL
+                  cancelURL:(NSString *)cancelURL
+                    infoURL:(NSString *)infoURL
+               autoRedirect:(BOOL)autoRedirect
+        autoRedirectSuccess:(BOOL)autoRedirectSuccess
+         autoRedirectCancel:(BOOL)autoRedirectCancel
+              variablePrice:(BOOL)variablePrice
+             includeAddress:(BOOL)includeAddress
+               includeEmail:(BOOL)includeEmail
+                choosePrice:(BOOL)choosePrice
+                     price1:(NSString *)price1
+                     price2:(NSString *)price2
+                     price3:(NSString *)price3
+                     price4:(NSString *)price4
+                     price5:(NSString *)price5
+                 completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"button" :
+                                     @{@"name" : name,
+                                       @"price_string": price,
+                                       @"price_currency_iso" : priceCurrencyISO,
+                                       @"account_id" : accountID,
+                                       @"type" : type,
+                                       @"subscription" : subscription ? @"true" : @"false",
+                                       @"repeat" : repeat,
+                                       @"style" : style,
+                                       @"text" : text,
+                                       @"description" : description,
+                                       @"custom" : custom,
+                                       @"custom_secure" : customSecure ? @"true" : @"false",
+                                       @"callback_url" : callbackURL,
+                                       @"success_url" : successURL,
+                                       @"cancel_url" : cancelURL,
+                                       @"info_url" : infoURL,
+                                       @"auto_redirect" : autoRedirect ? @"true" : @"false",
+                                       @"auto_redirect_success" : autoRedirectSuccess ? @"true" : @"false",
+                                       @"auto_redirect_cancel" : autoRedirectCancel ? @"true" : @"false",
+                                       @"variable_price" : variablePrice ? @"true" : @"false",
+                                       @"include_address" : includeAddress ? @"true" : @"false",
+                                       @"include_email" : includeEmail ? @"true" : @"false",
+                                       @"choose_price" : choosePrice ? @"true" : @"false",
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"orders" parameters:parameters headers:nil completion:completion];
+}
+
 -(void) getOrderWithID:(NSString *)customFieldOrID
             completion:(CoinbaseCompletionBlock)completion
 {
@@ -593,6 +766,120 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
+
+#pragma mark - Payment Methods
+
+-(void) getPaymentMethods:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"payment_methods" parameters:nil headers:nil completion:completion];
+}
+
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"payment_methods/%@", paymentMethodID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+               completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : refundISOCode
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
+}
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+             mispaymentID:(NSString *)mispaymentID
+    externalRefundAddress:(NSString *)externalRefundAddress
+               instantBuy:(BOOL)instantBuy
+               completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : refundISOCode,
+                                 @"mispayment_id" : mispaymentID,
+                                 @"external_refund_address" :externalRefundAddress,
+                                 @"instant_buy" : instantBuy ? @"true" : @"false"
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Prices
+
+-(void) getBuyPrice:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getBuyPriceWithQuantity:(double)qty
+                       currency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getSellPrice:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getSellPriceWithQuantity:(double)qty
+                        currency:(NSString *)currency
+                      completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getSpotRate:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getSpotRateWithCurrency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"currency" : currency
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) getHistoricalSpotRate:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/historical" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getHistoricalSpotRateWithPage:(NSUInteger)page
+                           completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [NSNumber numberWithUnsignedInteger:page]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/historical" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Recurring Payments
 
 -(void) getRecurringPayments:(CoinbaseCompletionBlock)completion
 {
@@ -618,6 +905,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
+
 
 #pragma mark -
 
