@@ -489,6 +489,26 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) getHistoricalSpotRateWithPage:(NSUInteger)page
                            completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Recurring payments
+
+///
+/// List recurring payments - Authenticated resource that lets you list all your recurring payments (scheduled buys, sells, and subscriptions you’ve created with merchants).
+/// Required scope: recurring_payments or merchant
+///
+
+-(void) getRecurringPayments:(CoinbaseCompletionBlock)completion;
+
+-(void) getRecurringPaymentsWithPage:(NSUInteger)page
+                               limit:(NSUInteger)limit
+                          completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a recurring payment - Authenticated resource that lets you show an individual recurring payment.
+/// Required scope: recurring_payments or merchant
+///
+
+-(void) recurringPaymentWithID:(NSString *)recurringPaymentID
+                    completion:(CoinbaseCompletionBlock)completion;
 
 
 @end

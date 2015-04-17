@@ -837,7 +837,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:completion];
 }
 
-
 -(void) getSellPriceWithQuantity:(double)qty
                         currency:(NSString *)currency
                       completion:(CoinbaseCompletionBlock)completion
@@ -879,6 +878,34 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     [self doRequestType:CoinbaseRequestTypeGet path:@"prices/historical" parameters:parameters headers:nil completion:completion];
 }
+
+#pragma mark - Recurring Payments
+
+-(void) getRecurringPayments:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getRecurringPaymentsWithPage:(NSUInteger)page
+                               limit:(NSUInteger)limit
+                          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) recurringPaymentWithID:(NSString *)recurringPaymentID
+                    completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"recurring_payments/%@", recurringPaymentID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
 
 #pragma mark -
 
