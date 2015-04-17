@@ -563,4 +563,22 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                        times:(NSUInteger)times
                   completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Sells
+
+///
+/// Sell bitcoin - Authenticated resource that lets you convert bitcoin in your account to fiat currency (USD, EUR) by crediting one of your bank accounts on Coinbase.
+/// Required scope: sell
+///
+
+-(void) sellQuantity:(double)quantity
+          completion:(CoinbaseCompletionBlock)completion;
+
+-(void) sellQuantity:(double)quantity
+           accountID:(NSString *)accountID
+            currency:(NSString *)currency
+              commit:(BOOL)commit
+agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
+     paymentMethodID:(NSString *)paymentMethodID
+          completion:(CoinbaseCompletionBlock)completion;
+
 @end

@@ -910,7 +910,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                        email:(NSString *)email
                   completion:(CoinbaseCompletionBlock)completion
 {
+    NSDictionary *parameters = @{@"report" :
+                                     @{@"type" : type,
+                                       @"email": email,
+                                       }
+                                 };
 
+    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:completion];
 }
 
 -(void) createReportWithType:(NSString *)type
@@ -979,6 +985,38 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     NSString *path = [NSString stringWithFormat:@"reports/%@", reportID];
 
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
+#pragma mark - Sells
+
+-(void) sellQuantity:(double)quantity
+          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue]
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) sellQuantity:(double)quantity
+           accountID:(NSString *)accountID
+            currency:(NSString *)currency
+              commit:(BOOL)commit
+agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
+     paymentMethodID:(NSString *)paymentMethodID
+          completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
+                                 @"account_id" : accountID,
+                                 @"currency" : currency,
+                                 @"commit" : commit ? @"true" : @"false",
+                                 @"agree_btc_amount_varies" : agreeBTCAmountVaries ? @"true" : @"false",
+                                 @"payment_method_id" : paymentMethodID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
 }
 
 #pragma mark -
