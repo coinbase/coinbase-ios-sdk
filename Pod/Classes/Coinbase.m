@@ -1387,6 +1387,63 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Users
+
+-(void) getCurrentUser:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"users/self" parameters:nil headers:nil completion:completion];
+}
+
+-(void) modifyCurrentUserName:(NSString *)name
+                   completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"user" :
+                                     @{@"name" : name,
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePut path:@"users/self" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) modifyCurrentUserNativeCurrency:(NSString *)nativeCurrency
+                             completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"user" :
+                                     @{@"native_currency" : nativeCurrency,
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePut path:@"users/self" parameters:parameters headers:nil completion:completion];
+
+}
+
+-(void) modifyCurrentUserTimeZone:(NSString *)timeZone
+                       completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"user" :
+                                     @{@"time_zone" : timeZone,
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePut path:@"users/self" parameters:parameters headers:nil completion:completion];
+
+}
+
+-(void) modifyCurrentUserName:(NSString *)name
+               nativeCurrency:(NSString *)nativeCurrency
+                     timeZone:(NSString *)timeZone
+                   completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{@"user" :
+                                     @{@"name" : name,
+                                       @"native_currency" : nativeCurrency,
+                                       @"time_zone" : timeZone
+                                       }
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePut path:@"users/self" parameters:parameters headers:nil completion:completion];
+}
+
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

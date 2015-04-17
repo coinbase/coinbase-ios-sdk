@@ -795,5 +795,32 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                    accountID:(NSString *)accountID
                   completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Users
+
+///
+/// Get current user - Authenticated resource that shows the current user and their settings.
+/// Required scope: user or merchant
+///
+
+-(void) getCurrentUser:(CoinbaseCompletionBlock)completion;
+
+///
+/// Modify current user - Authenticated resource that lets you update account settings for the current user.
+///
+
+-(void) modifyCurrentUserName:(NSString *)name
+                   completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserNativeCurrency:(NSString *)nativeCurrency
+                             completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserTimeZone:(NSString *)timeZone
+                       completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserName:(NSString *)name
+               nativeCurrency:(NSString *)nativeCurrency
+                     timeZone:(NSString *)timeZone
+                   completion:(CoinbaseCompletionBlock)completion;
+
 
 @end
