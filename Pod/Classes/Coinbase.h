@@ -758,5 +758,42 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                  completion:(CoinbaseCompletionBlock)completion;
 
 
+#pragma mark - Transfers
+
+///
+/// List buy and sell history - Authenticated resource which returns the user’s bitcoin purchases and sells.
+/// Required scope: transfers
+///
+
+-(void) getTransfers:(CoinbaseCompletionBlock)completion;
+
+-(void) getTransfersWithPage:(NSUInteger)page
+                       limit:(NSUInteger)limit
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a transfer - Authenticated resource which returns a tranfer (a bitcoin purchase or sell).
+/// Required scope: transfers
+///
+
+-(void) transferWithID:(NSString *)transferID
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transferWithID:(NSString *)transferID
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion;
+
+/// Start a transfer that is in the created state - Authenticated resource which completes a transfer that is in the ‘created’ state.
+/// Required scope: transfers
+///
+
+-(void) commitTransferWithID:(NSString *)transferID
+                  completion:(CoinbaseCompletionBlock)completion;
+
+-(void) commitTransferWithID:(NSString *)transferID
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion;
+
 
 @end
