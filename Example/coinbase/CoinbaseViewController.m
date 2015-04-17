@@ -38,7 +38,7 @@
 - (IBAction)startAuthentication:(id)sender {
     // Launch the web browser or Coinbase app to authenticate the user.
     [CoinbaseOAuth startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
-                                                  scope:@"user balance"
+                                                  scope:@"all"
                                             redirectUri:@"org.cocoapods.demo.coinbase.coinbase-oauth://coinbase-oauth"
                                                    meta:nil];
 }
@@ -102,18 +102,17 @@
 
 -(void) test
 {
-    [self.client modifyAccount:@"53cf5e6a70ea76ce5b000006" name:@"CocaoPods test account" completion:^(id response, NSError *error) {
+    [self.client getAccountAddresses:^(id response, NSError *error) {
 
         if (error)
         {
-            NSLog(@"modifyAccount - Could not load : %@", error);
+            NSLog(@"getAccountAddresses - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"modifyAccount response = %@", response);
+            NSLog(@"getAccountAddresses = %@", response);
         }
     }];
 }
-
 
 @end

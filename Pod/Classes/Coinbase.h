@@ -148,6 +148,70 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) getAuthorizationInformation:(CoinbaseCompletionBlock)completion;
 
+
+#pragma mark - Buttons
+
+///
+/// Create a new payment button, page, or iFrame - Authenticated resource that creates a payment button, page, or iFrame to accept bitcoin on your website. This can be used to accept bitcoin for an individual item or to integrate with your existing shopping cart solution. For example, you could create a new payment button for each shopping cart on your website, setting the total and order number in the button at checkout.
+/// Required scope: buttons or merchant
+///
+
+-(void) createButtonWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) createButtonWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                  accountID:(NSString *)accountID
+                       type:(NSString *)type
+               subscription:(BOOL)subscription
+                     repeat:(NSString *)repeat
+                      style:(NSString *)style
+                       text:(NSString *)text
+                description:(NSString *)description
+                     custom:(NSString *)custom
+               customSecure:(BOOL)customSecure
+                callbackURL:(NSString *)callbackURL
+                 successURL:(NSString *)successURL
+                  cancelURL:(NSString *)cancelURL
+                    infoURL:(NSString *)infoURL
+               autoRedirect:(BOOL)autoRedirect
+        autoRedirectSuccess:(BOOL)autoRedirectSuccess
+         autoRedirectCancel:(BOOL)autoRedirectCancel
+              variablePrice:(BOOL)variablePrice
+             includeAddress:(BOOL)includeAddress
+               includeEmail:(BOOL)includeEmail
+                choosePrice:(BOOL)choosePrice
+                     price1:(NSString *)price1
+                     price2:(NSString *)price2
+                     price3:(NSString *)price3
+                     price4:(NSString *)price4
+                     price5:(NSString *)price5
+                 completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a button - Authenticated resource which lets you retrieve an individual button.
+/// Required scope: buttons or merchant
+///
+
+-(void)getButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Create an order for a button - Authenticated resource which lets you generate an order associated with a button.
+/// Required scope: buttons or merchant
+///
+
+-(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// List orders for a button - Authenticated resource which lets you obtain the orders associated with a given button.
+/// Required scope: buttons or merchant
+///
+
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+
 #pragma mark - Buys
 
 ///
@@ -222,7 +286,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: send
 ///
 
-#warning Todo - Same as POST /v1/transactions/send_money
+// Use sendAmount:to:completion: below
 
 ///
 /// Get signature hashes for each input that needs signing in a spend from multisig transaction - Authenticated resource which lets you fetch signature hashes.
@@ -244,15 +308,15 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
  signatures arrays format:
 
  @[
- @{
- @"position": @1,
- @"signatures":
- @[
- @"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",
- @"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"
- ]
- }
- ];
+    @{
+        @"position": @1,
+            @"signatures":
+                @[
+            @"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",
+            @"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"
+            ]
+    }
+];
  */
 
 -(void) signaturesForMultiSigTransaction:(NSString *)transactionID
@@ -302,7 +366,45 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                 accountID:(NSString *)accountID
                completion:(CoinbaseCompletionBlock)completion;
 
-#warning Create an order - Todo?
+///
+/// Create an order - Authenticated resource which returns an order for a new button.
+/// Required scope: orders or merchant
+///
+
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                  accountID:(NSString *)accountID
+                       type:(NSString *)type
+               subscription:(BOOL)subscription
+                     repeat:(NSString *)repeat
+                      style:(NSString *)style
+                       text:(NSString *)text
+                description:(NSString *)description
+                     custom:(NSString *)custom
+               customSecure:(BOOL)customSecure
+                callbackURL:(NSString *)callbackURL
+                 successURL:(NSString *)successURL
+                  cancelURL:(NSString *)cancelURL
+                    infoURL:(NSString *)infoURL
+               autoRedirect:(BOOL)autoRedirect
+        autoRedirectSuccess:(BOOL)autoRedirectSuccess
+         autoRedirectCancel:(BOOL)autoRedirectCancel
+              variablePrice:(BOOL)variablePrice
+             includeAddress:(BOOL)includeAddress
+               includeEmail:(BOOL)includeEmail
+                choosePrice:(BOOL)choosePrice
+                     price1:(NSString *)price1
+                     price2:(NSString *)price2
+                     price3:(NSString *)price3
+                     price4:(NSString *)price4
+                     price5:(NSString *)price5
+                 completion:(CoinbaseCompletionBlock)completion;
 
 ///
 /// Show an order - Authenticated resource which returns order details.
@@ -315,6 +417,410 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) getOrderWithID:(NSString *)customFieldOrID
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Payment Methods
+
+///
+/// List payment methods - Lists all of the payment methods associated with your account
+/// Required scope: buy or sell
+///
+
+-(void) getPaymentMethods:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a payment method - Lists individual payment method associated with your account.
+/// Required scope: buy or sell
+///
+
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion;
+///
+/// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
+/// Required scope: orders or merchant
+///
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+             mispaymentID:(NSString *)mispaymentID
+    externalRefundAddress:(NSString *)externalRefundAddress
+               instantBuy:(BOOL)instantBuy
+               completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Prices
+
+///
+/// Get the buy price for bitcoin - Resource that tells you the total price to buy some amount of bitcoin.
+///
+
+-(void) getBuyPrice:(CoinbaseCompletionBlock)completion;
+
+-(void) getBuyPriceWithQuantity:(double)qty
+                       currency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the sell price - Resource that tells you the total amount you can get if you sell some bitcoin.
+///
+
+-(void) getSellPrice:(CoinbaseCompletionBlock)completion;
+
+-(void) getSellPriceWithQuantity:(double)qty
+                        currency:(NSString *)currency
+                      completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the spot price of bitcoin - Unauthenticated resource that tells you the current price of bitcoin.
+///
+
+-(void) getSpotRate:(CoinbaseCompletionBlock)completion;
+
+-(void) getSpotRateWithCurrency:(NSString *)currency
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Get the historical spot price - Unauthenticated resource that displays historical spot rates for bitcoin in USD.
+///
+
+-(void) getHistoricalSpotRate:(CoinbaseCompletionBlock)completion;
+
+-(void) getHistoricalSpotRateWithPage:(NSUInteger)page
+                           completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Recurring payments
+
+///
+/// List recurring payments - Authenticated resource that lets you list all your recurring payments (scheduled buys, sells, and subscriptions you’ve created with merchants).
+/// Required scope: recurring_payments or merchant
+///
+
+-(void) getRecurringPayments:(CoinbaseCompletionBlock)completion;
+
+-(void) getRecurringPaymentsWithPage:(NSUInteger)page
+                               limit:(NSUInteger)limit
+                          completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a recurring payment - Authenticated resource that lets you show an individual recurring payment.
+/// Required scope: recurring_payments or merchant
+///
+
+-(void) recurringPaymentWithID:(NSString *)recurringPaymentID
+                    completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Refunds
+
+///
+/// Show a refund - Authenticated resource that shows the details for a refund.
+/// Required scope: merchant or orders
+///
+
+-(void) refundWithID:(NSString *)refundID
+          completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Reports
+
+///
+/// List all reports - Authenticated resource which returns a list of the reports that a user has generated.
+/// Required scope: reports
+///
+
+-(void) getReports:(CoinbaseCompletionBlock)completion;
+
+-(void) getReportsWithPage:(NSUInteger)page
+                     limit:(NSUInteger)limit
+                completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a report - Authenticated resource which returns report details.
+/// Required scope: reports
+///
+
+-(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Generate a new report - Authenticated resource which creates and returns a new CSV report
+/// Required scope: reports
+///
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                  completion:(CoinbaseCompletionBlock)completion;
+
+-(void) createReportWithType:(NSString *)type
+                       email:(NSString *)email
+                   accountID:(NSString *)accountID
+                 callbackURL:(NSString *)callbackURL
+                   timeRange:(NSString *)timeRange
+              timeRangeStart:(NSString *)timeRangeStart
+                timeRangeEnd:(NSString *)timeRangeEnd
+                   startType:(NSString *)startType
+                 nextRunDate:(NSString *)nextRunDate
+                 nextRunTime:(NSString *)nextRunTime
+                      repeat:(NSString *)repeat
+                       times:(NSUInteger)times
+                  completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Sells
+
+///
+/// Sell bitcoin - Authenticated resource that lets you convert bitcoin in your account to fiat currency (USD, EUR) by crediting one of your bank accounts on Coinbase.
+/// Required scope: sell
+///
+
+-(void) sellQuantity:(double)quantity
+          completion:(CoinbaseCompletionBlock)completion;
+
+-(void) sellQuantity:(double)quantity
+           accountID:(NSString *)accountID
+            currency:(NSString *)currency
+              commit:(BOOL)commit
+agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
+     paymentMethodID:(NSString *)paymentMethodID
+          completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Subscriptions
+
+///
+/// List subscriptions - Authenticated resource that lets you (as a merchant) list all the subscriptions customers have made with you.
+/// Required scopes: recurring_payments or merchant
+///
+
+-(void) getSubscribers:(CoinbaseCompletionBlock)completion;
+
+-(void) getSubscribersWithAccountID:(NSString *)accountID
+                         completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a subscription - Authenticated resource that lets you (as a merchant) show an individual subscription than a customer has created with you.
+/// Required scopes: recurring_payments or merchant
+///
+
+-(void) subscriptionWithID:(NSString *)subscriptionID completion:(CoinbaseCompletionBlock)completion;
+
+-(void) subscriptionWithID:(NSString *)subscriptionID
+                 accountID:(NSString *)accountID
+                completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Tokens
+
+///
+/// Create a token which can be redeemed for bitcoin - Creates tokens redeemable for bitcoin.
+///
+
+-(void) createToken:(CoinbaseCompletionBlock)completion;
+
+///
+/// Redeem a token, claiming its address and all its bitcoin - Authenticated resource which claims a redeemable token for its address and bitcoin(s).
+/// Required scope: addresses
+///
+
+-(void) redeemTokenWithID:(NSString *)tokenID completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Transactions
+
+///
+/// List transactions - Authenticated resource which returns the user’s most recent transactions.
+/// Required scope: transactions
+///
+
+-(void) getTransactions:(CoinbaseCompletionBlock)completion;
+
+-(void) getTransactionsWithPage:(NSUInteger)page
+                          limit:(NSUInteger)limit
+                      accountID:(NSString *)accountID
+                     completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a transaction - Authenticated resource which returns the details of an individual transaction.
+/// Required scope: transactions
+///
+
+-(void) transactionWithID:(NSString *)transactionID
+               completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transactionWithID:(NSString *)transactionID
+                accountID:(NSString *)accountID
+               completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Send money - Authenticated resource which lets you send money to an email address, bitcoin address or Coinbase account ID.
+/// Required scope: send
+///
+
+-(void) sendAmount:(double)amount
+                to:(NSString *)to
+        completion:(CoinbaseCompletionBlock)completion;
+
+/// Bitcoin amount
+
+-(void) sendAmount:(double)amount
+                to:(NSString *)to
+             notes:(NSString *)notes
+           userFee:(double)userFee
+        referrerID:(NSString *)referrerID
+              idem:(NSString *)idem
+        instantBuy:(BOOL)instantBuy
+           orderID:(NSString *)orderID
+         accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+/// Currency amount
+
+-(void) sendAmount:(double)amount
+ amountCurrencyISO:(NSString *)amountCurrencyISO
+                to:(NSString *)to
+             notes:(NSString *)notes
+           userFee:(double)userFee
+        referrerID:(NSString *)referrerID
+              idem:(NSString *)idem
+        instantBuy:(BOOL)instantBuy
+           orderID:(NSString *)orderID
+         accountID:(NSString *)accountID
+        completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Transfer money between accounts - Authenticated resource which lets you transfer bitcoin between authenticated user’s accounts.
+/// Required scope: transfer
+///
+
+-(void) transferAmount:(double)amount
+                    to:(NSString *)to
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transferAmount:(double)amount
+                    to:(NSString *)to
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Request money - Authenticated resource which lets the user request money from an email address.
+/// Required scope: request
+///
+
+-(void) requestAmount:(double)amount
+                 from:(NSString *)from
+           completion:(CoinbaseCompletionBlock)completion;
+
+/// Bitcoin amount
+
+-(void) requestAmount:(double)amount
+                 from:(NSString *)from
+                notes:(NSString *)notes
+            accountID:(NSString *)accountID
+           completion:(CoinbaseCompletionBlock)completion;
+
+/// Currency amount
+
+-(void) requestAmount:(double)amount
+    amountCurrencyISO:(NSString *)amountCurrencyISO
+                 from:(NSString *)from
+                notes:(NSString *)notes
+            accountID:(NSString *)accountID
+           completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Resend bitcoin request - Authenticated resource which lets the user resend a money request.
+/// Required scope: request
+///
+
+-(void) resendRequestWithID:(NSString *)transactionID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) resendRequestWithID:(NSString *)transactionID
+                  accountID:(NSString *)accountID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Complete bitcoin request - Authenticated resource which lets the recipient of a money request complete the request by sending money to the user who requested the money.
+/// Required scope: request
+///
+
+-(void) completeRequestWithID:(NSString *)transactionID
+                   completion:(CoinbaseCompletionBlock)completion;
+
+-(void) completeRequestWithID:(NSString *)transactionID
+                    accountID:(NSString *)accountID
+                   completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Cancel bitcoin request - Authenticated resource which lets a user cancel a money request.
+/// Required scope: request
+///
+
+-(void) cancelRequestWithID:(NSString *)transactionID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) cancelRequestWithID:(NSString *)transactionID
+                  accountID:(NSString *)accountID
+                 completion:(CoinbaseCompletionBlock)completion;
+
+
+#pragma mark - Transfers
+
+///
+/// List buy and sell history - Authenticated resource which returns the user’s bitcoin purchases and sells.
+/// Required scope: transfers
+///
+
+-(void) getTransfers:(CoinbaseCompletionBlock)completion;
+
+-(void) getTransfersWithPage:(NSUInteger)page
+                       limit:(NSUInteger)limit
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a transfer - Authenticated resource which returns a tranfer (a bitcoin purchase or sell).
+/// Required scope: transfers
+///
+
+-(void) transferWithID:(NSString *)transferID
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) transferWithID:(NSString *)transferID
+             accountID:(NSString *)accountID
+            completion:(CoinbaseCompletionBlock)completion;
+
+/// Start a transfer that is in the created state - Authenticated resource which completes a transfer that is in the ‘created’ state.
+/// Required scope: transfers
+///
+
+-(void) commitTransferWithID:(NSString *)transferID
+                  completion:(CoinbaseCompletionBlock)completion;
+
+-(void) commitTransferWithID:(NSString *)transferID
+                   accountID:(NSString *)accountID
+                  completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Users
+
+///
+/// Get current user - Authenticated resource that shows the current user and their settings.
+/// Required scope: user or merchant
+///
+
+-(void) getCurrentUser:(CoinbaseCompletionBlock)completion;
+
+///
+/// Modify current user - Authenticated resource that lets you update account settings for the current user.
+///
+
+-(void) modifyCurrentUserName:(NSString *)name
+                   completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserNativeCurrency:(NSString *)nativeCurrency
+                             completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserTimeZone:(NSString *)timeZone
+                       completion:(CoinbaseCompletionBlock)completion;
+
+-(void) modifyCurrentUserName:(NSString *)name
+               nativeCurrency:(NSString *)nativeCurrency
+                     timeZone:(NSString *)timeZone
+                   completion:(CoinbaseCompletionBlock)completion;
 
 #pragma mark - Withdrawals
 
@@ -333,5 +839,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
        paymentMethodID:(NSString *)paymentMethodID
                 commit:(BOOL)commit
             completion:(CoinbaseCompletionBlock)completion;
+
 
 @end
