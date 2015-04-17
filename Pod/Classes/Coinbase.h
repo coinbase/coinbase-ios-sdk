@@ -604,5 +604,19 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                  accountID:(NSString *)accountID
                 completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Tokens
+
+///
+/// Create a token which can be redeemed for bitcoin - Creates tokens redeemable for bitcoin.
+///
+
+-(void) createToken:(CoinbaseCompletionBlock)completion;
+
+///
+/// Redeem a token, claiming its address and all its bitcoin - Authenticated resource which claims a redeemable token for its address and bitcoin(s).
+/// Required scope: addresses
+///
+
+-(void) redeemTokenWithID:(NSString *)tokenID completion:(CoinbaseCompletionBlock)completion;
 
 @end
