@@ -302,7 +302,45 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                 accountID:(NSString *)accountID
                completion:(CoinbaseCompletionBlock)completion;
 
-#warning Create an order - Todo?
+///
+/// Create an order - Authenticated resource which returns an order for a new button.
+/// Required scope: orders or merchant
+///
+
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                 completion:(CoinbaseCompletionBlock)completion;
+
+-(void) createOrderWithName:(NSString *)name
+                      price:(NSString *)price
+           priceCurrencyISO:(NSString *)priceCurrencyISO
+                  accountID:(NSString *)accountID
+                       type:(NSString *)type
+               subscription:(BOOL)subscription
+                     repeat:(NSString *)repeat
+                      style:(NSString *)style
+                       text:(NSString *)text
+                description:(NSString *)description
+                     custom:(NSString *)custom
+               customSecure:(BOOL)customSecure
+                callbackURL:(NSString *)callbackURL
+                 successURL:(NSString *)successURL
+                  cancelURL:(NSString *)cancelURL
+                    infoURL:(NSString *)infoURL
+               autoRedirect:(BOOL)autoRedirect
+        autoRedirectSuccess:(BOOL)autoRedirectSuccess
+         autoRedirectCancel:(BOOL)autoRedirectCancel
+              variablePrice:(BOOL)variablePrice
+             includeAddress:(BOOL)includeAddress
+               includeEmail:(BOOL)includeEmail
+                choosePrice:(BOOL)choosePrice
+                     price1:(NSString *)price1
+                     price2:(NSString *)price2
+                     price3:(NSString *)price3
+                     price4:(NSString *)price4
+                     price5:(NSString *)price5
+                 completion:(CoinbaseCompletionBlock)completion;
 
 ///
 /// Show an order - Authenticated resource which returns order details.
@@ -315,5 +353,21 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) getOrderWithID:(NSString *)customFieldOrID
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
+
+///
+/// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
+/// Required scope: orders or merchant
+///
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+             mispaymentID:(NSString *)mispaymentID
+    externalRefundAddress:(NSString *)externalRefundAddress
+               instantBuy:(BOOL)instantBuy
+               completion:(CoinbaseCompletionBlock)completion;
 
 @end
