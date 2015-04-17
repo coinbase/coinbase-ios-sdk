@@ -767,6 +767,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
 }
 
+#pragma mark - Payment Methods
+
+-(void) getPaymentMethods:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"payment_methods" parameters:nil headers:nil completion:completion];
+}
+
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"payment_methods/%@", paymentMethodID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+}
+
 -(void) refundOrderWithID:(NSString *)customFieldOrID
             refundISOCode:(NSString *)refundISOCode
                completion:(CoinbaseCompletionBlock)completion

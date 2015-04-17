@@ -418,6 +418,21 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
              accountID:(NSString *)accountID
             completion:(CoinbaseCompletionBlock)completion;
 
+#pragma mark - Payment Methods
+
+///
+/// List payment methods - Lists all of the payment methods associated with your account
+/// Required scope: buy or sell
+///
+
+-(void) getPaymentMethods:(CoinbaseCompletionBlock)completion;
+
+///
+/// Show a payment method - Lists individual payment method associated with your account.
+/// Required scope: buy or sell
+///
+
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion;
 ///
 /// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
 /// Required scope: orders or merchant
