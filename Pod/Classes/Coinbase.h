@@ -286,7 +286,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: send
 ///
 
-#warning Todo - Same as POST /v1/transactions/send_money
+// Use sendAmount:to:completion: below
 
 ///
 /// Get signature hashes for each input that needs signing in a spend from multisig transaction - Authenticated resource which lets you fetch signature hashes.
@@ -821,6 +821,24 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                nativeCurrency:(NSString *)nativeCurrency
                      timeZone:(NSString *)timeZone
                    completion:(CoinbaseCompletionBlock)completion;
+
+#pragma mark - Withdrawals
+
+///
+/// Withdraw USD or EUR - Authenticated resource that lets you withdraw USD or EUR from a USD or EUR wallet.
+/// Required scope: withdraw
+///
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+            completion:(CoinbaseCompletionBlock)completion;
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+                commit:(BOOL)commit
+            completion:(CoinbaseCompletionBlock)completion;
 
 
 @end

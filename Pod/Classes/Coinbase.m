@@ -575,8 +575,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypePost path:@"accounts" parameters:parameters headers:nil completion:completion];
 }
 
-#warning Todo - Create a multisig transaction
-
 -(void) getSignatureHashesWithTransactionID:(NSString *)transactionID completion:(CoinbaseCompletionBlock)completion
 {
     NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", transactionID];
@@ -1442,6 +1440,38 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                                  };
 
     [self doRequestType:CoinbaseRequestTypePut path:@"users/self" parameters:parameters headers:nil completion:completion];
+}
+
+#pragma mark - Withdrawals
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"payment_method_id" : paymentMethodID,
+                                 @"account_id" : accountID
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) withdrawAmount:(double)amount
+             accountID:(NSString *)accountID
+       paymentMethodID:(NSString *)paymentMethodID
+                commit:(BOOL)commit
+            completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"payment_method_id" : paymentMethodID,
+                                 @"account_id" : accountID,
+                                 @"commit" : commit ? @"true" : @"false"
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
 }
 
 #pragma mark -
