@@ -102,15 +102,88 @@
 
 -(void) test
 {
-    [self.client getAccountAddresses:^(id response, NSError *error) {
+//    [self.client getAccountsList:^(NSArray *accounts, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAccountsList - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAccountsList = %@", accounts);
+//        }
+//    }];
+//
+//    [self.client getAccountsListWithPage:0 limit:25 allAccounts:YES completion:^(NSArray *accounts, CoinbasePagingHelper *pagingHelper, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAccountsListWithPage - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAccountsListWithPage = %@", accounts);
+//
+//        }
+//    }];
+
+//    [self.client getAccount:@"53cf5e6a70ea76ce5b000006" completion:^(CoinbaseAccount *account, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAccount - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAccount = %@", account);
+//        }
+//    }];
+
+//    [self.client getPrimaryAccount:^(CoinbaseAccount *account, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getPrimaryAccount - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getPrimaryAccount = %@", account);
+//        }
+//    }];
+
+//    [self.client createAccountWithName:@"SDK TEST ACCOUNT" completion:^(CoinbaseAccount *account, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"createAccountWithName - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"createAccountWithName = %@", response);
+//        }
+//    }];
+
+//    [self.client getBalanceForAccount:@"53cf5e6a70ea76ce5b000006" completion:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getBalanceForAccount - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getBalanceForAccount = %@", response);
+//        }
+//    }];
+
+    [self.client getBitcoinAddressForAccount:@"53cf5e6a70ea76ce5b000006" completion:^(CoinbaseAddress *address, NSError *error) {
 
         if (error)
         {
-            NSLog(@"getAccountAddresses - Could not load : %@", error);
+            NSLog(@"getBitcoinAddressForAccount - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"getAccountAddresses = %@", response);
+            NSLog(@"getBitcoinAddressForAccount = %@", address);
         }
     }];
 }

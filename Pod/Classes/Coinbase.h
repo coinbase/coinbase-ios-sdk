@@ -1,6 +1,11 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseDefines.h"
 
+@class CoinbasePagingHelper;
+@class CoinbaseAccount;
+@class CoinbaseBalance;
+@class CoinbaseAddress;
+
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     CoinbaseRequestTypeGet,
@@ -31,20 +36,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// List accounts - Authenticated resource that returns the user’s active accounts.
 ///
 
--(void) getAccountsList:(CoinbaseCompletionBlock)completion;
+-(void) getAccountsList:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getAccountsListWithPage:(NSUInteger)page
                           limit:(NSUInteger)limit
-                    allAccounts:(NSUInteger)allAccounts
-                     completion:(CoinbaseCompletionBlock)completion;
+                    allAccounts:(BOOL)allAccounts
+                     completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 // Show an account - Authenticated resource that returns one of user’s active accounts.
 //
 
--(void) getAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) getAccount:(NSString *)accountID completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
--(void) getPrimaryAccount:(CoinbaseCompletionBlock)completion;
+-(void) getPrimaryAccount:(void(^)(CoinbaseAccount*, NSError*))callback;
 
 ///
 // Create an account - Authenticated resource that will create a new account for the user.
@@ -52,21 +57,21 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 //
 
 -(void) createAccountWithName:(NSString *)name
-                   completion:(CoinbaseCompletionBlock)completion;
+                   completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
 ///
 /// Get account’s balance - Authenticated resource that returns the user’s current account balance in BTC.
 /// Required scope: balance
 ///
 
--(void) getBalanceForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) getBalanceForAccount:(NSString *)accountID completion:(void(^)(CoinbaseBalance*, NSError*))callback;
 
 ///
 /// Get account’s bitcoin address - Authenticated resource that returns the user’s current bitcoin receive address. This can be used to generate scannable QR codes in the bitcoin URI format or to send the receive address to other users.
 /// Required scope: address
 ///
 
--(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback; 
 
 ///
 /// Create a new bitcoin address for an account - Authenticated resource that generates a new bitcoin receive address for the user.
