@@ -323,7 +323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-coinbase/Pods-coinbase-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		0CD0813D25394087987709AB /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

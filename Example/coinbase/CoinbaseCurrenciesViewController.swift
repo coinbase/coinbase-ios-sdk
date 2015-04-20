@@ -13,7 +13,7 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
 
         // Load currencies
         Coinbase().getSupportedCurrencies() {
-            (response: AnyObject?, error: NSError?) in
+            (response: Array?, error: NSError?) in
             if let error = error {
                 NSLog("Error: \(error)")
             } else {
