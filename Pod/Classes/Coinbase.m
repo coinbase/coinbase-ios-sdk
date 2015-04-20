@@ -309,7 +309,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 }
 
 -(void) createAccountWithName:(NSString *)name
-                   completion:(void(^)(CoinbaseAccount*, NSError*))callback;
+                   completion:(void(^)(CoinbaseAccount*, NSError*))callback
 {
     NSDictionary *parameters = @{@"account" :
                                      @{@"name" : name}};
@@ -350,7 +350,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback;
+-(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@/address", accountID];
 
@@ -370,15 +370,28 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+-(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback
 {
-    [self createBitcoinAddressForAccount:accountID label:nil callBackURL:nil completion:completion];
+    [self createBitcoinAddressForAccount:accountID label:nil callBackURL:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(address , error);
+        }
+    }];
 }
 
 -(void) createBitcoinAddressForAccount:(NSString *)accountID
                                  label:(NSString *)label
                            callBackURL:(NSString *)callBackURL
-                            completion:(CoinbaseCompletionBlock)completion
+                            completion:(void(^)(CoinbaseAddress*, NSError*))callback
 {
     NSDictionary *parameters = @{@"address" :
                                      @{@"label" : label,
@@ -387,33 +400,87 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     NSString *path = [NSString stringWithFormat:@"accounts/%@/address", accountID];
 
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(address , error);
+        }
+    }];
 }
 
 -(void) modifyAccount:(NSString *)accountID
                  name:(NSString *)name
-           completion:(CoinbaseCompletionBlock)completion
+           completion:(void(^)(CoinbaseAccount*, NSError*))callback
 {
     NSDictionary *parameters = @{@"account" :
                                      @{@"name" : name}};
 
     NSString *path = [NSString stringWithFormat:@"accounts/%@", accountID];
 
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(account , error);
+        }
+    }];
 }
 
--(void) setAccountAsPrimary:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+-(void) setAccountAsPrimary:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@/primary", accountID];
 
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+
+            callback(success , error);
+        }
+    }];
 }
 
--(void) deleteAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+-(void) deleteAccount:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@", accountID];
 
-    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+
+            callback(success , error);
+        }
+    }];
 }
 
 #pragma mark - Account Changes

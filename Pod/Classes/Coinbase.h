@@ -78,12 +78,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: address
 ///
 
--(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
 -(void) createBitcoinAddressForAccount:(NSString *)accountID
                                  label:(NSString *)label
                            callBackURL:(NSString *)callBackURL
-                            completion:(CoinbaseCompletionBlock)completion;
+                            completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
 ///
 /// Modify an account
@@ -91,19 +91,19 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) modifyAccount:(NSString *)accountID
                  name:(NSString *)name
-           completion:(CoinbaseCompletionBlock)completion;
+           completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
 ///
 /// Set account as primary - Authenticated resource that lets you set the primary status on a specific account. You must pass the :account_id of the account in the url.
 ///
 
--(void) setAccountAsPrimary:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) setAccountAsPrimary:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback;
 
 ///
 /// Delete an account - Authenticated resource that will delete an account. Only non-primary accounts with zero balance can be deleted.
 ///
 
--(void) deleteAccount:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion;
+-(void) deleteAccount:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback;
 
 #pragma mark - Account Changes
 
