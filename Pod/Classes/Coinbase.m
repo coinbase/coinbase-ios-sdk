@@ -7,6 +7,7 @@
 #import "CoinbaseTransaction.h"
 #import "CoinbaseTransfer.h"
 #import "CoinbaseContact.h"
+#import "CoinbaseCurrency.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -818,6 +819,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
                 [contacts addObject:contact];
             }
+            callback(contacts, error);
         }
     }];
 }
@@ -852,20 +854,41 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
                 [contacts addObject:contact];
             }
+            callback(contacts, error);
         }
     }];
 }
 
 #pragma mark - Currencies
 
--(void) getSupportedCurrencies:(CoinbaseCompletionBlock)completion
+-(void) getSupportedCurrencies:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSArray class]])
+        {
+            NSMutableArray *currencies = [[NSMutableArray alloc] init];
+
+            for (NSArray *array in response)
+            {
+                CoinbaseCurrency *currency = [[CoinbaseCurrency alloc] initWithArray:array];
+                [currencies addObject:currency];
+            }
+            callback(currencies, error);
+        }
+    }];
 }
 
 -(void) getExchangeRates:(CoinbaseCompletionBlock)completion
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"exchange_rates" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies/exchange_rates" parameters:nil headers:nil completion:completion];
+
 }
 
 #pragma mark - Deposits

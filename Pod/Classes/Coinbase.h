@@ -10,6 +10,7 @@
 @class CoinbaseTransaction;
 @class CoinbaseTransfer;
 @class CoinbaseContact;
+@class CoinbaseCurrency;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -258,7 +259,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// List currencies supported by Coinbase - Unauthenticated resource that returns currencies supported on Coinbase
 ///
 
--(void) getSupportedCurrencies:(CoinbaseCompletionBlock)completion;
+-(void) getSupportedCurrencies:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// List exchange rates between BTC and other currencies - Unauthenticated resource that returns BTC to fiat (and vice versus) exchange rates in various currencies.

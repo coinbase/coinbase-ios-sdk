@@ -236,15 +236,27 @@
 //        }
 //    }];
 
-        [self.client getContacts:^(NSArray *contacts, NSError *error) {
+//        [self.client getContacts:^(NSArray *contacts, NSError *error) {
+//
+//            if (error)
+//            {
+//                NSLog(@"getContacts - Could not load : %@", error);
+//            }
+//            else
+//            {
+//                NSLog(@"getContacts = %@", contacts);
+//            }
+//        }];
+
+        [self.client getExchangeRates:^(id response, NSError *error) {
 
             if (error)
             {
-                NSLog(@"getContacts - Could not load : %@", error);
+                NSLog(@"getSupportedCurrencies - Could not load : %@", error);
             }
             else
             {
-                NSLog(@"getContacts = %@", contacts);
+                NSLog(@"getSupportedCurrencies = %@", response);
             }
         }];
 }
