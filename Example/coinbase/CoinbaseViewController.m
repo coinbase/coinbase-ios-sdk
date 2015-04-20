@@ -59,22 +59,23 @@
     // Now that we are authenticated, load some data
     self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
 
-    [self.client getAccountsList:^(id result, NSError *error)
-     {
+    [self.client getAccountsList:^(NSArray *accounts, NSError *error)
+    {
          if (error)
          {
              NSLog(@"Could not load: %@", error);
          }
          else
          {
-             NSArray *accounts = result[@"accounts"];
-             NSString *text = @"";
-             for (NSDictionary *account in accounts) {
-                 NSString *name = account[@"name"];
-                 NSDictionary *balance = account[@"balance"];
-                 text = [text stringByAppendingString:[NSString stringWithFormat:@"%@: %@ %@\n", name, balance[@"amount"], balance[@"currency"]]];
-             }
-             self.balanceLabel.text = text;
+              NSLog(@"accounts = %@", accounts);
+//             NSArray *accounts = result[@"accounts"];
+//             NSString *text = @"";
+//             for (NSDictionary *account in accounts) {
+//                 NSString *name = account[@"name"];
+//                 NSDictionary *balance = account[@"balance"];
+//                 text = [text stringByAppendingString:[NSString stringWithFormat:@"%@: %@ %@\n", name, balance[@"amount"], balance[@"currency"]]];
+//             }
+//             self.balanceLabel.text = text;
          }
      }];
 }
@@ -234,6 +235,18 @@
 //            NSLog(@"getTransactions = %@ User= %@ Balance = %@ NativeBalance = %@", transactions, user, balance, nativeBalance);
 //        }
 //    }];
+
+        [self.client getContacts:^(NSArray *contacts, NSError *error) {
+
+            if (error)
+            {
+                NSLog(@"getContacts - Could not load : %@", error);
+            }
+            else
+            {
+                NSLog(@"getContacts = %@", contacts);
+            }
+        }];
 }
 
 @end

@@ -6,6 +6,7 @@
 #import "CoinbaseUser.h"
 #import "CoinbaseTransaction.h"
 #import "CoinbaseTransfer.h"
+#import "CoinbaseContact.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -796,15 +797,35 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - Contacts
 
 
--(void) getContacts:(CoinbaseCompletionBlock)completion
+-(void) getContacts:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseContacts = [response objectForKey:@"contacts"];
+
+            NSMutableArray *contacts = [[NSMutableArray alloc] initWithCapacity:responseContacts.count];
+
+            for (NSDictionary *dictionary in responseContacts)
+            {
+                CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
+                [contacts addObject:contact];
+            }
+        }
+    }];
 }
 
 -(void) getContactsWithPage:(NSUInteger)page
                       limit:(NSUInteger)limit
                       query:(NSString *)query
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(NSArray*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -812,8 +833,27 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"query" : query,
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseContacts = [response objectForKey:@"contacts"];
+
+            NSMutableArray *contacts = [[NSMutableArray alloc] initWithCapacity:responseContacts.count];
+
+            for (NSDictionary *dictionary in responseContacts)
+            {
+                CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
+                [contacts addObject:contact];
+            }
+        }
+    }];
 }
 
 #pragma mark - Currencies
