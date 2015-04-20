@@ -5,6 +5,8 @@
 @class CoinbaseAccount;
 @class CoinbaseBalance;
 @class CoinbaseAddress;
+@class CoinbaseMerchant;
+@class CoinbaseUser;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -126,24 +128,24 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: addresses
 ///
 
--(void) getAccountAddresses:(CoinbaseCompletionBlock)completion;
+-(void) getAccountAddresses:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getAccountAddressesWithPage:(NSUInteger)page
                               limit:(NSUInteger)limit
                           accountId:(NSString *)accountId
                               query:(NSString *)query
-                         completion:(CoinbaseCompletionBlock)completion;
+                         completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show bitcoin address - Authenticated resource that returns a bitcoin address with its id or address.
 /// Required scope: addresses
 ///
 
--(void) getAddressWithAddressOrID:(NSString *)addressOrID completion:(CoinbaseCompletionBlock)completion;
+-(void) getAddressWithAddressOrID:(NSString *)addressOrID completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
 -(void) getAddressWithAddressOrID:(NSString *)addressOrID
                         accountId:(NSString *)accountId
-                       completion:(CoinbaseCompletionBlock)completion;
+                       completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
 #pragma mark - Authorization
 
@@ -807,25 +809,25 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: user or merchant
 ///
 
--(void) getCurrentUser:(CoinbaseCompletionBlock)completion;
+-(void) getCurrentUser:(void(^)(CoinbaseUser*, NSError*))callback;
 
 ///
 /// Modify current user - Authenticated resource that lets you update account settings for the current user.
 ///
 
 -(void) modifyCurrentUserName:(NSString *)name
-                   completion:(CoinbaseCompletionBlock)completion;
+                   completion:(void(^)(CoinbaseUser*, NSError*))callback;
 
 -(void) modifyCurrentUserNativeCurrency:(NSString *)nativeCurrency
-                             completion:(CoinbaseCompletionBlock)completion;
+                             completion:(void(^)(CoinbaseUser*, NSError*))callback;
 
 -(void) modifyCurrentUserTimeZone:(NSString *)timeZone
-                       completion:(CoinbaseCompletionBlock)completion;
+                       completion:(void(^)(CoinbaseUser*, NSError*))callback;
 
 -(void) modifyCurrentUserName:(NSString *)name
                nativeCurrency:(NSString *)nativeCurrency
                      timeZone:(NSString *)timeZone
-                   completion:(CoinbaseCompletionBlock)completion;
+                   completion:(void(^)(CoinbaseUser*, NSError*))callback;
 
 #pragma mark - Withdrawals
 

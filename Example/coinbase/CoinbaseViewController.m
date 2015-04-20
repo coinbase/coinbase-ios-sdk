@@ -175,17 +175,53 @@
 //        }
 //    }];
 
-    [self.client getBitcoinAddressForAccount:@"53cf5e6a70ea76ce5b000006" completion:^(CoinbaseAddress *address, NSError *error) {
+//    [self.client getBitcoinAddressForAccount:@"53cf5e6a70ea76ce5b000006" completion:^(CoinbaseAddress *address, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getBitcoinAddressForAccount - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getBitcoinAddressForAccount = %@", address);
+//        }
+//    }];
 
-        if (error)
-        {
-            NSLog(@"getBitcoinAddressForAccount - Could not load : %@", error);
-        }
-        else
-        {
-            NSLog(@"getBitcoinAddressForAccount = %@", address);
-        }
-    }];
+//        [self.client createBitcoinAddressForAccount:@"53cf5e6a70ea76ce5b000006" completion:^(CoinbaseAddress *address, NSError *error) {
+//    
+//            if (error)
+//            {
+//                NSLog(@"createBitcoinAddressForAccount - Could not load : %@", error);
+//            }
+//            else
+//            {
+//                NSLog(@"createBitcoinAddressForAccount = %@", address);
+//            }
+//        }];
+
+//    [self.client getAccountAddresses:^(NSArray *addresses, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAccountAddresses - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAccountAddresses = %@", addresses);
+//        }
+//    }];
+
+        [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error) {
+
+            if (error)
+            {
+                NSLog(@"getCurrentUser - Could not load : %@", error);
+            }
+            else
+            {
+                NSLog(@"getCurrentUser = %@", user);
+            }
+        }];
 }
 
 @end
