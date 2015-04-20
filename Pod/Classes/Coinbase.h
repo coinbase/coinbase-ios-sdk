@@ -8,6 +8,7 @@
 @class CoinbaseMerchant;
 @class CoinbaseUser;
 @class CoinbaseTransaction;
+@class CoinbaseTransfer;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -773,12 +774,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: transfers
 ///
 
--(void) getTransfers:(CoinbaseCompletionBlock)completion;
+-(void) getTransfers:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getTransfersWithPage:(NSUInteger)page
                        limit:(NSUInteger)limit
                    accountID:(NSString *)accountID
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show a transfer - Authenticated resource which returns a tranfer (a bitcoin purchase or sell).
@@ -786,11 +787,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) transferWithID:(NSString *)transferID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 -(void) transferWithID:(NSString *)transferID
              accountID:(NSString *)accountID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 /// Start a transfer that is in the created state - Authenticated resource which completes a transfer that is in the ‘created’ state.
 /// Required scope: transfers
