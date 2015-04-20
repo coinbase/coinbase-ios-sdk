@@ -227,7 +227,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Buy bitcoin - Authenticated resource that lets you purchase bitcoin using a bank account that is linked to your account. You must link and verify a bank account through the website before this api call will work, otherwise error is returned.
 /// Required scope: buy
 
--(void) buy:(double)quantity completion:(CoinbaseCompletionBlock)completion;
+-(void) buy:(double)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 -(void)                 buy:(double)quantity
                   accountID:(NSString *)accountID
@@ -235,7 +235,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
        agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                      commit:(BOOL)commit
             paymentMethodID:(NSString *)paymentMethodID
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Contacts
 

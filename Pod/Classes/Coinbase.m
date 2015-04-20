@@ -736,7 +736,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Buys
 
--(void) buy:(double)quantity completion:(CoinbaseCompletionBlock)completion
+-(void) buy:(double)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSNumber *quantityNumber = [NSNumber numberWithDouble:quantity];
 
@@ -744,7 +744,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"qty" : [quantityNumber stringValue]
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 -(void)                 buy:(double)quantity
@@ -753,7 +766,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
        agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                      commit:(BOOL)commit
             paymentMethodID:(NSString *)paymentMethodID
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
@@ -764,7 +777,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"paymentMethodID" : paymentMethodID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 #pragma mark - Contacts
