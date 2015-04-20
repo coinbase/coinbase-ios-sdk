@@ -211,17 +211,29 @@
 //        }
 //    }];
 
-        [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error) {
+//        [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error) {
+//
+//            if (error)
+//            {
+//                NSLog(@"getCurrentUser - Could not load : %@", error);
+//            }
+//            else
+//            {
+//                NSLog(@"getCurrentUser = %@", user);
+//            }
+//        }];
 
-            if (error)
-            {
-                NSLog(@"getCurrentUser - Could not load : %@", error);
-            }
-            else
-            {
-                NSLog(@"getCurrentUser = %@", user);
-            }
-        }];
+//    [self.client getTransactions:^(NSArray *transactions, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, NSError *error)
+//    {
+//        if (error)
+//        {
+//            NSLog(@"getTransactions - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getTransactions = %@ User= %@ Balance = %@ NativeBalance = %@", transactions, user, balance, nativeBalance);
+//        }
+//    }];
 }
 
 @end

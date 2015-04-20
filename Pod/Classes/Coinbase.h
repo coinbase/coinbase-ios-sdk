@@ -7,6 +7,7 @@
 @class CoinbaseAddress;
 @class CoinbaseMerchant;
 @class CoinbaseUser;
+@class CoinbaseTransaction;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -633,12 +634,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: transactions
 ///
 
--(void) getTransactions:(CoinbaseCompletionBlock)completion;
+-(void) getTransactions:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 -(void) getTransactionsWithPage:(NSUInteger)page
                           limit:(NSUInteger)limit
                       accountID:(NSString *)accountID
-                     completion:(CoinbaseCompletionBlock)completion;
+                     completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 ///
 /// Show a transaction - Authenticated resource which returns the details of an individual transaction.
@@ -646,11 +647,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) transactionWithID:(NSString *)transactionID
-               completion:(CoinbaseCompletionBlock)completion;
+               completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 -(void) transactionWithID:(NSString *)transactionID
                 accountID:(NSString *)accountID
-               completion:(CoinbaseCompletionBlock)completion;
+               completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Send money - Authenticated resource which lets you send money to an email address, bitcoin address or Coinbase account ID.
@@ -659,7 +660,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 -(void) sendAmount:(double)amount
                 to:(NSString *)to
-        completion:(CoinbaseCompletionBlock)completion;
+        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Bitcoin amount
 
@@ -672,7 +673,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
         instantBuy:(BOOL)instantBuy
            orderID:(NSString *)orderID
          accountID:(NSString *)accountID
-        completion:(CoinbaseCompletionBlock)completion;
+        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Currency amount
 
@@ -686,7 +687,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
         instantBuy:(BOOL)instantBuy
            orderID:(NSString *)orderID
          accountID:(NSString *)accountID
-        completion:(CoinbaseCompletionBlock)completion;
+        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Transfer money between accounts - Authenticated resource which lets you transfer bitcoin between authenticated user’s accounts.
@@ -695,12 +696,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 -(void) transferAmount:(double)amount
                     to:(NSString *)to
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 -(void) transferAmount:(double)amount
                     to:(NSString *)to
              accountID:(NSString *)accountID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Request money - Authenticated resource which lets the user request money from an email address.
@@ -709,7 +710,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 -(void) requestAmount:(double)amount
                  from:(NSString *)from
-           completion:(CoinbaseCompletionBlock)completion;
+           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Bitcoin amount
 
@@ -717,7 +718,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                  from:(NSString *)from
                 notes:(NSString *)notes
             accountID:(NSString *)accountID
-           completion:(CoinbaseCompletionBlock)completion;
+           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Currency amount
 
@@ -726,7 +727,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                  from:(NSString *)from
                 notes:(NSString *)notes
             accountID:(NSString *)accountID
-           completion:(CoinbaseCompletionBlock)completion;
+           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Resend bitcoin request - Authenticated resource which lets the user resend a money request.
@@ -734,11 +735,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) resendRequestWithID:(NSString *)transactionID
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(BOOL, NSError*))callback;
 
 -(void) resendRequestWithID:(NSString *)transactionID
                   accountID:(NSString *)accountID
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(BOOL, NSError*))callback;
 
 ///
 /// Complete bitcoin request - Authenticated resource which lets the recipient of a money request complete the request by sending money to the user who requested the money.
@@ -746,11 +747,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) completeRequestWithID:(NSString *)transactionID
-                   completion:(CoinbaseCompletionBlock)completion;
+                   completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 -(void) completeRequestWithID:(NSString *)transactionID
                     accountID:(NSString *)accountID
-                   completion:(CoinbaseCompletionBlock)completion;
+                   completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Cancel bitcoin request - Authenticated resource which lets a user cancel a money request.
@@ -758,11 +759,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) cancelRequestWithID:(NSString *)transactionID
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(BOOL, NSError*))callback;
 
 -(void) cancelRequestWithID:(NSString *)transactionID
                   accountID:(NSString *)accountID
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(BOOL, NSError*))callback;
 
 
 #pragma mark - Transfers
