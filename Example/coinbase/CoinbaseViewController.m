@@ -248,15 +248,30 @@
 //            }
 //        }];
 
-        [self.client getExchangeRates:^(id response, NSError *error) {
+//        [self.client getExchangeRates:^(id response, NSError *error) {
+//
+//            if (error)
+//            {
+//                NSLog(@"getSupportedCurrencies - Could not load : %@", error);
+//            }
+//            else
+//            {
+//                NSLog(@"getSupportedCurrencies = %@", response);
+//            }
+//        }];
+
+        [self.client getAccountChanges:^(NSArray *accountChanges, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, NSError *error) {
 
             if (error)
             {
-                NSLog(@"getSupportedCurrencies - Could not load : %@", error);
+                NSLog(@"getAccountChanges - Could not load : %@", error);
             }
             else
             {
-                NSLog(@"getSupportedCurrencies = %@", response);
+                NSLog(@"getAccountChanges = %@", accountChanges);
+                NSLog(@"user = %@", user);
+                NSLog(@"balance = %@", balance);
+                NSLog(@"nativeBalance = %@", nativeBalance);
             }
         }];
 }

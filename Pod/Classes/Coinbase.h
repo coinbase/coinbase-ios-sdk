@@ -12,6 +12,7 @@
 @class CoinbaseContact;
 @class CoinbaseCurrency;
 @class CoinbasePaymentMethod;
+@class CoinbaseAccountChange;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -119,12 +120,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: transactions
 ///
 
--(void) getAccountChanges:(CoinbaseCompletionBlock)completion;
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 -(void) getAccountChangesWithPage:(NSUInteger)page
                             limit:(NSUInteger)limit
                         accountId:(NSString *)accountId
-                       completion:(CoinbaseCompletionBlock)completion;
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 #pragma mark - Addresses
 

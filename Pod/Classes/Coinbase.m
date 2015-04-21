@@ -8,6 +8,7 @@
 #import "CoinbaseTransfer.h"
 #import "CoinbaseContact.h"
 #import "CoinbaseCurrency.h"
+#import "CoinbaseAccountChange.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -492,15 +493,41 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Account Changes
 
--(void) getAccountChanges:(CoinbaseCompletionBlock)completion
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseUser *user = [[CoinbaseUser alloc] initWithDictionary:[response objectForKey:@"current_user"]];
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"balance"]];
+            CoinbaseBalance *nativeBalance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"native_balance"]];
+
+            NSArray *responseAccountChanges = [response objectForKey:@"account_changes"];
+
+            NSMutableArray *accountChanges = [[NSMutableArray alloc] initWithCapacity:responseAccountChanges.count];
+
+            for (NSDictionary *dictionary in responseAccountChanges)
+            {
+                CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
+                [accountChanges addObject:accountChange];
+            }
+
+            callback(accountChanges, user, balance, nativeBalance, error);
+        }
+    }];
 }
 
 -(void) getAccountChangesWithPage:(NSUInteger)page
                             limit:(NSUInteger)limit
                         accountId:(NSString *)accountId
-                       completion:(CoinbaseCompletionBlock)completion
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -508,7 +535,33 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"account_id" : accountId
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseUser *user = [[CoinbaseUser alloc] initWithDictionary:[response objectForKey:@"current_user"]];
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"balance"]];
+            CoinbaseBalance *nativeBalance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"native_balance"]];
+
+            NSArray *responseAccountChanges = [response objectForKey:@"account_changes"];
+
+            NSMutableArray *accountChanges = [[NSMutableArray alloc] initWithCapacity:responseAccountChanges.count];
+
+            for (NSDictionary *dictionary in responseAccountChanges)
+            {
+                CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
+                [accountChanges addObject:accountChange];
+            }
+
+            callback(accountChanges, user, balance, nativeBalance, error);
+        }
+    }];
 }
 
 #pragma mark - Addresses
