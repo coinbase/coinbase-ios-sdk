@@ -11,6 +11,7 @@
 @class CoinbaseTransfer;
 @class CoinbaseContact;
 @class CoinbaseCurrency;
+@class CoinbasePaymentMethod;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -436,14 +437,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: buy or sell
 ///
 
--(void) getPaymentMethods:(CoinbaseCompletionBlock)completion;
+-(void) getPaymentMethods:(void(^)(NSArray*, NSString*, NSString*, NSError*))callback;
 
 ///
 /// Show a payment method - Lists individual payment method associated with your account.
 /// Required scope: buy or sell
 ///
 
--(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion;
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(void(^)(CoinbasePaymentMethod*, NSError*))callback;
 ///
 /// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
 /// Required scope: orders or merchant

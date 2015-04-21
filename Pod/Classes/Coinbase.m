@@ -1132,16 +1132,54 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Payment Methods
 
--(void) getPaymentMethods:(CoinbaseCompletionBlock)completion
+-(void) getPaymentMethods:(void(^)(NSArray*, NSString*, NSString*, NSError*))callback;
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"payment_methods" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"payment_methods" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSString *defaultBuy = [response objectForKey:@"default_buy"];
+            NSString *defaultSell = [response objectForKey:@"default_sell"];
+
+            NSArray *responsePaymentMethods = [response objectForKey:@"payment_methods"];
+
+            NSMutableArray *paymentMethods = [[NSMutableArray alloc] initWithCapacity:responsePaymentMethods.count];
+
+            for (NSDictionary *dictionary in paymentMethods)
+            {
+                CoinbasePaymentMethod *paymentMethod = [[CoinbasePaymentMethod alloc] initWithDictionary:dictionary];
+                [paymentMethods addObject:paymentMethod];
+            }
+
+            callback(paymentMethods, defaultBuy, defaultSell, error);
+        }
+    }];
 }
 
--(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(CoinbaseCompletionBlock)completion
+-(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(void(^)(CoinbasePaymentMethod*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"payment_methods/%@", paymentMethodID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbasePaymentMethod *paymentMethod = [[CoinbasePaymentMethod alloc] initWithDictionary:[response objectForKey:@"payment_method"]];
+            callback(paymentMethod, error);
+        }
+    }];
 }
 
 -(void) refundOrderWithID:(NSString *)customFieldOrID
