@@ -260,20 +260,33 @@
 //            }
 //        }];
 
-        [self.client getAccountChanges:^(NSArray *accountChanges, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, NSError *error) {
+//        [self.client getAccountChanges:^(NSArray *accountChanges, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, NSError *error) {
+//
+//            if (error)
+//            {
+//                NSLog(@"getAccountChanges - Could not load : %@", error);
+//            }
+//            else
+//            {
+//                NSLog(@"getAccountChanges = %@", accountChanges);
+//                NSLog(@"user = %@", user);
+//                NSLog(@"balance = %@", balance);
+//                NSLog(@"nativeBalance = %@", nativeBalance);
+//            }
+//        }];
 
-            if (error)
-            {
-                NSLog(@"getAccountChanges - Could not load : %@", error);
-            }
-            else
-            {
-                NSLog(@"getAccountChanges = %@", accountChanges);
-                NSLog(@"user = %@", user);
-                NSLog(@"balance = %@", balance);
-                NSLog(@"nativeBalance = %@", nativeBalance);
-            }
-        }];
+    [self.client createButtonWithName:@"Button Name" price:@"122" priceCurrencyISO:@"USD" completion:^(id response, NSError *error) {
+
+
+        if (error)
+        {
+            NSLog(@"createButtonWithName - Could not load : %@", error);
+        }
+        else
+        {
+            NSLog(@"createButtonWithName = %@", response);
+        }
+    }];
 }
 
 @end

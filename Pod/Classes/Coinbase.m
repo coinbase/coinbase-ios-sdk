@@ -132,15 +132,34 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         // Parameters need to be appended to URL
         NSMutableArray *parts = [NSMutableArray array];
         NSString *encodedKey, *encodedValue;
+
         for (NSString *key in parameters) {
-            encodedKey = [Coinbase URLEncodedStringFromString:key];
-            encodedValue = [Coinbase URLEncodedStringFromString:[parameters objectForKey:key]];
-            [parts addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+
+            if ([[parameters objectForKey:key] isKindOfClass:[NSDictionary class]])
+            {
+                for (NSString *nestedKey in [parameters objectForKey:key])
+                {
+                    encodedValue = [Coinbase URLEncodedStringFromString:[[parameters objectForKey:key] objectForKey:nestedKey]];
+                    encodedKey = [NSString stringWithFormat:@"%@[%@]", key, [Coinbase URLEncodedStringFromString:nestedKey]];
+                    [parts addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+                }
+            }
+            else
+            {
+                encodedKey = [Coinbase URLEncodedStringFromString:key];
+                encodedValue = [Coinbase URLEncodedStringFromString:[parameters objectForKey:key]];
+                [parts addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+            }
+
+
         }
         if (parts.count > 0) {
             path = [path stringByAppendingString:@"?"];
             path = [path stringByAppendingString:[parts componentsJoinedByString:@"&"]];
         }
+
+         NSLog(@"path = %@", path);
+
     } else if (parameters) {
         // POST body is encoded as JSON
         NSError *error = nil;
