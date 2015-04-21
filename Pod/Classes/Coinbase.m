@@ -738,12 +738,10 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Buys
 
--(void) buy:(double)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback
+-(void) buy:(NSString *)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
-    NSNumber *quantityNumber = [NSNumber numberWithDouble:quantity];
-
     NSDictionary *parameters = @{
-                                 @"qty" : [quantityNumber stringValue]
+                                 @"qty" : quantity
                                  };
 
     [self doRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:^(id response, NSError *error) {
@@ -762,7 +760,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void)                 buy:(double)quantity
+-(void)                 buy:(NSString *)quantity
                   accountID:(NSString *)accountID
                    currency:(NSString *)currency
        agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
@@ -771,7 +769,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
-                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
+                                 @"qty" : quantity,
                                  @"account_id" : accountID,
                                  @"currency" : currency,
                                  @"agree_btc_amount_varies" : agreeBTCAmountVaries ? @"true" : @"false",
@@ -894,14 +892,14 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - Deposits
 
 -(void) makeDepositToAccount:(NSString *)accountID
-                      amount:(double)amount
+                      amount:(NSString *)amount
              paymentMethodId:(NSString *)paymentMethodId
                       commit:(BOOL)commit
                   completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID,
-                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"amount" : amount,
                                  @"payment_method_id" : paymentMethodId,
                                  @"commit" : commit ? @"true" : @"false",
                                  };
@@ -1170,12 +1168,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:nil headers:nil completion:completion];
 }
 
--(void) getBuyPriceWithQuantity:(double)qty
+-(void) getBuyPriceWithQuantity:(NSString *)quantity
                        currency:(NSString *)currency
                      completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"qty" : quantity,
                                  @"currency" : currency
                                  };
 
@@ -1187,12 +1185,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:completion];
 }
 
--(void) getSellPriceWithQuantity:(double)qty
+-(void) getSellPriceWithQuantity:(NSString *)quantity
                         currency:(NSString *)currency
                       completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"qty" : [[NSNumber numberWithDouble:qty] stringValue],
+                                 @"qty" : quantity,
                                  @"currency" : currency
                                  };
 
@@ -1339,17 +1337,17 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Sells
 
--(void) sellQuantity:(double)quantity
+-(void) sellQuantity:(NSString *)quantity
           completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue]
+                                 @"qty" : quantity
                                  };
 
     [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
 }
 
--(void) sellQuantity:(double)quantity
+-(void) sellQuantity:(NSString *)quantity
            accountID:(NSString *)accountID
             currency:(NSString *)currency
               commit:(BOOL)commit
@@ -1358,7 +1356,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
           completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"qty" : [[NSNumber numberWithDouble:quantity] stringValue],
+                                 @"qty" : quantity,
                                  @"account_id" : accountID,
                                  @"currency" : currency,
                                  @"commit" : commit ? @"true" : @"false",
@@ -1541,13 +1539,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
                 to:(NSString *)to
         completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"to" : to,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue]
+                                       @"amount": amount
                                        }
                                  };
 
@@ -1567,10 +1565,10 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
                 to:(NSString *)to
              notes:(NSString *)notes
-           userFee:(double)userFee
+           userFee:(NSString *)userFeeString
         referrerID:(NSString *)referrerID
               idem:(NSString *)idem
         instantBuy:(BOOL)instantBuy
@@ -1580,9 +1578,9 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"to" : to,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue],
+                                       @"amount": amount,
                                        @"notes" :notes,
-                                       @"user_fee" : userFee ? @"true" : @"false",
+                                       @"user_fee" : userFeeString,
                                        @"referrer_id" : referrerID,
                                        @"idem" : idem,
                                        @"instant_buy" : instantBuy ? @"true" : @"false",
@@ -1607,11 +1605,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
  amountCurrencyISO:(NSString *)amountCurrencyISO
                 to:(NSString *)to
              notes:(NSString *)notes
-           userFee:(double)userFee
+           userFee:(NSString *)userFeeString
         referrerID:(NSString *)referrerID
               idem:(NSString *)idem
         instantBuy:(BOOL)instantBuy
@@ -1621,10 +1619,10 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"to" : to,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue],
+                                       @"amount": amount,
                                        @"amount_currency_iso" : amountCurrencyISO,
                                        @"notes" :notes,
-                                       @"user_fee" : userFee ? @"true" : @"false",
+                                       @"user_fee" : userFeeString,
                                        @"referrer_id" : referrerID,
                                        @"idem" : idem,
                                        @"instant_buy" : instantBuy ? @"true" : @"false",
@@ -1649,13 +1647,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) transferAmount:(double)amount
+-(void) transferAmount:(NSString *)amount
                     to:(NSString *)to
             completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"to" : to,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue]
+                                       @"amount": amount
                                        }
                                  };
 
@@ -1675,14 +1673,14 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) transferAmount:(double)amount
+-(void) transferAmount:(NSString *)amount
                     to:(NSString *)to
              accountID:(NSString *)accountID
             completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"to" : to,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue],
+                                       @"amount": amount,
                                        @"account_id" : accountID
                                        }
                                  };
@@ -1703,13 +1701,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
                  from:(NSString *)from
            completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"from" : from,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue]
+                                       @"amount": amount
                                        }
                                  };
 
@@ -1729,7 +1727,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
                  from:(NSString *)from
                 notes:(NSString *)notes
             accountID:(NSString *)accountID
@@ -1737,7 +1735,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"from" : from,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue],
+                                       @"amount": amount,
                                        @"notes" :notes,
                                        @"account_id" : accountID
                                        }
@@ -1759,7 +1757,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
     amountCurrencyISO:(NSString *)amountCurrencyISO
                  from:(NSString *)from
                 notes:(NSString *)notes
@@ -1768,7 +1766,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 {
     NSDictionary *parameters = @{@"transaction" :
                                      @{@"from" : from,
-                                       @"amount": [[NSNumber numberWithDouble:amount] stringValue],
+                                       @"amount": amount,
                                        @"amount_currency_iso" : amountCurrencyISO,
                                        @"notes" :notes,
                                        @"account_id" : accountID
@@ -2190,13 +2188,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 #pragma mark - Withdrawals
 
--(void) withdrawAmount:(double)amount
+-(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
             completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"amount" : amount,
                                  @"payment_method_id" : paymentMethodID,
                                  @"account_id" : accountID
                                  };
@@ -2204,14 +2202,14 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
 }
 
--(void) withdrawAmount:(double)amount
+-(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
                 commit:(BOOL)commit
             completion:(CoinbaseCompletionBlock)completion
 {
     NSDictionary *parameters = @{
-                                 @"amount" : [[NSNumber numberWithDouble:amount] stringValue],
+                                 @"amount" : amount,
                                  @"payment_method_id" : paymentMethodID,
                                  @"account_id" : accountID,
                                  @"commit" : commit ? @"true" : @"false"

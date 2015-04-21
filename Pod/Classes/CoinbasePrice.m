@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        _cents = [[dictionary objectForKey:@"cents"] doubleValue];
+        _cents = [dictionary objectForKey:@"cents"];
         _currencyISO = [dictionary objectForKey:@"currency_iso"];
     }
     return self;

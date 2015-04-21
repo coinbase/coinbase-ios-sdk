@@ -229,9 +229,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Buy bitcoin - Authenticated resource that lets you purchase bitcoin using a bank account that is linked to your account. You must link and verify a bank account through the website before this api call will work, otherwise error is returned.
 /// Required scope: buy
 
--(void) buy:(double)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
+-(void) buy:(NSString *)quantity completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
--(void)                 buy:(double)quantity
+-(void)                 buy:(NSString *)quantity
                   accountID:(NSString *)accountID
                    currency:(NSString *)currency
        agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
@@ -275,7 +275,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) makeDepositToAccount:(NSString *)accountID
-                      amount:(double)amount
+                      amount:(NSString *)amount
              paymentMethodId:(NSString *)paymentMethodId
                       commit:(BOOL)commit
                   completion:(CoinbaseCompletionBlock)completion;
@@ -468,7 +468,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) getBuyPrice:(CoinbaseCompletionBlock)completion;
 
--(void) getBuyPriceWithQuantity:(double)qty
+-(void) getBuyPriceWithQuantity:(NSString *)quantity
                        currency:(NSString *)currency
                      completion:(CoinbaseCompletionBlock)completion;
 
@@ -478,7 +478,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) getSellPrice:(CoinbaseCompletionBlock)completion;
 
--(void) getSellPriceWithQuantity:(double)qty
+-(void) getSellPriceWithQuantity:(NSString *)quantity
                         currency:(NSString *)currency
                       completion:(CoinbaseCompletionBlock)completion;
 
@@ -581,10 +581,10 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: sell
 ///
 
--(void) sellQuantity:(double)quantity
+-(void) sellQuantity:(NSString *)quantity
           completion:(CoinbaseCompletionBlock)completion;
 
--(void) sellQuantity:(double)quantity
+-(void) sellQuantity:(NSString *)quantity
            accountID:(NSString *)accountID
             currency:(NSString *)currency
               commit:(BOOL)commit
@@ -661,16 +661,16 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: send
 ///
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
                 to:(NSString *)to
         completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Bitcoin amount
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
                 to:(NSString *)to
              notes:(NSString *)notes
-           userFee:(double)userFee
+           userFee:(NSString *)userFeeString
         referrerID:(NSString *)referrerID
               idem:(NSString *)idem
         instantBuy:(BOOL)instantBuy
@@ -680,11 +680,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 /// Currency amount
 
--(void) sendAmount:(double)amount
+-(void) sendAmount:(NSString *)amount
  amountCurrencyISO:(NSString *)amountCurrencyISO
                 to:(NSString *)to
              notes:(NSString *)notes
-           userFee:(double)userFee
+           userFee:(NSString *)userFeeString
         referrerID:(NSString *)referrerID
               idem:(NSString *)idem
         instantBuy:(BOOL)instantBuy
@@ -697,11 +697,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: transfer
 ///
 
--(void) transferAmount:(double)amount
+-(void) transferAmount:(NSString *)amount
                     to:(NSString *)to
             completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
--(void) transferAmount:(double)amount
+-(void) transferAmount:(NSString *)amount
                     to:(NSString *)to
              accountID:(NSString *)accountID
             completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
@@ -711,13 +711,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: request
 ///
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
                  from:(NSString *)from
            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 /// Bitcoin amount
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
                  from:(NSString *)from
                 notes:(NSString *)notes
             accountID:(NSString *)accountID
@@ -725,7 +725,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 /// Currency amount
 
--(void) requestAmount:(double)amount
+-(void) requestAmount:(NSString *)amount
     amountCurrencyISO:(NSString *)amountCurrencyISO
                  from:(NSString *)from
                 notes:(NSString *)notes
@@ -840,12 +840,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: withdraw
 ///
 
--(void) withdrawAmount:(double)amount
+-(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
             completion:(CoinbaseCompletionBlock)completion;
 
--(void) withdrawAmount:(double)amount
+-(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
                 commit:(BOOL)commit

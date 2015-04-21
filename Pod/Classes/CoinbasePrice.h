@@ -10,7 +10,7 @@
 
 @interface CoinbasePrice : NSObject
 
-@property (nonatomic, assign) double cents;
+@property (nonatomic, strong) NSString *cents;
 @property (nonatomic, strong) NSString *currencyISO;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;

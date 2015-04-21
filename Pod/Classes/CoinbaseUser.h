@@ -20,9 +20,9 @@
 @property (nonatomic, strong) NSString *nativeCurrency;
 @property (nonatomic, strong) CoinbaseBalance *balance;
 @property (nonatomic, strong) CoinbaseMerchant *merchant;
-@property (nonatomic, assign) double buyLevel;
-@property (nonatomic, assign) double instantBuyLevel;
-@property (nonatomic, assign) double sellLevel;
+@property (nonatomic, strong) NSString *buyLevel;
+@property (nonatomic, strong) NSString *instantBuyLevel;
+@property (nonatomic, strong) NSString *sellLevel;
 @property (nonatomic, strong) CoinbaseBalance *buyLimit;
 @property (nonatomic, strong) CoinbaseBalance *instantBuyLimit;
 @property (nonatomic, strong) CoinbaseBalance *sellLimit;

@@ -10,7 +10,7 @@
 
 @interface CoinbaseBalance : NSObject
 
-@property (nonatomic, assign) double amount;
+@property (nonatomic, strong) NSString *amount;
 @property (nonatomic, strong) NSString *currency;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
