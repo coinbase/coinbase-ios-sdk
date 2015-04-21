@@ -897,7 +897,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                       amount:(double)amount
              paymentMethodId:(NSString *)paymentMethodId
                       commit:(BOOL)commit
-                  completion:(CoinbaseCompletionBlock)completion
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID,
@@ -906,7 +906,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"commit" : commit ? @"true" : @"false",
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"deposits" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"deposits" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 #pragma mark - Multisig

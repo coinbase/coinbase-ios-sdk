@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CoinbasePrice.h"
 #import "CoinbaseBalance.h"
+#import "CoinbasePaymentMethod.h"
 
 @interface CoinbaseTransfer : NSObject
 
@@ -25,6 +26,9 @@
 @property (nonatomic, strong) CoinbaseBalance *subTotal;
 @property (nonatomic, strong) CoinbaseBalance *total;
 @property (nonatomic, strong) NSString *transferDescription;
+@property (nonatomic, strong) CoinbasePaymentMethod *paymentMethod;
+@property (nonatomic, strong) NSString *detailedStatus;
+@property (nonatomic, strong) NSString *accountID;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 

@@ -278,7 +278,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                       amount:(double)amount
              paymentMethodId:(NSString *)paymentMethodId
                       commit:(BOOL)commit
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Multisig
 

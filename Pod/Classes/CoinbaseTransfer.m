@@ -39,6 +39,10 @@
         _subTotal = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"subtotal"]];
         _total = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"total"]];
         _transferDescription = [dictionary objectForKey:@"description"];
+
+        _paymentMethod = [[CoinbasePaymentMethod alloc] initWithDictionary:[dictionary objectForKey:@"payment_method"]];
+        _detailedStatus = [dictionary objectForKey:@"detailed_status"];
+        _accountID = [dictionary objectForKey:@"account"];
     }
     return self;
 }
