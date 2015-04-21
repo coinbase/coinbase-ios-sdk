@@ -24,9 +24,9 @@
 
         _merchant = [[CoinbaseMerchant alloc] initWithDictionary:[dictionary objectForKey:@"merchant"]];
 
-        _buyLevel = [[dictionary objectForKey:@"buy_level"] doubleValue];
-        _instantBuyLevel = [[dictionary objectForKey:@"instant_buy_level"] doubleValue];
-        _sellLevel = [[dictionary objectForKey:@"sell_level"] doubleValue];
+        _buyLevel = [dictionary objectForKey:@"buy_level"];
+        _instantBuyLevel = [dictionary objectForKey:@"instant_buy_level"];
+        _sellLevel = [dictionary objectForKey:@"sell_level"];
 
         _buyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"buy_limit"]];
         _instantBuyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"instant_buy_limit"]];
