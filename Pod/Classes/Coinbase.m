@@ -15,6 +15,7 @@
 #import "CoinbaseTransaction.h"
 #import "CoinbaseTransfer.h"
 #import "CoinbaseUser.h"
+#import "CoinbaseToken.h"
 
 #import "CoinbasePagingHelper.h"
 
@@ -2099,54 +2100,150 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 #pragma mark - Subscribers
 
--(void) getSubscribers:(CoinbaseCompletionBlock)completion
+-(void) getSubscribers:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseRecurringPayments = [response objectForKey:@"recurring_payments"];
+
+            NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
+
+            for (NSDictionary *dictionary in recurringPayments)
+            {
+                CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
+                [recurringPayments addObject:recurringPayment];
+            }
+
+            callback(recurringPayments, error);
+        }
+    }];
 }
 
 -(void) getSubscribersWithAccountID:(NSString *)accountID
-                         completion:(CoinbaseCompletionBlock)completion
+                         completion:(void(^)(NSArray*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseRecurringPayments = [response objectForKey:@"recurring_payments"];
+
+            NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
+
+            for (NSDictionary *dictionary in recurringPayments)
+            {
+                CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
+                [recurringPayments addObject:recurringPayment];
+            }
+
+            callback(recurringPayments, error);
+        }
+    }];
 }
 
--(void) subscriptionWithID:(NSString *)subscriptionID completion:(CoinbaseCompletionBlock)completion
+-(void) subscriptionWithID:(NSString *)subscriptionID completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"subscribers/%@", subscriptionID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[response objectForKey:@"recurring_payment"]];
+            callback(recurringPayment, error);
+        }
+    }];
 }
 
 -(void) subscriptionWithID:(NSString *)subscriptionID
                  accountID:(NSString *)accountID
-                completion:(CoinbaseCompletionBlock)completion
+                completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback;
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID
                                  };
     NSString *path = [NSString stringWithFormat:@"subscribers/%@", subscriptionID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[response objectForKey:@"recurring_payment"]];
+            callback(recurringPayment, error);
+        }
+    }];
 }
 
 #pragma mark - Tokens
 
--(void) createToken:(CoinbaseCompletionBlock)completion
+-(void) createToken:(void(^)(CoinbaseToken *, NSError*))callback;
 {
-    [self doRequestType:CoinbaseRequestTypePost path:@"tokens" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"tokens" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseToken *token = [[CoinbaseToken alloc] initWithDictionary:[response objectForKey:@"token"]];
+            callback(token, error);
+        }
+    }];
 }
 
--(void) redeemTokenWithID:(NSString *)tokenID completion:(CoinbaseCompletionBlock)completion
+-(void) redeemTokenWithID:(NSString *)tokenID completion:(void(^)(BOOL, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"token_id" : tokenID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"tokens/redeem" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"tokens/redeem" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+            callback(success , error);
+        }
+    }];
 }
 
 #pragma mark - Transactions
@@ -2176,7 +2273,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:dictionary];
                 [transactions addObject:transaction];
             }
-
             callback(transactions, user, balance, nativeBalance, error);
         }
     }];
@@ -2216,7 +2312,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:dictionary];
                 [transactions addObject:transaction];
             }
-
             callback(transactions, user, balance, nativeBalance, error);
         }
     }];

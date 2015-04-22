@@ -19,6 +19,7 @@
 @class CoinbaseTransfer;
 @class CoinbaseMerchant;
 @class CoinbaseUser;
+@class CoinbaseToken;
 
 @class CoinbasePagingHelper;
 
@@ -610,21 +611,21 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scopes: recurring_payments or merchant
 ///
 
--(void) getSubscribers:(CoinbaseCompletionBlock)completion;
+-(void) getSubscribers:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getSubscribersWithAccountID:(NSString *)accountID
-                         completion:(CoinbaseCompletionBlock)completion;
+                         completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show a subscription - Authenticated resource that lets you (as a merchant) show an individual subscription than a customer has created with you.
 /// Required scopes: recurring_payments or merchant
 ///
 
--(void) subscriptionWithID:(NSString *)subscriptionID completion:(CoinbaseCompletionBlock)completion;
+-(void) subscriptionWithID:(NSString *)subscriptionID completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback;
 
 -(void) subscriptionWithID:(NSString *)subscriptionID
                  accountID:(NSString *)accountID
-                completion:(CoinbaseCompletionBlock)completion;
+                completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback;
 
 #pragma mark - Tokens
 
@@ -632,14 +633,14 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Create a token which can be redeemed for bitcoin - Creates tokens redeemable for bitcoin.
 ///
 
--(void) createToken:(CoinbaseCompletionBlock)completion;
+-(void) createToken:(void(^)(CoinbaseToken *, NSError*))callback;
 
 ///
 /// Redeem a token, claiming its address and all its bitcoin - Authenticated resource which claims a redeemable token for its address and bitcoin(s).
 /// Required scope: addresses
 ///
 
--(void) redeemTokenWithID:(NSString *)tokenID completion:(CoinbaseCompletionBlock)completion;
+-(void) redeemTokenWithID:(NSString *)tokenID completion:(void(^)(BOOL, NSError*))callback;
 
 #pragma mark - Transactions
 
