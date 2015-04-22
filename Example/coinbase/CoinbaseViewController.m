@@ -275,16 +275,46 @@
 //            }
 //        }];
 
-    [self.client createButtonWithName:@"Button Name" price:@"122" priceCurrencyISO:@"USD" completion:^(id response, NSError *error) {
+//    [self.client createButtonWithName:@"Button Name" price:@"122" priceCurrencyISO:@"USD" completion:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"createButtonWithName - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"createButtonWithName = %@", response);
+//        }
+//    }];
 
+//    [self.client createMultiSigAccountWithName:@"MULTI WAT"
+//                                          type:@"multisig"
+//                            requiredSignatures:2
+//                                      xPubKeys:@[
+//                                         @"xpub661MyMwAqRbcFo8WEPnst2sE8MTLe9DszR7eYhtkVuiUskpAggETvYQeSBWTuwoxZrZvf18w75AzfjLhzihWGagvcMa4J9nDWjmiD2UrAEF",
+//                                         @"xpub661MyMwAqRbcEezXDATCwfxbet7ZYA8cyfh2FDckA85S5Tg5NjzjnPeikzJgj2noBvxTEPNkMwq8RMCuBhiL7sRv29ZtMft2KbKwTcc48uu",
+//                                         @"xpub661MyMwAqRbcEnKbXcCqD2GT1di5zQxVqoHPAgHNe8dv5JP8gWmDproS6kFHJnLZd23tWevhdn4urGJ6b264DfTGKr8zjmYDjyDTi9U7iyT"
+//                                         ] completion:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"createMultiSigAccountWithName - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"createMultiSigAccountWithName = %@", response);
+//        }
+//    }];
+
+    [self.client getSignatureHashesWithTransactionID:@"2b2163e087b7504ed6778ce49a52d2be1988f6c51b46a8634f5e0c1209fb1eb2" completion:^(CoinbaseTransaction *transaction, NSError *error) {
 
         if (error)
         {
-            NSLog(@"createButtonWithName - Could not load : %@", error);
+            NSLog(@"getSignatureHashesWithTransactionID - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"createButtonWithName = %@", response);
+            NSLog(@"getSignatureHashesWithTransactionID = %@", transaction);
         }
     }];
 }

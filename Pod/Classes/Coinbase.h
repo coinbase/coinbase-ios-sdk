@@ -13,6 +13,8 @@
 @class CoinbaseCurrency;
 @class CoinbasePaymentMethod;
 @class CoinbaseAccountChange;
+@class CoinbaseButton;
+@class CoinbaseOrder;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -172,7 +174,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) createButtonWithName:(NSString *)name
                       price:(NSString *)price
            priceCurrencyISO:(NSString *)priceCurrencyISO
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(CoinbaseButton*, NSError*))callback;
 
 -(void) createButtonWithName:(NSString *)name
                       price:(NSString *)price
@@ -202,28 +204,28 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                      price3:(NSString *)price3
                      price4:(NSString *)price4
                      price5:(NSString *)price5
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(CoinbaseButton*, NSError*))callback;
 
 ///
 /// Show a button - Authenticated resource which lets you retrieve an individual button.
 /// Required scope: buttons or merchant
 ///
 
--(void)getButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+-(void)getButtonWithID:(NSString *)customValueOrID completion:(void(^)(CoinbaseButton*, NSError*))callback;
 
 ///
 /// Create an order for a button - Authenticated resource which lets you generate an order associated with a button.
 /// Required scope: buttons or merchant
 ///
 
--(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+-(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 ///
 /// List orders for a button - Authenticated resource which lets you obtain the orders associated with a given button.
 /// Required scope: buttons or merchant
 ///
 
--(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion;
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, NSError*))callback;
 
 #pragma mark - Buys
 
@@ -292,7 +294,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                                  type:(NSString *)type
                    requiredSignatures:(NSUInteger)requiredSignatures
                              xPubKeys:(NSArray *)xPubKeys
-                           completion:(CoinbaseCompletionBlock)completion;
+                           completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
 ///
 /// Create a multisig transaction - Authenticated resource which lets you send money to an email or bitcoin address.
@@ -306,11 +308,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) getSignatureHashesWithTransactionID:(NSString *)transactionID
-                                 completion:(CoinbaseCompletionBlock)completion;
+                                 completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 -(void) getSignatureHashesWithTransactionID:(NSString *)transactionID
                                   accountID:(NSString *)accountID
-                                 completion:(CoinbaseCompletionBlock)completion;
+                                 completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 ///
 /// Submit required signatures for a multisig spend transaction
@@ -372,12 +374,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: orders or merchant
 ///
 
--(void) getOrders:(CoinbaseCompletionBlock)completion;
+-(void) getOrders:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getOrdersWithPage:(NSUInteger)page
                     limit:(NSUInteger)limit
                 accountID:(NSString *)accountID
-               completion:(CoinbaseCompletionBlock)completion;
+               completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Create an order - Authenticated resource which returns an order for a new button.
@@ -387,7 +389,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) createOrderWithName:(NSString *)name
                       price:(NSString *)price
            priceCurrencyISO:(NSString *)priceCurrencyISO
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 -(void) createOrderWithName:(NSString *)name
                       price:(NSString *)price
@@ -417,7 +419,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                      price3:(NSString *)price3
                      price4:(NSString *)price4
                      price5:(NSString *)price5
-                 completion:(CoinbaseCompletionBlock)completion;
+                 completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 ///
 /// Show an order - Authenticated resource which returns order details.
@@ -425,11 +427,27 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) getOrderWithID:(NSString *)customFieldOrID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 -(void) getOrderWithID:(NSString *)customFieldOrID
              accountID:(NSString *)accountID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+
+///
+/// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
+/// Required scope: orders or merchant
+///
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+             mispaymentID:(NSString *)mispaymentID
+    externalRefundAddress:(NSString *)externalRefundAddress
+               instantBuy:(BOOL)instantBuy
+               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 #pragma mark - Payment Methods
 
@@ -446,21 +464,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) paymentMethodWithID:(NSString *)paymentMethodID completion:(void(^)(CoinbasePaymentMethod*, NSError*))callback;
-///
-/// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
-/// Required scope: orders or merchant
-///
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-            completion:(CoinbaseCompletionBlock)completion;
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-             mispaymentID:(NSString *)mispaymentID
-    externalRefundAddress:(NSString *)externalRefundAddress
-               instantBuy:(BOOL)instantBuy
-               completion:(CoinbaseCompletionBlock)completion;
 
 #pragma mark - Prices
 

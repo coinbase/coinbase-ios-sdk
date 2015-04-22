@@ -9,6 +9,8 @@
 #import "CoinbaseContact.h"
 #import "CoinbaseCurrency.h"
 #import "CoinbaseAccountChange.h"
+#import "CoinbaseButton.h"
+#import "CoinbaseOrder.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -700,7 +702,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
             callback(address, error);
         }
     }];
-
 }
 
 #pragma mark - Authorization
@@ -715,7 +716,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 -(void) createButtonWithName:(NSString *)name
                       price:(NSString *)price
            priceCurrencyISO:(NSString *)priceCurrencyISO
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(CoinbaseButton*, NSError*))callback
 {
     NSDictionary *parameters = @{@"button" :
                                      @{@"name" : name,
@@ -724,7 +725,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
     
-    [self doRequestType:CoinbaseRequestTypeGet path:@"buttons" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"buttons" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseButton *button = [[CoinbaseButton alloc] initWithDictionary:[response objectForKey:@"button"]];
+            callback(button, error);
+        }
+    }];
 }
 
 -(void) createButtonWithName:(NSString *)name
@@ -755,7 +769,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                      price3:(NSString *)price3
                      price4:(NSString *)price4
                      price5:(NSString *)price5
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(CoinbaseButton*, NSError*))callback
 {
     NSDictionary *parameters = @{@"button" :
                                      @{@"name" : name,
@@ -784,28 +798,88 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"buttons" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"buttons" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseButton *button = [[CoinbaseButton alloc] initWithDictionary:[response objectForKey:@"button"]];
+            callback(button, error);
+        }
+    }];
 }
 
--(void)getButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+-(void)getButtonWithID:(NSString *)customValueOrID completion:(void(^)(CoinbaseButton*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"buttons/%@", customValueOrID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseButton *button = [[CoinbaseButton alloc] initWithDictionary:[response objectForKey:@"button"]];
+            callback(button, error);
+        }
+    }];
 }
 
--(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+-(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(void(^)(CoinbaseOrder*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"buttons/%@/create_order", customValueOrID];
 
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
 }
 
--(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(CoinbaseCompletionBlock)completion
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, NSError*))callback;
 {
     NSString *path = [NSString stringWithFormat:@"buttons/%@/orders", customValueOrID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseOrders = [response objectForKey:@"orders"];
+
+            NSMutableArray *orders = [[NSMutableArray alloc] initWithCapacity:responseOrders.count];
+
+            for (NSDictionary *dictionary in responseOrders)
+            {
+                CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
+                [orders addObject:order];
+            }
+            callback(orders, error);
+        }
+    }];
 }
 
 #pragma mark - Buys
@@ -998,7 +1072,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  type:(NSString *)type
                    requiredSignatures:(NSUInteger)requiredSignatures
                              xPubKeys:(NSArray *)xPubKeys
-                           completion:(CoinbaseCompletionBlock)completion
+                           completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 {
     NSDictionary *parameters = @{@"account" :
                                      @{@"name" : name,
@@ -1007,17 +1081,43 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        @"xpubkeys": xPubKeys}
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"accounts" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"accounts" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(account , error);
+        }
+    }];
 }
 
--(void) getSignatureHashesWithTransactionID:(NSString *)transactionID completion:(CoinbaseCompletionBlock)completion
+-(void) getSignatureHashesWithTransactionID:(NSString *)transactionID completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", transactionID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(transaction , error);
+        }
+    }];
 }
 
--(void) getSignatureHashesWithTransactionID:(NSString *)transactionID accountID:(NSString *)accountID completion:(CoinbaseCompletionBlock)completion
+-(void) getSignatureHashesWithTransactionID:(NSString *)transactionID accountID:(NSString *)accountID completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", transactionID];
 
@@ -1025,7 +1125,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"account_id" : accountID,
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(transaction , error);
+        }
+    }];
 }
 
 -(void) signaturesForMultiSigTransaction:(NSString *)transactionID
@@ -1085,15 +1198,36 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Orders
 
--(void) getOrders:(CoinbaseCompletionBlock)completion
+-(void) getOrders:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseOrders = [response objectForKey:@"orders"];
+
+            NSMutableArray *orders = [[NSMutableArray alloc] initWithCapacity:responseOrders.count];
+
+            for (NSDictionary *dictionary in responseOrders)
+            {
+                CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
+                [orders addObject:order];
+            }
+            callback(orders, error);
+        }
+    }];
 }
 
 -(void) getOrdersWithPage:(NSUInteger)page
                     limit:(NSUInteger)limit
                 accountID:(NSString *)accountID
-               completion:(CoinbaseCompletionBlock)completion
+               completion:(void(^)(NSArray*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1101,13 +1235,34 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  @"account_id" : accountID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseOrders = [response objectForKey:@"orders"];
+
+            NSMutableArray *orders = [[NSMutableArray alloc] initWithCapacity:responseOrders.count];
+
+            for (NSDictionary *dictionary in responseOrders)
+            {
+                CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
+                [orders addObject:order];
+            }
+            callback(orders, error);
+        }
+    }];
 }
 
 -(void) createOrderWithName:(NSString *)name
                       price:(NSString *)price
            priceCurrencyISO:(NSString *)priceCurrencyISO
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(CoinbaseOrder*, NSError*))callback
 {
     NSDictionary *parameters = @{@"button" :
                                      @{@"name" : name,
@@ -1116,7 +1271,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
 }
 
 -(void) createOrderWithName:(NSString *)name
@@ -1147,7 +1315,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                      price3:(NSString *)price3
                      price4:(NSString *)price4
                      price5:(NSString *)price5
-                 completion:(CoinbaseCompletionBlock)completion
+                 completion:(void(^)(CoinbaseOrder*, NSError*))callback
 {
     NSDictionary *parameters = @{@"button" :
                                      @{@"name" : name,
@@ -1176,20 +1344,46 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"orders" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"orders" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
 }
 
 -(void) getOrderWithID:(NSString *)customFieldOrID
-            completion:(CoinbaseCompletionBlock)completion
+            completion:(void(^)(CoinbaseOrder*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"orders/%@", customFieldOrID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
 }
 
 -(void) getOrderWithID:(NSString *)customFieldOrID
              accountID:(NSString *)accountID
-            completion:(CoinbaseCompletionBlock)completion
+            completion:(void(^)(CoinbaseOrder*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID
@@ -1197,7 +1391,78 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     NSString *path = [NSString stringWithFormat:@"orders/%@", customFieldOrID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
+}
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : refundISOCode
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
+}
+
+-(void) refundOrderWithID:(NSString *)customFieldOrID
+            refundISOCode:(NSString *)refundISOCode
+             mispaymentID:(NSString *)mispaymentID
+    externalRefundAddress:(NSString *)externalRefundAddress
+               instantBuy:(BOOL)instantBuy
+               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : refundISOCode,
+                                 @"mispayment_id" : mispaymentID,
+                                 @"external_refund_address" :externalRefundAddress,
+                                 @"instant_buy" : instantBuy ? @"true" : @"false"
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
+
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
 }
 
 #pragma mark - Payment Methods
@@ -1250,38 +1515,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
             callback(paymentMethod, error);
         }
     }];
-}
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-               completion:(CoinbaseCompletionBlock)completion
-{
-    NSDictionary *parameters = @{
-                                 @"refund_iso_code" : refundISOCode
-                                 };
-
-    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
-
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
-}
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-             mispaymentID:(NSString *)mispaymentID
-    externalRefundAddress:(NSString *)externalRefundAddress
-               instantBuy:(BOOL)instantBuy
-               completion:(CoinbaseCompletionBlock)completion
-{
-    NSDictionary *parameters = @{
-                                 @"refund_iso_code" : refundISOCode,
-                                 @"mispayment_id" : mispaymentID,
-                                 @"external_refund_address" :externalRefundAddress,
-                                 @"instant_buy" : instantBuy ? @"true" : @"false"
-                                 };
-
-    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", customFieldOrID];
-
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
 }
 
 #pragma mark - Prices
