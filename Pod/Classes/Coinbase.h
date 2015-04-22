@@ -16,6 +16,7 @@
 @class CoinbaseButton;
 @class CoinbaseOrder;
 @class CoinbaseAuthorization;
+@class CoinbaseApplication;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -346,11 +347,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: oauth_apps
 ///
 
--(void) getOAuthApplications:(CoinbaseCompletionBlock)completion;
+-(void) getOAuthApplications:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getOAuthApplicationsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(CoinbaseCompletionBlock)completion;
+                          completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show an OAuth application - Show an individual OAuth application you have created.
@@ -358,7 +359,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) getOAuthApplicationWithID:(NSString *)applicationID
-                       completion:(CoinbaseCompletionBlock)completion;
+                       completion:(void(^)(CoinbaseApplication*, NSError*))callback;
 
 ///
 /// Create an OAuth application - Create an app that can be given access to other accounts via OAuth2.
@@ -366,7 +367,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) createOAuthApplicationWithName:(NSString *)name
                            reDirectURL:(NSString *)reDirectURL
-                            completion:(CoinbaseCompletionBlock)completion;
+                            completion:(void(^)(CoinbaseApplication*, NSError*))callback;
 
 #pragma mark - Orders
 

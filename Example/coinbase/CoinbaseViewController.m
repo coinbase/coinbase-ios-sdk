@@ -306,17 +306,17 @@
 //        }
 //    }];
 
-    [self.client getAuthorizationInformation:^(CoinbaseAuthorization *authorization, NSError *error) {
-
-        if (error)
-        {
-            NSLog(@"getExchangeRates - Could not load : %@", error);
-        }
-        else
-        {
-            NSLog(@"getExchangeRates = %@", authorization);
-        }
-    }];
+//    [self.client getAuthorizationInformation:^(CoinbaseAuthorization *authorization, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAuthorizationInformation - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAuthorizationInformation = %@", authorization);
+//        }
+//    }];
 
 //    [self.client getExchangeRates:^(NSDictionary *exchangeRates, NSError *error) {
 //
@@ -329,6 +329,19 @@
 //            NSLog(@"getExchangeRates = %@", exchangeRates[@"aed_to_btc"]);
 //        }
 //    }];
+
+    [self.client getOAuthApplications:^(id response, NSError *error) {
+
+
+        if (error)
+        {
+            NSLog(@"getOAuthApplications - Could not load : %@", error);
+        }
+        else
+        {
+            NSLog(@"getOAuthApplications = %@", response);
+        }
+    }];
 }
 
 @end

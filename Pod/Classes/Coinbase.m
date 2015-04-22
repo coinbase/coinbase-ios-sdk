@@ -12,6 +12,7 @@
 #import "CoinbaseButton.h"
 #import "CoinbaseOrder.h"
 #import "CoinbaseAuthorization.h"
+#import "CoinbaseApplication.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -1184,35 +1185,90 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - OAuth Applications
 
 
--(void) getOAuthApplications:(CoinbaseCompletionBlock)completion
+-(void) getOAuthApplications:(void(^)(NSArray*, NSError*))callback;
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseApplications = [response objectForKey:@"applications"];
+
+            NSMutableArray *applications = [[NSMutableArray alloc] initWithCapacity:responseApplications.count];
+
+            for (NSDictionary *dictionary in responseApplications)
+            {
+                CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:dictionary];
+                [applications addObject:application];
+            }
+            callback(applications, error);
+        }
+    }];
 }
 
 -(void) getOAuthApplicationsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(CoinbaseCompletionBlock)completion
+                          completion:(void(^)(NSArray*, NSError*))callback;
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
                                  @"limit" : [@(limit)  stringValue],
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseApplications = [response objectForKey:@"applications"];
+
+            NSMutableArray *applications = [[NSMutableArray alloc] initWithCapacity:responseApplications.count];
+
+            for (NSDictionary *dictionary in responseApplications)
+            {
+                CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:dictionary];
+                [applications addObject:application];
+            }
+            callback(applications, error);
+        }
+    }];
 }
 
 -(void) getOAuthApplicationWithID:(NSString *)applicationID
-                       completion:(CoinbaseCompletionBlock)completion
+                       completion:(void(^)(CoinbaseApplication*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"oauth/applications/%@", applicationID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:[response objectForKey:@"application"]];
+
+            callback(application, error);
+        }
+    }];
 }
 
 -(void) createOAuthApplicationWithName:(NSString *)name
                            reDirectURL:(NSString *)reDirectURL
-                            completion:(CoinbaseCompletionBlock)completion
+                            completion:(void(^)(CoinbaseApplication*, NSError*))callback;
 {
     NSDictionary *parameters = @{@"application" :
                                      @{@"name" : name,
@@ -1220,7 +1276,21 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"oauth/applications" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"oauth/applications" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:[response objectForKey:@"application"]];
+
+            callback(application, error);
+        }
+    }];
 }
 
 #pragma mark - Orders
