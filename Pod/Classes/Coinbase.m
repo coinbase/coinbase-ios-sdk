@@ -15,6 +15,7 @@
 #import "CoinbaseApplication.h"
 #import "CoinbaseRecurringPayment.h"
 #import "CoinbaseRefund.h"
+#import "CoinbaseReport.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -1885,33 +1886,90 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Reports
 
--(void) getReports:(CoinbaseCompletionBlock)completion
+-(void) getReports:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseReports = [response objectForKey:@"reports"];
+
+            NSMutableArray *reports = [[NSMutableArray alloc] initWithCapacity:responseReports.count];
+
+            for (NSDictionary *dictionary in responseReports)
+            {
+                CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[dictionary objectForKey:@"report"]];
+                [reports addObject:report];
+            }
+
+            callback(reports, error);
+        }
+    }];
 }
 
 -(void) getReportsWithPage:(NSUInteger)page
                      limit:(NSUInteger)limit
-                completion:(CoinbaseCompletionBlock)completion
+                completion:(void(^)(NSArray*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
                                  @"limit" : [@(limit)  stringValue],
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseReports = [response objectForKey:@"reports"];
+
+            NSMutableArray *reports = [[NSMutableArray alloc] initWithCapacity:responseReports.count];
+
+            for (NSDictionary *dictionary in responseReports)
+            {
+                CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[dictionary objectForKey:@"report"]];
+                [reports addObject:report];
+            }
+
+            callback(reports, error);
+        }
+    }];
 }
 
--(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion
+-(void) reportWithID:(NSString *)reportID completion:(void(^)(CoinbaseReport*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"reports/%@", reportID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[response objectForKey:@"report"]];
+            callback(report, error);
+        }
+    }];
 }
 
 -(void) createReportWithType:(NSString *)type
                        email:(NSString *)email
-                  completion:(CoinbaseCompletionBlock)completion
+                  completion:(void(^)(CoinbaseReport*, NSError*))callback
 {
     NSDictionary *parameters = @{@"report" :
                                      @{@"type" : type,
@@ -1919,7 +1977,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[response objectForKey:@"report"]];
+            callback(report, error);
+        }
+    }];
 }
 
 -(void) createReportWithType:(NSString *)type
@@ -1934,7 +2005,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                  nextRunTime:(NSString *)nextRunTime
                       repeat:(NSString *)repeat
                        times:(NSUInteger)times
-                  completion:(CoinbaseCompletionBlock)completion
+                  completion:(void(^)(CoinbaseReport*, NSError*))callback
 {
     NSDictionary *parameters = @{@"report" :
                                      @{@"type" : type,
@@ -1951,7 +2022,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[response objectForKey:@"report"]];
+            callback(report, error);
+        }
+    }];
 }
 
 #pragma mark - Sells

@@ -19,6 +19,7 @@
 @class CoinbaseApplication;
 @class CoinbaseRecurringPayment;
 @class CoinbaseRefund;
+@class CoinbaseReport;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -547,18 +548,18 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: reports
 ///
 
--(void) getReports:(CoinbaseCompletionBlock)completion;
+-(void) getReports:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getReportsWithPage:(NSUInteger)page
                      limit:(NSUInteger)limit
-                completion:(CoinbaseCompletionBlock)completion;
+                completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show a report - Authenticated resource which returns report details.
 /// Required scope: reports
 ///
 
--(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion;
+-(void) reportWithID:(NSString *)reportID completion:(void(^)(CoinbaseReport*, NSError*))callback;
 
 ///
 /// Generate a new report - Authenticated resource which creates and returns a new CSV report
@@ -567,7 +568,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) createReportWithType:(NSString *)type
                        email:(NSString *)email
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(CoinbaseReport*, NSError*))callback;
 
 -(void) createReportWithType:(NSString *)type
                        email:(NSString *)email
@@ -581,7 +582,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                  nextRunTime:(NSString *)nextRunTime
                       repeat:(NSString *)repeat
                        times:(NSUInteger)times
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(CoinbaseReport*, NSError*))callback;
 
 #pragma mark - Sells
 

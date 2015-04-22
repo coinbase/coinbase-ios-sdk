@@ -354,19 +354,30 @@
 //        }
 //    }];
 
+//    [self.client getSellPrice:^(CoinbaseBalance *btc, NSArray *fees, CoinbaseBalance *subTotal, CoinbaseBalance *total, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getSellPrice - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getSellPrice btc = %@", btc);
+//            NSLog(@"getSellPrice fees = %@", fees);
+//            NSLog(@"getSellPrice subTotal = %@", btc);
+//            NSLog(@"getSellPrice total = %@", btc);
+//        }
+//    }];
 
-    [self.client getSellPrice:^(CoinbaseBalance *btc, NSArray *fees, CoinbaseBalance *subTotal, CoinbaseBalance *total, NSError *error) {
+    [self.client getReports:^(NSArray *array, NSError *error) {
 
         if (error)
         {
-            NSLog(@"getSellPrice - Could not load : %@", error);
+            NSLog(@"getReports - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"getSellPrice btc = %@", btc);
-            NSLog(@"getSellPrice fees = %@", fees);
-            NSLog(@"getSellPrice subTotal = %@", btc);
-            NSLog(@"getSellPrice total = %@", btc);
+            NSLog(@"getReports = %@", array);
         }
     }];
 }
