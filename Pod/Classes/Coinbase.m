@@ -1616,53 +1616,147 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Prices
 
--(void) getBuyPrice:(CoinbaseCompletionBlock)completion
+-(void) getBuyPrice:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *btc = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"btc"]];
+            NSArray *fees = [response objectForKey:@"fees"];
+            CoinbaseBalance *subtotal = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"subtotal"]];
+            CoinbaseBalance *total = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"total"]];
+
+            callback(btc, fees, subtotal, total, error);
+        }
+    }];
 }
 
 -(void) getBuyPriceWithQuantity:(NSString *)quantity
                        currency:(NSString *)currency
-                     completion:(CoinbaseCompletionBlock)completion
+                     completion:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"qty" : quantity,
                                  @"currency" : currency
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/buy" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *btc = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"btc"]];
+            NSArray *fees = [response objectForKey:@"fees"];
+            CoinbaseBalance *subtotal = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"subtotal"]];
+            CoinbaseBalance *total = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"total"]];
+
+            callback(btc, fees, subtotal, total, error);
+        }
+    }];
 }
 
--(void) getSellPrice:(CoinbaseCompletionBlock)completion
+-(void) getSellPrice:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *btc = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"btc"]];
+            NSArray *fees = [response objectForKey:@"fees"];
+            CoinbaseBalance *subtotal = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"subtotal"]];
+            CoinbaseBalance *total = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"total"]];
+
+            callback(btc, fees, subtotal, total, error);
+        }
+    }];
 }
 
 -(void) getSellPriceWithQuantity:(NSString *)quantity
                         currency:(NSString *)currency
-                      completion:(CoinbaseCompletionBlock)completion
+                      completion:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 {
     NSDictionary *parameters = @{
                                  @"qty" : quantity,
                                  @"currency" : currency
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/sell" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *btc = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"btc"]];
+            NSArray *fees = [response objectForKey:@"fees"];
+            CoinbaseBalance *subtotal = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"subtotal"]];
+            CoinbaseBalance *total = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"total"]];
+
+            callback(btc, fees, subtotal, total, error);
+        }
+    }];
 }
 
--(void) getSpotRate:(CoinbaseCompletionBlock)completion
+-(void) getSpotRate:(void(^)(CoinbaseBalance*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:response];
+            callback(balance, error);
+        }
+    }];
 }
 
 -(void) getSpotRateWithCurrency:(NSString *)currency
-                     completion:(CoinbaseCompletionBlock)completion
+                     completion:(void(^)(CoinbaseBalance*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"currency" : currency
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"prices/spot_rate" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:response];
+            callback(balance, error);
+        }
+    }];
 }
 
 -(void) getHistoricalSpotRate:(CoinbaseCompletionBlock)completion

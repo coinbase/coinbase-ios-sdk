@@ -330,16 +330,43 @@
 //        }
 //    }];
 
-    [self.client getOAuthApplications:^(id response, NSError *error) {
+//    [self.client getOAuthApplications:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getOAuthApplications - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getOAuthApplications = %@", response);
+//        }
+//    }];
 
+//    [self.client getSpotRate:^(CoinbaseBalance *balance, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getSpotRate - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getSpotRate = %@", balance);
+//        }
+//    }];
+
+
+    [self.client getSellPrice:^(CoinbaseBalance *btc, NSArray *fees, CoinbaseBalance *subTotal, CoinbaseBalance *total, NSError *error) {
 
         if (error)
         {
-            NSLog(@"getOAuthApplications - Could not load : %@", error);
+            NSLog(@"getSellPrice - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"getOAuthApplications = %@", response);
+            NSLog(@"getSellPrice btc = %@", btc);
+            NSLog(@"getSellPrice fees = %@", fees);
+            NSLog(@"getSellPrice subTotal = %@", btc);
+            NSLog(@"getSellPrice total = %@", btc);
         }
     }];
 }

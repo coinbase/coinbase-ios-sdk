@@ -473,30 +473,30 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Get the buy price for bitcoin - Resource that tells you the total price to buy some amount of bitcoin.
 ///
 
--(void) getBuyPrice:(CoinbaseCompletionBlock)completion;
+-(void) getBuyPrice:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 -(void) getBuyPriceWithQuantity:(NSString *)quantity
                        currency:(NSString *)currency
-                     completion:(CoinbaseCompletionBlock)completion;
+                     completion:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 ///
 /// Get the sell price - Resource that tells you the total amount you can get if you sell some bitcoin.
 ///
 
--(void) getSellPrice:(CoinbaseCompletionBlock)completion;
+-(void) getSellPrice:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 -(void) getSellPriceWithQuantity:(NSString *)quantity
                         currency:(NSString *)currency
-                      completion:(CoinbaseCompletionBlock)completion;
+                      completion:(void(^)(CoinbaseBalance*, NSArray*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
 
 ///
 /// Get the spot price of bitcoin - Unauthenticated resource that tells you the current price of bitcoin.
 ///
 
--(void) getSpotRate:(CoinbaseCompletionBlock)completion;
+-(void) getSpotRate:(void(^)(CoinbaseBalance*, NSError*))callback;
 
 -(void) getSpotRateWithCurrency:(NSString *)currency
-                     completion:(CoinbaseCompletionBlock)completion;
+                     completion:(void(^)(CoinbaseBalance*, NSError*))callback;
 
 ///
 /// Get the historical spot price - Unauthenticated resource that displays historical spot rates for bitcoin in USD.
