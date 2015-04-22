@@ -1,21 +1,22 @@
 #import "Coinbase.h"
 #import <CommonCrypto/CommonHMAC.h>
 #import "CoinbaseAccount.h"
-#import "CoinbasePagingHelper.h"
-#import "CoinbaseAddress.h"
-#import "CoinbaseUser.h"
-#import "CoinbaseTransaction.h"
-#import "CoinbaseTransfer.h"
-#import "CoinbaseContact.h"
-#import "CoinbaseCurrency.h"
 #import "CoinbaseAccountChange.h"
-#import "CoinbaseButton.h"
-#import "CoinbaseOrder.h"
+#import "CoinbaseAddress.h"
 #import "CoinbaseAuthorization.h"
 #import "CoinbaseApplication.h"
+#import "CoinbaseButton.h"
+#import "CoinbaseContact.h"
+#import "CoinbaseCurrency.h"
+#import "CoinbaseOrder.h"
 #import "CoinbaseRecurringPayment.h"
 #import "CoinbaseRefund.h"
 #import "CoinbaseReport.h"
+#import "CoinbaseTransaction.h"
+#import "CoinbaseTransfer.h"
+#import "CoinbaseUser.h"
+
+#import "CoinbasePagingHelper.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -2041,13 +2042,26 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - Sells
 
 -(void) sellQuantity:(NSString *)quantity
-          completion:(CoinbaseCompletionBlock)completion
+          completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"qty" : quantity
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 -(void) sellQuantity:(NSString *)quantity
@@ -2056,7 +2070,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
               commit:(BOOL)commit
 agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
      paymentMethodID:(NSString *)paymentMethodID
-          completion:(CoinbaseCompletionBlock)completion
+          completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"qty" : quantity,
@@ -2067,7 +2081,20 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                                  @"payment_method_id" : paymentMethodID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"sells" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 #pragma mark - Subscribers

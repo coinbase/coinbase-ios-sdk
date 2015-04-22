@@ -1,25 +1,26 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseDefines.h"
 
-@class CoinbasePagingHelper;
 @class CoinbaseAccount;
-@class CoinbaseBalance;
-@class CoinbaseAddress;
-@class CoinbaseMerchant;
-@class CoinbaseUser;
-@class CoinbaseTransaction;
-@class CoinbaseTransfer;
-@class CoinbaseContact;
-@class CoinbaseCurrency;
-@class CoinbasePaymentMethod;
 @class CoinbaseAccountChange;
-@class CoinbaseButton;
-@class CoinbaseOrder;
+@class CoinbaseAddress;
 @class CoinbaseAuthorization;
 @class CoinbaseApplication;
+@class CoinbaseBalance;
+@class CoinbaseButton;
+@class CoinbaseContact;
+@class CoinbaseCurrency;
+@class CoinbaseOrder;
+@class CoinbasePaymentMethod;
 @class CoinbaseRecurringPayment;
 @class CoinbaseRefund;
 @class CoinbaseReport;
+@class CoinbaseTransaction;
+@class CoinbaseTransfer;
+@class CoinbaseMerchant;
+@class CoinbaseUser;
+
+@class CoinbasePagingHelper;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -592,7 +593,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) sellQuantity:(NSString *)quantity
-          completion:(CoinbaseCompletionBlock)completion;
+          completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 -(void) sellQuantity:(NSString *)quantity
            accountID:(NSString *)accountID
@@ -600,7 +601,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
               commit:(BOOL)commit
 agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
      paymentMethodID:(NSString *)paymentMethodID
-          completion:(CoinbaseCompletionBlock)completion;
+          completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Subscriptions
 
