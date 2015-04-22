@@ -15,6 +15,7 @@
 @class CoinbaseAccountChange;
 @class CoinbaseButton;
 @class CoinbaseOrder;
+@class CoinbaseAuthorization;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -161,7 +162,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Show authorization information - Authenticated resource that returns information about the current API authorization for user.
 ///
 
--(void) getAuthorizationInformation:(CoinbaseCompletionBlock)completion;
+-(void) getAuthorizationInformation:(void(^)(CoinbaseAuthorization*, NSError*))callback; 
 
 
 #pragma mark - Buttons
@@ -269,7 +270,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// List exchange rates between BTC and other currencies - Unauthenticated resource that returns BTC to fiat (and vice versus) exchange rates in various currencies.
 ///
 
--(void) getExchangeRates:(CoinbaseCompletionBlock)completion;
+-(void) getExchangeRates:(void(^)(NSDictionary*, NSError*))callback;
 
 #pragma mark - Deposits
 

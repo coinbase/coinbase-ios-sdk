@@ -11,6 +11,7 @@
 #import "CoinbaseAccountChange.h"
 #import "CoinbaseButton.h"
 #import "CoinbaseOrder.h"
+#import "CoinbaseAuthorization.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -706,9 +707,22 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Authorization
 
--(void) getAuthorizationInformation:(CoinbaseCompletionBlock)completion
+-(void) getAuthorizationInformation:(void(^)(CoinbaseAuthorization*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"authorization" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"authorization" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAuthorization *authorization = [[CoinbaseAuthorization alloc] initWithDictionary:response];
+            callback(authorization, error);
+        }
+    }];
 }
 
 #pragma mark - Button
@@ -1029,9 +1043,22 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void) getExchangeRates:(CoinbaseCompletionBlock)completion
+-(void) getExchangeRates:(void(^)(NSDictionary*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies/exchange_rates" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"currencies/exchange_rates" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            callback(response, error);
+        }
+    }];
+
 
 }
 

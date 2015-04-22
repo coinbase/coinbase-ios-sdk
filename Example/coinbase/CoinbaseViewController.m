@@ -306,17 +306,29 @@
 //        }
 //    }];
 
-    [self.client getSignatureHashesWithTransactionID:@"2b2163e087b7504ed6778ce49a52d2be1988f6c51b46a8634f5e0c1209fb1eb2" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+    [self.client getAuthorizationInformation:^(CoinbaseAuthorization *authorization, NSError *error) {
 
         if (error)
         {
-            NSLog(@"getSignatureHashesWithTransactionID - Could not load : %@", error);
+            NSLog(@"getExchangeRates - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"getSignatureHashesWithTransactionID = %@", transaction);
+            NSLog(@"getExchangeRates = %@", authorization);
         }
     }];
+
+//    [self.client getExchangeRates:^(NSDictionary *exchangeRates, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getExchangeRates - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getExchangeRates = %@", exchangeRates[@"aed_to_btc"]);
+//        }
+//    }];
 }
 
 @end
