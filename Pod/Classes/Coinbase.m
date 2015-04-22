@@ -14,6 +14,7 @@
 #import "CoinbaseAuthorization.h"
 #import "CoinbaseApplication.h"
 #import "CoinbaseRecurringPayment.h"
+#import "CoinbaseRefund.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -1854,11 +1855,58 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         if ([response isKindOfClass:[NSDictionary class]])
         {
             CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[response objectForKey:@"recurring_payment"]];
-
             callback(recurringPayment, error);
         }
     }];
+}
 
+#pragma mark - Refunds
+
+-(void) refundWithID:(NSString *)refundID
+          completion:(void(^)(CoinbaseRefund*, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"refunds/%@", refundID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseRefund *refund = [[CoinbaseRefund alloc] initWithDictionary:[response objectForKey:@"refund"]];
+            callback(refund, error);
+        }
+    }];
+}
+
+#pragma mark - Reports
+
+-(void) getReports:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:completion];
+}
+
+-(void) getReportsWithPage:(NSUInteger)page
+                     limit:(NSUInteger)limit
+                completion:(CoinbaseCompletionBlock)completion
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 };
+
+    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:parameters headers:nil completion:completion];
+}
+
+-(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion
+{
+    NSString *path = [NSString stringWithFormat:@"reports/%@", reportID];
+
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
 
 -(void) createReportWithType:(NSString *)type
@@ -1904,42 +1952,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                  };
 
     [self doRequestType:CoinbaseRequestTypePost path:@"reports" parameters:parameters headers:nil completion:completion];
-}
-
-#pragma mark - Refunds
-
--(void) refundWithID:(NSString *)refundID
-          completion:(CoinbaseCompletionBlock)completion
-{
-    NSString *path = [NSString stringWithFormat:@"refunds/%@", refundID];
-
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
-}
-
-#pragma mark - Reports
-
--(void) getReports:(CoinbaseCompletionBlock)completion
-{
-    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:completion];
-}
-
--(void) getReportsWithPage:(NSUInteger)page
-                     limit:(NSUInteger)limit
-                completion:(CoinbaseCompletionBlock)completion
-{
-    NSDictionary *parameters = @{
-                                 @"page" : [@(page) stringValue],
-                                 @"limit" : [@(limit)  stringValue],
-                                 };
-
-    [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:parameters headers:nil completion:completion];
-}
-
--(void) reportWithID:(NSString *)reportID completion:(CoinbaseCompletionBlock)completion
-{
-    NSString *path = [NSString stringWithFormat:@"reports/%@", reportID];
-
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
 }
 
 #pragma mark - Sells

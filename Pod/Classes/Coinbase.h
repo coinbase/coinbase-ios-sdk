@@ -18,6 +18,7 @@
 @class CoinbaseAuthorization;
 @class CoinbaseApplication;
 @class CoinbaseRecurringPayment;
+@class CoinbaseRefund;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -537,7 +538,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) refundWithID:(NSString *)refundID
-          completion:(CoinbaseCompletionBlock)completion;
+          completion:(void(^)(CoinbaseRefund*, NSError*))callback; 
 
 #pragma mark - Reports
 
