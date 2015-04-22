@@ -2871,16 +2871,29 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 }
 
 -(void) commitTransferWithID:(NSString *)transferID
-                  completion:(CoinbaseCompletionBlock)completion
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", transferID];
 
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 -(void) commitTransferWithID:(NSString *)transferID
                    accountID:(NSString *)accountID
-                  completion:(CoinbaseCompletionBlock)completion
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID
@@ -2888,7 +2901,20 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
     NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", transferID];
 
-    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 #pragma mark - Users
@@ -3016,7 +3042,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 -(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
-            completion:(CoinbaseCompletionBlock)completion
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"amount" : amount,
@@ -3024,14 +3050,27 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                                  @"account_id" : accountID
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 -(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
                 commit:(BOOL)commit
-            completion:(CoinbaseCompletionBlock)completion
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"amount" : amount,
@@ -3040,7 +3079,20 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                                  @"commit" : commit ? @"true" : @"false"
                                  };
 
-    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePost path:@"withdrawals" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
 }
 
 #pragma mark -

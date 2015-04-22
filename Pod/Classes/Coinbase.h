@@ -812,11 +812,11 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 ///
 
 -(void) commitTransferWithID:(NSString *)transferID
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 -(void) commitTransferWithID:(NSString *)transferID
                    accountID:(NSString *)accountID
-                  completion:(CoinbaseCompletionBlock)completion;
+                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Users
 
@@ -855,13 +855,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 -(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 -(void) withdrawAmount:(NSString *)amount
              accountID:(NSString *)accountID
        paymentMethodID:(NSString *)paymentMethodID
                 commit:(BOOL)commit
-            completion:(CoinbaseCompletionBlock)completion;
+            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 
 @end
