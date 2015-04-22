@@ -275,16 +275,109 @@
 //            }
 //        }];
 
-    [self.client createButtonWithName:@"Button Name" price:@"122" priceCurrencyISO:@"USD" completion:^(id response, NSError *error) {
+//    [self.client createButtonWithName:@"Button Name" price:@"122" priceCurrencyISO:@"USD" completion:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"createButtonWithName - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"createButtonWithName = %@", response);
+//        }
+//    }];
 
+//    [self.client createMultiSigAccountWithName:@"MULTI WAT"
+//                                          type:@"multisig"
+//                            requiredSignatures:2
+//                                      xPubKeys:@[
+//                                         @"xpub661MyMwAqRbcFo8WEPnst2sE8MTLe9DszR7eYhtkVuiUskpAggETvYQeSBWTuwoxZrZvf18w75AzfjLhzihWGagvcMa4J9nDWjmiD2UrAEF",
+//                                         @"xpub661MyMwAqRbcEezXDATCwfxbet7ZYA8cyfh2FDckA85S5Tg5NjzjnPeikzJgj2noBvxTEPNkMwq8RMCuBhiL7sRv29ZtMft2KbKwTcc48uu",
+//                                         @"xpub661MyMwAqRbcEnKbXcCqD2GT1di5zQxVqoHPAgHNe8dv5JP8gWmDproS6kFHJnLZd23tWevhdn4urGJ6b264DfTGKr8zjmYDjyDTi9U7iyT"
+//                                         ] completion:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"createMultiSigAccountWithName - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"createMultiSigAccountWithName = %@", response);
+//        }
+//    }];
+
+//    [self.client getAuthorizationInformation:^(CoinbaseAuthorization *authorization, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getAuthorizationInformation - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getAuthorizationInformation = %@", authorization);
+//        }
+//    }];
+
+//    [self.client getExchangeRates:^(NSDictionary *exchangeRates, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getExchangeRates - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getExchangeRates = %@", exchangeRates[@"aed_to_btc"]);
+//        }
+//    }];
+
+//    [self.client getOAuthApplications:^(id response, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getOAuthApplications - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getOAuthApplications = %@", response);
+//        }
+//    }];
+
+//    [self.client getSpotRate:^(CoinbaseBalance *balance, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getSpotRate - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getSpotRate = %@", balance);
+//        }
+//    }];
+
+//    [self.client getSellPrice:^(CoinbaseBalance *btc, NSArray *fees, CoinbaseBalance *subTotal, CoinbaseBalance *total, NSError *error) {
+//
+//        if (error)
+//        {
+//            NSLog(@"getSellPrice - Could not load : %@", error);
+//        }
+//        else
+//        {
+//            NSLog(@"getSellPrice btc = %@", btc);
+//            NSLog(@"getSellPrice fees = %@", fees);
+//            NSLog(@"getSellPrice subTotal = %@", btc);
+//            NSLog(@"getSellPrice total = %@", btc);
+//        }
+//    }];
+
+    [self.client getReports:^(NSArray *array, NSError *error) {
 
         if (error)
         {
-            NSLog(@"createButtonWithName - Could not load : %@", error);
+            NSLog(@"getReports - Could not load : %@", error);
         }
         else
         {
-            NSLog(@"createButtonWithName = %@", response);
+            NSLog(@"getReports = %@", array);
         }
     }];
 }

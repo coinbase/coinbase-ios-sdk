@@ -33,6 +33,11 @@
         _recipientAddress = [dictionary objectForKey:@"recipient_address"];
         _idem = [dictionary objectForKey:@"idem"];
         _notes = [dictionary objectForKey:@"notes"];
+        _type = [dictionary objectForKey:@"type"];
+        _isSigned = [[dictionary objectForKey:@"signed"] boolValue];
+        _signaturesRequired = [[dictionary objectForKey:@"signatures_required"] unsignedIntegerValue];
+        _signaturesPresent = [[dictionary objectForKey:@"signatures_present"] unsignedIntegerValue];
+        _signaturesNeeded = [[dictionary objectForKey:@"signatures_needed"] unsignedIntegerValue];
     }
     return self;
 }

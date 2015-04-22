@@ -23,6 +23,11 @@
 @property (nonatomic, strong) NSString *recipientAddress;
 @property (nonatomic, strong) NSString *idem;
 @property (nonatomic, strong) NSString *notes;
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, assign) BOOL isSigned;
+@property (nonatomic, assign) NSUInteger signaturesRequired;
+@property (nonatomic, assign) NSUInteger signaturesPresent;
+@property (nonatomic, assign) NSUInteger signaturesNeeded;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 
