@@ -13,6 +13,7 @@
 #import "CoinbaseOrder.h"
 #import "CoinbaseAuthorization.h"
 #import "CoinbaseApplication.h"
+#import "CoinbaseRecurringPayment.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -1776,29 +1777,88 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Recurring Payments
 
--(void) getRecurringPayments:(CoinbaseCompletionBlock)completion
+-(void) getRecurringPayments:(void(^)(NSArray*, NSError*))callback
 {
-    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseRecurringPayments = [response objectForKey:@"recurring_payments"];
+
+            NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
+
+            for (NSDictionary *dictionary in recurringPayments)
+            {
+                CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
+                [recurringPayments addObject:recurringPayment];
+            }
+
+            callback(recurringPayments, error);
+        }
+    }];
 }
 
 -(void) getRecurringPaymentsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(CoinbaseCompletionBlock)completion
+                          completion:(void(^)(NSArray*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
                                  @"limit" : [@(limit)  stringValue]
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            NSArray *responseRecurringPayments = [response objectForKey:@"recurring_payments"];
+
+            NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
+
+            for (NSDictionary *dictionary in recurringPayments)
+            {
+                CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
+                [recurringPayments addObject:recurringPayment];
+            }
+
+            callback(recurringPayments, error);
+        }
+    }];
 }
 
 -(void) recurringPaymentWithID:(NSString *)recurringPaymentID
-                    completion:(CoinbaseCompletionBlock)completion
+                    completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"recurring_payments/%@", recurringPaymentID];
 
-    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[response objectForKey:@"recurring_payment"]];
+
+            callback(recurringPayment, error);
+        }
+    }];
+
 }
 
 -(void) createReportWithType:(NSString *)type

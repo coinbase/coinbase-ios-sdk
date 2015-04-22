@@ -17,6 +17,7 @@
 @class CoinbaseOrder;
 @class CoinbaseAuthorization;
 @class CoinbaseApplication;
+@class CoinbaseRecurringPayment;
 
 /// HTTP methods for use with the Coinbase API.
 typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
@@ -514,11 +515,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: recurring_payments or merchant
 ///
 
--(void) getRecurringPayments:(CoinbaseCompletionBlock)completion;
+-(void) getRecurringPayments:(void(^)(NSArray*, NSError*))callback;
 
 -(void) getRecurringPaymentsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(CoinbaseCompletionBlock)completion;
+                          completion:(void(^)(NSArray*, NSError*))callback;
 
 ///
 /// Show a recurring payment - Authenticated resource that lets you show an individual recurring payment.
@@ -526,7 +527,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 ///
 
 -(void) recurringPaymentWithID:(NSString *)recurringPaymentID
-                    completion:(CoinbaseCompletionBlock)completion;
+                    completion:(void(^)(CoinbaseRecurringPayment*, NSError*))callback;
 
 #pragma mark - Refunds
 
