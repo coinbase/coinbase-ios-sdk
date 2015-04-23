@@ -11,6 +11,8 @@
 #import "CoinbaseViewController.h"
 #import "coinbase-Swift.h"
 #import "Coinbase.h"
+#import "CoinbaseAccount.h"
+#import "CoinbasePagingHelper.h"
 
 @interface CoinbaseViewController ()
 
@@ -59,7 +61,7 @@
     // Now that we are authenticated, load some data
     self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
 
-    [self.client getAccountsList:^(NSArray *accounts, NSError *error)
+    [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error)
     {
          if (error)
          {
@@ -103,17 +105,17 @@
 
 -(void) test
 {
-//    [self.client getAccountsList:^(NSArray *accounts, NSError *error) {
-//
-//        if (error)
-//        {
-//            NSLog(@"getAccountsList - Could not load : %@", error);
-//        }
-//        else
-//        {
-//            NSLog(@"getAccountsList = %@", accounts);
-//        }
-//    }];
+    [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error) {
+
+        if (error)
+        {
+            NSLog(@"getAccountsList - Could not load : %@", error);
+        }
+        else
+        {
+            NSLog(@"getAccountsList = %@", accounts);
+        }
+    }];
 //
 //    [self.client getAccountsListWithPage:0 limit:25 allAccounts:YES completion:^(NSArray *accounts, CoinbasePagingHelper *pagingHelper, NSError *error) {
 //
@@ -369,7 +371,7 @@
 //        }
 //    }];
 
-    [self.client getReports:^(NSArray *array, NSError *error) {
+    [self.client getReports:^(NSArray *array, CoinbasePagingHelper *paging, NSError *error) {
 
         if (error)
         {
