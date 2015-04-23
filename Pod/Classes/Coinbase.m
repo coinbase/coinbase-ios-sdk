@@ -239,13 +239,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Accounts
 
--(void) getAccountsList:(void(^)(NSArray*, NSError*))callback
+-(void) getAccountsList:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"accounts" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -261,7 +261,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 [accounts addObject:account];
             }
 
-            callback(accounts, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(accounts, pagingHelper, error);
         }
     }];
 }
@@ -298,7 +299,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
             }
 
             CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
-
             callback(accounts, pagingHelper, error);
         }
     }];
@@ -521,13 +521,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Account Changes
 
--(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, nil, nil, nil, error);
+            callback(nil, nil, nil, nil, nil, error);
             return;
         }
 
@@ -546,8 +546,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
                 [accountChanges addObject:accountChange];
             }
-
-            callback(accountChanges, user, balance, nativeBalance, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(accountChanges, user, balance, nativeBalance, pagingHelper, error);
         }
     }];
 }
@@ -555,7 +555,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 -(void) getAccountChangesWithPage:(NSUInteger)page
                             limit:(NSUInteger)limit
                         accountId:(NSString *)accountId
-                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -567,7 +567,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, nil, nil, nil, error);
+            callback(nil, nil, nil, nil, nil, error);
             return;
         }
 
@@ -586,21 +586,22 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
                 [accountChanges addObject:accountChange];
             }
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
 
-            callback(accountChanges, user, balance, nativeBalance, error);
+            callback(accountChanges, user, balance, nativeBalance, pagingHelper, error);
         }
     }];
 }
 
 #pragma mark - Addresses
 
--(void) getAccountAddresses:(void(^)(NSArray*, NSError*))callback
+-(void) getAccountAddresses:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"addresses" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -616,10 +617,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 [addresses addObject:address];
             }
 
-#warning Commented out until receive confirmation on correct direction 
-            //CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
-
-            callback(addresses, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(addresses, pagingHelper, error);
         }
     }];
 }
@@ -628,7 +627,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                               limit:(NSUInteger)limit
                           accountId:(NSString *)accountId
                               query:(NSString *)query
-                         completion:(void(^)(NSArray*, NSError*))callback
+                         completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -641,7 +640,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -657,10 +656,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 [addresses addObject:address];
             }
 
-#warning Commented out until receive confirmation on correct direction
-            //CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
 
-            callback(addresses, error);
+            callback(addresses, pagingHelper, error);
         }
     }];
 }
@@ -874,7 +872,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, NSError*))callback;
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 {
     NSString *path = [NSString stringWithFormat:@"buttons/%@/orders", customValueOrID];
 
@@ -882,7 +880,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -897,7 +895,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
                 [orders addObject:order];
             }
-            callback(orders, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(orders, pagingHelper, error);
         }
     }];
 }
@@ -962,13 +961,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - Contacts
 
 
--(void) getContacts:(void(^)(NSArray*, NSError*))callback
+-(void) getContacts:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -983,7 +982,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
                 [contacts addObject:contact];
             }
-            callback(contacts, error);
+
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(contacts, pagingHelper, error);
         }
     }];
 }
@@ -991,7 +992,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 -(void) getContactsWithPage:(NSUInteger)page
                       limit:(NSUInteger)limit
                       query:(NSString *)query
-                 completion:(void(^)(NSArray*, NSError*))callback
+                 completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1003,7 +1004,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1018,7 +1019,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
                 [contacts addObject:contact];
             }
-            callback(contacts, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(contacts, pagingHelper, error);
         }
     }];
 }
@@ -1190,13 +1192,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 #pragma mark - OAuth Applications
 
 
--(void) getOAuthApplications:(void(^)(NSArray*, NSError*))callback;
+-(void) getOAuthApplications:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"oauth/applications" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1211,14 +1213,15 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:dictionary];
                 [applications addObject:application];
             }
-            callback(applications, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(applications, pagingHelper, error);
         }
     }];
 }
 
 -(void) getOAuthApplicationsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(void(^)(NSArray*, NSError*))callback;
+                          completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1229,7 +1232,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1244,7 +1247,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseApplication *application = [[CoinbaseApplication alloc] initWithDictionary:dictionary];
                 [applications addObject:application];
             }
-            callback(applications, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(applications, pagingHelper, error);
         }
     }];
 }
@@ -1300,13 +1304,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Orders
 
--(void) getOrders:(void(^)(NSArray*, NSError*))callback
+-(void) getOrders:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1321,7 +1325,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
                 [orders addObject:order];
             }
-            callback(orders, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(orders, pagingHelper, error);
         }
     }];
 }
@@ -1329,7 +1334,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 -(void) getOrdersWithPage:(NSUInteger)page
                     limit:(NSUInteger)limit
                 accountID:(NSString *)accountID
-               completion:(void(^)(NSArray*, NSError*))callback
+               completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1341,7 +1346,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1356,7 +1361,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[dictionary objectForKey:@"order"]];
                 [orders addObject:order];
             }
-            callback(orders, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(orders, pagingHelper, error);
         }
     }];
 }
@@ -1781,13 +1787,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Recurring Payments
 
--(void) getRecurringPayments:(void(^)(NSArray*, NSError*))callback
+-(void) getRecurringPayments:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"recurring_payments" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1802,15 +1808,15 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
             }
-
-            callback(recurringPayments, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(recurringPayments, pagingHelper, error);
         }
     }];
 }
 
 -(void) getRecurringPaymentsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(void(^)(NSArray*, NSError*))callback
+                          completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1821,7 +1827,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1836,8 +1842,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
             }
-
-            callback(recurringPayments, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(recurringPayments, pagingHelper, error);
         }
     }];
 }
@@ -1888,13 +1894,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 #pragma mark - Reports
 
--(void) getReports:(void(^)(NSArray*, NSError*))callback
+-(void) getReports:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"reports" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1909,15 +1915,15 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[dictionary objectForKey:@"report"]];
                 [reports addObject:report];
             }
-
-            callback(reports, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(reports, pagingHelper, error);
         }
     }];
 }
 
 -(void) getReportsWithPage:(NSUInteger)page
                      limit:(NSUInteger)limit
-                completion:(void(^)(NSArray*, NSError*))callback
+                completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -1928,7 +1934,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -1943,8 +1949,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                 CoinbaseReport *report = [[CoinbaseReport alloc] initWithDictionary:[dictionary objectForKey:@"report"]];
                 [reports addObject:report];
             }
-
-            callback(reports, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(reports, pagingHelper, error);
         }
     }];
 }
@@ -2100,13 +2106,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 #pragma mark - Subscribers
 
--(void) getSubscribers:(void(^)(NSArray*, NSError*))callback
+-(void) getSubscribers:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"subscribers" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil,error);
             return;
         }
 
@@ -2121,14 +2127,14 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
             }
-
-            callback(recurringPayments, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(recurringPayments, pagingHelper, error);
         }
     }];
 }
 
 -(void) getSubscribersWithAccountID:(NSString *)accountID
-                         completion:(void(^)(NSArray*, NSError*))callback
+                         completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"account_id" : accountID
@@ -2138,7 +2144,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -2153,8 +2159,8 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
             }
-
-            callback(recurringPayments, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(recurringPayments, pagingHelper, error);
         }
     }];
 }
@@ -2248,13 +2254,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 #pragma mark - Transactions
 
--(void) getTransactions:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
+-(void) getTransactions:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"transactions" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, nil, nil, nil, error);
+            callback(nil, nil, nil, nil, nil, error);
             return;
         }
 
@@ -2273,7 +2279,8 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:dictionary];
                 [transactions addObject:transaction];
             }
-            callback(transactions, user, balance, nativeBalance, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(transactions, user, balance, nativeBalance, pagingHelper, error);
         }
     }];
 }
@@ -2281,7 +2288,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 -(void) getTransactionsWithPage:(NSUInteger)page
                           limit:(NSUInteger)limit
                       accountID:(NSString *)accountID
-                     completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback
+                     completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -2293,7 +2300,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
         if (error)
         {
-            callback(nil, nil, nil, nil, error);
+            callback(nil, nil, nil, nil, nil, error);
             return;
         }
 
@@ -2312,7 +2319,8 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:dictionary];
                 [transactions addObject:transaction];
             }
-            callback(transactions, user, balance, nativeBalance, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(transactions, user, balance, nativeBalance, pagingHelper, error);
         }
     }];
 }
@@ -2762,13 +2770,13 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
 #pragma mark - Transfers
 
--(void) getTransfers:(void(^)(NSArray*, NSError*))callback
+-(void) getTransfers:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     [self doRequestType:CoinbaseRequestTypeGet path:@"transfers" parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -2783,7 +2791,8 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:dictionary];
                 [transfers addObject:transfer];
             }
-            callback(transfers, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(transfers, pagingHelper, error);
         }
     }];
 }
@@ -2791,7 +2800,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 -(void) getTransfersWithPage:(NSUInteger)page
                        limit:(NSUInteger)limit
                    accountID:(NSString *)accountID
-                  completion:(void(^)(NSArray*, NSError*))callback
+                  completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"page" : [@(page) stringValue],
@@ -2803,7 +2812,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
         if (error)
         {
-            callback(nil, error);
+            callback(nil, nil, error);
             return;
         }
 
@@ -2818,7 +2827,8 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:dictionary];
                 [transfers addObject:transfer];
             }
-            callback(transfers, error);
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(transfers, pagingHelper, error);
         }
     }];
 }

@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  coinbase-official: 36eb1ed3f43e8a5597ce89eac1e53f1a6d5a1af0
+  coinbase-official: 86c1f6cb35b63e6036a85bcdb2c6615e280b3df3
   Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748

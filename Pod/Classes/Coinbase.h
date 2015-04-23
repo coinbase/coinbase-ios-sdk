@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseDefines.h"
+#import "CoinbasePagingHelper.h"
 
 @class CoinbaseAccount;
 @class CoinbaseAccountChange;
@@ -53,7 +54,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// List accounts - Authenticated resource that returns the user’s active accounts.
 ///
 
--(void) getAccountsList:(void(^)(NSArray*, NSError*))callback;
+-(void) getAccountsList:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getAccountsListWithPage:(NSUInteger)page
                           limit:(NSUInteger)limit
@@ -129,12 +130,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: transactions
 ///
 
--(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getAccountChangesWithPage:(NSUInteger)page
                             limit:(NSUInteger)limit
                         accountId:(NSString *)accountId
-                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
 
 #pragma mark - Addresses
 
@@ -143,13 +144,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: addresses
 ///
 
--(void) getAccountAddresses:(void(^)(NSArray*, NSError*))callback;
+-(void) getAccountAddresses:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getAccountAddressesWithPage:(NSUInteger)page
                               limit:(NSUInteger)limit
                           accountId:(NSString *)accountId
                               query:(NSString *)query
-                         completion:(void(^)(NSArray*, NSError*))callback;
+                         completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show bitcoin address - Authenticated resource that returns a bitcoin address with its id or address.
@@ -232,7 +233,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: buttons or merchant
 ///
 
--(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, NSError*))callback;
+-(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 #pragma mark - Buys
 
@@ -257,12 +258,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: contacts
 ///
 
--(void) getContacts:(void(^)(NSArray*, NSError*))callback;
+-(void) getContacts:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getContactsWithPage:(NSUInteger)page
                       limit:(NSUInteger)limit
                       query:(NSString *)query
-                 completion:(void(^)(NSArray*, NSError*))callback;
+                 completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 #pragma mark - Currencies
 
@@ -352,11 +353,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: oauth_apps
 ///
 
--(void) getOAuthApplications:(void(^)(NSArray*, NSError*))callback;
+-(void) getOAuthApplications:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getOAuthApplicationsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(void(^)(NSArray*, NSError*))callback;
+                          completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show an OAuth application - Show an individual OAuth application you have created.
@@ -381,12 +382,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: orders or merchant
 ///
 
--(void) getOrders:(void(^)(NSArray*, NSError*))callback;
+-(void) getOrders:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getOrdersWithPage:(NSUInteger)page
                     limit:(NSUInteger)limit
                 accountID:(NSString *)accountID
-               completion:(void(^)(NSArray*, NSError*))callback;
+               completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Create an order - Authenticated resource which returns an order for a new button.
@@ -519,11 +520,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: recurring_payments or merchant
 ///
 
--(void) getRecurringPayments:(void(^)(NSArray*, NSError*))callback;
+-(void) getRecurringPayments:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getRecurringPaymentsWithPage:(NSUInteger)page
                                limit:(NSUInteger)limit
-                          completion:(void(^)(NSArray*, NSError*))callback;
+                          completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show a recurring payment - Authenticated resource that lets you show an individual recurring payment.
@@ -550,11 +551,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Required scope: reports
 ///
 
--(void) getReports:(void(^)(NSArray*, NSError*))callback;
+-(void) getReports:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getReportsWithPage:(NSUInteger)page
                      limit:(NSUInteger)limit
-                completion:(void(^)(NSArray*, NSError*))callback;
+                completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show a report - Authenticated resource which returns report details.
@@ -611,10 +612,10 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scopes: recurring_payments or merchant
 ///
 
--(void) getSubscribers:(void(^)(NSArray*, NSError*))callback;
+-(void) getSubscribers:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getSubscribersWithAccountID:(NSString *)accountID
-                         completion:(void(^)(NSArray*, NSError*))callback;
+                         completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show a subscription - Authenticated resource that lets you (as a merchant) show an individual subscription than a customer has created with you.
@@ -649,12 +650,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: transactions
 ///
 
--(void) getTransactions:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
+-(void) getTransactions:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getTransactionsWithPage:(NSUInteger)page
                           limit:(NSUInteger)limit
                       accountID:(NSString *)accountID
-                     completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, NSError*))callback;
+                     completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show a transaction - Authenticated resource which returns the details of an individual transaction.
@@ -788,12 +789,12 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 /// Required scope: transfers
 ///
 
--(void) getTransfers:(void(^)(NSArray*, NSError*))callback;
+-(void) getTransfers:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 -(void) getTransfersWithPage:(NSUInteger)page
                        limit:(NSUInteger)limit
                    accountID:(NSString *)accountID
-                  completion:(void(^)(NSArray*, NSError*))callback;
+                  completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show a transfer - Authenticated resource which returns a tranfer (a bitcoin purchase or sell).

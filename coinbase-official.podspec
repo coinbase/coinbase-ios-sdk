@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'client' do |ss|
     ss.dependency 'coinbase-official/OAuth'
-    ss.source_files = 'Pod/Classes/Coinbase.[hm]'
+    ss.source_files = 'Pod/Classes/*.[hm]'
   end
 end
