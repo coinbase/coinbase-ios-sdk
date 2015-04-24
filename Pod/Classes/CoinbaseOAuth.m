@@ -12,6 +12,8 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
 
 @implementation CoinbaseOAuth
 
+static BOOL shouldUseSandbox = NO;
+
 + (BOOL)isAppOAuthAuthenticationAvailable {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize://authorize"]];
 }
@@ -44,7 +46,11 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
     }
 
     if (!appSwitchSuccessful) {
-        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
+        NSString *subdomain = @"www";
+        if (shouldUseSandbox) {
+            subdomain = @"sandbox";
+        }
+        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.coinbase.com%@", subdomain, path]];
         BOOL browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
         if (browserSwitchSuccessful) {
             mechanism = CoinbaseOAuthMechanismBrowser;
@@ -133,7 +139,11 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
                withParams:(NSDictionary *)params
                completion:(CoinbaseCompletionBlock)completion {
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path]];
+    NSString *subdomain = @"www";
+    if (shouldUseSandbox) {
+        subdomain = @"sandbox";
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.coinbase.com/oauth/%@", subdomain, path]];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
@@ -189,6 +199,10 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
     CFStringRef str = (__bridge CFStringRef)string;
     CFStringEncoding encoding = kCFStringEncodingUTF8;
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, str, NULL, charset, encoding));
+}
+
++ (void)setSandboxEnabled:(BOOL)sandboxEnabled {
+    shouldUseSandbox = sandboxEnabled;
 }
 
 @end

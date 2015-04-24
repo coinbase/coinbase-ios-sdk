@@ -70,4 +70,7 @@ extern NSString *const CoinbaseOAuthErrorUserInfoKey;
                withParams:(NSDictionary *)params
                completion:(CoinbaseCompletionBlock)completion;
 
+/// Use Coinbase Sandbox.
++ (void)setSandboxEnabled:(BOOL)sandboxEnabled;
+
 @end
