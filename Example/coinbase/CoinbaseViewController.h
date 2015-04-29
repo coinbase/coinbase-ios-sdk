@@ -19,6 +19,8 @@
 @property (weak) IBOutlet UILabel *emailLabel;
 @property (weak) IBOutlet UILabel *balanceLabel;
 @property (weak) IBOutlet UIButton *authenticationButton;
+@property (weak) IBOutlet UIButton *listUserAccountsButton;
+@property (weak) IBOutlet UIButton *listTransactionsButton;
 @property (strong) NSString *refreshToken;
 
 @end

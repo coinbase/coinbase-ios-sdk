@@ -17,9 +17,6 @@
     {
         _name = [array objectAtIndex:0];
         _iso = [array objectAtIndex:1];
-
-        NSLog(@"_name = %@", _name);
-        NSLog(@"_iso  = %@", _iso);
     }
     return self;
 }

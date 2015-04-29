@@ -17,6 +17,7 @@
     {
         _userID = [dictionary objectForKey:@"id"];
         _hashString = [dictionary objectForKey:@"hsh"];
+        _amount = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"amount"]];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -28,7 +29,7 @@
         _sellLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"balance"]];
         _request = [[dictionary objectForKey:@"request"] boolValue];
         _status = [dictionary objectForKey:@"status"];
-        _sender = [[CoinbaseUser alloc] initWithDictionary:[dictionary objectForKey:@"balance"]];
+        _sender = [[CoinbaseUser alloc] initWithDictionary:[dictionary objectForKey:@"sender"]];
         _recipient = [[CoinbaseUser alloc] initWithDictionary:[dictionary objectForKey:@"recipient"]];
         _recipientAddress = [dictionary objectForKey:@"recipient_address"];
         _idem = [dictionary objectForKey:@"idem"];

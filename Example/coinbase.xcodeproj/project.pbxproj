@@ -25,6 +25,8 @@
 		CF185B5A804A457BAE31F869 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F327F2398745008B5DCBBC /* libPods-Tests.a */; };
 		D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */; };
 		D7F962991AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */; };
+		D7F9629F1AF13BD800C0959F /* CoinbaseTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F9629E1AF13BD800C0959F /* CoinbaseTransactionsViewController.m */; };
+		D7F962A41AF14A7900C0959F /* CoinbaseBuySellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F962A31AF14A7900C0959F /* CoinbaseBuySellViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,9 @@
 		D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinbaseCurrenciesViewController.swift; sourceTree = "<group>"; };
 		D7F962971AF0CB7700C0959F /* CoinbaseAccountsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseAccountsTableViewController.h; sourceTree = "<group>"; };
 		D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseAccountsTableViewController.m; sourceTree = "<group>"; };
+		D7F9629D1AF13BD800C0959F /* CoinbaseTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseTransactionsViewController.h; sourceTree = "<group>"; };
+		D7F9629E1AF13BD800C0959F /* CoinbaseTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseTransactionsViewController.m; sourceTree = "<group>"; };
+		D7F962A31AF14A7900C0959F /* CoinbaseBuySellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinbaseBuySellViewController.swift; sourceTree = "<group>"; };
 		E03CDC14D3414A0DB0FC5378 /* libPods-coinbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-coinbase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11B0C64643B97D9FB1F880C /* Pods-coinbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coinbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coinbase/Pods-coinbase.debug.xcconfig"; sourceTree = "<group>"; };
 		E8353DD36070453E96AB801F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -154,8 +159,11 @@
 				6003F5A5195388D20070C39A /* CoinbaseViewController.h */,
 				6003F5A6195388D20070C39A /* CoinbaseViewController.m */,
 				D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */,
+				D7F962A31AF14A7900C0959F /* CoinbaseBuySellViewController.swift */,
 				D7F962971AF0CB7700C0959F /* CoinbaseAccountsTableViewController.h */,
 				D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */,
+				D7F9629D1AF13BD800C0959F /* CoinbaseTransactionsViewController.h */,
+				D7F9629E1AF13BD800C0959F /* CoinbaseTransactionsViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -368,8 +376,10 @@
 			files = (
 				6003F59E195388D20070C39A /* CoinbaseAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* CoinbaseViewController.m in Sources */,
+				D7F9629F1AF13BD800C0959F /* CoinbaseTransactionsViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */,
+				D7F962A41AF14A7900C0959F /* CoinbaseBuySellViewController.swift in Sources */,
 				D7F962991AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,8 +33,6 @@
     if (self.accessToken)
     {
         self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
-
-        [self test];
     }
 }
 
@@ -42,7 +40,7 @@
 {
     [super viewDidAppear:animated];
 
-    [self updateUI];
+     [self updateUI];
 }
 
 - (IBAction)startAuthentication:(id)sender {
@@ -74,21 +72,29 @@
 
 - (void)refreshTokens:(id)sender {
     self.emailLabel.text = @"Refreshing tokens...";
-    [CoinbaseOAuth getOAuthTokensForRefreshToken:self.refreshToken clientId:kCoinbaseDemoClientID clientSecret:kCoinbaseDemoClientSecret completion:^(id response, NSError *error) {
+    [CoinbaseOAuth getOAuthTokensForRefreshToken:self.refreshToken
+                                        clientId:kCoinbaseDemoClientID
+                                    clientSecret:kCoinbaseDemoClientSecret
+                                      completion:^(id response, NSError *error) {
         if (error) {
             NSLog(@"Could not refresh tokens: %@", error);
         } else {
-            //            // New tokens obtained
-            //            self.emailLabel.text = @"Got new tokens, loading email";
-            //            self.refreshToken = [response objectForKey:@"refresh_token"];
-            //            self.client = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
-            //            [self.client doGet:@"users" parameters:nil completion:^(id result, NSError *error) {
-            //                if (error) {
-            //                    NSLog(@"Could not load: %@", error);
-            //                } else {
-            //                    self.emailLabel.text = [[[[result objectForKey:@"users"] objectAtIndex:0] objectForKey:@"user"] objectForKey:@"email"];
-            //                }
-            //            }];
+            // New tokens obtained
+            self.emailLabel.text = @"Got new tokens, loading email";
+            self.refreshToken = [response objectForKey:@"refresh_token"];
+            self.client = [Coinbase coinbaseWithOAuthAccessToken:[response objectForKey:@"access_token"]];
+
+            [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error)
+            {
+                if (error)
+                {
+                    NSLog(@"Could not load user: %@", error);
+                }
+                else
+                {
+                    self.emailLabel.text = user.email;
+                }
+            }];
         }
     }];
 }
@@ -97,6 +103,8 @@
 {
     if (self.accessToken)
     {
+        self.listTransactionsButton.enabled = self.listUserAccountsButton.enabled = YES;
+
         [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error)
          {
              if (error)
@@ -105,8 +113,6 @@
              }
              else
              {
-                 NSLog(@"accounts = %@", accounts);
-
                  for (CoinbaseAccount *primaryAccount in accounts)
                  {
                      if (primaryAccount.primary == YES)
@@ -129,7 +135,6 @@
             }
         }];
 
-
         self.authenticationButton.titleLabel.text = @"Sign Out of Coinbase";
 
         // If Authenticated, hide the inital explanation labels
@@ -147,6 +152,12 @@
                 constraint.constant = 0.f;
             }
         }
+    }
+    else
+    {
+        self.listTransactionsButton.enabled = self.listUserAccountsButton.enabled = NO;
+
+        self.authenticationButton.titleLabel.text = @"Sign in with Coinbase";
     }
 }
 
