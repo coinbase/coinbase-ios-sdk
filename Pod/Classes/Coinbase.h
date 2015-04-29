@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Create a Coinbase object with no authentication. You can only use unauthenticated APIs with this client.
 + (Coinbase *)unauthenticatedCoinbase;
 
+/// Base URL that will be used when making API requests. Defaults to "https://api.coinbase.com/"
+@property (nonatomic, strong) NSURL *baseURL;
+
 /// Make a GET request to the Coinbase API.
 - (void)doGet:(NSString *)path
                 parameters:(NSDictionary *)parameters
