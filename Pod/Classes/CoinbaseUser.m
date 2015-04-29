@@ -28,9 +28,18 @@
         _instantBuyLevel = [dictionary objectForKey:@"instant_buy_level"];
         _sellLevel = [dictionary objectForKey:@"sell_level"];
 
-        _buyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"buy_limit"]];
-        _instantBuyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"instant_buy_limit"]];
-        _sellLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"sell_limit"]];
+        if([dictionary objectForKey:@"buy_limit"] != [NSNull null])
+        {
+            _buyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"buy_limit"]];
+        }
+        if ([dictionary objectForKey:@"instant_buy_limit"] != [NSNull null])
+        {
+            _instantBuyLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"instant_buy_limit"]];
+        }
+        if ([dictionary objectForKey:@"sell_limit"] != [NSNull null])
+        {
+            _sellLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"sell_limit"]];
+        }
     }
     return self;
 }

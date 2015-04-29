@@ -13,7 +13,7 @@
 
 @interface CoinbaseOrder : NSObject
 
-@property (nonatomic, assign) NSString *orderID;
+@property (nonatomic, strong) NSString *orderID;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) CoinbasePrice *totalBitcoins;

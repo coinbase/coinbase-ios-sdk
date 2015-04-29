@@ -15,6 +15,11 @@
     self = [super init];
     if (self)
     {
+//        if ([dictionary isEqual:[NSNull null]])
+//        {
+//            return [NSNull null];
+//        }
+
         _amount = [dictionary objectForKey:@"amount"];
         _currency = [dictionary objectForKey:@"currency"];
     }    

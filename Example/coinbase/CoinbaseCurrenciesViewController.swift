@@ -7,17 +7,17 @@ import UIKit
 
 class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSource {
 
-    var currencies: [[String]]?
+    var currencies : [CoinbaseCurrency]?
 
     override func viewDidAppear(animated: Bool) {
 
         // Load currencies
-        Coinbase().getSupportedCurrencies() {
-            (response: Array?, error: NSError?) in
+        Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
+
             if let error = error {
                 NSLog("Error: \(error)")
             } else {
-                self.currencies = response as? [[String]]
+                self.currencies = (response as? [CoinbaseCurrency])!
                 self.tableView.reloadData()
             }
         }
@@ -31,11 +31,15 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCellWithIdentifier("currency") as? UITableViewCell
 
         let label = cell?.viewWithTag(1) as? UILabel
-        label?.text = currencies?[indexPath.row][0]
+
+        let currency = self.currencies?[indexPath.row]
+
+        label?.text = currency?.name;
 
         return cell!
     }

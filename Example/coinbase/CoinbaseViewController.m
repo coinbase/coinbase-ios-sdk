@@ -12,6 +12,7 @@
 #import "coinbase-Swift.h"
 #import "Coinbase.h"
 #import "CoinbaseAccount.h"
+#import "CoinbaseUser.h"
 #import "CoinbasePagingHelper.h"
 
 @interface CoinbaseViewController ()
@@ -35,6 +36,13 @@
 
         [self test];
     }
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self updateUI];
 }
 
 - (IBAction)startAuthentication:(id)sender {
@@ -61,25 +69,7 @@
     // Now that we are authenticated, load some data
     self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
 
-    [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error)
-    {
-         if (error)
-         {
-             NSLog(@"Could not load: %@", error);
-         }
-         else
-         {
-              NSLog(@"accounts = %@", accounts);
-//             NSArray *accounts = result[@"accounts"];
-//             NSString *text = @"";
-//             for (NSDictionary *account in accounts) {
-//                 NSString *name = account[@"name"];
-//                 NSDictionary *balance = account[@"balance"];
-//                 text = [text stringByAppendingString:[NSString stringWithFormat:@"%@: %@ %@\n", name, balance[@"amount"], balance[@"currency"]]];
-//             }
-//             self.balanceLabel.text = text;
-         }
-     }];
+    [self updateUI];
 }
 
 - (void)refreshTokens:(id)sender {
@@ -101,6 +91,63 @@
             //            }];
         }
     }];
+}
+
+-(void) updateUI
+{
+    if (self.accessToken)
+    {
+        [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error)
+         {
+             if (error)
+             {
+                 NSLog(@"Could not load: %@", error);
+             }
+             else
+             {
+                 NSLog(@"accounts = %@", accounts);
+
+                 for (CoinbaseAccount *primaryAccount in accounts)
+                 {
+                     if (primaryAccount.primary == YES)
+                     {
+                         self.balanceLabel.text = [NSString stringWithFormat:@"%@: %@ %@\n", primaryAccount.name, primaryAccount.balance.amount, primaryAccount.balance.currency];
+                     }
+                 }
+             }
+         }];
+
+        [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error)
+        {
+            if (error)
+            {
+                NSLog(@"Could not load user: %@", error);
+            }
+            else
+            {
+                self.emailLabel.text = user.email;
+            }
+        }];
+
+
+        self.authenticationButton.titleLabel.text = @"Sign Out of Coinbase";
+
+        // If Authenticated, hide the inital explanation labels
+        for (NSLayoutConstraint *constraint in self.step1Label.constraints)
+        {
+            if (constraint.firstAttribute == NSLayoutAttributeHeight)
+            {
+                constraint.constant = 0.f;
+            }
+        }
+        for (NSLayoutConstraint *constraint in self.step2Label.constraints)
+        {
+            if (constraint.firstAttribute == NSLayoutAttributeHeight)
+            {
+                constraint.constant = 0.f;
+            }
+        }
+    }
 }
 
 -(void) test
