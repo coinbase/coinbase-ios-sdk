@@ -38,7 +38,7 @@ static NSURL * __strong baseURL;
     CoinbaseOAuthAuthenticationMechanism mechanism = CoinbaseOAuthMechanismNone;
     NSURL *coinbaseAppUrl = [NSURL URLWithString:[NSString stringWithFormat:@"com.coinbase.oauth-authorize:%@", path]];
     BOOL appSwitchSuccessful = NO;
-    if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl]) {
+    if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl] && baseURL == nil) {
         appSwitchSuccessful = [[UIApplication sharedApplication] openURL:coinbaseAppUrl];
         if (appSwitchSuccessful) {
             mechanism = CoinbaseOAuthMechanismApp;
@@ -46,7 +46,8 @@ static NSURL * __strong baseURL;
     }
 
     if (!appSwitchSuccessful) {
-        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
+        NSURL *base = [NSURL URLWithString:path relativeToURL:(baseURL == nil ? [NSURL URLWithString:@"https://www.coinbase.com/"] : baseURL)];
+        NSURL *webUrl = [[NSURL URLWithString:path relativeToURL:base] absoluteURL];
         BOOL browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
         if (browserSwitchSuccessful) {
             mechanism = CoinbaseOAuthMechanismBrowser;
