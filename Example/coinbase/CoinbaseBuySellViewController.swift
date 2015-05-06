@@ -1,0 +1,46 @@
+//
+//  CoinbaseBuySellViewController.swift
+//  coinbase
+//
+//  Created by Dai Hovey on 29/04/2015.
+//  Copyright (c) 2015 Isaac Waller. All rights reserved.
+//
+
+import UIKit
+
+class CoinbaseBuySellViewController: UIViewController {
+
+    @IBOutlet var buyTotal: UILabel!
+    @IBOutlet var sellTotal: UILabel!
+    @IBOutlet var spotPrice: UILabel!
+
+    override func viewDidLoad() {
+
+        Coinbase().getBuyPrice { (btc: CoinbaseBalance?, fees: Array?, subtotal: CoinbaseBalance?, total: CoinbaseBalance?, error: NSError?) in
+
+            if let error = error {
+                NSLog("Error: \(error)")
+            } else {
+                self.buyTotal.text = "Buy Price: \(total!.amount!) BTC"
+            }
+        }
+
+        Coinbase().getSellPrice { (btc: CoinbaseBalance?, fees: Array?, subtotal: CoinbaseBalance?, total: CoinbaseBalance?, error: NSError?) in
+
+            if let error = error {
+                NSLog("Error: \(error)")
+            } else {
+                self.sellTotal.text = "Sell Price: \(total!.amount) BTC"
+            }
+        }
+
+        Coinbase().getSpotRate { (spotPrice: CoinbaseBalance?, error: NSError?) in
+
+            if let error = error {
+                NSLog("Error: \(error)")
+            } else {
+                self.spotPrice.text = "Spot Price: \(spotPrice!.amount!) BTC"
+            }
+        }
+    }
+}

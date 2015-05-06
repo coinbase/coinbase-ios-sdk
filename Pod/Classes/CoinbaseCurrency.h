@@ -10,7 +10,7 @@
 
 @interface CoinbaseCurrency : NSObject
 
-@property (nonatomic, assign) NSString *name;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *iso;
 
 -(id) initWithArray:(NSArray*)array;

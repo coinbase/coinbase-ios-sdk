@@ -2276,7 +2276,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
             for (NSDictionary *dictionary in responseTransactions)
             {
-                CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:dictionary];
+                CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"transaction"]];
                 [transactions addObject:transaction];
             }
             CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
