@@ -378,7 +378,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if ([response isKindOfClass:[NSDictionary class]])
         {
-            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"account"]];
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:response];
             callback(balance , error);
         }
     }];

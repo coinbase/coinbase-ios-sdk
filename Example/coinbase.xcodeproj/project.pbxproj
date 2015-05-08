@@ -24,6 +24,13 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		CF185B5A804A457BAE31F869 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F327F2398745008B5DCBBC /* libPods-Tests.a */; };
 		D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */; };
+		D773307E1AFB144500C673D6 /* CoinbaseAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */; };
+		D7F146711AFC37C000B13F98 /* test_getAccountsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */; };
+		D7F146731AFC535B00B13F98 /* test_getAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146721AFC535B00B13F98 /* test_getAccount.plist */; };
+		D7F146751AFC547F00B13F98 /* test_getPrimaryAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */; };
+		D7F146771AFC594900B13F98 /* test_createAccountWithName.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */; };
+		D7F146791AFC59AB00B13F98 /* test_getBalanceForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */; };
+		D7F1467B1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */; };
 		D7F962991AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */; };
 		D7F9629F1AF13BD800C0959F /* CoinbaseTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F9629E1AF13BD800C0959F /* CoinbaseTransactionsViewController.m */; };
 		D7F962A41AF14A7900C0959F /* CoinbaseBuySellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F962A31AF14A7900C0959F /* CoinbaseBuySellViewController.swift */; };
@@ -68,6 +75,13 @@
 		B3F3A067BE0B55C822CADEFE /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D1A38C4D1A8032770086BFE7 /* coinbase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "coinbase-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinbaseCurrenciesViewController.swift; sourceTree = "<group>"; };
+		D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseAPITest.m; sourceTree = "<group>"; };
+		D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getAccountsList.plist; sourceTree = "<group>"; };
+		D7F146721AFC535B00B13F98 /* test_getAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getAccount.plist; sourceTree = "<group>"; };
+		D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getPrimaryAccount.plist; sourceTree = "<group>"; };
+		D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_createAccountWithName.plist; sourceTree = "<group>"; };
+		D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getBalanceForAccount.plist; sourceTree = "<group>"; };
+		D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
 		D7F962971AF0CB7700C0959F /* CoinbaseAccountsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseAccountsTableViewController.h; sourceTree = "<group>"; };
 		D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseAccountsTableViewController.m; sourceTree = "<group>"; };
 		D7F9629D1AF13BD800C0959F /* CoinbaseTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseTransactionsViewController.h; sourceTree = "<group>"; };
@@ -185,6 +199,13 @@
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
+				D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */,
+				D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */,
+				D7F146721AFC535B00B13F98 /* test_getAccount.plist */,
+				D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */,
+				D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */,
+				D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */,
+				D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -301,7 +322,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F146791AFC59AB00B13F98 /* test_getBalanceForAccount.plist in Resources */,
+				D7F1467B1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist in Resources */,
+				D7F146711AFC37C000B13F98 /* test_getAccountsList.plist in Resources */,
+				D7F146771AFC594900B13F98 /* test_createAccountWithName.plist in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				D7F146751AFC547F00B13F98 /* test_getPrimaryAccount.plist in Resources */,
+				D7F146731AFC535B00B13F98 /* test_getAccount.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D773307E1AFB144500C673D6 /* CoinbaseAPITest.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,6 +580,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -571,6 +600,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

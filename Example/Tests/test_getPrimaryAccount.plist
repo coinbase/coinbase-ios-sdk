@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;account&quot;: {
+    &quot;id&quot;: &quot;536a541fa9393bb3c7000023&quot;,
+    &quot;name&quot;: &quot;My Wallet&quot;,
+    &quot;balance&quot;: {
+      &quot;amount&quot;: &quot;50.00000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;native_balance&quot;: {
+      &quot;amount&quot;: &quot;500.12&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;created_at&quot;: &quot;2014-05-07T08:41:19-07:00&quot;,
+    &quot;primary&quot;: true,
+    &quot;active&quot;: true,
+    &quot;type&quot;: &quot;wallet&quot;
+  }
+}</string>
+</dict>
+</plist>
