@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;refund&quot;: {
+    &quot;id&quot;: &quot;L9HBEX9R&quot;,
+    &quot;created_at&quot;: &quot;Mon, 09 Feb 2015 15:31:05 PST -08:00&quot;,
+    &quot;amount_btc&quot;: {
+      &quot;cents&quot;: &quot;10000000.0&quot;,
+      &quot;currency_iso&quot;: &quot;BTC&quot;
+    },
+    &quot;amount_native&quot;: {
+      &quot;cents&quot;: &quot;100.0&quot;,
+      &quot;currency_iso&quot;: &quot;USD&quot;
+    },
+    &quot;transfer_id&quot;: null,
+    &quot;transaction_id&quot;: &quot;54d94335ef634f12f8000342&quot;,
+    &quot;refundable&quot;: {
+      &quot;id&quot;: &quot;54d19395ef634f53d400009a&quot;,
+      &quot;type&quot;: &quot;order&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

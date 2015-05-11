@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        _orderID = [dictionary objectForKey:@"orderID"];
+        _orderID = [dictionary objectForKey:@"id"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];

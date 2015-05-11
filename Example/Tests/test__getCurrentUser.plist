@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;512db383f8182bd24d000001&quot;,
+    &quot;name&quot;: &quot;User One&quot;,
+    &quot;email&quot;: &quot;user1@example.com&quot;,
+    &quot;time_zone&quot;: &quot;Pacific Time (US &amp; Canada)&quot;,
+    &quot;native_currency&quot;: &quot;USD&quot;,
+    &quot;balance&quot;: {
+      &quot;amount&quot;: &quot;49.76000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;merchant&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;company_name&quot;: &quot;Company Name, Inc.&quot;,
+      &quot;logo&quot;: {
+        &quot;small&quot;: &quot;http://smalllogo.example&quot;,
+        &quot;medium&quot;: &quot;http://mediumlogo.example&quot;,
+        &quot;url&quot;: &quot;http://logo.example&quot;
+      }
+    },
+    &quot;buy_level&quot;: 1,
+    &quot;instant_buy_level&quot;: 1,
+    &quot;sell_level&quot;: 1,
+    &quot;buy_limit&quot;: {
+      &quot;amount&quot;: &quot;1000&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;instant_buy_limit&quot;: {
+      &quot;amount&quot;: &quot;1000&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;sell_limit&quot;: {
+      &quot;amount&quot;: &quot;1000&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

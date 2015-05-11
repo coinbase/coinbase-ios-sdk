@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+    &quot;success&quot;: true,
+    &quot;transfer&quot;: {
+        &quot;id&quot;: &quot;54e6708f6291227bd20000cc&quot;,
+        &quot;created_at&quot;: &quot;2015-02-19T15:23:59-08:00&quot;,
+        &quot;fees&quot;: {
+            &quot;bank&quot;: {
+                &quot;cents&quot;: 0,
+                &quot;currency_iso&quot;: &quot;USD&quot;
+            }
+        },
+        &quot;payout_date&quot;: &quot;2015-02-23T15:23:59-08:00&quot;,
+        &quot;_type&quot;: &quot;Withdrawal&quot;,
+        &quot;code&quot;: &quot;54e6708f6291227bd20000cc&quot;,
+        &quot;transaction_id&quot;: &quot;54e670906291227bd20000d0&quot;,
+        &quot;type&quot;: &quot;Withdrawal&quot;,
+        &quot;status&quot;: &quot;Pending&quot;,
+        &quot;detailed_status&quot;: &quot;started&quot;,
+        &quot;btc&quot;: {
+            &quot;amount&quot;: &quot;0.00000000&quot;,
+            &quot;currency&quot;: &quot;BTC&quot;
+        },
+        &quot;subtotal&quot;: {
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;currency&quot;: &quot;USD&quot;
+        },
+        &quot;total&quot;: {
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;currency&quot;: &quot;USD&quot;
+        },
+        &quot;description&quot;: &quot;Withdrew $10.00 (+ 0 banking fee) via *****7978.&quot;,
+        &quot;account&quot;: &quot;54e649216291227bd200006a&quot;,
+        &quot;payment_method&quot;: {
+            &quot;id&quot;: &quot;54e6495e6291227bd2000078&quot;,
+            &quot;currency&quot;: &quot;USD&quot;,
+            &quot;name&quot;: &quot; *****7978&quot;,
+            &quot;can_buy&quot;: true,
+            &quot;can_sell&quot;: true,
+            &quot;type&quot;: &quot;ach_bank_account&quot;,
+            &quot;verified&quot;: true
+        }
+    }
+}</string>
+</dict>
+</plist>

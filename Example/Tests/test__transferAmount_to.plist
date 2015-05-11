@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+    &quot;success&quot;: true,
+    &quot;transaction&quot;: {
+        &quot;id&quot;: &quot;5480cc82dddd20de7b000033&quot;,
+        &quot;created_at&quot;: &quot;2014-12-04T13:05:06-08:00&quot;,
+        &quot;hsh&quot;: null,
+        &quot;amount&quot;: {
+            &quot;amount&quot;: &quot;-1.23400000&quot;,
+            &quot;currency&quot;: &quot;BTC&quot;
+        },
+        &quot;request&quot;: false,
+        &quot;status&quot;: &quot;pending&quot;,
+        &quot;sender&quot;: {
+            &quot;id&quot;: &quot;54738c8ea54d75d167000005&quot;,
+            &quot;email&quot;: &quot;user1@example.com&quot;,
+            &quot;name&quot;: &quot;User One&quot;,
+            &quot;avatar_url&quot;: &quot;https://secure.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808.png?d=https://www.coinbase.com/assets/avatar.png&amp;r=R&quot;
+        },
+        &quot;recipient&quot;: {
+            &quot;id&quot;: &quot;54738c8ea54d75d167000005&quot;,
+            &quot;email&quot;: &quot;user1@example.com&quot;,
+            &quot;name&quot;: &quot;User One&quot;,
+            &quot;avatar_url&quot;: &quot;https://secure.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808.png?d=https://www.coinbase.com/assets/avatar.png&amp;r=R&quot;
+        },
+        &quot;notes&quot;: &quot;Sample transaction for you&quot;,
+        &quot;idem&quot;: &quot;&quot;
+    }
+}</string>
+</dict>
+</plist>

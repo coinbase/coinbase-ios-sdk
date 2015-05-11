@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;current_user&quot;: {
+    &quot;id&quot;: &quot;5011f33df8182b142400000e&quot;,
+    &quot;email&quot;: &quot;user2@example.com&quot;,
+    &quot;name&quot;: &quot;User Two&quot;
+  },
+  &quot;balance&quot;: {
+    &quot;amount&quot;: &quot;50.00000000&quot;,
+    &quot;currency&quot;: &quot;BTC&quot;
+  },
+  &quot;native_balance&quot;: {
+    &quot;amount&quot;: &quot;500.00&quot;,
+    &quot;currency&quot;: &quot;USD&quot;
+  },
+  &quot;transactions&quot;: [
+    {
+      &quot;transaction&quot;: {
+        &quot;id&quot;: &quot;5018f833f8182b129c00002f&quot;,
+        &quot;created_at&quot;: &quot;2012-08-01T02:34:43-07:00&quot;,
+        &quot;amount&quot;: {
+          &quot;amount&quot;: &quot;-1.10000000&quot;,
+          &quot;currency&quot;: &quot;BTC&quot;
+        },
+        &quot;request&quot;: true,
+        &quot;status&quot;: &quot;pending&quot;,
+        &quot;sender&quot;: {
+          &quot;id&quot;: &quot;5011f33df8182b142400000e&quot;,
+          &quot;name&quot;: &quot;User Two&quot;,
+          &quot;email&quot;: &quot;user2@example.com&quot;
+        },
+        &quot;recipient&quot;: {
+          &quot;id&quot;: &quot;5011f33df8182b142400000a&quot;,
+          &quot;name&quot;: &quot;User One&quot;,
+          &quot;email&quot;: &quot;user1@example.com&quot;
+        }
+      }
+    },
+    {
+      &quot;transaction&quot;: {
+        &quot;id&quot;: &quot;5018f833f8182b129c00002e&quot;,
+        &quot;created_at&quot;: &quot;2012-08-01T02:36:43-07:00&quot;,
+        &quot;hsh&quot;: &quot;9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3&quot;,
+        &quot;amount&quot;: {
+          &quot;amount&quot;: &quot;-1.00000000&quot;,
+          &quot;currency&quot;: &quot;BTC&quot;
+        },
+        &quot;request&quot;: false,
+        &quot;status&quot;: &quot;complete&quot;,
+        &quot;sender&quot;: {
+          &quot;id&quot;: &quot;5011f33df8182b142400000e&quot;,
+          &quot;name&quot;: &quot;User Two&quot;,
+          &quot;email&quot;: &quot;user2@example.com&quot;
+        },
+        &quot;recipient_address&quot;: &quot;37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare&quot;
+      }
+    }
+  ],
+  &quot;total_count&quot;: 2,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

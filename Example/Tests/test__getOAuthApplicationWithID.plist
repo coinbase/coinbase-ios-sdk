@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;application&quot;: {
+    &quot;id&quot;: &quot;5302ebdb137f73dcf7000047&quot;,
+    &quot;created_at&quot;: &quot;2014-02-17T21:12:59-08:00&quot;,
+    &quot;name&quot;: &quot;Test App 3&quot;,
+    &quot;redirect_uri&quot;: &quot;http://example.com&quot;,
+    &quot;num_users&quot;: 0
+  }
+}</string>
+</dict>
+</plist>

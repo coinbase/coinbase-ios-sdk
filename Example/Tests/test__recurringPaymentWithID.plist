@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;recurring_payment&quot;: {
+    &quot;id&quot;: &quot;5193377ef8182b7c19000015&quot;,
+    &quot;type&quot;: &quot;send&quot;,
+    &quot;status&quot;: &quot;active&quot;,
+    &quot;created_at&quot;: &quot;2013-05-30T13:43:21-07:00&quot;,
+    &quot;to&quot;: &quot;user2@example.com&quot;,
+    &quot;from&quot;: null,
+    &quot;start_type&quot;: &quot;now&quot;,
+    &quot;times&quot;: -1,
+    &quot;times_run&quot;: 7,
+    &quot;repeat&quot;: &quot;monthly&quot;,
+    &quot;last_run&quot;: &quot;2013-05-30T13:00:00-07:00&quot;,
+    &quot;next_run&quot;: &quot;2013-06-30T13:00:00-07:00&quot;,
+    &quot;notes&quot;: null,
+    &quot;description&quot;: &quot;Send 0.02 BTC to User Two&quot;,
+    &quot;amount&quot;: {
+      &quot;amount&quot;: &quot;0.02000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

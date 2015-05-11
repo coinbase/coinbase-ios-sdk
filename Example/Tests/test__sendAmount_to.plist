@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;transaction&quot;: {
+    &quot;id&quot;: &quot;501a1791f8182b2071000087&quot;,
+    &quot;created_at&quot;: &quot;2012-08-01T23:00:49-07:00&quot;,
+    &quot;hsh&quot;: &quot;9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3&quot;,
+    &quot;notes&quot;: &quot;Sample transaction for you!&quot;,
+    &quot;idem&quot;: &quot;&quot;,
+    &quot;amount&quot;: {
+      &quot;amount&quot;: &quot;-1.23400000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;request&quot;: false,
+    &quot;status&quot;: &quot;pending&quot;,
+    &quot;sender&quot;: {
+      &quot;id&quot;: &quot;5011f33df8182b142400000e&quot;,
+      &quot;name&quot;: &quot;User Two&quot;,
+      &quot;email&quot;: &quot;user2@example.com&quot;
+    },
+    &quot;recipient&quot;: {
+      &quot;id&quot;: &quot;5011f33df8182b142400000a&quot;,
+      &quot;name&quot;: &quot;User One&quot;,
+      &quot;email&quot;: &quot;user1@example.com&quot;
+    },
+    &quot;recipient_address&quot;: &quot;37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare&quot;
+  }
+}</string>
+</dict>
+</plist>

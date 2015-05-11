@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;payment_method&quot;: {
+    &quot;id&quot;: &quot;530eb5b217cb34e07a000011&quot;,
+    &quot;name&quot;: &quot;US Bank ****4567&quot;,
+    &quot;can_buy&quot;: true,
+    &quot;can_sell&quot;: true
+   }
+}</string>
+</dict>
+</plist>

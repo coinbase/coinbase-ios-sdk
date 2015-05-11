@@ -1652,9 +1652,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
             NSMutableArray *paymentMethods = [[NSMutableArray alloc] initWithCapacity:responsePaymentMethods.count];
 
-            for (NSDictionary *dictionary in paymentMethods)
+            for (NSDictionary *dictionary in responsePaymentMethods)
             {
-                CoinbasePaymentMethod *paymentMethod = [[CoinbasePaymentMethod alloc] initWithDictionary:dictionary];
+                CoinbasePaymentMethod *paymentMethod = [[CoinbasePaymentMethod alloc] initWithDictionary:[dictionary objectForKey:@"payment_method"]];
                 [paymentMethods addObject:paymentMethod];
             }
 
@@ -1861,7 +1861,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
             NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
 
-            for (NSDictionary *dictionary in recurringPayments)
+            for (NSDictionary *dictionary in responseRecurringPayments)
             {
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
@@ -2180,7 +2180,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
             NSMutableArray *recurringPayments = [[NSMutableArray alloc] initWithCapacity:responseRecurringPayments.count];
 
-            for (NSDictionary *dictionary in recurringPayments)
+            for (NSDictionary *dictionary in responseRecurringPayments)
             {
                 CoinbaseRecurringPayment *recurringPayment = [[CoinbaseRecurringPayment alloc] initWithDictionary:[dictionary objectForKey:@"recurring_payment"]];
                 [recurringPayments addObject:recurringPayment];
@@ -2846,7 +2846,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
             for (NSDictionary *dictionary in responseTransfers)
             {
-                CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:dictionary];
+                CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[dictionary objectForKey:@"transfer"]];
                 [transfers addObject:transfer];
             }
             CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];

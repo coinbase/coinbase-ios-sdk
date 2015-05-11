@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;recurring_payments&quot;: [
+    {
+      &quot;recurring_payment&quot;: {
+        &quot;id&quot;: &quot;51a7cf58f8182b4b220000d5&quot;,
+        &quot;created_at&quot;: &quot;2013-05-30T15:14:48-07:00&quot;,
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;custom&quot;: &quot;user123&quot;,
+        &quot;button&quot;: {
+          &quot;type&quot;: &quot;subscription&quot;,
+          &quot;name&quot;: &quot;Test&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;id&quot;: &quot;1b7a1019f371402ec02af389d1b24e55&quot;
+        }
+      }
+    },
+    {
+      &quot;recurring_payment&quot;: {
+        &quot;id&quot;: &quot;51a7be2ff8182b4b220000a5&quot;,
+        &quot;created_at&quot;: &quot;2013-05-30T14:01:35-07:00&quot;,
+        &quot;status&quot;: &quot;paused&quot;,
+        &quot;custom&quot;: &quot;user456&quot;,
+        &quot;button&quot;: {
+          &quot;type&quot;: &quot;subscription&quot;,
+          &quot;name&quot;: &quot;Test&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;id&quot;: &quot;1b7a1019f371402ec02af389d1b24e55&quot;
+        }
+      }
+    }
+  ],
+  &quot;total_count&quot;: 2,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

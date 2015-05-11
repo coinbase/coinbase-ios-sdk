@@ -17,6 +17,7 @@
     {
         _recurringPaymentID = [dictionary objectForKey:@"id"];
         _type = [dictionary objectForKey:@"type"];
+        _status = [dictionary objectForKey:@"status"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];

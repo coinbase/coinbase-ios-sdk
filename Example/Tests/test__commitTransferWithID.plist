@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;transfer&quot;: {
+    &quot;id&quot;: &quot;5474d23a629122e172000238&quot;,
+    &quot;created_at&quot;: &quot;2014-11-25T11:03:22-08:00&quot;,
+    &quot;fees&quot;: {
+      &quot;coinbase&quot;: {
+        &quot;cents&quot;: 0,
+        &quot;currency_iso&quot;: &quot;EUR&quot;
+      },
+      &quot;bank&quot;: {
+        &quot;cents&quot;: 0,
+        &quot;currency_iso&quot;: &quot;EUR&quot;
+      }
+    },
+    &quot;payout_date&quot;: &quot;2014-11-25T11:02:18-08:00&quot;,
+    &quot;transaction_id&quot;: &quot;5474d287629122e172000240&quot;,
+    &quot;_type&quot;: &quot;AchDebit&quot;,
+    &quot;code&quot;: &quot;5474d23a629122e172000238&quot;,
+    &quot;type&quot;: &quot;Buy&quot;,
+    &quot;status&quot;: &quot;Pending&quot;,
+    &quot;detailed_status&quot;: &quot;started&quot;,
+    &quot;btc&quot;: {
+      &quot;amount&quot;: &quot;0.37200000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;subtotal&quot;: {
+      &quot;amount&quot;: &quot;3.00&quot;,
+      &quot;currency&quot;: &quot;EUR&quot;
+    },
+    &quot;total&quot;: {
+      &quot;amount&quot;: &quot;3.00&quot;,
+      &quot;currency&quot;: &quot;EUR&quot;
+    },
+    &quot;description&quot;: &quot;Bought 0.372 BTC for €3.00.&quot;,
+    &quot;account&quot;: &quot;544955d2629122efb000000f&quot;,
+    &quot;payment_method&quot;: {
+      &quot;id&quot;: &quot;545348f26291223ddc00011f&quot;,
+      &quot;name&quot;: &quot;EUR Wallet&quot;,
+      &quot;can_buy&quot;: true,
+      &quot;can_sell&quot;: true,
+      &quot;account_id&quot;: &quot;545348f26291223ddc00011e&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>
