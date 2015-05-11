@@ -39,6 +39,9 @@
         _signaturesRequired = [[dictionary objectForKey:@"signatures_required"] unsignedIntegerValue];
         _signaturesPresent = [[dictionary objectForKey:@"signatures_present"] unsignedIntegerValue];
         _signaturesNeeded = [[dictionary objectForKey:@"signatures_needed"] unsignedIntegerValue];
+
+        _inputArray = [dictionary objectForKey:@"inputs"];
+
     }
     return self;
 }

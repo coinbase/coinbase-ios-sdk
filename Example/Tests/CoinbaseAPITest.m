@@ -17,6 +17,9 @@
 #import "CoinbaseAuthorization.h"
 #import "CoinbaseButton.h"
 #import "CoinbaseOrder.h"
+#import "CoinbaseTransfer.h"
+#import "CoinbaseContact.h"
+#import "CoinbaseCurrency.h"
 
 @interface CoinbaseAPITest : XCTestCase
 
@@ -338,20 +341,125 @@
      }];
 }
 
+// buy
+
+-(void)test__buy
+{
+    NSDictionary *parameters = @{ @"qty" : @"123" };
+
+    [self testRequestType:CoinbaseRequestTypePost path:@"buys" parameters:parameters headers:nil completion:^(id response, NSError *error)
+     {
+         CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+         // XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+     }];
+}
 
 
-///////
+// getContacts
 
-//- (void)test__
-//{
-//    NSString *path = [NSString stringWithFormat:@"accounts/accounts/536a541fa9393bb3c7000034"];
-//
-//    [self testRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error)
-//     {
-//
-//             // XCTAssertTrue([user isKindOfClass:[CoinbaseUser class]]);
-//     }];
-//}
+-(void)test__getContacts
+{
+    [self testRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:^(id response, NSError *error)
+     {
+         NSArray *responseContacts = [response objectForKey:@"contacts"];
 
+         for (NSDictionary *dictionary in responseContacts)
+         {
+             CoinbaseContact *contact = [[CoinbaseContact alloc] initWithDictionary:[dictionary objectForKey:@"contact"]];
+             // XCTAssertTrue([contact isKindOfClass:[CoinbaseContact class]]);
+         }
+
+         CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+         // XCTAssertTrue([pagingHelper isKindOfClass:[CoinbasePagingHelper class]]);
+     }];
+}
+
+// getCurrencies
+
+-(void)test__getCurrencies
+{
+    [self testRequestType:CoinbaseRequestTypeGet path:@"contacts" parameters:nil headers:nil completion:^(id response, NSError *error)
+     {
+         for (NSArray *array in response)
+         {
+             CoinbaseCurrency *currency = [[CoinbaseCurrency alloc] initWithArray:array];
+             // XCTAssertTrue([currency isKindOfClass:[CoinbaseCurrency class]]);
+         }
+     }];
+}
+
+// getExchangeRates
+
+-(void)test__getExchangeRates
+{
+    [self testRequestType:CoinbaseRequestTypeGet path:@"exchange_rates" parameters:nil headers:nil completion:^(id response, NSError *error)
+     {
+            // XCTAssertTrue([response isKindOfClass:[NSDictionary class]]);
+     }];
+}
+
+// makeDepositToAccount
+
+-(void)test__makeDepositToAccount_amount_paymentMethodId_commit
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : @"54e649216291227bd200006a",
+                                 @"amount" : @"10.00",
+                                 @"payment_method_id" : @"54e6495e6291227bd2000078",
+                                 @"commit" : @"false",
+                                 };
+
+    [self testRequestType:CoinbaseRequestTypeGet path:@"deposits" parameters:parameters headers:nil completion:^(id response, NSError *error)
+     {
+         CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+         // XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+     }];
+}
+
+// createMultiSigAccountWithName
+
+-(void)test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys
+{
+    NSDictionary *parameters = @{@"account" :
+                                     @{@"name" : @"Multisig Wallet",
+                                       @"type": @"multisig",
+                                       @"m" : @2,
+                                       @"xpubkeys": @[@"xpub661MyMwAqRbcFo8WEPnst2sE8MTLe9DszR7eYhtkVuiUskpAggETvYQeSBWTuwoxZrZvf18w75AzfjLhzihWGagvcMa4J9nDWjmiD2UrAEF",@"xpub661MyMwAqRbcEezXDATCwfxbet7ZYA8cyfh2FDckA85S5Tg5NjzjnPeikzJgj2noBvxTEPNkMwq8RMCuBhiL7sRv29ZtMft2KbKwTcc48uu",@"xpub661MyMwAqRbcEnKbXcCqD2GT1di5zQxVqoHPAgHNe8dv5JP8gWmDproS6kFHJnLZd23tWevhdn4urGJ6b264DfTGKr8zjmYDjyDTi9U7iyT"]}};
+
+    [self testRequestType:CoinbaseRequestTypeGet path:@"accounts" parameters:parameters headers:nil completion:^(id response, NSError *error)
+    {
+        CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:[response objectForKey:@"account"]];
+        // XCTAssertTrue([account isKindOfClass:[CoinbaseAccount class]]);
+    }];
+}
+
+// getSignatureHashesWithTransactionID
+
+- (void)test__getSignatureHashesWithTransactionID
+{
+    [self testRequestType:CoinbaseRequestTypeGet path:@"transactions/53f3d9e0cbf034354a000132/sighashes" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+        // XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+
+    }];
+}
+
+// signaturesForMultiSigTransaction
+
+-(void)test__signaturesForMultiSigTransaction
+{
+    NSDictionary *parameters = @{
+                                 @"signatures": @[@{
+                                     @"position": @1,
+                                     @"signatures": @[@"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",@"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"]}]
+                                 };
+
+    [self testRequestType:CoinbaseRequestTypePut path:@"transactions/53f3d9e0cbf034354a000132/signatures" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+        // XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+    }];
+}
 
 @end

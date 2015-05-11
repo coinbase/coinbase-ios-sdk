@@ -356,7 +356,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 -(void) signaturesForMultiSigTransaction:(NSString *)transactionID
                               signatures:(NSArray *)signatures
-                              completion:(CoinbaseCompletionBlock)completion;
+                              completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 #pragma mark - OAuth Applications
 

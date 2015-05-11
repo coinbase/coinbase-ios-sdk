@@ -1191,7 +1191,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if ([response isKindOfClass:[NSDictionary class]])
         {
-            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"account"]];
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
             callback(transaction , error);
         }
     }];
@@ -1215,7 +1215,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if ([response isKindOfClass:[NSDictionary class]])
         {
-            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"account"]];
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
             callback(transaction , error);
         }
     }];
@@ -1223,7 +1223,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 -(void) signaturesForMultiSigTransaction:(NSString *)transactionID
                               signatures:(NSArray *)signatures
-                              completion:(CoinbaseCompletionBlock)completion
+                              completion:(void(^)(CoinbaseTransaction*, NSError*))callback
 {
     NSDictionary *parameters = @{
                                  @"signatures": signatures
@@ -1231,7 +1231,20 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     NSString *path = [NSString stringWithFormat:@"transactions/%@/signatures", transactionID];
 
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:completion];
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction , error);
+        }
+    }];
 }
 
 #pragma mark - OAuth Applications

@@ -29,6 +29,7 @@
 @property (nonatomic, assign) NSUInteger signaturesRequired;
 @property (nonatomic, assign) NSUInteger signaturesPresent;
 @property (nonatomic, assign) NSUInteger signaturesNeeded;
+@property (nonatomic, strong) NSArray *inputArray;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 
