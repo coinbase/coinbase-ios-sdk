@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+    &quot;auth_type&quot;: &quot;oauth&quot;,
+    &quot;meta&quot;: {
+        &quot;send_limit_period&quot;: &quot;month&quot;,
+        &quot;send_limit_currency&quot;: &quot;USD&quot;,
+        &quot;send_limit_amount&quot;: &quot;500&quot;
+    },
+    &quot;scopes&quot;: [
+        &quot;user&quot;,
+        &quot;balance&quot;,
+        &quot;send&quot;
+    ]
+}</string>
+</dict>
+</plist>

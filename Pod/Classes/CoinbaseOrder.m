@@ -35,8 +35,15 @@
         _custom = [dictionary objectForKey:@"custom"];
         _receiveAddress = [dictionary objectForKey:@"receive_address"];
         _button = [[CoinbaseButton alloc] initWithDictionary:[dictionary objectForKey:@"button"]];
-        _transaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"transaction"]];
-        _refundTransaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"refund_transaction"]];
+
+        if ([dictionary objectForKey:@"transaction"] != [NSNull null])
+        {
+            _transaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"transaction"]];
+        }
+        if ([dictionary objectForKey:@"refund_transaction"] != [NSNull null])
+        {
+            _refundTransaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"refund_transaction"]];
+        }
     }
     return self;
 }

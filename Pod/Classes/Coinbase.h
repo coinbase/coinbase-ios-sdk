@@ -163,6 +163,18 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                         accountId:(NSString *)accountId
                        completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
+///
+/// Create a bitcoin address - Authenticated resource that generates a new bitcoin receive address for the user.
+/// Required scope: addresses
+///
+
+-(void) createBitcoinAddress:(void(^)(CoinbaseAddress*, NSError*))callback;
+
+-(void) createBitcoinAddressWithAccountID:(NSString*)accountID
+                                    label:(NSString*)label
+                              callBackURL:(NSString *)callBackURL
+                               competiton:(void(^)(CoinbaseAddress*, NSError*))callback;
+
 #pragma mark - Authorization
 
 ///

@@ -21,16 +21,28 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		CF185B5A804A457BAE31F869 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F327F2398745008B5DCBBC /* libPods-Tests.a */; };
 		D1A38C4F1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */; };
 		D773307E1AFB144500C673D6 /* CoinbaseAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */; };
-		D7F146711AFC37C000B13F98 /* test_getAccountsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */; };
-		D7F146731AFC535B00B13F98 /* test_getAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146721AFC535B00B13F98 /* test_getAccount.plist */; };
-		D7F146751AFC547F00B13F98 /* test_getPrimaryAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */; };
-		D7F146771AFC594900B13F98 /* test_createAccountWithName.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */; };
-		D7F146791AFC59AB00B13F98 /* test_getBalanceForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */; };
-		D7F1467B1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */; };
+		D7F146711AFC37C000B13F98 /* test__getAccountsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146701AFC37C000B13F98 /* test__getAccountsList.plist */; };
+		D7F146731AFC535B00B13F98 /* test__getAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146721AFC535B00B13F98 /* test__getAccount.plist */; };
+		D7F146751AFC547F00B13F98 /* test__getPrimaryAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */; };
+		D7F146771AFC594900B13F98 /* test__createAccountWithName.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */; };
+		D7F146791AFC59AB00B13F98 /* test__getBalanceForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */; };
+		D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */; };
+		D7F1467D1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */; };
+		D7F1467F1B003C4600B13F98 /* test__modifyAccount_name_completion.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */; };
+		D7F146811B003DCB00B13F98 /* test__setAccountAsPrimary.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */; };
+		D7F146831B003E9000B13F98 /* test__deleteAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146821B003E9000B13F98 /* test__deleteAccount.plist */; };
+		D7F146881B00406C00B13F98 /* test__getAccountChanges.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146871B00406C00B13F98 /* test__getAccountChanges.plist */; };
+		D7F1468B1B0041F300B13F98 /* test__getAccountAddresses.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1468A1B0041F300B13F98 /* test__getAccountAddresses.plist */; };
+		D7F1468D1B00432A00B13F98 /* test__getAddressWithAddressOrID.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1468C1B00432A00B13F98 /* test__getAddressWithAddressOrID.plist */; };
+		D7F146901B00481B00B13F98 /* test__createBitcoinAddress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1468F1B00481B00B13F98 /* test__createBitcoinAddress.plist */; };
+		D7F146921B004A9100B13F98 /* test__getAuthorizationInformation.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146911B004A9100B13F98 /* test__getAuthorizationInformation.plist */; };
+		D7F146951B004B6C00B13F98 /* test__createButtonWithName_price_priceCurrencyISO.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146941B004B6C00B13F98 /* test__createButtonWithName_price_priceCurrencyISO.plist */; };
+		D7F146971B004D2D00B13F98 /* test__getButtonWithID.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146961B004D2D00B13F98 /* test__getButtonWithID.plist */; };
+		D7F146991B004E2100B13F98 /* test__createOrderForButtonWithID.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146981B004E2100B13F98 /* test__createOrderForButtonWithID.plist */; };
+		D7F1469B1B00545600B13F98 /* test__getOrdersForButtonWithID.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1469A1B00545600B13F98 /* test__getOrdersForButtonWithID.plist */; };
 		D7F962991AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */; };
 		D7F9629F1AF13BD800C0959F /* CoinbaseTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F9629E1AF13BD800C0959F /* CoinbaseTransactionsViewController.m */; };
 		D7F962A41AF14A7900C0959F /* CoinbaseBuySellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F962A31AF14A7900C0959F /* CoinbaseBuySellViewController.swift */; };
@@ -68,7 +80,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		8C63D9ACB21B4EED9337C9C3 /* coinbase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = coinbase.podspec; path = ../coinbase.podspec; sourceTree = "<group>"; };
 		AFB33DC936A14BAF8E91DF6D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -76,12 +87,25 @@
 		D1A38C4D1A8032770086BFE7 /* coinbase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "coinbase-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1A38C4E1A8032770086BFE7 /* CoinbaseCurrenciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinbaseCurrenciesViewController.swift; sourceTree = "<group>"; };
 		D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseAPITest.m; sourceTree = "<group>"; };
-		D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getAccountsList.plist; sourceTree = "<group>"; };
-		D7F146721AFC535B00B13F98 /* test_getAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getAccount.plist; sourceTree = "<group>"; };
-		D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getPrimaryAccount.plist; sourceTree = "<group>"; };
-		D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_createAccountWithName.plist; sourceTree = "<group>"; };
-		D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getBalanceForAccount.plist; sourceTree = "<group>"; };
-		D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_getBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
+		D7F146701AFC37C000B13F98 /* test__getAccountsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAccountsList.plist; sourceTree = "<group>"; };
+		D7F146721AFC535B00B13F98 /* test__getAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAccount.plist; sourceTree = "<group>"; };
+		D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getPrimaryAccount.plist; sourceTree = "<group>"; };
+		D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createAccountWithName.plist; sourceTree = "<group>"; };
+		D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBalanceForAccount.plist; sourceTree = "<group>"; };
+		D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
+		D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
+		D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__modifyAccount_name_completion.plist; sourceTree = "<group>"; };
+		D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__setAccountAsPrimary.plist; sourceTree = "<group>"; };
+		D7F146821B003E9000B13F98 /* test__deleteAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__deleteAccount.plist; sourceTree = "<group>"; };
+		D7F146871B00406C00B13F98 /* test__getAccountChanges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAccountChanges.plist; sourceTree = "<group>"; };
+		D7F1468A1B0041F300B13F98 /* test__getAccountAddresses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAccountAddresses.plist; sourceTree = "<group>"; };
+		D7F1468C1B00432A00B13F98 /* test__getAddressWithAddressOrID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAddressWithAddressOrID.plist; sourceTree = "<group>"; };
+		D7F1468F1B00481B00B13F98 /* test__createBitcoinAddress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createBitcoinAddress.plist; sourceTree = "<group>"; };
+		D7F146911B004A9100B13F98 /* test__getAuthorizationInformation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAuthorizationInformation.plist; sourceTree = "<group>"; };
+		D7F146941B004B6C00B13F98 /* test__createButtonWithName_price_priceCurrencyISO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createButtonWithName_price_priceCurrencyISO.plist; sourceTree = "<group>"; };
+		D7F146961B004D2D00B13F98 /* test__getButtonWithID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getButtonWithID.plist; sourceTree = "<group>"; };
+		D7F146981B004E2100B13F98 /* test__createOrderForButtonWithID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createOrderForButtonWithID.plist; sourceTree = "<group>"; };
+		D7F1469A1B00545600B13F98 /* test__getOrdersForButtonWithID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getOrdersForButtonWithID.plist; sourceTree = "<group>"; };
 		D7F962971AF0CB7700C0959F /* CoinbaseAccountsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseAccountsTableViewController.h; sourceTree = "<group>"; };
 		D7F962981AF0CB7700C0959F /* CoinbaseAccountsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinbaseAccountsTableViewController.m; sourceTree = "<group>"; };
 		D7F9629D1AF13BD800C0959F /* CoinbaseTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinbaseTransactionsViewController.h; sourceTree = "<group>"; };
@@ -198,14 +222,8 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
 				D773307D1AFB144500C673D6 /* CoinbaseAPITest.m */,
-				D7F146701AFC37C000B13F98 /* test_getAccountsList.plist */,
-				D7F146721AFC535B00B13F98 /* test_getAccount.plist */,
-				D7F146741AFC547F00B13F98 /* test_getPrimaryAccount.plist */,
-				D7F146761AFC594900B13F98 /* test_createAccountWithName.plist */,
-				D7F146781AFC59AB00B13F98 /* test_getBalanceForAccount.plist */,
-				D7F1467A1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist */,
+				D7F146851B003F3D00B13F98 /* Mocked JSON Responses */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -229,6 +247,72 @@
 				AFB33DC936A14BAF8E91DF6D /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		D7F146841B003F2D00B13F98 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				D7F146701AFC37C000B13F98 /* test__getAccountsList.plist */,
+				D7F146721AFC535B00B13F98 /* test__getAccount.plist */,
+				D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */,
+				D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */,
+				D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */,
+				D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */,
+				D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */,
+				D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */,
+				D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */,
+				D7F146821B003E9000B13F98 /* test__deleteAccount.plist */,
+			);
+			name = Accounts;
+			sourceTree = "<group>";
+		};
+		D7F146851B003F3D00B13F98 /* Mocked JSON Responses */ = {
+			isa = PBXGroup;
+			children = (
+				D7F146841B003F2D00B13F98 /* Accounts */,
+				D7F146861B003F5F00B13F98 /* Account Changes */,
+				D7F146891B0040BC00B13F98 /* Addresses */,
+				D7F1468E1B00455100B13F98 /* Authorization */,
+				D7F146931B004B5E00B13F98 /* Buttons */,
+			);
+			name = "Mocked JSON Responses";
+			sourceTree = "<group>";
+		};
+		D7F146861B003F5F00B13F98 /* Account Changes */ = {
+			isa = PBXGroup;
+			children = (
+				D7F146871B00406C00B13F98 /* test__getAccountChanges.plist */,
+			);
+			name = "Account Changes";
+			sourceTree = "<group>";
+		};
+		D7F146891B0040BC00B13F98 /* Addresses */ = {
+			isa = PBXGroup;
+			children = (
+				D7F1468A1B0041F300B13F98 /* test__getAccountAddresses.plist */,
+				D7F1468C1B00432A00B13F98 /* test__getAddressWithAddressOrID.plist */,
+				D7F1468F1B00481B00B13F98 /* test__createBitcoinAddress.plist */,
+			);
+			name = Addresses;
+			sourceTree = "<group>";
+		};
+		D7F1468E1B00455100B13F98 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				D7F146911B004A9100B13F98 /* test__getAuthorizationInformation.plist */,
+			);
+			name = Authorization;
+			sourceTree = "<group>";
+		};
+		D7F146931B004B5E00B13F98 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D7F146941B004B6C00B13F98 /* test__createButtonWithName_price_priceCurrencyISO.plist */,
+				D7F146961B004D2D00B13F98 /* test__getButtonWithID.plist */,
+				D7F146981B004E2100B13F98 /* test__createOrderForButtonWithID.plist */,
+				D7F1469A1B00545600B13F98 /* test__getOrdersForButtonWithID.plist */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,13 +406,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F146791AFC59AB00B13F98 /* test_getBalanceForAccount.plist in Resources */,
-				D7F1467B1AFC5AF800B13F98 /* test_getBitcoinAddressForAccount.plist in Resources */,
-				D7F146711AFC37C000B13F98 /* test_getAccountsList.plist in Resources */,
-				D7F146771AFC594900B13F98 /* test_createAccountWithName.plist in Resources */,
+				D7F146811B003DCB00B13F98 /* test__setAccountAsPrimary.plist in Resources */,
+				D7F1467F1B003C4600B13F98 /* test__modifyAccount_name_completion.plist in Resources */,
+				D7F1467D1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist in Resources */,
+				D7F146881B00406C00B13F98 /* test__getAccountChanges.plist in Resources */,
+				D7F146971B004D2D00B13F98 /* test__getButtonWithID.plist in Resources */,
+				D7F146901B00481B00B13F98 /* test__createBitcoinAddress.plist in Resources */,
+				D7F146791AFC59AB00B13F98 /* test__getBalanceForAccount.plist in Resources */,
+				D7F146921B004A9100B13F98 /* test__getAuthorizationInformation.plist in Resources */,
+				D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */,
+				D7F1468B1B0041F300B13F98 /* test__getAccountAddresses.plist in Resources */,
+				D7F146711AFC37C000B13F98 /* test__getAccountsList.plist in Resources */,
+				D7F1469B1B00545600B13F98 /* test__getOrdersForButtonWithID.plist in Resources */,
+				D7F146771AFC594900B13F98 /* test__createAccountWithName.plist in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				D7F146751AFC547F00B13F98 /* test_getPrimaryAccount.plist in Resources */,
-				D7F146731AFC535B00B13F98 /* test_getAccount.plist in Resources */,
+				D7F146831B003E9000B13F98 /* test__deleteAccount.plist in Resources */,
+				D7F146951B004B6C00B13F98 /* test__createButtonWithName_price_priceCurrencyISO.plist in Resources */,
+				D7F1468D1B00432A00B13F98 /* test__getAddressWithAddressOrID.plist in Resources */,
+				D7F146751AFC547F00B13F98 /* test__getPrimaryAccount.plist in Resources */,
+				D7F146991B004E2100B13F98 /* test__createOrderForButtonWithID.plist in Resources */,
+				D7F146731AFC535B00B13F98 /* test__getAccount.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +513,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D773307E1AFB144500C673D6 /* CoinbaseAPITest.m in Sources */,
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

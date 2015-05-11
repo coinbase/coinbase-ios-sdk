@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;current_user&quot;: {
+    &quot;id&quot;: &quot;524a75a3f8182b7d2a00000a&quot;,
+    &quot;email&quot;: &quot;user2@example.com&quot;,
+    &quot;name&quot;: &quot;User 2&quot;
+  },
+  &quot;balance&quot;: {
+    &quot;amount&quot;: &quot;50.00000000&quot;,
+    &quot;currency&quot;: &quot;BTC&quot;
+  },
+  &quot;native_balance&quot;: {
+    &quot;amount&quot;: &quot;500.00&quot;,
+    &quot;currency&quot;: &quot;USD&quot;
+  },
+  &quot;account_changes&quot;: [
+    {
+      &quot;id&quot;: &quot;524a75a3f8182b7d2a000018&quot;,
+      &quot;created_at&quot;: &quot;2013-10-01T00:11:31-07:00&quot;,
+      &quot;transaction_id&quot;: &quot;524a75a3f8182b7d2a000010&quot;,
+      &quot;confirmed&quot;: false,
+      &quot;cache&quot;: {
+        &quot;notes_present&quot;: false,
+        &quot;category&quot;: &quot;tx&quot;,
+        &quot;other_user&quot;: {
+          &quot;id&quot;: null,
+          &quot;name&quot;: &quot;an external account&quot;
+        }
+      },
+      &quot;amount&quot;: {
+        &quot;amount&quot;: &quot;50.00000000&quot;,
+        &quot;currency&quot;: &quot;BTC&quot;
+      }
+    }
+  ],
+  &quot;total_count&quot;: 1,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

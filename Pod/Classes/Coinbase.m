@@ -663,7 +663,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }];
 }
 
--(void) getAddressWithAddressOrID:(NSString *) addressOrID completion:(void(^)(CoinbaseAddress*, NSError*))callback
+#pragma mark - Addresses
+
+-(void) getAddressWithAddressOrID:(NSString *)addressOrID completion:(void(^)(CoinbaseAddress*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"addresses/%@", addressOrID];
 
@@ -705,6 +707,49 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         {
             CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:[response objectForKey:@"address"]];
             callback(address, error);
+        }
+    }];
+}
+
+-(void) createBitcoinAddress:(void(^)(CoinbaseAddress*, NSError*))callback
+{
+    [self doRequestType:CoinbaseRequestTypePost path:@"addresses" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:response];
+            callback(address , error);
+        }
+    }];
+}
+
+-(void) createBitcoinAddressWithAccountID:(NSString*)accountID
+                                    label:(NSString*)label
+                              callBackURL:(NSString *)callBackURL
+                               competiton:(void(^)(CoinbaseAddress*, NSError*))callback
+{
+    NSDictionary *parameters = @{@"address" :
+                                    @{@"label" : label,
+                                      @"callback_url" : callBackURL}};
+
+    [self doRequestType:CoinbaseRequestTypePost path:@"addresses" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:response];
+            callback(address , error);
         }
     }];
 }
