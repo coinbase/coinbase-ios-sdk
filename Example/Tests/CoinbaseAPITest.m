@@ -27,11 +27,32 @@
 #import "CoinbaseReport.h"
 #import "CoinbaseToken.h"
 
+#import "Nocilla.h"
+
 @interface CoinbaseAPITest : XCTestCase
+
+@property (nonatomic, strong) Coinbase *client;
 
 @end
 
 @implementation CoinbaseAPITest
+
+-(void) setUp
+{
+    [super setUp];
+
+    self.client = [Coinbase coinbaseWithOAuthAccessToken:@"fake access token"];
+
+    [[LSNocilla sharedInstance] start];
+}
+
+-(void) tearDown
+{
+    [[LSNocilla sharedInstance] clearStubs];
+    [[LSNocilla sharedInstance] stop];
+
+    [super tearDown];
+}
 
 - (void)testRequestType:(CoinbaseRequestType)type
                    path:(NSString *)path
@@ -60,23 +81,61 @@
     completion(response, nil);
 }
 
-// Endpoints. method name == plist name (plist contains test JSON response)
 
-// getAccountsList
+
+
+-(NSString *) loadMockJSONFromFile:(NSString*)fileName
+{
+    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
+    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
+    [array removeObject:@""];
+
+    NSString *resourceURL = [array objectAtIndex:4];
+
+    NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:resourceURL
+                                                          withExtension:@"plist"];
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfURL:url];
+
+    NSString *jsonString  =  (NSString*)[dictionary objectForKey:@"JSON"];
+
+   return jsonString;
+}
 
 - (void)test__getAccountsList
 {
-    [self testRequestType:CoinbaseRequestTypeGet path:@"accounts" parameters:nil headers:nil completion:^(id response, NSError *error) {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile:@"test__getAccountsList"]);
 
-        CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:[[response objectForKey:@"accounts"] objectAtIndex:0]];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET getAccountsList"];
 
-        //XCTAssertTrue([account isKindOfClass:[CoinbaseAccount class]]);
+    [self.client getAccountsList:^(NSArray *accounts, CoinbasePagingHelper *paging, NSError *error) {
 
-        CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+        XCTAssertNil(error);
+//        XCTAssertNotNil(accounts, "accounts should not be nil");
+//        XCTAssertTrue([accounts count] == 4);
 
-        //XCTAssertTrue([pagingHelper isKindOfClass:[CoinbasePagingHelper class]]);
+        // Test first account
+        CoinbaseAccount *wallet = accounts[1];
+//        XCTAssertTrue([wallet.type isEqual:@"wallet"]);
+        // etc... (testing the properties)
+
+        [expectation fulfill];
+
+        // Test other accounts...
+    }];
+
+    [self waitForExpectationsWithTimeout:1.0 handler:^(NSError *error) {
+
+         NSLog(@"error = %@", error.description);
+        
     }];
 }
+
+/*
 
 // getAccount
 
@@ -968,6 +1027,8 @@
         // XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
     }];
 }
+ 
+ */
 
 
 @end

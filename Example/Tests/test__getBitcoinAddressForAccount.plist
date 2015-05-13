@@ -6,7 +6,7 @@
 	<string>{
   &quot;success&quot;: true,
   &quot;address&quot;: &quot;muVu2JZo8PbewBHRp6bpqFvVD87qvqEHWA&quot;,
-  &quot;callback_url&quot;: null
+  &quot;callback_url&quot;: &quot;http://example.com/callback_url&quot;
 }</string>
 </dict>
 </plist>

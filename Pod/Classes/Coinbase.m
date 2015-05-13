@@ -446,7 +446,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if ([response isKindOfClass:[NSDictionary class]])
         {
-            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:[response objectForKey:@"account"]];
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:response ];
             callback(address , error);
         }
     }];
