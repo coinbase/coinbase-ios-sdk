@@ -31,14 +31,93 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQe-jl-bTj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-N9-5b6" userLabel="User name">
+                                        <rect key="frame" x="20" y="303" width="280" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="HnJ-oD-Hsz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-FK-bWU" userLabel="User balance">
+                                        <rect key="frame" x="20" y="332" width="280" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="wGq-sW-AXw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hij-Ag-xV0">
+                                        <rect key="frame" x="96" y="369" width="128" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Mr7-MT-ImZ"/>
+                                            <constraint firstAttribute="width" constant="128" id="lf1-1z-nyd"/>
+                                        </constraints>
+                                        <state key="normal" title="Refresh tokens">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="refreshTokens:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2To-qu-Px5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
+                                        <rect key="frame" x="105" y="49" width="110" height="30"/>
+                                        <state key="normal" title="Load currencies">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="bby-w9-l4I" kind="push" id="lE3-RC-feM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un-Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-Zj-YoU">
+                                        <rect key="frame" x="58" y="20" width="204" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auT-on-Hnv">
+                                        <rect key="frame" x="89" y="227" width="142" height="30"/>
+                                        <state key="normal" title="List Users' Accounts">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="XyW-nI-UuO" kind="push" id="Cpq-KH-i4X"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atl-Qv-IdI">
+                                        <rect key="frame" x="72" y="148" width="176" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBU-Ze-gfK">
+                                        <rect key="frame" x="102" y="265" width="116" height="30"/>
+                                        <state key="normal" title="List Transactions">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="ZGs-Lw-3Fb" kind="push" id="xSE-JN-Ddu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLi-P8-KIJ">
+                                        <rect key="frame" x="105" y="87" width="110" height="30"/>
+                                        <state key="normal" title="Buy &amp; Sell Price">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="ols-iy-yYa" kind="push" id="Zdd-Ec-t51"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ums-zU-T7z">
-                                        <rect key="frame" x="33" y="182" width="255" height="30"/>
+                                        <rect key="frame" x="33" y="189" width="255" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="255" id="RcK-Bf-Ecd"/>
@@ -52,139 +131,32 @@
                                             <action selector="startAuthentication:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="j3I-JV-cdb"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeJ-Jz-Pa8">
-                                        <rect key="frame" x="20" y="232" width="280" height="122"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="122" id="7BD-sU-fHH"/>
-                                        </constraints>
-                                        <string key="text">Step 2: Your app's custom URI scheme will be invoked and the user will be returned to your app. You can now store the OAuth access and refresh tokens and make API calls authenticated as the user.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-N9-5b6" userLabel="User name">
-                                        <rect key="frame" x="20" y="374" width="280" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="HnJ-oD-Hsz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-FK-bWU" userLabel="User balance">
-                                        <rect key="frame" x="20" y="415" width="280" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="29" id="wGq-sW-AXw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hij-Ag-xV0">
-                                        <rect key="frame" x="96" y="464" width="128" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Mr7-MT-ImZ"/>
-                                            <constraint firstAttribute="width" constant="128" id="lf1-1z-nyd"/>
-                                        </constraints>
-                                        <state key="normal" title="Refresh tokens">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="refreshTokens:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2To-qu-Px5"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
-                                        <rect key="frame" x="105" y="555" width="110" height="30"/>
-                                        <state key="normal" title="Load currencies">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="bby-w9-l4I" kind="push" id="lE3-RC-feM"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un-Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-Zj-YoU">
-                                        <rect key="frame" x="58" y="514" width="204" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auT-on-Hnv">
-                                        <rect key="frame" x="81" y="696" width="142" height="30"/>
-                                        <state key="normal" title="List Users' Accounts">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="XyW-nI-UuO" kind="push" id="Cpq-KH-i4X"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atl-Qv-IdI">
-                                        <rect key="frame" x="81" y="655" width="176" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBU-Ze-gfK">
-                                        <rect key="frame" x="94" y="746" width="116" height="30"/>
-                                        <state key="normal" title="List Transactions">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="ZGs-Lw-3Fb" kind="push" id="xSE-JN-Ddu"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLi-P8-KIJ">
-                                        <rect key="frame" x="109" y="605" width="110" height="30"/>
-                                        <state key="normal" title="Buy &amp; Sell Price">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="ols-iy-yYa" kind="push" id="Zdd-Ec-t51"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WL5-4Q-XhC">
-                                        <rect key="frame" x="20" y="20" width="280" height="142"/>
-                                        <color key="backgroundColor" red="0.01176470588" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="142" id="mFZ-YD-ITP"/>
-                                        </constraints>
-                                        <string key="text">Step 1: Connect a Coinbase account using startOAuthAuthenticationForRequest. This will open the Coinbase app if installed, otherwise it will open the browser.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="h0J-N9-5b6" firstAttribute="centerX" secondItem="SQe-jl-bTj" secondAttribute="centerX" id="0LT-Fb-VIv"/>
-                                    <constraint firstAttribute="bottom" secondItem="CBU-Ze-gfK" secondAttribute="bottom" constant="212" id="1PH-cJ-loB"/>
                                     <constraint firstAttribute="trailing" secondItem="VeZ-FK-bWU" secondAttribute="trailing" constant="20" id="2KY-d1-L4t"/>
                                     <constraint firstItem="anT-2f-Ukd" firstAttribute="centerX" secondItem="pPb-Zj-YoU" secondAttribute="centerX" id="4uh-Mp-had"/>
-                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="top" secondItem="anT-2f-Ukd" secondAttribute="bottom" constant="20" id="5EA-48-0gL"/>
-                                    <constraint firstItem="anT-2f-Ukd" firstAttribute="top" secondItem="pPb-Zj-YoU" secondAttribute="bottom" constant="20" id="5dP-7z-q7n"/>
-                                    <constraint firstItem="CBU-Ze-gfK" firstAttribute="top" secondItem="auT-on-Hnv" secondAttribute="bottom" constant="20" id="9hz-BX-aeO"/>
+                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="top" secondItem="oLi-P8-KIJ" secondAttribute="bottom" constant="31" id="8hi-yu-EIE"/>
+                                    <constraint firstItem="CBU-Ze-gfK" firstAttribute="top" secondItem="auT-on-Hnv" secondAttribute="bottom" constant="8" symbolic="YES" id="9hz-BX-aeO"/>
                                     <constraint firstItem="VeZ-FK-bWU" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="20" id="CVy-or-QxW"/>
-                                    <constraint firstItem="YeJ-Jz-Pa8" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="20" id="DgV-OQ-DlB"/>
-                                    <constraint firstItem="pPb-Zj-YoU" firstAttribute="top" secondItem="hij-Ag-xV0" secondAttribute="bottom" constant="20" id="G0e-5b-q2a"/>
-                                    <constraint firstItem="WL5-4Q-XhC" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="20" id="JMt-l4-MZa"/>
-                                    <constraint firstItem="WL5-4Q-XhC" firstAttribute="top" secondItem="SQe-jl-bTj" secondAttribute="top" constant="20" id="Oql-Y3-Gru"/>
+                                    <constraint firstItem="ums-zU-T7z" firstAttribute="top" secondItem="atl-Qv-IdI" secondAttribute="bottom" constant="20" id="CuO-2Y-bnf"/>
+                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="centerX" secondItem="anT-2f-Ukd" secondAttribute="centerX" id="Ff5-Ta-OAS"/>
                                     <constraint firstItem="hij-Ag-xV0" firstAttribute="centerX" secondItem="VeZ-FK-bWU" secondAttribute="centerX" id="PVP-2f-rBW"/>
                                     <constraint firstItem="h0J-N9-5b6" firstAttribute="centerX" secondItem="pPb-Zj-YoU" secondAttribute="centerX" id="Pon-Br-fqg"/>
-                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="top" secondItem="VeZ-FK-bWU" secondAttribute="bottom" constant="20" id="Qj9-nC-n3u"/>
-                                    <constraint firstItem="ums-zU-T7z" firstAttribute="centerX" secondItem="YeJ-Jz-Pa8" secondAttribute="centerX" id="Sv5-Sa-OQ2"/>
-                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="centerX" secondItem="anT-2f-Ukd" secondAttribute="centerX" constant="3.5" id="TOH-Sd-5Z2"/>
+                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="top" secondItem="VeZ-FK-bWU" secondAttribute="bottom" constant="8" symbolic="YES" id="Qj9-nC-n3u"/>
+                                    <constraint firstItem="ums-zU-T7z" firstAttribute="centerX" secondItem="atl-Qv-IdI" secondAttribute="centerX" id="S53-uK-KwG"/>
+                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="centerX" secondItem="oLi-P8-KIJ" secondAttribute="centerX" id="VhG-eN-vlQ"/>
                                     <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="20" id="Xb6-9S-hgN"/>
-                                    <constraint firstAttribute="trailing" secondItem="YeJ-Jz-Pa8" secondAttribute="trailing" constant="20" id="YaX-kB-rzF"/>
-                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="top" secondItem="oLi-P8-KIJ" secondAttribute="bottom" constant="20" id="Zui-3G-HM8"/>
-                                    <constraint firstAttribute="centerX" secondItem="YeJ-Jz-Pa8" secondAttribute="centerX" id="aHX-vp-F3y"/>
+                                    <constraint firstItem="anT-2f-Ukd" firstAttribute="top" secondItem="pPb-Zj-YoU" secondAttribute="bottom" constant="8" symbolic="YES" id="aT9-fb-Ar9"/>
+                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="CBU-Ze-gfK" secondAttribute="bottom" constant="8" symbolic="YES" id="b1u-dk-OGt"/>
                                     <constraint firstItem="CBU-Ze-gfK" firstAttribute="centerX" secondItem="auT-on-Hnv" secondAttribute="centerX" id="bWD-Gi-Chu"/>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="YeJ-Jz-Pa8" secondAttribute="leading" id="cRK-U0-m6Y"/>
-                                    <constraint firstItem="auT-on-Hnv" firstAttribute="top" secondItem="atl-Qv-IdI" secondAttribute="bottom" constant="20" id="cXL-QE-4Ir"/>
-                                    <constraint firstItem="ums-zU-T7z" firstAttribute="top" secondItem="WL5-4Q-XhC" secondAttribute="bottom" constant="20" id="ey5-LM-t6U"/>
-                                    <constraint firstAttribute="trailing" secondItem="WL5-4Q-XhC" secondAttribute="trailing" constant="20" id="ggy-fg-gZG"/>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="YeJ-Jz-Pa8" secondAttribute="bottom" constant="20" id="kei-0i-P1E"/>
+                                    <constraint firstItem="auT-on-Hnv" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="8" symbolic="YES" id="d9P-s8-jAj"/>
+                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="top" secondItem="anT-2f-Ukd" secondAttribute="bottom" constant="8" symbolic="YES" id="f3r-ar-SFJ"/>
+                                    <constraint firstItem="pPb-Zj-YoU" firstAttribute="top" secondItem="SQe-jl-bTj" secondAttribute="top" constant="20" symbolic="YES" id="fEj-4D-MsW"/>
+                                    <constraint firstAttribute="bottom" secondItem="hij-Ag-xV0" secondAttribute="bottom" constant="413" id="rpG-Zj-gRV"/>
                                     <constraint firstAttribute="trailing" secondItem="h0J-N9-5b6" secondAttribute="trailing" constant="20" id="xmw-Ie-Mwp"/>
-                                    <constraint firstItem="auT-on-Hnv" firstAttribute="centerX" secondItem="atl-Qv-IdI" secondAttribute="centerX" constant="-17" id="xyI-ej-snq"/>
-                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="centerX" secondItem="atl-Qv-IdI" secondAttribute="centerX" constant="-5.5" id="yXB-Qh-jyx"/>
-                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="top" secondItem="h0J-N9-5b6" secondAttribute="bottom" constant="20" id="ykS-ea-Pt5"/>
+                                    <constraint firstItem="auT-on-Hnv" firstAttribute="centerX" secondItem="atl-Qv-IdI" secondAttribute="centerX" id="xyI-ej-snq"/>
+                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="top" secondItem="h0J-N9-5b6" secondAttribute="bottom" constant="8" symbolic="YES" id="ykS-ea-Pt5"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -196,17 +168,17 @@
                             <constraint firstItem="SQe-jl-bTj" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="T9H-hA-t1S"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Coinbase SDK Example" id="yHJ-qW-g2B"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="800"/>
+                    <size key="freeformSize" width="320" height="520"/>
                     <connections>
                         <outlet property="authenticationButton" destination="ums-zU-T7z" id="fub-Mu-QLW"/>
                         <outlet property="balanceLabel" destination="VeZ-FK-bWU" id="2lX-jx-ojH"/>
                         <outlet property="emailLabel" destination="h0J-N9-5b6" id="t3b-yX-Hgx"/>
                         <outlet property="listTransactionsButton" destination="CBU-Ze-gfK" id="1QV-3G-Ham"/>
                         <outlet property="listUserAccountsButton" destination="auT-on-Hnv" id="hFk-Iy-933"/>
-                        <outlet property="step1Label" destination="WL5-4Q-XhC" id="UjO-Ok-vgD"/>
-                        <outlet property="step2Label" destination="YeJ-Jz-Pa8" id="In6-Qx-N0I"/>
+                        <outlet property="refreshTokenButton" destination="hij-Ag-xV0" id="RPE-Qc-BhV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -336,7 +308,7 @@
                         <viewControllerLayoutGuide type="bottom" id="a9C-jQ-bFF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Znb-GI-AJ1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4a1-C1-IuY">
