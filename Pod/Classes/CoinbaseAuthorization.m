@@ -16,7 +16,7 @@
     if (self)
     {
         _authType = [dictionary objectForKey:@"auth_type"];
-        _sendLimitAmount = [[dictionary objectForKey:@"meta"] objectForKey:@"send_limit_period"];
+        _sendLimitPeriod = [[dictionary objectForKey:@"meta"] objectForKey:@"send_limit_period"];
         _sendLimitCurrency = [[dictionary objectForKey:@"meta"] objectForKey:@"send_limit_currency"];
         _sendLimitAmount = [[dictionary objectForKey:@"meta"] objectForKey:@"send_limit_amount"];
         _scopes = [dictionary objectForKey:@"scopes"];

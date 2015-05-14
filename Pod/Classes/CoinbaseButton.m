@@ -15,6 +15,7 @@
     self = [super init];
     if (self)
     {
+        _buttonID = [dictionary objectForKey:@"id"];
         _code = [dictionary objectForKey:@"code"];
         _type = [dictionary objectForKey:@"type"];
         _subscription = [[dictionary objectForKey:@"subscription"] boolValue];

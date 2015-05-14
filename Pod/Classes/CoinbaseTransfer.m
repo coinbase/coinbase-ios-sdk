@@ -28,7 +28,7 @@
         _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
 
         _coinbaseFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"coinbase"]];
-        _bankFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"coinbase"]];
+        _bankFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"bank"]];
 
         _payoutDate = [dateFormatter dateFromString:[dictionary objectForKey:@"payout_date"]];
 
