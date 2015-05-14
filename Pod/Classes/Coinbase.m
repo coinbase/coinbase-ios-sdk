@@ -1438,7 +1438,7 @@ static id ObjectOrEmptyString(id object)
                                        }
                                  };
 
-    [self doRequestType:CoinbaseRequestTypeGet path:@"orders" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+    [self doRequestType:CoinbaseRequestTypePost path:@"orders" parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

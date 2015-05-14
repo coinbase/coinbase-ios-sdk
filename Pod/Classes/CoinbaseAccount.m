@@ -34,6 +34,8 @@
 
         _primary = [[dictionary objectForKey:@"primary"] boolValue];
         _type = [dictionary objectForKey:@"type"];
+        _m = [[dictionary objectForKey:@"m"] stringValue];
+        _n = [[dictionary objectForKey:@"n"] stringValue];
     }
     
     return self;

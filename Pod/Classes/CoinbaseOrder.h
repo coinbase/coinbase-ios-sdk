@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *orderID;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *event;
 @property (nonatomic, strong) CoinbasePrice *totalBitcoins;
 @property (nonatomic, strong) CoinbasePrice *totalNative;
 @property (nonatomic, strong) CoinbasePrice *totalPayout;
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) CoinbaseButton *button;
 @property (nonatomic, strong) CoinbaseTransaction *transaction;
 @property (nonatomic, strong) CoinbaseTransaction *refundTransaction;
+@property (nonatomic, strong) NSString *refundAddress;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 

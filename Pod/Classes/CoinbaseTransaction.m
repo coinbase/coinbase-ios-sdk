@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        _userID = [dictionary objectForKey:@"id"];
+        _transactionID = [dictionary objectForKey:@"id"];
         _hashString = [dictionary objectForKey:@"hsh"];
         _amount = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"amount"]];
 
@@ -41,7 +41,7 @@
         _signaturesNeeded = [[dictionary objectForKey:@"signatures_needed"] unsignedIntegerValue];
 
         _inputArray = [dictionary objectForKey:@"inputs"];
-
+        _confirmations = [[dictionary objectForKey:@"confirmations"] unsignedIntegerValue];
     }
     return self;
 }

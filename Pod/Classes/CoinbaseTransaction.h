@@ -12,7 +12,7 @@
 
 @interface CoinbaseTransaction : NSObject
 
-@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *transactionID;
 @property (nonatomic, strong) NSString *hashString;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) CoinbaseBalance *amount;
@@ -30,6 +30,7 @@
 @property (nonatomic, assign) NSUInteger signaturesPresent;
 @property (nonatomic, assign) NSUInteger signaturesNeeded;
 @property (nonatomic, strong) NSArray *inputArray;
+@property (nonatomic, assign) NSUInteger confirmations;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 

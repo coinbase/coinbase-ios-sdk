@@ -19,6 +19,8 @@
 @property (nonatomic, strong) CoinbaseBalance *nativeBalance;
 @property (nonatomic, assign, getter=isPrimary) BOOL primary;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *m;
+@property (nonatomic, strong) NSString *n;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 
