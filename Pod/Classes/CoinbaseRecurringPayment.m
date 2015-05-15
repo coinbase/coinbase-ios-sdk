@@ -36,8 +36,10 @@
         _lastRun = [dateFormatter dateFromString:[dictionary objectForKey:@"last_run"]];
         _nextRun = [dateFormatter dateFromString:[dictionary objectForKey:@"next_run"]];
         _notes = [dictionary objectForKey:@"notes"];
+        _custom = [dictionary objectForKey:@"custom"];
         _recurringPaymentDescription = [dictionary objectForKey:@"description"];
         _amount = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"amount"]];
+        _button = [[CoinbaseButton alloc] initWithDictionary:[dictionary objectForKey:@"button"]];
     }
     return self;
 }

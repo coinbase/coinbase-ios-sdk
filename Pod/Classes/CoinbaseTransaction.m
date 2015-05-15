@@ -16,7 +16,8 @@
     if (self)
     {
         _transactionID = [dictionary objectForKey:@"id"];
-        _hashString = [dictionary objectForKey:@"hsh"];
+        _hashString = [dictionary objectForKey:@"hash"];
+        _hshString = [dictionary objectForKey:@"hsh"];
         _amount = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"amount"]];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -2782,7 +2782,7 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 {
     NSString *path = [NSString stringWithFormat:@"transactions/%@/cancel_request", transactionID];
 
-    [self doRequestType:CoinbaseRequestTypePut path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

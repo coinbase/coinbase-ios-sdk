@@ -17,6 +17,7 @@
     {
         _transferID = [dictionary objectForKey:@"id"];
         _type = [dictionary objectForKey:@"type"];
+        _underscoreType = [dictionary objectForKey:@"_type"];
         _code = [dictionary objectForKey:@"code"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

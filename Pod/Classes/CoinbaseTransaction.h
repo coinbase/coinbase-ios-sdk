@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSString *transactionID;
 @property (nonatomic, strong) NSString *hashString;
+@property (nonatomic, strong) NSString *hshString;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) CoinbaseBalance *amount;
 @property (nonatomic, strong) CoinbaseBalance *sellLimit;

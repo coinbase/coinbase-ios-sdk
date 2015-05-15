@@ -449,13 +449,16 @@
         XCTAssertEqualObjects(accountChange.category, @"tx");
         XCTAssertEqualObjects(accountChange.otherUserName, @"an external account");
 
+        XCTAssertTrue([user isKindOfClass:[CoinbaseUser class]]);
         XCTAssertEqualObjects(user.userID, @"524a75a3f8182b7d2a00000a");
         XCTAssertEqualObjects(user.email, @"user2@example.com");
         XCTAssertEqualObjects(user.name, @"User 2");
 
+        XCTAssertTrue([balance isKindOfClass:[CoinbaseBalance class]]);
         XCTAssertEqualObjects(balance.amount, @"50.00000000");
         XCTAssertEqualObjects(balance.currency, @"BTC");
 
+        XCTAssertTrue([nativeBalance isKindOfClass:[CoinbaseBalance class]]);
         XCTAssertEqualObjects(nativeBalance.amount, @"500.00");
         XCTAssertEqualObjects(nativeBalance.currency, @"USD");
 
@@ -1070,10 +1073,9 @@
         XCTAssertNotNil(transaction, "transaction should not be nil");
 
         XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
-
         XCTAssertEqualObjects(transaction.transactionID, @"53f3d9e0cbf034354a000132");
         XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
-        XCTAssertEqualObjects(transaction.hashString, @"bb9199a339e79556be6f9935e12bb189eeaa74bdc7d9bc18191f5a504c840230");
+        XCTAssertEqualObjects(transaction.hshString, @"bb9199a339e79556be6f9935e12bb189eeaa74bdc7d9bc18191f5a504c840230");
         XCTAssertEqualObjects(transaction.amount.amount, @"0.10000000");
         XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
         XCTAssertFalse(transaction.request);
@@ -1232,8 +1234,7 @@
         XCTAssertEqualObjects(order.button.buttonDescription, @"order description");
         XCTAssertEqualObjects(order.button.buttonID, @"eec6d08e9e215195a471eae432a49fc7");
         XCTAssertEqualObjects(order.transaction.transactionID, @"513eb768f12a9cf27400000b");
-#warning is it hsh or hash?
-        //XCTAssertEqualObjects(order.transaction.hashString, @"4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14");
+        XCTAssertEqualObjects(order.transaction.hashString, @"4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14");
         XCTAssertEqual(order.transaction.confirmations, 0);
 
         [expectation fulfill];
@@ -1315,8 +1316,7 @@
         XCTAssertEqualObjects(order.button.buttonDescription, @"");
         XCTAssertEqualObjects(order.button.buttonID, @"eec6d08e9e215195a471eae432a49fc7");
         XCTAssertEqualObjects(order.transaction.transactionID, @"513eb768f12a9cf27400000b");
-#warning is it hsh or hash?
-        //       XCTAssertEqualObjects(order.transaction.hashString, @"4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14");
+        XCTAssertEqualObjects(order.transaction.hashString, @"4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14");
         XCTAssertEqual(order.transaction.confirmations, 0);
 
         [expectation fulfill];
@@ -1365,13 +1365,11 @@
         XCTAssertEqualObjects(order.refundAddress, @"n49yYq81iZxqyKj2ys85ErXLJp9EBPNqis");
 
         XCTAssertEqualObjects(order.transaction.transactionID, @"53a0c9ee137f734abb0001db");
-#warning is it hsh or hash?
-        //       XCTAssertEqualObjects(order.transaction.hashString, @"5d4751d532ba6845f09c24d21a8b1153e96f2b19fcfab84591b3a3be78648998");
+        XCTAssertEqualObjects(order.transaction.hashString, @"5d4751d532ba6845f09c24d21a8b1153e96f2b19fcfab84591b3a3be78648998");
         XCTAssertEqual(order.transaction.confirmations, 101);
 
         XCTAssertEqualObjects(order.refundTransaction.transactionID, @"53a22f33137f734abb000296");
-#warning is it hsh or hash?
-        //       XCTAssertEqualObjects(order.refundTransaction.hashString, @"ce401504150a02618ca8ee93e5b948c59e30040b6101473a07a97e77c6c4be1c");
+        XCTAssertEqualObjects(order.refundTransaction.hashString, @"ce401504150a02618ca8ee93e5b948c59e30040b6101473a07a97e77c6c4be1c");
         XCTAssertEqual(order.refundTransaction.confirmations, 0);
 
         [expectation fulfill];
@@ -1771,105 +1769,843 @@
 
 -(void) test__createReportWithType_email
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/reports").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST createReportWithType_email"];
+
+    [self.client createReportWithType:@"transactions" email:@"dummy@example.com" completion:^(CoinbaseReport *report, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(report, "report should not be nil");
+
+        XCTAssertTrue([report isKindOfClass:[CoinbaseReport class]]);
+        XCTAssertEqualObjects(report.reportID, @"534736cd137f730e1c0000d9");
+        XCTAssertEqualObjects(report.type, @"transactions");
+        XCTAssertEqualObjects(report.status, @"active");
+        XCTAssertEqualObjects(report.email, @"dummy@example.com");
+        XCTAssertEqualObjects(report.repeat, @"weekly");
+        XCTAssertEqualObjects(report.timeRange, @"custom");
+        XCTAssertEqualObjects(report.callBackURL,@"http://example.com/callback");
+        XCTAssertEqualObjects(report.fileURL, [NSNull null]);
+        XCTAssertEqual(report.times, 2);
+        XCTAssertEqual(report.timesRun, 0);
+
+        XCTAssertEqualObjects(report.lastRun, nil);
+        XCTAssertTrue([report.nextRun isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([report.creationDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__sellQuantity
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/sells").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST sellQuantity"];
+
+    [self.client sellQuantity:@"1" completion:^(CoinbaseTransfer *transfer, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transfer, "transfer should not be nil");
+
+        XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+
+        XCTAssertEqualObjects(transfer.transferID, @"5456c2cb46cd93593d00000b");
+        XCTAssertEqualObjects(transfer.type, @"Sell");
+        XCTAssertEqualObjects(transfer.code, @"5456c2cb46cd93593d00000b");
+        XCTAssertTrue([transfer.coinbaseFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.coinbaseFees.cents, @"14");
+        XCTAssertEqualObjects(transfer.coinbaseFees.currencyISO, @"USD");
+        XCTAssertTrue([transfer.bankFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.bankFees.cents, @"15");
+        XCTAssertEqualObjects(transfer.bankFees.currencyISO, @"USD");
+        XCTAssertEqualObjects(transfer.status, @"Created");
+
+        XCTAssertTrue([transfer.bitcoinAmount isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.bitcoinAmount.amount, @"1.00000000");
+        XCTAssertEqualObjects(transfer.bitcoinAmount.currency, @"BTC");
+        XCTAssertTrue([transfer.subTotal isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.subTotal.amount, @"13.50");
+        XCTAssertEqualObjects(transfer.subTotal.currency, @"USD");
+        XCTAssertTrue([transfer.total isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.total.amount, @"13.21");
+        XCTAssertEqualObjects(transfer.total.currency, @"USD");
+
+        XCTAssertTrue([transfer.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([transfer.payoutDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__getSubscribers
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/subscribers").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET getSubscribers"];
+
+    [self.client getSubscribers:^(NSArray *subscribers, CoinbasePagingHelper *paging, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(subscribers, "subscribers should not be nil");
+
+        CoinbaseRecurringPayment *firstRecurringPayment = [subscribers objectAtIndex:0];
+
+        XCTAssertTrue([firstRecurringPayment isKindOfClass:[CoinbaseRecurringPayment class]]);
+        XCTAssertEqualObjects(firstRecurringPayment.recurringPaymentID, @"51a7cf58f8182b4b220000d5");
+        XCTAssertEqualObjects(firstRecurringPayment.status, @"active");
+        XCTAssertTrue([firstRecurringPayment.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(firstRecurringPayment.button.type, @"subscription");
+        XCTAssertEqualObjects(firstRecurringPayment.button.name, @"Test");
+        XCTAssertEqualObjects(firstRecurringPayment.button.buttonDescription, @"");
+        XCTAssertEqualObjects(firstRecurringPayment.button.buttonID, @"1b7a1019f371402ec02af389d1b24e55");
+
+        CoinbaseRecurringPayment *secondRecurringPayment = [subscribers objectAtIndex:1];
+
+        XCTAssertTrue([secondRecurringPayment isKindOfClass:[CoinbaseRecurringPayment class]]);
+        XCTAssertEqualObjects(secondRecurringPayment.recurringPaymentID, @"51a7be2ff8182b4b220000a5");
+        XCTAssertEqualObjects(secondRecurringPayment.status, @"paused");
+        XCTAssertTrue([secondRecurringPayment.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(secondRecurringPayment.button.type, @"subscription");
+        XCTAssertEqualObjects(secondRecurringPayment.button.name, @"Test");
+        XCTAssertEqualObjects(secondRecurringPayment.button.buttonDescription, @"");
+        XCTAssertEqualObjects(secondRecurringPayment.button.buttonID, @"1b7a1019f371402ec02af389d1b24e55");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__subscriptionWithID
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/subscribers/51a7cf58f8182b4b220000d5").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET subscriptionWithID"];
+
+    [self.client subscriptionWithID:@"51a7cf58f8182b4b220000d5" completion:^(CoinbaseRecurringPayment *subscriber, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(subscriber, "subscriber should not be nil");
+
+        XCTAssertTrue([subscriber isKindOfClass:[CoinbaseRecurringPayment class]]);
+        XCTAssertEqualObjects(subscriber.recurringPaymentID, @"51a7cf58f8182b4b220000d5");
+        XCTAssertEqualObjects(subscriber.status, @"active");
+        XCTAssertEqualObjects(subscriber.custom, @"user123");
+        XCTAssertTrue([subscriber.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(subscriber.button.type, @"subscription");
+        XCTAssertEqualObjects(subscriber.button.name, @"Test");
+        XCTAssertEqualObjects(subscriber.button.buttonDescription, @"");
+        XCTAssertEqualObjects(subscriber.button.buttonID, @"1b7a1019f371402ec02af389d1b24e55");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__createToken
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/tokens").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST createToken"];
+
+    [self.client createToken:^(CoinbaseToken *token, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(token, "token should not be nil");
+
+        XCTAssertTrue([token isKindOfClass:[CoinbaseToken class]]);
+        XCTAssertEqualObjects(token.tokenID, @"abc12e821cf6e128afc2e821cf68e12cf68e168e128af21cf682e821cf68e1fe");
+        XCTAssertEqualObjects(token.address, @"n3NzN74qGYHSHPhKM1hdts3bF1zV4N1Aa3");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__redeemTokenWithID
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/tokens/redeem").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST redeemTokenWithID"];
+
+    [self.client redeemTokenWithID:@"abc12e821cf6e128afc2e821cf68e12cf68e168e128af21cf682e821cf68e1fe" completion:^(BOOL success, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertTrue(success);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__getTransactions
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/transactions").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET getTransactions"];
+
+    [self.client getTransactions:^(NSArray *transactions, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, CoinbasePagingHelper *paging, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transactions, "transactions should not be nil");
+        XCTAssertNotNil(user, "user should not be nil");
+        XCTAssertNotNil(balance, "balance should not be nil");
+        XCTAssertNotNil(nativeBalance, "nativeBalance should not be nil");
+        XCTAssertNotNil(paging, "paging should not be nil");
+
+        CoinbaseTransaction *firstTransaction = [transactions objectAtIndex:0];
+
+        XCTAssertTrue([firstTransaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(firstTransaction.transactionID, @"5018f833f8182b129c00002f");
+        XCTAssertTrue([firstTransaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(firstTransaction.amount.amount, @"-1.10000000");
+        XCTAssertEqualObjects(firstTransaction.amount.currency, @"BTC");
+        XCTAssertTrue(firstTransaction.request);
+        XCTAssertEqualObjects(firstTransaction.status, @"pending");
+        XCTAssertTrue([firstTransaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(firstTransaction.sender.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(firstTransaction.sender.email, @"user2@example.com");
+        XCTAssertEqualObjects(firstTransaction.sender.name, @"User Two");
+        XCTAssertTrue([firstTransaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(firstTransaction.recipient.userID, @"5011f33df8182b142400000a");
+        XCTAssertEqualObjects(firstTransaction.recipient.email, @"user1@example.com");
+        XCTAssertEqualObjects(firstTransaction.recipient.name, @"User One");
+
+        CoinbaseTransaction *secondTransaction = [transactions objectAtIndex:1];
+
+        XCTAssertTrue([secondTransaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(secondTransaction.transactionID, @"5018f833f8182b129c00002e");
+        XCTAssertTrue([secondTransaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(secondTransaction.amount.amount, @"-1.00000000");
+        XCTAssertEqualObjects(secondTransaction.amount.currency, @"BTC");
+        XCTAssertFalse(secondTransaction.request);
+        XCTAssertEqualObjects(secondTransaction.status, @"complete");
+        XCTAssertTrue([secondTransaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(secondTransaction.sender.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(secondTransaction.sender.email, @"user2@example.com");
+        XCTAssertEqualObjects(secondTransaction.sender.name, @"User Two");
+        XCTAssertTrue([secondTransaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(secondTransaction.hshString, @"9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3");
+        XCTAssertEqualObjects(secondTransaction.recipientAddress, @"37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare");
+
+        XCTAssertTrue([user isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(user.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(user.email, @"user2@example.com");
+        XCTAssertEqualObjects(user.name, @"User Two");
+
+        XCTAssertTrue([balance isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(balance.amount, @"50.00000000");
+        XCTAssertEqualObjects(balance.currency, @"BTC");
+
+        XCTAssertTrue([nativeBalance isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(nativeBalance.amount, @"500.00");
+        XCTAssertEqualObjects(nativeBalance.currency, @"USD");
+
+        XCTAssertEqual(paging.currentPage, 1);
+        XCTAssertEqual(paging.totalPages, 1);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__transactionWithID
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/transactions/5018f833f8182b129c00002f").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET transactionWithID"];
+
+    [self.client transactionWithID:@"5018f833f8182b129c00002f" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transaction, "transaction should not be nil");
+
+        XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(transaction.transactionID, @"5018f833f8182b129c00002f");
+        XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(transaction.amount.amount, @"-1.10000000");
+        XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
+        XCTAssertTrue(transaction.request);
+        XCTAssertEqualObjects(transaction.status, @"pending");
+        XCTAssertTrue([transaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.sender.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(transaction.sender.email, @"user2@example.com");
+        XCTAssertEqualObjects(transaction.sender.name, @"User Two");
+        XCTAssertTrue([transaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.recipient.userID, @"5011f33df8182b142400000a");
+        XCTAssertEqualObjects(transaction.recipient.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.recipient.name, @"User One");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__sendAmount_to
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/send_money").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST sendAmount_to"];
+
+    [self.client sendAmount:@"1.234" to:@"user1@example.com" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transaction, "transaction should not be nil");
+
+        XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(transaction.transactionID, @"501a1791f8182b2071000087");
+        XCTAssertEqualObjects(transaction.hshString, @"9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3");
+        XCTAssertEqualObjects(transaction.notes, @"Sample transaction for you!");
+        XCTAssertEqualObjects(transaction.idem, @"");
+        XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(transaction.amount.amount, @"-1.23400000");
+        XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
+        XCTAssertFalse(transaction.request);
+        XCTAssertEqualObjects(transaction.status, @"pending");
+        XCTAssertTrue([transaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.sender.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(transaction.sender.email, @"user2@example.com");
+        XCTAssertEqualObjects(transaction.sender.name, @"User Two");
+        XCTAssertTrue([transaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.recipient.userID, @"5011f33df8182b142400000a");
+        XCTAssertEqualObjects(transaction.recipient.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.recipient.name, @"User One");
+        XCTAssertEqualObjects(transaction.recipientAddress, @"37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__transferAmount_to
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/transfer_money").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST transferAmount_to"];
+
+    [self.client transferAmount:@"1.234" to:@"5011f33df8182b142400000a" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transaction, "transaction should not be nil");
+
+        XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(transaction.transactionID, @"5480cc82dddd20de7b000033");
+        XCTAssertEqualObjects(transaction.hshString, [NSNull null]);
+        XCTAssertEqualObjects(transaction.notes, @"Sample transaction for you");
+        XCTAssertEqualObjects(transaction.idem, @"");
+        XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(transaction.amount.amount, @"-1.23400000");
+        XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
+        XCTAssertFalse(transaction.request);
+        XCTAssertEqualObjects(transaction.status, @"pending");
+        XCTAssertTrue([transaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.sender.userID, @"54738c8ea54d75d167000005");
+        XCTAssertEqualObjects(transaction.sender.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.sender.name, @"User One");
+        XCTAssertEqualObjects(transaction.sender.avatarURL, @"https://secure.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808.png?d=https://www.coinbase.com/assets/avatar.png&r=R");
+        XCTAssertTrue([transaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.recipient.userID, @"54738c8ea54d75d167000005");
+        XCTAssertEqualObjects(transaction.recipient.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.recipient.name, @"User One");
+        XCTAssertEqualObjects(transaction.recipient.avatarURL, @"https://secure.gravatar.com/avatar/111d68d06e2d317b5a59c2c6c5bad808.png?d=https://www.coinbase.com/assets/avatar.png&r=R");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__requestAmount_from
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/request_money").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST requestAmount_from"];
+
+    [self.client requestAmount:@"1.234" from:@"user1@example.com" notes:@"Sample transaction for you" accountID:nil completion:^(CoinbaseTransaction *transaction, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transaction, "transaction should not be nil");
+
+        XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(transaction.transactionID, @"501a3554f8182b2754000003");
+        XCTAssertEqualObjects(transaction.hshString, [NSNull null]);
+        XCTAssertEqualObjects(transaction.notes, @"Sample request for you!");
+        XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(transaction.amount.amount, @"1.23400000");
+        XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
+        XCTAssertTrue(transaction.request);
+        XCTAssertEqualObjects(transaction.status, @"pending");
+        XCTAssertTrue([transaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.sender.userID, @"5011f33df8182b142400000a");
+        XCTAssertEqualObjects(transaction.sender.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.sender.name, @"User One");
+
+        XCTAssertTrue([transaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.recipient.userID, @"5011f33df8182b142400000e");
+        XCTAssertEqualObjects(transaction.recipient.email, @"user2@example.com");
+        XCTAssertEqualObjects(transaction.recipient.name, @"User Two");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__resendRequestWithID
 {
+    stubRequest(@"PUT", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/resend_request").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"PUT resendRequestWithID"];
+
+    [self.client resendRequestWithID:@"501a3554f8182b2754000003" completion:^(BOOL success, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertTrue(success);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__completeRequestWithID
 {
+    stubRequest(@"PUT", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/complete_request").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"PUT completeRequestWithID"];
+
+    [self.client completeRequestWithID:@"501a3554f8182b2754000003" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transaction, "transaction should not be nil");
+
+        XCTAssertTrue([transaction isKindOfClass:[CoinbaseTransaction class]]);
+        XCTAssertEqualObjects(transaction.transactionID, @"503c46a4f8182b10650000ad");
+        XCTAssertEqualObjects(transaction.notes, [NSNull null]);
+        XCTAssertTrue([transaction.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertEqualObjects(transaction.amount.amount, @"-1.10000000");
+        XCTAssertEqualObjects(transaction.amount.currency, @"BTC");
+        XCTAssertFalse(transaction.request);
+        XCTAssertEqualObjects(transaction.status, @"pending");
+        XCTAssertTrue([transaction.sender isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.sender.userID, @"503c46a2f8182b106500008a");
+        XCTAssertEqualObjects(transaction.sender.email, @"user1@example.com");
+        XCTAssertEqualObjects(transaction.sender.name, @"New User");
+
+        XCTAssertTrue([transaction.recipient isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(transaction.recipient.userID, @"503c46a3f8182b106500009c");
+        XCTAssertEqualObjects(transaction.recipient.email, @"user2@example.com");
+        XCTAssertEqualObjects(transaction.recipient.name, @"New User");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__cancelRequestWithID
 {
+    stubRequest(@"DELETE", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/cancel_request").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"DELETE cancelRequestWithID"];
+
+    [self.client cancelRequestWithID:@"501a3554f8182b2754000003" completion:^(BOOL success, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertTrue(success);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__getTransfers
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/transfers").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET getTransfers"];
+
+    [self.client getTransfers:^(NSArray *transfers, CoinbasePagingHelper *paging, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transfers, "transfers should not be nil");
+        XCTAssertNotNil(paging, "paging should not be nil");
+
+        CoinbaseTransfer *transfer = [transfers objectAtIndex:0];
+
+        XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+
+        XCTAssertEqualObjects(transfer.transferID, @"544047e346cd9333bd000066");
+        XCTAssertEqualObjects(transfer.type, @"Buy");
+        XCTAssertEqualObjects(transfer.code, @"QPCUCZHR");
+        XCTAssertTrue([transfer.coinbaseFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.coinbaseFees.cents, @"14");
+        XCTAssertEqualObjects(transfer.coinbaseFees.currencyISO, @"USD");
+        XCTAssertTrue([transfer.bankFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.bankFees.cents, @"15");
+        XCTAssertEqualObjects(transfer.bankFees.currencyISO, @"USD");
+        XCTAssertEqualObjects(transfer.status, @"Pending");
+        XCTAssertEqualObjects(transfer.transactionID, @"5011f33df8182b142400000e");
+        XCTAssertTrue([transfer.bitcoinAmount isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.bitcoinAmount.amount, @"1.00000000");
+        XCTAssertEqualObjects(transfer.bitcoinAmount.currency, @"BTC");
+        XCTAssertTrue([transfer.subTotal isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.subTotal.amount, @"13.55");
+        XCTAssertEqualObjects(transfer.subTotal.currency, @"USD");
+        XCTAssertTrue([transfer.total isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.total.amount, @"13.84");
+        XCTAssertEqualObjects(transfer.total.currency, @"USD");
+        XCTAssertEqualObjects(transfer.transferDescription, @"Paid for with $13.84 from Test xxxxx3111.");
+
+        XCTAssertTrue([transfer.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([transfer.payoutDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__transferWithID
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/transfers/544047e346cd9333bd000066").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET transferWithID"];
+
+    [self.client transferWithID:@"544047e346cd9333bd000066" completion:^(CoinbaseTransfer *transfer, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transfer, "transfer should not be nil");
+
+        XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+
+        XCTAssertEqualObjects(transfer.transferID, @"544047e346cd9333bd000066");
+        XCTAssertEqualObjects(transfer.type, @"Buy");
+        XCTAssertEqualObjects(transfer.code, @"QPCUCZHR");
+        XCTAssertTrue([transfer.coinbaseFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.coinbaseFees.cents, @"14");
+        XCTAssertEqualObjects(transfer.coinbaseFees.currencyISO, @"USD");
+        XCTAssertTrue([transfer.bankFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.bankFees.cents, @"15");
+        XCTAssertEqualObjects(transfer.bankFees.currencyISO, @"USD");
+        XCTAssertEqualObjects(transfer.status, @"Pending");
+        XCTAssertEqualObjects(transfer.transactionID, @"5011f33df8182b142400000e");
+        XCTAssertTrue([transfer.bitcoinAmount isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.bitcoinAmount.amount, @"1.00000000");
+        XCTAssertEqualObjects(transfer.bitcoinAmount.currency, @"BTC");
+        XCTAssertTrue([transfer.subTotal isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.subTotal.amount, @"13.55");
+        XCTAssertEqualObjects(transfer.subTotal.currency, @"USD");
+        XCTAssertTrue([transfer.total isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.total.amount, @"13.84");
+        XCTAssertEqualObjects(transfer.total.currency, @"USD");
+        XCTAssertEqualObjects(transfer.transferDescription, @"Paid for with $13.84 from Test xxxxx3111.");
+
+        XCTAssertTrue([transfer.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([transfer.payoutDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__commitTransferWithID
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/transfers/5474d23a629122e172000238/commit").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST commitTransferWithID"];
+
+    [self.client commitTransferWithID:@"5474d23a629122e172000238" completion:^(CoinbaseTransfer *transfer, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(transfer, "transfer should not be nil");
+
+        XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+
+        XCTAssertEqualObjects(transfer.transferID, @"5474d23a629122e172000238");
+        XCTAssertEqualObjects(transfer.type, @"Buy");
+        XCTAssertEqualObjects(transfer.code, @"5474d23a629122e172000238");
+        XCTAssertTrue([transfer.coinbaseFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.coinbaseFees.cents, @"0");
+        XCTAssertEqualObjects(transfer.coinbaseFees.currencyISO, @"EUR");
+        XCTAssertTrue([transfer.bankFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.bankFees.cents, @"0");
+        XCTAssertEqualObjects(transfer.bankFees.currencyISO, @"EUR");
+        XCTAssertEqualObjects(transfer.status, @"Pending");
+        XCTAssertEqualObjects(transfer.detailedStatus, @"started");
+        XCTAssertEqualObjects(transfer.underscoreType, @"AchDebit");
+
+        XCTAssertEqualObjects(transfer.transactionID, @"5474d287629122e172000240");
+        XCTAssertTrue([transfer.bitcoinAmount isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.bitcoinAmount.amount, @"0.37200000");
+        XCTAssertEqualObjects(transfer.bitcoinAmount.currency, @"BTC");
+        XCTAssertTrue([transfer.subTotal isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.subTotal.amount, @"3.00");
+        XCTAssertEqualObjects(transfer.subTotal.currency, @"EUR");
+        XCTAssertTrue([transfer.total isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.total.amount, @"3.00");
+        XCTAssertEqualObjects(transfer.total.currency, @"EUR");
+        XCTAssertEqualObjects(transfer.transferDescription, @"Bought 0.372 BTC for €3.00.");
+        XCTAssertEqualObjects(transfer.accountID, @"544955d2629122efb000000f");
+
+        XCTAssertEqualObjects(transfer.paymentMethod.paymentMethodID, @"545348f26291223ddc00011f");
+        XCTAssertEqualObjects(transfer.paymentMethod.name, @"EUR Wallet");
+        XCTAssertEqualObjects(transfer.paymentMethod.accountID, @"545348f26291223ddc00011e");
+        XCTAssertTrue(transfer.paymentMethod.canBuy);
+        XCTAssertTrue(transfer.paymentMethod.canSell);
+
+        XCTAssertTrue([transfer.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([transfer.payoutDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__getCurrentUser
 {
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/users/self").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"GET getCurrentUser"];
+
+    [self.client getCurrentUser:^(CoinbaseUser *user, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(user, "user should not be nil");
+
+        XCTAssertTrue([user isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(user.userID, @"512db383f8182bd24d000001");
+        XCTAssertEqualObjects(user.email, @"user1@example.com");
+        XCTAssertEqualObjects(user.name, @"User One");
+        XCTAssertEqualObjects(user.timeZone, @"Pacific Time (US & Canada)");
+        XCTAssertEqualObjects(user.nativeCurrency, @"USD");
+        XCTAssertEqualObjects(user.balance.amount, @"49.76000000");
+        XCTAssertEqualObjects(user.balance.currency, @"BTC");
+
+        XCTAssertTrue(user.merchant.enabled);
+        XCTAssertEqualObjects(user.merchant.companyName, @"Company Name, Inc.");
+        XCTAssertEqualObjects(user.merchant.companyName, @"Company Name, Inc.");
+        XCTAssertEqualObjects(user.merchant.logoMediumURL, @"http://mediumlogo.example");
+        XCTAssertEqualObjects(user.merchant.logoURL, @"http://logo.example");
+        XCTAssertEqualObjects(user.merchant.logoSmallURL, @"http://smalllogo.example");
+
+        XCTAssertEqual(user.buyLevel, 1);
+        XCTAssertEqual(user.instantBuyLevel, 1);
+        XCTAssertEqual(user.sellLevel, 1);
+
+        XCTAssertEqualObjects(user.buyLimit.amount, @"1000");
+        XCTAssertEqualObjects(user.buyLimit.currency, @"USD");
+        XCTAssertEqualObjects(user.instantBuyLimit.amount, @"1000");
+        XCTAssertEqualObjects(user.instantBuyLimit.currency, @"USD");
+        XCTAssertEqualObjects(user.sellLimit.amount, @"1000");
+        XCTAssertEqualObjects(user.sellLimit.currency, @"USD");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__modifyCurrentUserName
 {
+    stubRequest(@"PUT", @"https://coinbase.com/api/v1/users/self").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"PUT getCurrentUser"];
+
+    [self.client modifyCurrentUserNativeCurrency:@"CAD" completion:^(CoinbaseUser *user, NSError *error) {
+
+        XCTAssertNil(error);
+        XCTAssertNotNil(user, "user should not be nil");
+
+        XCTAssertTrue([user isKindOfClass:[CoinbaseUser class]]);
+        XCTAssertEqualObjects(user.userID, @"512db383f8182bd24d000001");
+        XCTAssertEqualObjects(user.email, @"user@example.com");
+        XCTAssertEqualObjects(user.name, @"User One");
+        XCTAssertEqualObjects(user.timeZone, @"Pacific Time (US & Canada)");
+        XCTAssertEqualObjects(user.nativeCurrency, @"CAD");
+        XCTAssertEqualObjects(user.balance.amount, @"49.76000000");
+        XCTAssertEqualObjects(user.balance.currency, @"BTC");
+
+        XCTAssertEqual(user.buyLevel, 1);
+        XCTAssertEqual(user.sellLevel, 1);
+
+        XCTAssertEqualObjects(user.buyLimit.amount, @"1000");
+        XCTAssertEqualObjects(user.buyLimit.currency, @"USD");
+        XCTAssertEqualObjects(user.sellLimit.amount, @"1000");
+        XCTAssertEqualObjects(user.sellLimit.currency, @"USD");
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
 -(void) test__withdrawAmount_accountID_paymentMethodID
 {
+    stubRequest(@"POST", @"https://coinbase.com/api/v1/withdrawals").
+    andReturn(200).
+    withHeaders(@{@"Content-Type": @"application/json"}).
+    withBody([self loadMockJSONFromFile]);
 
+    XCTestExpectation *expectation = [self expectationWithDescription:@"POST withdrawAmount_accountID_paymentMethodID"];
+
+    [self.client withdrawAmount:@"10.00" accountID:@"54e649216291227bd200006a" paymentMethodID:@"54e6495e6291227bd2000078" completion:^(CoinbaseTransfer *transfer, NSError *error) {
+        
+        XCTAssertNil(error);
+        XCTAssertNotNil(transfer, "transfer should not be nil");
+
+        XCTAssertTrue([transfer isKindOfClass:[CoinbaseTransfer class]]);
+
+        XCTAssertEqualObjects(transfer.transferID, @"54e6708f6291227bd20000cc");
+        XCTAssertEqualObjects(transfer.type, @"Withdrawal");
+        XCTAssertEqualObjects(transfer.code, @"54e6708f6291227bd20000cc");
+        XCTAssertTrue([transfer.bankFees isKindOfClass:[CoinbasePrice class]]);
+        XCTAssertEqualObjects(transfer.bankFees.cents, @"0");
+        XCTAssertEqualObjects(transfer.bankFees.currencyISO, @"USD");
+        XCTAssertEqualObjects(transfer.status, @"Pending");
+        XCTAssertEqualObjects(transfer.detailedStatus, @"started");
+        XCTAssertEqualObjects(transfer.underscoreType, @"Withdrawal");
+
+        XCTAssertEqualObjects(transfer.transactionID, @"54e670906291227bd20000d0");
+        XCTAssertTrue([transfer.bitcoinAmount isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.bitcoinAmount.amount, @"0.00000000");
+        XCTAssertEqualObjects(transfer.bitcoinAmount.currency, @"BTC");
+        XCTAssertTrue([transfer.subTotal isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.subTotal.amount, @"10.00");
+        XCTAssertEqualObjects(transfer.subTotal.currency, @"USD");
+        XCTAssertTrue([transfer.total isKindOfClass:[CoinbaseBalance class]]);
+        XCTAssertEqualObjects(transfer.total.amount, @"10.00");
+        XCTAssertEqualObjects(transfer.total.currency, @"USD");
+        XCTAssertEqualObjects(transfer.transferDescription, @"Withdrew $10.00 (+ 0 banking fee) via *****7978.");
+        XCTAssertEqualObjects(transfer.accountID, @"54e649216291227bd200006a");
+
+        XCTAssertEqualObjects(transfer.paymentMethod.paymentMethodID, @"54e6495e6291227bd2000078");
+        XCTAssertEqualObjects(transfer.paymentMethod.name, @" *****7978");
+        XCTAssertEqualObjects(transfer.paymentMethod.currency, @"USD");
+        XCTAssertEqualObjects(transfer.paymentMethod.type, @"ach_bank_account");
+        XCTAssertTrue(transfer.paymentMethod.canBuy);
+        XCTAssertTrue(transfer.paymentMethod.canSell);
+        XCTAssertTrue(transfer.paymentMethod.verified);
+
+        XCTAssertTrue([transfer.creationDate isKindOfClass:[NSDate class]]);
+        XCTAssertTrue([transfer.payoutDate isKindOfClass:[NSDate class]]);
+
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:0.1 handler:^(NSError *error) {
+        NSLog(@"Expectation error = %@", error.description);
+    }];
 }
 
-
 @end
-
-
