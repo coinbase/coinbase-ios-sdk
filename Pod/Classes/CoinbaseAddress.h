@@ -10,6 +10,7 @@
 
 @interface CoinbaseAddress : NSObject
 
+@property (nonatomic, strong) NSString *addressID;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *callbackURL;
 @property (nonatomic, strong) NSString *label;

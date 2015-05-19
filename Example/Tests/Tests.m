@@ -1,4 +1,0 @@
-
-SpecBegin(InitialSpecs)
-
-SpecEnd

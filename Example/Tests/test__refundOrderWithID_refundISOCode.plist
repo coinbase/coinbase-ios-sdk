@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;order&quot;: {
+    &quot;id&quot;: &quot;YYZQ6RN4&quot;,
+    &quot;created_at&quot;: &quot;2014-06-17T16:03:53-07:00&quot;,
+    &quot;status&quot;: &quot;completed&quot;,
+    &quot;event&quot;: null,
+    &quot;total_btc&quot;: {
+      &quot;cents&quot;: 10000000,
+      &quot;currency_iso&quot;: &quot;BTC&quot;
+    },
+    &quot;total_native&quot;: {
+      &quot;cents&quot;: 100,
+      &quot;currency_iso&quot;: &quot;USD&quot;
+    },
+    &quot;total_payout&quot;: {
+      &quot;cents&quot;: 100,
+      &quot;currency_iso&quot;: &quot;USD&quot;
+    },
+    &quot;custom&quot;: &quot;&quot;,
+    &quot;receive_address&quot;: &quot;mmUFLyAtF89mcvStdobiby3xFpdLARQhNw&quot;,
+    &quot;button&quot;: {
+      &quot;type&quot;: &quot;buy_now&quot;,
+      &quot;name&quot;: &quot;asdfasdf&quot;,
+      &quot;description&quot;: &quot;&quot;,
+      &quot;id&quot;: &quot;320421614991df1e2d526b8169644067&quot;
+    },
+    &quot;refund_address&quot;: &quot;n49yYq81iZxqyKj2ys85ErXLJp9EBPNqis&quot;,
+    &quot;transaction&quot;: {
+      &quot;id&quot;: &quot;53a0c9ee137f734abb0001db&quot;,
+      &quot;hash&quot;: &quot;5d4751d532ba6845f09c24d21a8b1153e96f2b19fcfab84591b3a3be78648998&quot;,
+      &quot;confirmations&quot;: 101
+    },
+    &quot;refund_transaction&quot;: {
+      &quot;id&quot;: &quot;53a22f33137f734abb000296&quot;,
+      &quot;hash&quot;: &quot;ce401504150a02618ca8ee93e5b948c59e30040b6101473a07a97e77c6c4be1c&quot;,
+      &quot;confirmations&quot;: 0
+    }
+  }
+}</string>
+</dict>
+</plist>

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CoinbaseBalance.h"
+#import "CoinbaseButton.h"
 
 @interface CoinbaseRecurringPayment : NSObject
 
@@ -24,8 +25,10 @@
 @property (nonatomic, strong) NSDate *lastRun;
 @property (nonatomic, strong) NSDate *nextRun;
 @property (nonatomic, strong) NSString *notes;
+@property (nonatomic, strong) NSString *custom;
 @property (nonatomic, strong) NSString *recurringPaymentDescription;
 @property (nonatomic, strong) CoinbaseBalance *amount;
+@property (nonatomic, strong) CoinbaseButton *button;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
 

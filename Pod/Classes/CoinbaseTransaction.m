@@ -15,8 +15,9 @@
     self = [super init];
     if (self)
     {
-        _userID = [dictionary objectForKey:@"id"];
-        _hashString = [dictionary objectForKey:@"hsh"];
+        _transactionID = [dictionary objectForKey:@"id"];
+        _hashString = [dictionary objectForKey:@"hash"];
+        _hshString = [dictionary objectForKey:@"hsh"];
         _amount = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"amount"]];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -39,6 +40,9 @@
         _signaturesRequired = [[dictionary objectForKey:@"signatures_required"] unsignedIntegerValue];
         _signaturesPresent = [[dictionary objectForKey:@"signatures_present"] unsignedIntegerValue];
         _signaturesNeeded = [[dictionary objectForKey:@"signatures_needed"] unsignedIntegerValue];
+
+        _inputArray = [dictionary objectForKey:@"inputs"];
+        _confirmations = [[dictionary objectForKey:@"confirmations"] unsignedIntegerValue];
     }
     return self;
 }

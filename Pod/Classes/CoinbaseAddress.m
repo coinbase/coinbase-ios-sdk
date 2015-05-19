@@ -15,6 +15,7 @@
     self = [super init];
     if (self)
     {
+        _addressID = [dictionary objectForKey:@"id"];
         _address = [dictionary objectForKey:@"address"];
         _callbackURL = [dictionary objectForKey:@"callback_url"];
         _label = [dictionary objectForKey:@"label"];

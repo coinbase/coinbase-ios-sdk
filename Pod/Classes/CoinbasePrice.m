@@ -15,8 +15,23 @@
     self = [super init];
     if (self)
     {
-        _cents = [dictionary objectForKey:@"cents"];
-        _currencyISO = [dictionary objectForKey:@"currency_iso"];
+        if ([[dictionary objectForKey:@"cents"] isKindOfClass:[NSString class]])
+        {
+            _cents = [dictionary objectForKey:@"cents"];
+        }
+        else
+        {
+            _cents = [[dictionary objectForKey:@"cents"] stringValue];
+        }
+
+        if ([[dictionary objectForKey:@"currency_iso"] isKindOfClass:[NSString class]])
+        {
+            _currencyISO = [dictionary objectForKey:@"currency_iso"];
+        }
+        else
+        {
+            _currencyISO = [[dictionary objectForKey:@"currency_iso"] stringValue];
+        }
     }
     return self;
 }

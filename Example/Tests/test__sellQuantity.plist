@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;transfer&quot;: {
+    &quot;id&quot;: &quot;5456c2cb46cd93593d00000b&quot;,
+    &quot;type&quot;: &quot;Sell&quot;,
+    &quot;code&quot;: &quot;5456c2cb46cd93593d00000b&quot;,
+    &quot;created_at&quot;: &quot;2013-01-28T16:32:35-08:00&quot;,
+    &quot;fees&quot;: {
+      &quot;coinbase&quot;: {
+        &quot;cents&quot;: 14,
+        &quot;currency_iso&quot;: &quot;USD&quot;
+      },
+      &quot;bank&quot;: {
+        &quot;cents&quot;: 15,
+        &quot;currency_iso&quot;: &quot;USD&quot;
+      }
+    },
+    &quot;status&quot;: &quot;Created&quot;,
+    &quot;payout_date&quot;: &quot;2013-02-01T18:00:00-08:00&quot;,
+    &quot;btc&quot;: {
+      &quot;amount&quot;: &quot;1.00000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;subtotal&quot;: {
+      &quot;amount&quot;: &quot;13.50&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;total&quot;: {
+      &quot;amount&quot;: &quot;13.21&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

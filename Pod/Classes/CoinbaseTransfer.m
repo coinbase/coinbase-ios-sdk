@@ -17,6 +17,7 @@
     {
         _transferID = [dictionary objectForKey:@"id"];
         _type = [dictionary objectForKey:@"type"];
+        _underscoreType = [dictionary objectForKey:@"_type"];
         _code = [dictionary objectForKey:@"code"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -28,7 +29,7 @@
         _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
 
         _coinbaseFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"coinbase"]];
-        _bankFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"coinbase"]];
+        _bankFees = [[CoinbasePrice alloc] initWithDictionary:[[dictionary objectForKey:@"fees"] objectForKey:@"bank"]];
 
         _payoutDate = [dateFormatter dateFromString:[dictionary objectForKey:@"payout_date"]];
 

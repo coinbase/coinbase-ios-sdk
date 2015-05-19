@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;button&quot;: {
+    &quot;code&quot;: &quot;93865b9cae83706ae59220c013bc0afd&quot;,
+    &quot;type&quot;: &quot;buy_now&quot;,
+    &quot;subscription&quot;: false,
+    &quot;style&quot;: &quot;custom_large&quot;,
+    &quot;text&quot;: &quot;Pay With Bitcoin&quot;,
+    &quot;name&quot;: &quot;test&quot;,
+    &quot;description&quot;: &quot;Sample description&quot;,
+    &quot;custom&quot;: &quot;Order123&quot;,
+    &quot;callback_url&quot;: &quot;http://www.example.com/my_custom_button_callback&quot;,
+    &quot;price&quot;: {
+      &quot;cents&quot;: 123,
+      &quot;currency_iso&quot;: &quot;USD&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

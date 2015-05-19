@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        _tokenID = [dictionary objectForKey:@"tokenID"];
+        _tokenID = [dictionary objectForKey:@"token_id"];
         _address = [dictionary objectForKey:@"address"];
     }
     return self;

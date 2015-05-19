@@ -24,9 +24,9 @@
 
         _merchant = [[CoinbaseMerchant alloc] initWithDictionary:[dictionary objectForKey:@"merchant"]];
 
-        _buyLevel = [dictionary objectForKey:@"buy_level"];
-        _instantBuyLevel = [dictionary objectForKey:@"instant_buy_level"];
-        _sellLevel = [dictionary objectForKey:@"sell_level"];
+        _buyLevel = [[dictionary objectForKey:@"buy_level"] unsignedIntegerValue] ;
+        _instantBuyLevel = [[dictionary objectForKey:@"instant_buy_level"] unsignedIntegerValue];
+        _sellLevel = [[dictionary objectForKey:@"sell_level"] unsignedIntegerValue];
 
         if([dictionary objectForKey:@"buy_limit"] != [NSNull null])
         {
@@ -40,6 +40,7 @@
         {
             _sellLimit = [[CoinbaseBalance alloc] initWithDictionary:[dictionary objectForKey:@"sell_limit"]];
         }
+        _avatarURL = [dictionary objectForKey:@"avatar_url"];
     }
     return self;
 }
@@ -53,8 +54,7 @@
     self = [super init];
     if (self)
     {
-        _enabled = [[dictionary objectForKey:@"id"] boolValue];
-
+        _enabled = [[dictionary objectForKey:@"enabled"] boolValue];
         _companyName = [dictionary objectForKey:@"company_name"];
         _logoSmallURL = [[dictionary objectForKey:@"logo"] objectForKey:@"small"];
         _logoMediumURL = [[dictionary objectForKey:@"logo"] objectForKey:@"medium"];

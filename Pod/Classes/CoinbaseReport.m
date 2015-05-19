@@ -23,9 +23,19 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
         [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
 
-        _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
-        _lastRun = [dateFormatter dateFromString:[dictionary objectForKey:@"last_run"]];
-        _nextRun = [dateFormatter dateFromString:[dictionary objectForKey:@"next_run"]];
+        if ([dictionary objectForKey:@"created_at"] != [NSNull null])
+        {
+            _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
+        }
+        if ([dictionary objectForKey:@"last_run"] != [NSNull null])
+        {
+            _lastRun = [dateFormatter dateFromString:[dictionary objectForKey:@"last_run"]];
+
+        }
+        if ([dictionary objectForKey:@"next_run"] != [NSNull null])
+        {
+            _nextRun = [dateFormatter dateFromString:[dictionary objectForKey:@"next_run"]];
+        }
 
         _type = [dictionary objectForKey:@"type"];
         _status = [dictionary objectForKey:@"status"];

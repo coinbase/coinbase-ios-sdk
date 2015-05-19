@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;address&quot;: {
+    &quot;id&quot;: &quot;503c46a4f8182b10650000ad&quot;,
+    &quot;address&quot;: &quot;moLxGrqWNcnGq4A8Caq8EGP4n9GUGWanj4&quot;,
+    &quot;callback_url&quot;: null,
+    &quot;label&quot;: &quot;My Label&quot;,
+    &quot;created_at&quot;: &quot;2013-05-09T23:07:08-07:00&quot;
+  }
+}</string>
+</dict>
+</plist>

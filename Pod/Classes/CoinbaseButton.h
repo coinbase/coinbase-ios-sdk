@@ -11,6 +11,7 @@
 
 @interface CoinbaseButton : NSObject
 
+@property (nonatomic, strong) NSString *buttonID;
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, assign) BOOL subscription;

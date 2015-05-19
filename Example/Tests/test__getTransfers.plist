@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;transfers&quot;: [
+    {
+      &quot;transfer&quot;: {
+        &quot;id&quot;: &quot;544047e346cd9333bd000066&quot;,
+        &quot;type&quot;: &quot;Buy&quot;,
+        &quot;code&quot;: &quot;QPCUCZHR&quot;,
+        &quot;created_at&quot;: &quot;2013-02-27T23:28:18-08:00&quot;,
+        &quot;fees&quot;: {
+          &quot;coinbase&quot;: {
+            &quot;cents&quot;: 14,
+            &quot;currency_iso&quot;: &quot;USD&quot;
+          },
+          &quot;bank&quot;: {
+            &quot;cents&quot;: 15,
+            &quot;currency_iso&quot;: &quot;USD&quot;
+          }
+        },
+        &quot;payout_date&quot;: &quot;2013-03-05T18:00:00-08:00&quot;,
+        &quot;transaction_id&quot;: &quot;5011f33df8182b142400000e&quot;,
+        &quot;status&quot;: &quot;Pending&quot;,
+        &quot;btc&quot;: {
+          &quot;amount&quot;: &quot;1.00000000&quot;,
+          &quot;currency&quot;: &quot;BTC&quot;
+        },
+        &quot;subtotal&quot;: {
+          &quot;amount&quot;: &quot;13.55&quot;,
+          &quot;currency&quot;: &quot;USD&quot;
+        },
+        &quot;total&quot;: {
+          &quot;amount&quot;: &quot;13.84&quot;,
+          &quot;currency&quot;: &quot;USD&quot;
+        },
+        &quot;description&quot;: &quot;Paid for with $13.84 from Test xxxxx3111.&quot;
+      }
+    }
+  ],
+  &quot;total_count&quot;: 1,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

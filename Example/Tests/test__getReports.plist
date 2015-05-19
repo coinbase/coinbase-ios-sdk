@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;reports&quot;: [
+    {
+      &quot;report&quot;: {
+        &quot;id&quot;: &quot;53463bf8137f730e1c000060&quot;,
+        &quot;type&quot;: &quot;orders&quot;,
+        &quot;status&quot;: &quot;completed&quot;,
+        &quot;email&quot;: &quot;admin@example.com&quot;,
+        &quot;repeat&quot;: &quot;never&quot;,
+        &quot;time_range&quot;: &quot;past_30&quot;,
+        &quot;callback_url&quot;: null,
+        &quot;file_url&quot;: &quot;http://localhost:3000&quot;,
+        &quot;times&quot;: -1,
+        &quot;times_run&quot;: 1,
+        &quot;last_run&quot;: &quot;2014-04-09T23:00:00-07:00&quot;,
+        &quot;next_run&quot;: &quot;2014-04-09T23:00:00-07:00&quot;,
+        &quot;created_at&quot;: &quot;2014-04-09T23:36:40-07:00&quot;
+      }
+    }
+  ],
+  &quot;total_count&quot;: 1,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

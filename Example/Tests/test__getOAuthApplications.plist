@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;applications&quot;: [
+    {
+      &quot;id&quot;: &quot;52fe8cf2137f733087000002&quot;,
+      &quot;created_at&quot;: &quot;2014-02-14T13:38:58-08:00&quot;,
+      &quot;name&quot;: &quot;Dummy&quot;,
+      &quot;redirect_uri&quot;: &quot;http://example.com&quot;,
+      &quot;num_users&quot;: 0
+    }
+  ],
+  &quot;total_count&quot;: 1,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

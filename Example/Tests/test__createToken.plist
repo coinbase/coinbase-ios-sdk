@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;token&quot;: {
+    &quot;token_id&quot;: &quot;abc12e821cf6e128afc2e821cf68e12cf68e168e128af21cf682e821cf68e1fe&quot;,
+    &quot;address&quot;: &quot;n3NzN74qGYHSHPhKM1hdts3bF1zV4N1Aa3&quot;
+  }
+}</string>
+</dict>
+</plist>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;account&quot;: {
+    &quot;id&quot;: &quot;53752d3e46cd93c93c00000c&quot;,
+    &quot;name&quot;: &quot;Satoshi Wallet&quot;,
+    &quot;active&quot;: true,
+    &quot;created_at&quot;: &quot;2014-05-15T14:10:22-07:00&quot;,
+    &quot;balance&quot;: {
+      &quot;amount&quot;: &quot;100.00&quot;,
+      &quot;currency&quot;: &quot;GBP&quot;
+    },
+    &quot;native_balance&quot;: {
+      &quot;amount&quot;: &quot;168.14&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;primary&quot;: false
+  }
+}</string>
+</dict>
+</plist>

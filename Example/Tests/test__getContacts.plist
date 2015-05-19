@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;contacts&quot;: [
+    {
+      &quot;contact&quot;: {
+        &quot;email&quot;: &quot;user1@example.com&quot;
+      }
+    },
+    {
+      &quot;contact&quot;: {
+        &quot;email&quot;: &quot;user2@example.com&quot;
+      }
+    }
+  ],
+  &quot;total_count&quot;: 2,
+  &quot;num_pages&quot;: 1,
+  &quot;current_page&quot;: 1
+}</string>
+</dict>
+</plist>

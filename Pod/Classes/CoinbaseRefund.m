@@ -19,9 +19,8 @@
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
-        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+        // Mon, 09 Feb 2015 15:31:05 PST -08:00
+        [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss zzz Z"];
 
         _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;transaction&quot;: {
+    &quot;id&quot;: &quot;53f3d9e0cbf034354a000132&quot;,
+    &quot;inputs&quot;: [
+      {
+        &quot;input&quot;: {
+          &quot;position&quot;: 1,
+          &quot;sighash&quot;: &quot;39ff838374b640f2047218d2f0c9e2e44668b431bc173ca17b081ccc556887f2&quot;,
+          &quot;address&quot;: {
+            &quot;address&quot;: &quot;3MYkv7yGLNguX3Kcv7b834YwstokbgVpsz&quot;,
+            &quot;addresses&quot;: [
+              {
+                &quot;address&quot;: {
+                  &quot;address&quot;: &quot;1DKnVf35bHvyazKd5RcvtDjpR6UDL7mE8n&quot;,
+                  &quot;node_path&quot;: &quot;m/4&quot;
+                }
+              },
+              {
+                &quot;address&quot;: {
+                  &quot;address&quot;: &quot;18stcVaAdZnoxfuZeHwgjaCphGK291Xe6n&quot;,
+                  &quot;node_path&quot;: &quot;m/4&quot;
+                }
+              },
+              {
+                &quot;address&quot;: {
+                  &quot;address&quot;: &quot;13oQ7SZBwfySZFWZFxLyL5YN2vtVscQcsf&quot;,
+                  &quot;node_path&quot;: &quot;m/4&quot;
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}</string>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;address&quot;: &quot;muVu2JZo8PbewBHRp6bpqFvVD87qvqEHWA&quot;,
+  &quot;callback_url&quot;: &quot;http://example.com/callback_url&quot;
+}</string>
+</dict>
+</plist>

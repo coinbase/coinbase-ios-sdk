@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;order&quot;: {
+    &quot;id&quot;: &quot;8QNULQFE&quot;,
+    &quot;created_at&quot;: &quot;2014-02-04T23:36:30-08:00&quot;,
+    &quot;status&quot;: &quot;new&quot;,
+    &quot;total_btc&quot;: {
+      &quot;cents&quot;: 12300000,
+      &quot;currency_iso&quot;: &quot;BTC&quot;
+    },
+    &quot;total_native&quot;: {
+      &quot;cents&quot;: 123,
+      &quot;currency_iso&quot;: &quot;USD&quot;
+    },
+    &quot;custom&quot;: null,
+    &quot;receive_address&quot;: &quot;mnskjZs57dBAmeU2n4csiRKoQcGRF4tpxH&quot;,
+    &quot;button&quot;: {
+      &quot;type&quot;: &quot;buy_now&quot;,
+      &quot;name&quot;: &quot;test&quot;,
+      &quot;description&quot;: null,
+      &quot;id&quot;: &quot;1741b3be1eb5dc50625c48851a94ae13&quot;
+    },
+    &quot;transaction&quot;: null
+  }
+}</string>
+</dict>
+</plist>

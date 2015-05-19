@@ -22,6 +22,7 @@
         _canSell = [[dictionary objectForKey:@"can_sell"] boolValue];
         _type = [dictionary objectForKey:@"type"];
         _verified = [[dictionary objectForKey:@"verified"] boolValue];
+        _accountID = [dictionary objectForKey:@"account_id"];
     }
     return self;
 }

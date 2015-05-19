@@ -15,7 +15,8 @@
     self = [super init];
     if (self)
     {
-        _orderID = [dictionary objectForKey:@"orderID"];
+        _orderID = [dictionary objectForKey:@"id"];
+        _event = [dictionary objectForKey:@"event"];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -35,8 +36,16 @@
         _custom = [dictionary objectForKey:@"custom"];
         _receiveAddress = [dictionary objectForKey:@"receive_address"];
         _button = [[CoinbaseButton alloc] initWithDictionary:[dictionary objectForKey:@"button"]];
-        _transaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"transaction"]];
-        _refundTransaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"refund_transaction"]];
+        _refundAddress = [dictionary objectForKey:@"refund_address"];
+
+        if ([dictionary objectForKey:@"transaction"] != [NSNull null])
+        {
+            _transaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"transaction"]];
+        }
+        if ([dictionary objectForKey:@"refund_transaction"] != [NSNull null])
+        {
+            _refundTransaction = [[CoinbaseTransaction alloc] initWithDictionary:[dictionary objectForKey:@"refund_transaction"]];
+        }
     }
     return self;
 }

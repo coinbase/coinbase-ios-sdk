@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;512db383f8182bd24d000001&quot;,
+    &quot;name&quot;: &quot;User One&quot;,
+    &quot;email&quot;: &quot;user@example.com&quot;,
+    &quot;time_zone&quot;: &quot;Pacific Time (US &amp; Canada)&quot;,
+    &quot;native_currency&quot;: &quot;CAD&quot;,
+    &quot;buy_level&quot;: 1,
+    &quot;sell_level&quot;: 1,
+    &quot;balance&quot;: {
+      &quot;amount&quot;: &quot;49.76000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;buy_limit&quot;: {
+      &quot;amount&quot;: &quot;1000&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    },
+    &quot;sell_limit&quot;: {
+      &quot;amount&quot;: &quot;1000&quot;,
+      &quot;currency&quot;: &quot;USD&quot;
+    }
+  }
+}</string>
+</dict>
+</plist>

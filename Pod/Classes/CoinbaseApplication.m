@@ -26,7 +26,7 @@
         _creationDate = [dateFormatter dateFromString:[dictionary objectForKey:@"created_at"]];
 
         _name = [dictionary objectForKey:@"name"];
-        _redirectURL = [dictionary objectForKey:@"redirectURL"];
+        _redirectURL = [dictionary objectForKey:@"redirect_uri"];
         _numberOfUsers = [[dictionary objectForKey:@"num_users"] unsignedIntegerValue];
         _clientID = [dictionary objectForKey:@"client_id"];
         _clientSecret = [dictionary objectForKey:@"client_secret"];

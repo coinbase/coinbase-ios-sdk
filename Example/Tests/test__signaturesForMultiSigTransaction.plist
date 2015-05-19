@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;success&quot;: true,
+  &quot;transaction&quot;: {
+    &quot;id&quot;: &quot;53f3d9e0cbf034354a000132&quot;,
+    &quot;created_at&quot;: &quot;2014-08-19T16:12:32-07:00&quot;,
+    &quot;hsh&quot;: &quot;bb9199a339e79556be6f9935e12bb189eeaa74bdc7d9bc18191f5a504c840230&quot;,
+    &quot;amount&quot;: {
+      &quot;amount&quot;: &quot;0.10000000&quot;,
+      &quot;currency&quot;: &quot;BTC&quot;
+    },
+    &quot;request&quot;: false,
+    &quot;status&quot;: &quot;pending&quot;,
+    &quot;sender&quot;: {
+      &quot;id&quot;: &quot;52f1b613137f736761000001&quot;,
+      &quot;email&quot;: &quot;user1@example.com&quot;,
+      &quot;name&quot;: &quot;User One&quot;
+    },
+    &quot;recipient&quot;: {
+      &quot;id&quot;: &quot;52f1b61a137f7367610000a6&quot;,
+      &quot;email&quot;: &quot;user2@example.com&quot;,
+      &quot;name&quot;: &quot;User Two&quot;
+    },
+    &quot;recipient_address&quot;: &quot;user2@example.com&quot;,
+    &quot;notes&quot;: &quot;Look ma, spending from a multisig account.&quot;,
+    &quot;idem&quot;: &quot;&quot;,
+    &quot;type&quot;: &quot;multisig&quot;,
+    &quot;signed&quot;: true, 
+    &quot;signatures_required&quot;: 2,
+    &quot;signatures_present&quot;: 2,
+    &quot;signatures_needed&quot;: 0
+  }
+}</string>
+</dict>
+</plist>

@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSString *transferID;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *underscoreType;
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) CoinbasePrice *coinbaseFees;

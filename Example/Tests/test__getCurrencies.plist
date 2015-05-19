@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>[
+  [&quot;Afghan Afghani (AFN)&quot;,&quot;AFN&quot;],
+  [&quot;Albanian Lek (ALL)&quot;,&quot;ALL&quot;],
+  [&quot;Algerian Dinar (DZD)&quot;,&quot;DZD&quot;],
+  [&quot;Zimbabwean Dollar (ZWL)&quot;,&quot;ZWL&quot;]
+]</string>
+</dict>
+</plist>

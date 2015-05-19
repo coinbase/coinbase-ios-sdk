@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>JSON</key>
+	<string>{
+  &quot;subtotal&quot;: {
+    &quot;amount&quot;: &quot;9.90&quot;,
+    &quot;currency&quot;: &quot;USD&quot;
+  },
+  &quot;fees&quot;: [
+    {
+      &quot;coinbase&quot;: {
+        &quot;amount&quot;: &quot;0.10&quot;,
+        &quot;currency&quot;: &quot;USD&quot;
+      }
+    },
+    {
+      &quot;bank&quot;: {
+        &quot;amount&quot;: &quot;0.15&quot;,
+        &quot;currency&quot;: &quot;USD&quot;
+      }
+    }
+  ],
+  &quot;total&quot;: {
+    &quot;amount&quot;: &quot;9.65&quot;,
+    &quot;currency&quot;: &quot;USD&quot;
+  },
+  &quot;amount&quot;: &quot;9.65&quot;,
+  &quot;currency&quot;: &quot;USD&quot;
+}</string>
+</dict>
+</plist>
