@@ -29,8 +29,8 @@
 		D7F146731AFC535B00B13F98 /* test__getAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146721AFC535B00B13F98 /* test__getAccount.plist */; };
 		D7F146751AFC547F00B13F98 /* test__getPrimaryAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */; };
 		D7F146771AFC594900B13F98 /* test__createAccountWithName.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */; };
-		D7F146791AFC59AB00B13F98 /* test__getBalanceForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */; };
-		D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */; };
+		D7F146791AFC59AB00B13F98 /* test__getBalance.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test__getBalance.plist */; };
+		D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddress.plist */; };
 		D7F1467D1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */; };
 		D7F1467F1B003C4600B13F98 /* test__modifyAccount_name_completion.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */; };
 		D7F146811B003DCB00B13F98 /* test__setAccountAsPrimary.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */; };
@@ -94,8 +94,8 @@
 		D7F147491B03184E00B13F98 /* test__getAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146721AFC535B00B13F98 /* test__getAccount.plist */; };
 		D7F1474A1B03184E00B13F98 /* test__getPrimaryAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */; };
 		D7F1474B1B03184E00B13F98 /* test__createAccountWithName.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */; };
-		D7F1474C1B03184E00B13F98 /* test__getBalanceForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */; };
-		D7F1474D1B03184E00B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */; };
+		D7F1474C1B03184E00B13F98 /* test__getBalance.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146781AFC59AB00B13F98 /* test__getBalance.plist */; };
+		D7F1474D1B03184E00B13F98 /* test__getBitcoinAddress.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddress.plist */; };
 		D7F1474E1B03184E00B13F98 /* test__createBitcoinAddressForAccount.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */; };
 		D7F1474F1B03184E00B13F98 /* test__modifyAccount_name_completion.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */; };
 		D7F147501B03184E00B13F98 /* test__setAccountAsPrimary.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */; };
@@ -212,8 +212,8 @@
 		D7F146721AFC535B00B13F98 /* test__getAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getAccount.plist; sourceTree = "<group>"; };
 		D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getPrimaryAccount.plist; sourceTree = "<group>"; };
 		D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createAccountWithName.plist; sourceTree = "<group>"; };
-		D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBalanceForAccount.plist; sourceTree = "<group>"; };
-		D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
+		D7F146781AFC59AB00B13F98 /* test__getBalance.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBalance.plist; sourceTree = "<group>"; };
+		D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getBitcoinAddress.plist; sourceTree = "<group>"; };
 		D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createBitcoinAddressForAccount.plist; sourceTree = "<group>"; };
 		D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__modifyAccount_name_completion.plist; sourceTree = "<group>"; };
 		D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__setAccountAsPrimary.plist; sourceTree = "<group>"; };
@@ -437,8 +437,8 @@
 				D7F146721AFC535B00B13F98 /* test__getAccount.plist */,
 				D7F146741AFC547F00B13F98 /* test__getPrimaryAccount.plist */,
 				D7F146761AFC594900B13F98 /* test__createAccountWithName.plist */,
-				D7F146781AFC59AB00B13F98 /* test__getBalanceForAccount.plist */,
-				D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist */,
+				D7F146781AFC59AB00B13F98 /* test__getBalance.plist */,
+				D7F1467A1AFC5AF800B13F98 /* test__getBitcoinAddress.plist */,
 				D7F1467C1B003B2300B13F98 /* test__createBitcoinAddressForAccount.plist */,
 				D7F1467E1B003C4600B13F98 /* test__modifyAccount_name_completion.plist */,
 				D7F146801B003DCB00B13F98 /* test__setAccountAsPrimary.plist */,
@@ -844,7 +844,7 @@
 				D7F146B71B00728A00B13F98 /* test__createOAuthApplicationWithName_reDirectURL.plist in Resources */,
 				D7F146901B00481B00B13F98 /* test__createBitcoinAddress.plist in Resources */,
 				D7F146B51B00720700B13F98 /* test__getOAuthApplicationWithID.plist in Resources */,
-				D7F146791AFC59AB00B13F98 /* test__getBalanceForAccount.plist in Resources */,
+				D7F146791AFC59AB00B13F98 /* test__getBalance.plist in Resources */,
 				D7F146B01B006B2C00B13F98 /* test__signaturesForMultiSigTransaction.plist in Resources */,
 				D7F146921B004A9100B13F98 /* test__getAuthorizationInformation.plist in Resources */,
 				D7F146DB1B007FBE00B13F98 /* test__createReportWithType_email.plist in Resources */,
@@ -854,7 +854,7 @@
 				D7F146EB1B0083C000B13F98 /* test__getTransactions.plist in Resources */,
 				D7F146C01B00753300B13F98 /* test__refundOrderWithID_refundISOCode.plist in Resources */,
 				D7F146D41B007D7700B13F98 /* test__refundWithID.plist in Resources */,
-				D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */,
+				D7F1467B1AFC5AF800B13F98 /* test__getBitcoinAddress.plist in Resources */,
 				D7F1468B1B0041F300B13F98 /* test__getAccountAddresses.plist in Resources */,
 				D7F147081B008A1C00B13F98 /* test__withdrawAmount_accountID_paymentMethodID.plist in Resources */,
 				D7F146711AFC37C000B13F98 /* test__getAccountsList.plist in Resources */,
@@ -904,8 +904,8 @@
 				D7F147491B03184E00B13F98 /* test__getAccount.plist in Resources */,
 				D7F1474A1B03184E00B13F98 /* test__getPrimaryAccount.plist in Resources */,
 				D7F1474B1B03184E00B13F98 /* test__createAccountWithName.plist in Resources */,
-				D7F1474C1B03184E00B13F98 /* test__getBalanceForAccount.plist in Resources */,
-				D7F1474D1B03184E00B13F98 /* test__getBitcoinAddressForAccount.plist in Resources */,
+				D7F1474C1B03184E00B13F98 /* test__getBalance.plist in Resources */,
+				D7F1474D1B03184E00B13F98 /* test__getBitcoinAddress.plist in Resources */,
 				D7F1474E1B03184E00B13F98 /* test__createBitcoinAddressForAccount.plist in Resources */,
 				D7F1474F1B03184E00B13F98 /* test__modifyAccount_name_completion.plist in Resources */,
 				D7F147501B03184E00B13F98 /* test__setAccountAsPrimary.plist in Resources */,

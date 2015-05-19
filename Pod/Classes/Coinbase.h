@@ -32,6 +32,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     CoinbaseRequestTypeDelete
 };
 
+static id ObjectOrEmptyString(id object)
+{
+    return object ?: @"";
+}
+
 /// The `Coinbase` class is the interface to the Coinbase API. Create a `Coinbase` object using
 /// `coinbaseWithOAuthAccessToken:` or `coinbaseWithApiKey:secret:` to call API methods.
 @interface Coinbase : NSObject
@@ -47,6 +52,17 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 
 /// Create a Coinbase object with no authentication. You can only use unauthenticated APIs with this client.
 + (Coinbase *)unauthenticatedCoinbase;
+
+- (void)doRequestType:(CoinbaseRequestType)type
+                 path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+           completion:(CoinbaseCompletionBlock)completion;
+
+- (void)doRequestType:(CoinbaseRequestType)type
+                 path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              headers:(NSDictionary *)headers
+           completion:(CoinbaseCompletionBlock)completion;
 
 #pragma mark - Accounts
 
@@ -77,21 +93,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 -(void) createAccountWithName:(NSString *)name
                    completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
-///
-/// Get account’s balance - Authenticated resource that returns the user’s current account balance in BTC.
-/// Required scope: balance
-///
 
--(void) getBalanceForAccount:(NSString *)accountID completion:(void(^)(CoinbaseBalance*, NSError*))callback;
-
-///
-/// Get account’s bitcoin address - Authenticated resource that returns the user’s current bitcoin receive address. This can be used to generate scannable QR codes in the bitcoin URI format or to send the receive address to other users.
-/// Required scope: address
-///
-
--(void) getBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback; 
-
-///
 /// Create a new bitcoin address for an account - Authenticated resource that generates a new bitcoin receive address for the user.
 /// Required scope: address
 ///
@@ -104,25 +106,10 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
                             completion:(void(^)(CoinbaseAddress*, NSError*))callback;
 
 ///
-/// Modify an account
-///
-
--(void) modifyAccount:(NSString *)accountID
-                 name:(NSString *)name
-           completion:(void(^)(CoinbaseAccount*, NSError*))callback;
-
-///
-/// Set account as primary - Authenticated resource that lets you set the primary status on a specific account. You must pass the :account_id of the account in the url.
-///
-
--(void) setAccountAsPrimary:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback;
-
-///
 /// Delete an account - Authenticated resource that will delete an account. Only non-primary accounts with zero balance can be deleted.
 ///
 
 -(void) deleteAccount:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback;
-
 #pragma mark - Account Changes
 
 ///
