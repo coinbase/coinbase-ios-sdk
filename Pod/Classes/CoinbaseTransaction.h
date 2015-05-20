@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Coinbase.h"
 #import "CoinbaseBalance.h"
 #import "CoinbaseUser.h"
 
-@interface CoinbaseTransaction : NSObject
+@interface CoinbaseTransaction : Coinbase
 
 @property (nonatomic, strong) NSString *transactionID;
 @property (nonatomic, strong) NSString *hashString;
@@ -34,5 +35,69 @@
 @property (nonatomic, assign) NSUInteger confirmations;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
+
+///
+/// Get signature hashes for each input that needs signing in a spend from multisig transaction - Authenticated resource which lets you fetch signature hashes.
+///
+
+-(void) getSignatureHashes:(void(^)(CoinbaseTransaction*, NSError*))callback;
+
+-(void) getSignatureHashesWithAccountID:(NSString *)accountID
+                             completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
+
+///
+/// Submit required signatures for a multisig spend transaction
+///
+
+/*
+
+ signatures arrays format:
+
+ @[
+    @{
+        @"position": @1,
+        @"signatures":
+        @[
+            @"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",
+            @"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"
+        ]
+    }
+ ];
+
+ */
+
+-(void) requiredSignaturesForMultiSig:(NSArray *)signatures
+                           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
+
+///
+/// Resend bitcoin request - Authenticated resource which lets the user resend a money request.
+/// Required scope: request
+///
+
+-(void) resendRequest:(void(^)(BOOL, NSError*))callback;
+
+-(void) resendRequestWithAccountID:(NSString *)accountID
+                        completion:(void(^)(BOOL, NSError*))callback;
+
+///
+/// Complete bitcoin request - Authenticated resource which lets the recipient of a money request complete the request by sending money to the user who requested the money.
+/// Required scope: request
+///
+
+-(void) completeRequest:(void(^)(CoinbaseTransaction*, NSError*))callback;
+
+-(void) completeRequestWithAccountID:(NSString *)accountID
+                          completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
+
+///
+/// Cancel bitcoin request - Authenticated resource which lets a user cancel a money request.
+/// Required scope: request
+///
+
+-(void) cancelRequest:(void(^)(BOOL, NSError*))callback;
+
+-(void) cancelRequestAccountID:(NSString *)accountID
+                    completion:(void(^)(BOOL, NSError*))callback;
+
 
 @end

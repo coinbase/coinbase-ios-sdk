@@ -48,4 +48,49 @@
     return self;
 }
 
+-(void) commitTransfer:(void(^)(CoinbaseTransfer*, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", _transferID];
+
+    [super doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
+}
+
+-(void) commitTransferWithAccountID:(NSString *)accountID
+                         completion:(void(^)(CoinbaseTransfer*, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : ObjectOrEmptyString(accountID)
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", _transferID];
+
+    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:[response objectForKey:@"transfer"]];
+            callback(transfer, error);
+        }
+    }];
+}
+
 @end

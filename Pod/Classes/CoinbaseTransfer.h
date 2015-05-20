@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Coinbase.h"
 #import "CoinbasePrice.h"
 #import "CoinbaseBalance.h"
 #import "CoinbasePaymentMethod.h"
 
-@interface CoinbaseTransfer : NSObject
+@interface CoinbaseTransfer : Coinbase
 
 @property (nonatomic, strong) NSString *transferID;
 @property (nonatomic, strong) NSString *type;
@@ -32,5 +33,14 @@
 @property (nonatomic, strong) NSString *accountID;
 
 -(id) initWithDictionary:(NSDictionary*)dictionary;
+
+/// Start a transfer that is in the created state - Authenticated resource which completes a transfer that is in the ‘created’ state.
+/// Required scope: transfers
+///
+
+-(void) commitTransfer:(void(^)(CoinbaseTransfer*, NSError*))callback;
+
+-(void) commitTransferWithAccountID:(NSString *)accountID
+                         completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 @end
