@@ -47,4 +47,214 @@
     return self;
 }
 
+-(void) getSignatureHashes:(void(^)(CoinbaseTransaction*, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction , error);
+        }
+    }];
+}
+
+-(void) getSignatureHashesWithAccountID:(NSString *)accountID
+                             completion:(void(^)(CoinbaseTransaction*, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/sighashes", _transactionID];
+
+    NSDictionary *parameters = @{
+                                 @"account_id" : ObjectOrEmptyString(accountID),
+                                 };
+
+    [super doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction , error);
+        }
+    }];
+}
+
+-(void) requiredSignaturesForMultiSig:(NSArray *)signatures
+                           completion:(void(^)(CoinbaseTransaction*, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"signatures": signatures
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/signatures", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction , error);
+        }
+    }];
+}
+
+-(void) resendRequest:(void(^)(BOOL, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/resend_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(NO, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+
+            callback(success , error);
+        }
+    }];
+}
+
+-(void) resendRequestWithAccountID:(NSString *)accountID
+                        completion:(void(^)(BOOL, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : ObjectOrEmptyString(accountID)
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/resend_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(NO, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+
+            callback(success , error);
+        }
+    }];
+}
+
+-(void) completeRequest:(void(^)(CoinbaseTransaction*, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/complete_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction, error);
+        }
+    }];
+}
+
+-(void) completeRequestWithAccountID:(NSString *)accountID
+                          completion:(void(^)(CoinbaseTransaction*, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : ObjectOrEmptyString(accountID)
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/complete_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:[response objectForKey:@"transaction"]];
+            callback(transaction, error);
+        }
+    }];
+}
+
+-(void) cancelRequest:(void(^)(BOOL, NSError*))callback
+{
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/cancel_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypeDelete path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(NO, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+
+            callback(success , error);
+        }
+    }];
+}
+
+-(void) cancelRequestWithAccountID:(NSString *)accountID
+                        completion:(void(^)(BOOL, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"account_id" : ObjectOrEmptyString(accountID)
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"transactions/%@/cancel_request", _transactionID];
+
+    [super doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(NO, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            BOOL success = [[response objectForKey:@"success"] boolValue];
+            
+            callback(success , error);
+        }
+    }];
+}
+
+
 @end

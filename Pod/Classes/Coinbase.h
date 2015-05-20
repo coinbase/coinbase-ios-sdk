@@ -227,13 +227,6 @@ static id ObjectOrEmptyString(id object)
 
 -(void) createOrderForButtonWithID:(NSString *)customValueOrID completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
-///
-/// List orders for a button - Authenticated resource which lets you obtain the orders associated with a given button.
-/// Required scope: buttons or merchant
-///
-
--(void)getOrdersForButtonWithID:(NSString *)customValueOrID completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
-
 #pragma mark - Buys
 
 ///
@@ -302,48 +295,6 @@ static id ObjectOrEmptyString(id object)
                    requiredSignatures:(NSUInteger)requiredSignatures
                              xPubKeys:(NSArray *)xPubKeys
                            completion:(void(^)(CoinbaseAccount*, NSError*))callback;
-
-///
-/// Create a multisig transaction - Authenticated resource which lets you send money to an email or bitcoin address.
-/// Required scope: send
-///
-
-// Use sendAmount:to:completion: below
-
-///
-/// Get signature hashes for each input that needs signing in a spend from multisig transaction - Authenticated resource which lets you fetch signature hashes.
-///
-
--(void) getSignatureHashesWithTransactionID:(NSString *)transactionID
-                                 completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
--(void) getSignatureHashesWithTransactionID:(NSString *)transactionID
-                                  accountID:(NSString *)accountID
-                                 completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-///
-/// Submit required signatures for a multisig spend transaction
-///
-
-/*
-
- signatures arrays format:
-
- @[
-    @{
-        @"position": @1,
-            @"signatures":
-                @[
-            @"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",
-            @"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"
-            ]
-    }
-];
- */
-
--(void) signaturesForMultiSigTransaction:(NSString *)transactionID
-                              signatures:(NSArray *)signatures
-                              completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
 #pragma mark - OAuth Applications
 
@@ -439,22 +390,6 @@ static id ObjectOrEmptyString(id object)
 -(void) getOrderWithID:(NSString *)customFieldOrID
              accountID:(NSString *)accountID
             completion:(void(^)(CoinbaseOrder*, NSError*))callback;
-
-///
-/// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.
-/// Required scope: orders or merchant
-///
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
-
--(void) refundOrderWithID:(NSString *)customFieldOrID
-            refundISOCode:(NSString *)refundISOCode
-             mispaymentID:(NSString *)mispaymentID
-    externalRefundAddress:(NSString *)externalRefundAddress
-               instantBuy:(BOOL)instantBuy
-               completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 
 #pragma mark - Payment Methods
 
@@ -744,42 +679,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
             accountID:(NSString *)accountID
            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
-///
-/// Resend bitcoin request - Authenticated resource which lets the user resend a money request.
-/// Required scope: request
-///
-
--(void) resendRequestWithID:(NSString *)transactionID
-                 completion:(void(^)(BOOL, NSError*))callback;
-
--(void) resendRequestWithID:(NSString *)transactionID
-                  accountID:(NSString *)accountID
-                 completion:(void(^)(BOOL, NSError*))callback;
-
-///
-/// Complete bitcoin request - Authenticated resource which lets the recipient of a money request complete the request by sending money to the user who requested the money.
-/// Required scope: request
-///
-
--(void) completeRequestWithID:(NSString *)transactionID
-                   completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
--(void) completeRequestWithID:(NSString *)transactionID
-                    accountID:(NSString *)accountID
-                   completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-///
-/// Cancel bitcoin request - Authenticated resource which lets a user cancel a money request.
-/// Required scope: request
-///
-
--(void) cancelRequestWithID:(NSString *)transactionID
-                 completion:(void(^)(BOOL, NSError*))callback;
-
--(void) cancelRequestWithID:(NSString *)transactionID
-                  accountID:(NSString *)accountID
-                 completion:(void(^)(BOOL, NSError*))callback;
-
 
 #pragma mark - Transfers
 
@@ -806,17 +705,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 -(void) transferWithID:(NSString *)transferID
              accountID:(NSString *)accountID
             completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
-
-/// Start a transfer that is in the created state - Authenticated resource which completes a transfer that is in the ‘created’ state.
-/// Required scope: transfers
-///
-
--(void) commitTransferWithID:(NSString *)transferID
-                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
-
--(void) commitTransferWithID:(NSString *)transferID
-                   accountID:(NSString *)accountID
-                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Users
 

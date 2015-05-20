@@ -49,4 +49,61 @@
     }
     return self;
 }
+
+-(void) refundOrderWithRefundISOCode:(NSString *)refundISOCode
+                          completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : ObjectOrEmptyString(refundISOCode)
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", _orderID];
+
+    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
+}
+
+-(void) refundOrderWithRefundISOCode:(NSString *)refundISOCode
+                        mispaymentID:(NSString *)mispaymentID
+               externalRefundAddress:(NSString *)externalRefundAddress
+                          instantBuy:(BOOL)instantBuy
+                          completion:(void(^)(CoinbaseOrder*, NSError*))callback;
+{
+    NSDictionary *parameters = @{
+                                 @"refund_iso_code" : ObjectOrEmptyString(refundISOCode),
+                                 @"mispayment_id" : ObjectOrEmptyString(mispaymentID),
+                                 @"external_refund_address" : ObjectOrEmptyString(externalRefundAddress),
+                                 @"instant_buy" : instantBuy ? @"true" : @"false"
+                                 };
+
+    NSString *path = [NSString stringWithFormat:@"orders/%@/refund", _orderID];
+
+    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:[response objectForKey:@"order"]];
+            callback(order, error);
+        }
+    }];
+}
+
 @end
