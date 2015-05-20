@@ -84,16 +84,27 @@ See the `Example` folder for a fully functional example.
 
 ## Usage
 
-After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://developers.coinbase.com/api](https://developers.coinbase.com/api) can be called using the `doGet`, `doPost`, `doPut` and `doDelete` methods on `Coinbase`. Example:
+After creating a `Coinbase` object using one of the authentication methods above, the API methods at [https://developers.coinbase.com/api](https://developers.coinbase.com/api) can be called using the convenience methods on `Coinbase`. Example:
 
 ```objective-c
-[apiClient doGet:@"users/self" parameters:nil completion:^(id result, NSError *error) {
+[apiClient getCurrentUser:^(CoinbaseUser *user, NSError *error) {
     if (error) {
         NSLog(@"Could not load user: %@", error);
     } else {
-        NSLog(@"Signed in as: %@", [[result objectForKey:@"user"] objectForKey:@"email"]);
+        NSLog(@"Signed in as: %@", user.email);
     }
 }];
+
+CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"536a541fa9393bb3c7000034"}];
+
+[account getBalance:^(CoinbaseBalance *balance, NSError *error) {
+    if (error) {
+        NSLog(@"Could not get balance: %@", error);
+    } else {
+        NSLog(@"User's balance: %@ in %@", balance.amount, balance.currency);
+    }
+}];
+
 ```
 
 ## License
