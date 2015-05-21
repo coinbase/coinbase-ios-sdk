@@ -398,7 +398,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST setAccountAsPrimary"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"53752d3e46cd93c93c00000c"}];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c"
+                                                            client: self.client];
 
     [account setAsPrimary:^(BOOL success, NSError *error) {
 
@@ -770,7 +771,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getOrdersForButtonWithID"];
 
-    CoinbaseButton *button = [[CoinbaseButton alloc] initWithDictionary:@{@"id" : @"93865b9cae83706ae59220c013bc0afd"}];
+    CoinbaseButton *button = [[CoinbaseButton alloc] initWithID:@"93865b9cae83706ae59220c013bc0afd"
+                                                         client:self.client];
 
     [button getOrdersForButton:^(NSArray *orders, CoinbasePagingHelper *paging, NSError *error) {
 
@@ -1059,7 +1061,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getSignatureHashesWithTransactionID"];
 
-    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:@{@"id" : @"53f3d9e0cbf034354a000132"}];
+    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithID:@"53f3d9e0cbf034354a000132"
+                                                                        client:self.client];
 
     [transaction getSignatureHashes:^(CoinbaseTransaction *transaction, NSError *error) {
 
@@ -1088,7 +1091,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"PUT signaturesForMultiSigTransaction"];
 
-    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:@{@"id" : @"53f3d9e0cbf034354a000132"}];
+    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithID:@"53f3d9e0cbf034354a000132"
+                                                                        client:self.client];
 
     [transaction requiredSignaturesForMultiSig:@[@"304502206f73b2147662c70fb6a951e6ddca79ce1e800a799be543d13c9d22817affb997022100b32a96c20a514783cc5135dde9a8a9608b0b55b6c0db01d553c77c544034274d",@"304502204930529e97c2c75bbc3b07a365cf691f5bf319bf0a54980785bb525bd996cb1a022100a7e9e3728444a39c7a45822c3c773a43a888432dfe767ea17e1fab8ac2bfc83f"] completion:^(CoinbaseTransaction *transaction, NSError *error) {
 
@@ -1359,7 +1363,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST refundOrderWithID_refundISOCode"];
 
-    CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithDictionary:@{@"id" : @"A7C52JQT"}];
+    CoinbaseOrder *order = [[CoinbaseOrder alloc] initWithID:@"A7C52JQT"
+                                                      client:self.client];
 
     [order refundOrderWithRefundISOCode:@"BTC" completion:^(CoinbaseOrder *order, NSError *error) {
 
@@ -2252,7 +2257,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"PUT resendRequestWithID"];
 
-    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:@{@"id" : @"501a3554f8182b2754000003"}];
+    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithID:@"501a3554f8182b2754000003"
+                                                                        client:self.client];
     
     [transaction resendRequest:^(BOOL success, NSError *error) {
 
@@ -2276,7 +2282,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"PUT completeRequestWithID"];
 
-    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:@{@"id" : @"501a3554f8182b2754000003"}];
+    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithID:@"501a3554f8182b2754000003"
+                                                                        client:self.client];
 
     [transaction completeRequest:^(CoinbaseTransaction *transaction, NSError *error) {
 
@@ -2318,7 +2325,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"DELETE cancelRequestWithID"];
 
-    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithDictionary:@{@"id" : @"501a3554f8182b2754000003"}];
+    CoinbaseTransaction *transaction = [[CoinbaseTransaction alloc] initWithID:@"501a3554f8182b2754000003"
+                                                                        client:self.client];
 
     [transaction cancelRequest:^(BOOL success, NSError *error) {
 
@@ -2443,7 +2451,8 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST commitTransferWithID"];
 
-    CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithDictionary:@{@"id" : @"5474d23a629122e172000238"}];
+    CoinbaseTransfer *transfer = [[CoinbaseTransfer alloc] initWithID:@"5474d23a629122e172000238"
+                                                               client:self.client];
 
     [transfer commitTransfer:^(CoinbaseTransfer *transfer, NSError *error) {
 

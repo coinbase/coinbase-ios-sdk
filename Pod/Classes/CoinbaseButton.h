@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Coinbase.h"
 #import "CoinbasePrice.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseButton : Coinbase
+@interface CoinbaseButton : CoinbaseObject
 
 @property (nonatomic, strong) NSString *buttonID;
 @property (nonatomic, strong) NSString *code;
@@ -23,8 +24,6 @@
 @property (nonatomic, strong) NSString *custom;
 @property (nonatomic, strong) NSString *callbackURL;
 @property (nonatomic, strong) CoinbasePrice *price;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 ///
 /// List orders for a button - Authenticated resource which lets you obtain the orders associated with a given button.

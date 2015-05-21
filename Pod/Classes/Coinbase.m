@@ -166,9 +166,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
             path = [path stringByAppendingString:@"?"];
             path = [path stringByAppendingString:[parts componentsJoinedByString:@"&"]];
         }
-
-         NSLog(@"path = %@", path);
-
     } else if (parameters) {
         // POST body is encoded as JSON
         NSError *error = nil;

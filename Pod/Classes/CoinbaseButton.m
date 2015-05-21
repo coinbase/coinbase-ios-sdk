@@ -31,11 +31,22 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.buttonID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
 -(void)getOrdersForButton:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 {
     NSString *path = [NSString stringWithFormat:@"buttons/%@/orders", _buttonID];
 
-    [super doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseCurrency : NSObject
+@interface CoinbaseCurrency : CoinbaseObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *iso;
-
--(id) initWithArray:(NSArray*)array;
 
 @end

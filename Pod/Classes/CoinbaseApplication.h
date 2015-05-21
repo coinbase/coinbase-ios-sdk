@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseApplication : NSObject
+@interface CoinbaseApplication : CoinbaseObject
 
 @property (nonatomic, strong) NSString *applicationID;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -17,7 +18,5 @@
 @property (nonatomic, assign) NSUInteger numberOfUsers;
 @property (nonatomic, strong) NSString *clientID;
 @property (nonatomic, strong) NSString *clientSecret;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

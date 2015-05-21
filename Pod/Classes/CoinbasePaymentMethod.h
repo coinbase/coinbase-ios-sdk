@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbasePaymentMethod : NSObject
+@interface CoinbasePaymentMethod : CoinbaseObject
 
 @property (nonatomic, strong) NSString *paymentMethodID;
 @property (nonatomic, strong) NSString *name;
@@ -18,7 +19,5 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, assign) BOOL verified;
 @property (nonatomic, strong) NSString *accountID;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseReport : NSObject
+@interface CoinbaseReport : CoinbaseObject
 
 @property (nonatomic, strong) NSString *reportID;
 @property (nonatomic, strong) NSString *type;
@@ -28,7 +29,5 @@
 @property (nonatomic, strong) NSString *nextRunDate;
 @property (nonatomic, strong) NSString *nextRunTime;
 @property (nonatomic, strong) NSDate *creationDate;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

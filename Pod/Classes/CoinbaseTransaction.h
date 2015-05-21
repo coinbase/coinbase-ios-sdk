@@ -10,8 +10,9 @@
 #import "Coinbase.h"
 #import "CoinbaseBalance.h"
 #import "CoinbaseUser.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseTransaction : Coinbase
+@interface CoinbaseTransaction : CoinbaseObject
 
 @property (nonatomic, strong) NSString *transactionID;
 @property (nonatomic, strong) NSString *hashString;
@@ -33,8 +34,6 @@
 @property (nonatomic, assign) NSUInteger signaturesNeeded;
 @property (nonatomic, strong) NSArray *inputArray;
 @property (nonatomic, assign) NSUInteger confirmations;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 ///
 /// Get signature hashes for each input that needs signing in a spend from multisig transaction - Authenticated resource which lets you fetch signature hashes.
@@ -96,8 +95,8 @@
 
 -(void) cancelRequest:(void(^)(BOOL, NSError*))callback;
 
--(void) cancelRequestAccountID:(NSString *)accountID
-                    completion:(void(^)(BOOL, NSError*))callback;
+-(void) cancelRequestWithAccountID:(NSString *)accountID
+                        completion:(void(^)(BOOL, NSError*))callback;
 
 
 @end

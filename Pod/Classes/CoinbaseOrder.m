@@ -50,6 +50,17 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.orderID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
 -(void) refundOrderWithRefundISOCode:(NSString *)refundISOCode
                           completion:(void(^)(CoinbaseOrder*, NSError*))callback;
 {
@@ -59,7 +70,7 @@
 
     NSString *path = [NSString stringWithFormat:@"orders/%@/refund", _orderID];
 
-    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
@@ -90,7 +101,7 @@
 
     NSString *path = [NSString stringWithFormat:@"orders/%@/refund", _orderID];
 
-    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

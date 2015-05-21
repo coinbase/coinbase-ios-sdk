@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CoinbaseBalance.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseAccountChange : NSObject
+@interface CoinbaseAccountChange : CoinbaseObject
 
 @property (nonatomic, strong) NSString *accountChangesID;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -44,7 +45,5 @@
 @property (nonatomic, assign) BOOL notesPresent;
 
 @property (nonatomic, strong) CoinbaseBalance *amount;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
