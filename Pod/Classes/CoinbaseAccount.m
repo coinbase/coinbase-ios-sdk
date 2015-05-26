@@ -41,11 +41,22 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.accountID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
 -(void) getBalance:(void(^)(CoinbaseBalance*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@/balance", _accountID];
 
-    [super doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
@@ -65,7 +76,7 @@
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@/address", _accountID];
 
-    [super doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypeGet path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
@@ -89,7 +100,7 @@
 
     NSString *path = [NSString stringWithFormat:@"accounts/%@", _accountID];
 
-    [super doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
@@ -109,7 +120,7 @@
 {
     NSString *path = [NSString stringWithFormat:@"accounts/%@/primary", _accountID];
 
-    [super doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

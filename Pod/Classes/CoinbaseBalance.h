@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseBalance : NSObject
+@interface CoinbaseBalance : CoinbaseObject
 
 @property (nonatomic, strong) NSString *amount;
 @property (nonatomic, strong) NSString *currency;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

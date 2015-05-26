@@ -11,8 +11,9 @@
 #import "CoinbasePrice.h"
 #import "CoinbaseButton.h"
 #import "CoinbaseTransaction.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseOrder : Coinbase
+@interface CoinbaseOrder : CoinbaseObject
 
 @property (nonatomic, strong) NSString *orderID;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -29,8 +30,6 @@
 @property (nonatomic, strong) CoinbaseTransaction *transaction;
 @property (nonatomic, strong) CoinbaseTransaction *refundTransaction;
 @property (nonatomic, strong) NSString *refundAddress;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 ///
 /// Refund an order - Authenticated resource which refunds an order or a mispayment to an order. Returns a snapshot of the order data, updated with refund transaction details.

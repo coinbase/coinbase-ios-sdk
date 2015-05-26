@@ -13,6 +13,6 @@
 @property (nonatomic, assign) NSUInteger currentPage;
 @property (nonatomic, assign) NSUInteger totalPages;
 
--(id) initWithDictionary:(NSDictionary*)dictionary;
+-(id) initWithDictionary:(NSDictionary*) dictionary;
 
 @end

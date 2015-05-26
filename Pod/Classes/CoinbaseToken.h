@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseToken : NSObject
+@interface CoinbaseToken : CoinbaseObject
 
 @property (nonatomic, strong) NSString *tokenID;
 @property (nonatomic, strong) NSString *address;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

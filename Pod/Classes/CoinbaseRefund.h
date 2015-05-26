@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CoinbasePrice.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseRefund : NSObject
+@interface CoinbaseRefund : CoinbaseObject
 
 @property (nonatomic, strong) NSString *refundID;
 @property (nonatomic, strong) NSDate *creationDate;
@@ -19,7 +20,5 @@
 @property (nonatomic, strong) NSString *transactionID;
 @property (nonatomic, strong) NSString *refundableID;
 @property (nonatomic, strong) NSString *refundableType;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

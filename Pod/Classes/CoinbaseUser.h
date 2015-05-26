@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "CoinbaseBalance.h"
+#import "CoinbaseObject.h"
 
 @class CoinbaseMerchant;
 
-@interface CoinbaseUser : NSObject
+@interface CoinbaseUser : CoinbaseObject
 
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *name;
@@ -28,12 +29,10 @@
 @property (nonatomic, strong) CoinbaseBalance *sellLimit;
 @property (nonatomic, strong) NSString *avatarURL;
 
--(id) initWithDictionary:(NSDictionary*)dictionary;
-
 @end
 
 
-@interface CoinbaseMerchant : NSObject
+@interface CoinbaseMerchant : CoinbaseObject
 
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSString *companyName;
@@ -41,6 +40,5 @@
 @property (nonatomic, strong) NSString *logoMediumURL;
 @property (nonatomic, strong) NSString *logoURL;
 
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end

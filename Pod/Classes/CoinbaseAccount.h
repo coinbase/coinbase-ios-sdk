@@ -10,8 +10,9 @@
 #import "CoinbaseBalance.h"
 #import "CoinbaseAddress.h"
 #import "Coinbase.h"
+#import "CoinbaseObject.h"
 
-@interface CoinbaseAccount : Coinbase
+@interface CoinbaseAccount : CoinbaseObject
 
 @property (nonatomic, assign, getter=isActive) BOOL active;
 @property (nonatomic, strong) CoinbaseBalance *balance;
@@ -24,7 +25,6 @@
 @property (nonatomic, strong) NSString *m;
 @property (nonatomic, strong) NSString *n;
 
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 ///
 /// Get account’s balance - Authenticated resource that returns the user’s current account balance in BTC.

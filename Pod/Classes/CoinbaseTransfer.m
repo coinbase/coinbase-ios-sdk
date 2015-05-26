@@ -48,11 +48,22 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.transferID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
 -(void) commitTransfer:(void(^)(CoinbaseTransfer*, NSError*))callback
 {
     NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", _transferID];
 
-    [super doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePost path:path parameters:nil headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {
@@ -77,7 +88,7 @@
 
     NSString *path = [NSString stringWithFormat:@"transfers/%@/commit", _transferID];
 
-    [super doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
+    [self.client doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
         {

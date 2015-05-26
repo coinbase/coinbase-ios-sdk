@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseDefines.h"
+#import "CoinbaseObject.h"
 #import "CoinbasePagingHelper.h"
 
 @class CoinbaseAccount;
@@ -21,7 +22,6 @@
 @class CoinbaseMerchant;
 @class CoinbaseUser;
 @class CoinbaseToken;
-
 @class CoinbasePagingHelper;
 
 /// HTTP methods for use with the Coinbase API.

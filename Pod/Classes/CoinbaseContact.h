@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoinbaseObject.h"
 
-@interface CoinbaseContact : NSObject
+@interface CoinbaseContact : CoinbaseObject
 
 @property (nonatomic, strong) NSString *email;
-
--(id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
