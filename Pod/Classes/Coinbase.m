@@ -2754,14 +2754,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
     }];
 }
 
-- (void)postMultipart:(NSString *)path
-           parameters:(NSDictionary *)parameters
-              headers:(NSDictionary *)headers
-           completion:(CoinbaseCompletionBlock)completion
-{
-    [self doRequestType:CoinbaseRequestTypePostMultiPart path:path parameters:parameters headers:headers completion:completion];
-}
-
 #pragma mark -
 
 + (NSString *)URLEncodedStringFromString:(NSString *)string

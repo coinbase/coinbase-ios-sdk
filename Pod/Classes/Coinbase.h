@@ -65,12 +65,6 @@ static id ObjectOrEmptyString(id object)
               headers:(NSDictionary *)headers
            completion:(CoinbaseCompletionBlock)completion;
 
-/// Make a POST multipart request to the Coinbase API.
-- (void)postMultipart:(NSString *)path
-           parameters:(NSDictionary *)parameters
-              headers:(NSDictionary *)headers
-           completion:(CoinbaseCompletionBlock)completion;
-
 #pragma mark - Accounts
 
 ///
