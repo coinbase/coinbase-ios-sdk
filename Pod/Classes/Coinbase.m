@@ -136,7 +136,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
               headers:(NSDictionary *)headers
            completion:(CoinbaseCompletionBlock)completion {
 
-    NSData *body = nil;
+    NSMutableData *body = nil;
+    NSString *kBoundaryConstant = [NSString stringWithFormat:@"----------%@", [[NSProcessInfo processInfo] globallyUniqueString]];
+
     if (type == CoinbaseRequestTypeGet || type == CoinbaseRequestTypeDelete) {
         // Parameters need to be appended to URL
         NSMutableArray *parts = [NSMutableArray array];
@@ -166,10 +168,35 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
             path = [path stringByAppendingString:@"?"];
             path = [path stringByAppendingString:[parts componentsJoinedByString:@"&"]];
         }
-    } else if (parameters) {
+    }
+    else if (type == CoinbaseRequestTypePostMultiPart) {
+
+        body = [NSMutableData data];
+
+        for (NSString *param in parameters) {
+            if ([[parameters objectForKey:param] isKindOfClass:[NSString class]]) {
+                [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kBoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:param]] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else if ([[parameters objectForKey:param] isKindOfClass:[UIImage class]]) {
+                NSData *imageData = UIImagePNGRepresentation([parameters objectForKey:param]);
+                if (imageData) {
+                    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kBoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+                    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.png\"\r\n", param] dataUsingEncoding:NSUTF8StringEncoding]];
+                    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                    [body appendData:imageData];
+                    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                }
+            }
+        }
+
+        [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", kBoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    else if (parameters) {
         // POST body is encoded as JSON
         NSError *error = nil;
-        body = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
+        body = (NSMutableData*)[NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];
         if (error) {
             completion(nil, error);
             return;
@@ -196,6 +223,13 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         case CoinbaseRequestTypePut:
             [request setHTTPMethod:@"PUT"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            break;
+        case CoinbaseRequestTypePostMultiPart:
+            [request setHTTPMethod:@"POST"];
+            [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", kBoundaryConstant] forHTTPHeaderField:@"Content-Type"];
+
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
             break;
     }
 

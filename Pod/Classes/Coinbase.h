@@ -29,7 +29,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     CoinbaseRequestTypeGet,
     CoinbaseRequestTypePost,
     CoinbaseRequestTypePut,
-    CoinbaseRequestTypeDelete
+    CoinbaseRequestTypeDelete,
+    CoinbaseRequestTypePostMultiPart
 };
 
 static id ObjectOrEmptyString(id object)
