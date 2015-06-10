@@ -29,7 +29,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     CoinbaseRequestTypeGet,
     CoinbaseRequestTypePost,
     CoinbaseRequestTypePut,
-    CoinbaseRequestTypeDelete
+    CoinbaseRequestTypeDelete,
+    CoinbaseRequestTypePostMultiPart
 };
 
 static id ObjectOrEmptyString(id object)
@@ -60,6 +61,12 @@ static id ObjectOrEmptyString(id object)
 
 - (void)doRequestType:(CoinbaseRequestType)type
                  path:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              headers:(NSDictionary *)headers
+           completion:(CoinbaseCompletionBlock)completion;
+
+/// Make a POST multipart request to the Coinbase API.
+- (void)postMultipart:(NSString *)path
            parameters:(NSDictionary *)parameters
               headers:(NSDictionary *)headers
            completion:(CoinbaseCompletionBlock)completion;
