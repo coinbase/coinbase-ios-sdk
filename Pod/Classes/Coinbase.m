@@ -123,6 +123,73 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     return HMAC;
 }
 
+- (void)doGet:(NSString *)path
+   parameters:(NSDictionary *)parameters
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters completion:completion];
+}
+
+- (void)doPost:(NSString *)path
+    parameters:(NSDictionary *)parameters
+    completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters completion:completion];
+}
+
+- (void)doPut:(NSString *)path
+   parameters:(NSDictionary *)parameters
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters completion:completion];
+}
+
+- (void)doDelete:(NSString *)path
+      parameters:(NSDictionary *)parameters
+      completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters completion:completion];
+}
+
+- (void)doGet:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeGet path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doPost:(NSString *)path
+    parameters:(NSDictionary *)parameters
+       headers:(NSDictionary *)headers
+    completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePost path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doPut:(NSString *)path
+   parameters:(NSDictionary *)parameters
+      headers:(NSDictionary *)headers
+   completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypePut path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doDelete:(NSString *)path
+      parameters:(NSDictionary *)parameters
+         headers:(NSDictionary *)headers
+      completion:(CoinbaseCompletionBlock)completion {
+    [self doRequestType:CoinbaseRequestTypeDelete path:path parameters:parameters headers:headers completion:completion];
+}
+
+- (void)doPostMultipart:(NSString *)path
+             parameters:(NSDictionary *)parameters
+             completion:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypePostMultiPart path:path parameters:parameters completion:completion];
+}
+
+- (void)doPostMultipart:(NSString *)path
+           parameters:(NSDictionary *)parameters
+              headers:(NSDictionary *)headers
+           completion:(CoinbaseCompletionBlock)completion
+{
+    [self doRequestType:CoinbaseRequestTypePostMultiPart path:path parameters:parameters headers:headers completion:completion];
+}
+
 - (void)doRequestType:(CoinbaseRequestType)type
                  path:(NSString *)path
            parameters:(NSDictionary *)parameters
