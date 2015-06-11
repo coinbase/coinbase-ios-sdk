@@ -19,6 +19,7 @@
 
 @property (nonatomic, retain) Coinbase *client;
 @property (nonatomic, strong) NSString *accessToken;
+@property (nonatomic, assign, getter=isLoggedIn) BOOL loggedIn;
 
 @end
 
@@ -34,21 +35,36 @@
     {
         self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
     }
+
+    [self updateUI];
 }
 
--(void) viewDidAppear:(BOOL)animated
+-(void) viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
-     [self updateUI];
+    [self updateUI];
 }
 
-- (IBAction)startAuthentication:(id)sender {
-    // Launch the web browser or Coinbase app to authenticate the user.
-    [CoinbaseOAuth startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
-                                                  scope:@"all"
-                                            redirectUri:@"org.cocoapods.demo.coinbase.coinbase-oauth://coinbase-oauth"
-                                                   meta:nil];
+- (IBAction)handleAuthentication:(id)sender {
+
+    if (self.isLoggedIn == NO)
+    {
+        // Launch the web browser or Coinbase app to authenticate the user.
+        [CoinbaseOAuth startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
+                                                      scope:@"balance addresses buttons buy contacts deposit orders sell transactions request transfer transfers user recurring_payments oauth_apps reports withdraw"
+                                                redirectUri:@"org.cocoapods.demo.coinbase.coinbase-oauth://coinbase-oauth"
+                                                       meta:nil];
+    }
+    else
+    {
+        self.loggedIn = NO;
+        self.client = nil;
+        self.accessToken = nil;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"access_token"];
+
+        [self updateUI];
+    }
 }
 
 - (void)authenticationComplete:(NSDictionary *)response
@@ -66,6 +82,8 @@
 
     // Now that we are authenticated, load some data
     self.client = [Coinbase coinbaseWithOAuthAccessToken:self.accessToken];
+
+    self.loggedIn = YES;
 
     [self updateUI];
 }
@@ -110,7 +128,7 @@
 
 -(void) updateUI
 {
-    if (self.accessToken)
+    if (self.isLoggedIn == YES)
     {
         self.listTransactionsButton.enabled = self.listUserAccountsButton.enabled = self.refreshTokenButton.enabled = YES;
 
@@ -152,13 +170,13 @@
             }
         }];
 
-        self.authenticationButton.titleLabel.text = @"Sign Out of Coinbase";
+        [self.authenticationButton setTitle:@"Sign Out of Coinbase" forState:UIControlStateNormal];
     }
     else
     {
         self.listTransactionsButton.enabled = self.listUserAccountsButton.enabled = self.refreshTokenButton.enabled = NO;
 
-        self.authenticationButton.titleLabel.text = @"Sign in with Coinbase";
+        [self.authenticationButton setTitle:@"Sign in with Coinbase" forState:UIControlStateNormal];
     }
 }
 
