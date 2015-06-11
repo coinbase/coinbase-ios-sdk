@@ -10,7 +10,7 @@
 
 @interface CoinbaseViewController : UIViewController
 
-- (IBAction)startAuthentication:(id)sender;
+- (IBAction)handleAuthentication:(id)sender;
 - (void)authenticationComplete:(NSDictionary *)response;
 - (IBAction)refreshTokens:(id)sender;
 

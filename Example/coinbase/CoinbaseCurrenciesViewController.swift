@@ -15,7 +15,7 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
         Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
 
             if let error = error {
-                NSLog("Error: \(error)")
+                let alertView = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
             } else {
                 self.currencies = (response as? [CoinbaseCurrency])!
                 self.tableView.reloadData()

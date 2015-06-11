@@ -32,7 +32,11 @@
          {
              if (error)
              {
-                 NSLog(@"Could not load: %@", error);
+                 [[[UIAlertView alloc] initWithTitle:@"Error"
+                                             message:[NSString stringWithFormat:@"Could not load: %@", error.localizedDescription]
+                                            delegate:nil
+                                   cancelButtonTitle:@"OK"
+                                   otherButtonTitles:nil] show];
              }
              else
              {
