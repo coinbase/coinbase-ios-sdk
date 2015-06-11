@@ -149,51 +149,11 @@ static id ObjectOrEmptyString(id object)
 -(void) createAccountWithName:(NSString *)name
                    completion:(void(^)(CoinbaseAccount*, NSError*))callback;
 
-
-/// Create a new bitcoin address for an account - Authenticated resource that generates a new bitcoin receive address for the user.
-/// Required scope: address
-///
-
--(void) createBitcoinAddressForAccount:(NSString *)accountID completion:(void(^)(CoinbaseAddress*, NSError*))callback;
-
--(void) createBitcoinAddressForAccount:(NSString *)accountID
-                                 label:(NSString *)label
-                           callBackURL:(NSString *)callBackURL
-                            completion:(void(^)(CoinbaseAddress*, NSError*))callback;
-
 ///
 /// Delete an account - Authenticated resource that will delete an account. Only non-primary accounts with zero balance can be deleted.
 ///
 
 -(void) deleteAccount:(NSString *)accountID completion:(void(^)(BOOL, NSError*))callback;
-#pragma mark - Account Changes
-
-///
-/// List changes to an account - Authenticated resource which returns all related changes to an account. This is an alternative to the list transactions api call. It is designed to be faster and provide more detail so you can generate an overview/summary of individual account and their recent changes.
-/// Required scope: transactions
-///
-
--(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
-
--(void) getAccountChangesWithPage:(NSUInteger)page
-                            limit:(NSUInteger)limit
-                        accountId:(NSString *)accountId
-                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
-
-#pragma mark - Addresses
-
-///
-/// List bitcoin addresses - Authenticated resource that returns bitcoin addresses a user has associated with their account.
-/// Required scope: addresses
-///
-
--(void) getAccountAddresses:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
-
--(void) getAccountAddressesWithPage:(NSUInteger)page
-                              limit:(NSUInteger)limit
-                          accountId:(NSString *)accountId
-                              query:(NSString *)query
-                         completion:(void(^)(NSArray*, CoinbasePagingHelper*, NSError*))callback;
 
 ///
 /// Show bitcoin address - Authenticated resource that returns a bitcoin address with its id or address.
@@ -326,19 +286,6 @@ static id ObjectOrEmptyString(id object)
 ///
 
 -(void) getExchangeRates:(void(^)(NSDictionary*, NSError*))callback;
-
-#pragma mark - Deposits
-
-///
-/// Deposit USD - Authenticated resource that lets you deposit USD into a USD wallet. You must have a valid USD wallet and bank account connected to use this endpoint.
-/// Required scope: deposit
-///
-
--(void) makeDepositToAccount:(NSString *)accountID
-                      amount:(NSString *)amount
-             paymentMethodId:(NSString *)paymentMethodId
-                      commit:(BOOL)commit
-                  completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
 
 #pragma mark - Multisig
 
@@ -659,83 +606,6 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                 accountID:(NSString *)accountID
                completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
 
-///
-/// Send money - Authenticated resource which lets you send money to an email address, bitcoin address or Coinbase account ID.
-/// Required scope: send
-///
-
--(void) sendAmount:(NSString *)amount
-                to:(NSString *)to
-        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-/// Bitcoin amount
-
--(void) sendAmount:(NSString *)amount
-                to:(NSString *)to
-             notes:(NSString *)notes
-           userFee:(NSString *)userFeeString
-        referrerID:(NSString *)referrerID
-              idem:(NSString *)idem
-        instantBuy:(BOOL)instantBuy
-           orderID:(NSString *)orderID
-         accountID:(NSString *)accountID
-        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-/// Currency amount
-
--(void) sendAmount:(NSString *)amount
- amountCurrencyISO:(NSString *)amountCurrencyISO
-                to:(NSString *)to
-             notes:(NSString *)notes
-           userFee:(NSString *)userFeeString
-        referrerID:(NSString *)referrerID
-              idem:(NSString *)idem
-        instantBuy:(BOOL)instantBuy
-           orderID:(NSString *)orderID
-         accountID:(NSString *)accountID
-        completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-///
-/// Transfer money between accounts - Authenticated resource which lets you transfer bitcoin between authenticated user’s accounts.
-/// Required scope: transfer
-///
-
--(void) transferAmount:(NSString *)amount
-                    to:(NSString *)to
-            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
--(void) transferAmount:(NSString *)amount
-                    to:(NSString *)to
-             accountID:(NSString *)accountID
-            completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-///
-/// Request money - Authenticated resource which lets the user request money from an email address.
-/// Required scope: request
-///
-
--(void) requestAmount:(NSString *)amount
-                 from:(NSString *)from
-           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-/// Bitcoin amount
-
--(void) requestAmount:(NSString *)amount
-                 from:(NSString *)from
-                notes:(NSString *)notes
-            accountID:(NSString *)accountID
-           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-/// Currency amount
-
--(void) requestAmount:(NSString *)amount
-    amountCurrencyISO:(NSString *)amountCurrencyISO
-                 from:(NSString *)from
-                notes:(NSString *)notes
-            accountID:(NSString *)accountID
-           completion:(void(^)(CoinbaseTransaction*, NSError*))callback;
-
-
 #pragma mark - Transfers
 
 ///
@@ -788,24 +658,5 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
                nativeCurrency:(NSString *)nativeCurrency
                      timeZone:(NSString *)timeZone
                    completion:(void(^)(CoinbaseUser*, NSError*))callback;
-
-#pragma mark - Withdrawals
-
-///
-/// Withdraw USD or EUR - Authenticated resource that lets you withdraw USD or EUR from a USD or EUR wallet.
-/// Required scope: withdraw
-///
-
--(void) withdrawAmount:(NSString *)amount
-             accountID:(NSString *)accountID
-       paymentMethodID:(NSString *)paymentMethodID
-            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
-
--(void) withdrawAmount:(NSString *)amount
-             accountID:(NSString *)accountID
-       paymentMethodID:(NSString *)paymentMethodID
-                commit:(BOOL)commit
-            completion:(void(^)(CoinbaseTransfer*, NSError*))callback;
-
 
 @end

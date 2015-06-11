@@ -66,4 +66,89 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.accountChangesID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
+#pragma mark - Account Changes
+
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
+{
+    [self.client doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseUser *user = [[CoinbaseUser alloc] initWithDictionary:[response objectForKey:@"current_user"]];
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"balance"]];
+            CoinbaseBalance *nativeBalance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"native_balance"]];
+
+            NSArray *responseAccountChanges = [response objectForKey:@"account_changes"];
+
+            NSMutableArray *accountChanges = [[NSMutableArray alloc] initWithCapacity:responseAccountChanges.count];
+
+            for (NSDictionary *dictionary in responseAccountChanges)
+            {
+                CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
+                [accountChanges addObject:accountChange];
+            }
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+            callback(accountChanges, user, balance, nativeBalance, pagingHelper, error);
+        }
+    }];
+}
+
+-(void) getAccountChangesWithPage:(NSUInteger)page
+                            limit:(NSUInteger)limit
+                        accountId:(NSString *)accountId
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback
+{
+    NSDictionary *parameters = @{
+                                 @"page" : [@(page) stringValue],
+                                 @"limit" : [@(limit)  stringValue],
+                                 @"account_id" : accountId
+                                 };
+
+    [self.client doRequestType:CoinbaseRequestTypeGet path:@"account_changes" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, nil, nil, nil, nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseUser *user = [[CoinbaseUser alloc] initWithDictionary:[response objectForKey:@"current_user"]];
+            CoinbaseBalance *balance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"balance"]];
+            CoinbaseBalance *nativeBalance = [[CoinbaseBalance alloc] initWithDictionary:[response objectForKey:@"native_balance"]];
+
+            NSArray *responseAccountChanges = [response objectForKey:@"account_changes"];
+
+            NSMutableArray *accountChanges = [[NSMutableArray alloc] initWithCapacity:responseAccountChanges.count];
+
+            for (NSDictionary *dictionary in responseAccountChanges)
+            {
+                CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithDictionary:dictionary];
+                [accountChanges addObject:accountChange];
+            }
+            CoinbasePagingHelper *pagingHelper = [[CoinbasePagingHelper alloc] initWithDictionary:response];
+
+            callback(accountChanges, user, balance, nativeBalance, pagingHelper, error);
+        }
+    }];
+}
+
 @end

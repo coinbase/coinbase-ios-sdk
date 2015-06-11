@@ -19,4 +19,14 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *redeemScript;
 
+/// Create a new bitcoin address for an account - Authenticated resource that generates a new bitcoin receive address for the user.
+/// Required scope: address
+///
+-(void) createBitcoinAddress:(void(^)(CoinbaseAddress*, NSError*))callback;
+
+-(void) createBitcoinAddressWithAccountID:(NSString*)accountID
+                                    label:(NSString *)label
+                          callBackURL:(NSString *)callBackURL
+                           completion:(void(^)(CoinbaseAddress*, NSError*))callback;
+
 @end
