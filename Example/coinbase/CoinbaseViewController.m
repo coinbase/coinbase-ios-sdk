@@ -77,7 +77,12 @@
                                     clientSecret:kCoinbaseDemoClientSecret
                                       completion:^(id response, NSError *error) {
         if (error) {
-            NSLog(@"Could not refresh tokens: %@", error);
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:[NSString stringWithFormat:@"Could not refresh tokens: %@", error.localizedDescription]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+
         } else {
             // New tokens obtained
             self.emailLabel.text = @"Got new tokens, loading email";
@@ -88,7 +93,11 @@
             {
                 if (error)
                 {
-                    NSLog(@"Could not load user: %@", error);
+                    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                message:[NSString stringWithFormat:@"Could not load user: %@", error.localizedDescription]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil] show];
                 }
                 else
                 {
@@ -109,7 +118,11 @@
          {
              if (error)
              {
-                 NSLog(@"Could not load: %@", error);
+                 [[[UIAlertView alloc] initWithTitle:@"Error"
+                                             message:[NSString stringWithFormat:@"Could not load: %@", error.localizedDescription]
+                                            delegate:nil
+                                   cancelButtonTitle:@"OK"
+                                   otherButtonTitles:nil] show];
              }
              else
              {
@@ -127,7 +140,11 @@
         {
             if (error)
             {
-                NSLog(@"Could not load user: %@", error);
+                [[[UIAlertView alloc] initWithTitle:@"Error"
+                                            message:[NSString stringWithFormat:@"Could not load user: %@", error.localizedDescription]
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
             }
             else
             {
