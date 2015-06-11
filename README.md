@@ -26,6 +26,9 @@ Simply use `coinbaseWithApiKey:secret:`. Example:
 ```objective-c
 Coinbase *apiClient = [Coinbase coinbaseWithApiKey:myKey secret:mySecret];
 ```
+```swift
+let coinbase = Coinbase(apiKey: myKey, secret: mySecret)
+```
 
 ### OAuth2
 
@@ -48,6 +51,9 @@ You can now integrate the OAuth2 sign in flow into your application. Use `startO
                                          scope:@"user balance"
                                    redirectUri:@"com.example.app.coinbase-oauth://coinbase-oauth" // Same as entered into Create Application
                                           meta:nil];
+```
+```swift
+CoinbaseOAuth.startOAuthAuthenticationWithClientId("your client ID", scope: "user balance", redirectUri: "com.example.app.coinbase-oauth://coinbase-oauth", meta: nil)
 ```
 
 You must override `openURL` in your application delegate to receive the OAuth authorization grant code and pass it back in to the Coinbase SDK.
@@ -79,6 +85,28 @@ You must override `openURL` in your application delegate to receive the OAuth au
 
 }
 ```
+```swift
+if url.scheme == "com.example.app.coinbase-oauth" {
+            CoinbaseOAuth.finishOAuthAuthenticationForUrl(url, clientId: "your client ID", clientSecret: "your client secret", completion: { (result : AnyObject?, error: NSError?) -> Void in
+                if error != nil {
+                    // Could not authenticate.
+                } else {
+                    // Tokens successfully obtained!
+                    // Do something with them (store them, etc.)
+                    if let result = result as? [String : AnyObject] {
+                        if let accessToken = result["access_token"] as? String {
+                            let apiClient = Coinbase(OAuthAccessToken: accessToken)
+                        }
+                    }
+                    // Note that you should also store 'expire_in' and refresh the token using CoinbaseOAuth.getOAuthTokensForRefreshToken() when it expires
+                }
+            })
+            return true
+        }
+        else {
+            return false
+        }
+```
 
 See the `Example` folder for a fully functional example.
 
@@ -95,7 +123,7 @@ After creating a `Coinbase` object using one of the authentication methods above
     }
 }];
 
-CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"536a541fa9393bb3c7000034"}];
+CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"536a541fa9393bb3c7000034" client:apiClient];
 
 [account getBalance:^(CoinbaseBalance *balance, NSError *error) {
     if (error) {
@@ -107,7 +135,28 @@ CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" :
 
 ```
 
+```swift
+   Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
+
+       if let error = error {
+           NSLog("Error: \(error)")
+       } else {
+           self.currencies = (response as? [CoinbaseCurrency])!
+           self.tableView.reloadData()
+       }
+   }
+
+   Coinbase().getBuyPrice { (btc: CoinbaseBalance?, fees: Array?, subtotal: CoinbaseBalance?, total: CoinbaseBalance?, error: NSError?) in
+
+            if let error = error {
+                NSLog("Error: \(error)")
+            } else {
+                self.buyTotal.text = "Buy Price: \(total!.amount!) BTC"
+            }
+        }
+
+```
+
 ## License
 
 coinbase is available under the MIT license. See the LICENSE file for more info.
-
