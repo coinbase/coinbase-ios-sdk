@@ -43,7 +43,7 @@
 		D7F1475C1B03184E00B13F98 /* test__getContacts.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146A01B00629F00B13F98 /* test__getContacts.plist */; };
 		D7F1475D1B03184E00B13F98 /* test__getCurrencies.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146A31B00639F00B13F98 /* test__getCurrencies.plist */; };
 		D7F1475E1B03184E00B13F98 /* test__getExchangeRates.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146A51B00646800B13F98 /* test__getExchangeRates.plist */; };
-		D7F1475F1B03184E00B13F98 /* test__makeDepositToAccount_amount_paymentMethodId_commit.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146A81B00656700B13F98 /* test__makeDepositToAccount_amount_paymentMethodId_commit.plist */; };
+		D7F1475F1B03184E00B13F98 /* test__depositAmount_paymentMethodId_commit.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146A81B00656700B13F98 /* test__depositAmount_paymentMethodId_commit.plist */; };
 		D7F147601B03184E00B13F98 /* test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146AB1B00680300B13F98 /* test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys.plist */; };
 		D7F147611B03184E00B13F98 /* test__getSignatureHashesWithTransactionID.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146AD1B00690300B13F98 /* test__getSignatureHashesWithTransactionID.plist */; };
 		D7F147621B03184E00B13F98 /* test__signaturesForMultiSigTransaction.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7F146AF1B006B2C00B13F98 /* test__signaturesForMultiSigTransaction.plist */; };
@@ -149,7 +149,7 @@
 		D7F146A01B00629F00B13F98 /* test__getContacts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getContacts.plist; sourceTree = "<group>"; };
 		D7F146A31B00639F00B13F98 /* test__getCurrencies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getCurrencies.plist; sourceTree = "<group>"; };
 		D7F146A51B00646800B13F98 /* test__getExchangeRates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getExchangeRates.plist; sourceTree = "<group>"; };
-		D7F146A81B00656700B13F98 /* test__makeDepositToAccount_amount_paymentMethodId_commit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__makeDepositToAccount_amount_paymentMethodId_commit.plist; sourceTree = "<group>"; };
+		D7F146A81B00656700B13F98 /* test__depositAmount_paymentMethodId_commit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__depositAmount_paymentMethodId_commit.plist; sourceTree = "<group>"; };
 		D7F146AB1B00680300B13F98 /* test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys.plist; sourceTree = "<group>"; };
 		D7F146AD1B00690300B13F98 /* test__getSignatureHashesWithTransactionID.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__getSignatureHashesWithTransactionID.plist; sourceTree = "<group>"; };
 		D7F146AF1B006B2C00B13F98 /* test__signaturesForMultiSigTransaction.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test__signaturesForMultiSigTransaction.plist; sourceTree = "<group>"; };
@@ -430,7 +430,7 @@
 		D7F146A71B00648F00B13F98 /* Deposits */ = {
 			isa = PBXGroup;
 			children = (
-				D7F146A81B00656700B13F98 /* test__makeDepositToAccount_amount_paymentMethodId_commit.plist */,
+				D7F146A81B00656700B13F98 /* test__depositAmount_paymentMethodId_commit.plist */,
 			);
 			name = Deposits;
 			sourceTree = "<group>";
@@ -713,7 +713,7 @@
 				D7F1475C1B03184E00B13F98 /* test__getContacts.plist in Resources */,
 				D7F1475D1B03184E00B13F98 /* test__getCurrencies.plist in Resources */,
 				D7F1475E1B03184E00B13F98 /* test__getExchangeRates.plist in Resources */,
-				D7F1475F1B03184E00B13F98 /* test__makeDepositToAccount_amount_paymentMethodId_commit.plist in Resources */,
+				D7F1475F1B03184E00B13F98 /* test__depositAmount_paymentMethodId_commit.plist in Resources */,
 				D7F147601B03184E00B13F98 /* test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys.plist in Resources */,
 				D7F147611B03184E00B13F98 /* test__getSignatureHashesWithTransactionID.plist in Resources */,
 				D7F147621B03184E00B13F98 /* test__signaturesForMultiSigTransaction.plist in Resources */,

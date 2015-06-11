@@ -34,4 +34,60 @@
     return self;
 }
 
+-(id) initWithID:(NSString *)theID client:(Coinbase *)client
+{
+    self = [super init];
+    if (self)
+    {
+        self.addressID = theID;
+        self.client = client;
+    }
+    return self;
+}
+
+-(void) createBitcoinAddress:(void(^)(CoinbaseAddress*, NSError*))callback
+{
+    [self.client doRequestType:CoinbaseRequestTypePost path:@"addresses" parameters:nil headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:[response objectForKey:@"account"]];
+            callback(address , error);
+        }
+    }];
+}
+
+-(void) createBitcoinAddressWithAccountID:(NSString*)accountID
+                                    label:(NSString *)label
+                              callBackURL:(NSString *)callBackURL
+                               completion:(void(^)(CoinbaseAddress*, NSError*))callback
+{
+    NSDictionary *parameters = @{@"address" :
+                                     @{@"accountID" : accountID,
+                                       @"label" : label,
+                                       @"callback_url" : callBackURL
+                                       }};
+
+    [self.client doRequestType:CoinbaseRequestTypePost path:@"addresses" parameters:parameters headers:nil completion:^(id response, NSError *error) {
+
+        if (error)
+        {
+            callback(nil, error);
+            return;
+        }
+
+        if ([response isKindOfClass:[NSDictionary class]])
+        {
+            CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithDictionary:response ];
+            callback(address , error);
+        }
+    }];
+}
+
 @end

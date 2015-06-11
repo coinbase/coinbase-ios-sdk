@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CoinbaseBalance.h"
 #import "CoinbaseObject.h"
+#import "CoinbaseUser.h"
 
 @interface CoinbaseAccountChange : CoinbaseObject
 
@@ -45,5 +46,19 @@
 @property (nonatomic, assign) BOOL notesPresent;
 
 @property (nonatomic, strong) CoinbaseBalance *amount;
+
+#pragma mark - Account Changes
+
+///
+/// List changes to an account - Authenticated resource which returns all related changes to an account. This is an alternative to the list transactions api call. It is designed to be faster and provide more detail so you can generate an overview/summary of individual account and their recent changes.
+/// Required scope: transactions
+///
+
+-(void) getAccountChanges:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
+
+-(void) getAccountChangesWithPage:(NSUInteger)page
+                            limit:(NSUInteger)limit
+                        accountId:(NSString *)accountId
+                       completion:(void(^)(NSArray*, CoinbaseUser*, CoinbaseBalance*, CoinbaseBalance*, CoinbasePagingHelper*, NSError*))callback;
 
 @end

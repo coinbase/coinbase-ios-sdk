@@ -19,7 +19,7 @@
 
 -(id) initWithDictionary:(NSDictionary*) dictionary client:(Coinbase *) client;
 
--(id) initWithArray:(NSArray*)array;
+-(id) initWithArray:(NSArray*) array;
 
 -(id) initWithID:(NSString *) theID client:(Coinbase *) client;
 

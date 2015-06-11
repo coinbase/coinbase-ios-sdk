@@ -336,7 +336,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST createBitcoinAddressForAccount"];
 
-    [self.client createBitcoinAddressForAccount:@"536a541fa9393bb3c7000034" label:@"Dalmation donations" callBackURL:@"http://www.example.com/callback" completion:^(CoinbaseAddress *address, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"536a541fa9393bb3c7000034" client:self.client];
+
+    [account createBitcoinAddressWithLabel:@"Dalmation donations" callBackURL:@"http://www.example.com/callback" completion:^(CoinbaseAddress *address, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(address, "address should not be nil");
@@ -447,7 +449,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"PUT modifyAccount_name_completion"];
 
-    [self.client getAccountChanges:^(NSArray *accountChanges, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, CoinbasePagingHelper *paging, NSError *error) {
+    CoinbaseAccountChange *accountChange = [[CoinbaseAccountChange alloc] initWithID:nil client:self.client];
+
+    [accountChange getAccountChanges:^(NSArray *accountChanges, CoinbaseUser *user, CoinbaseBalance *balance, CoinbaseBalance *nativeBalance, CoinbasePagingHelper *paging, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(accountChanges, "accountChanges should not be nil");
@@ -493,14 +497,17 @@
 
 - (void)test__getAccountAddresses
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/addresses").
+    stubRequest(@"GET", @"https://coinbase.com/api/v1/addresses?account_id=53752d3e46cd93c93c00000c").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getAccountAddresses"];
 
-    [self.client getAccountAddresses:^(NSArray *addresses, CoinbasePagingHelper *paging, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c"
+                                                            client: self.client];
+
+    [account getAccountAddresses:^(NSArray *addresses, CoinbasePagingHelper *paging, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(addresses, "addresses should not be nil");
@@ -571,7 +578,11 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST createBitcoinAddress"];
 
-    [self.client createBitcoinAddressForAccount:@"" label:@"Dalmation donations" callBackURL:@"http://www.example.com/callback" completion:^(CoinbaseAddress *address, NSError *error) {
+     NSLog(@"self.client = %@", self.client);
+
+    CoinbaseAddress *address = [[CoinbaseAddress alloc] initWithID:@"" client:self.client];
+
+    [address createBitcoinAddressWithAccountID:@"537cfb1146cd93b85d00001e" label:@"Dalmation donations" callBackURL:@"http://www.example.com/callback" completion:^(CoinbaseAddress *address, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(address, "address should not be nil");
@@ -946,7 +957,7 @@
     }];
 }
 
--(void)test__makeDepositToAccount_amount_paymentMethodId_commit
+-(void)test__depositAmount_paymentMethodId_commit
 {
     stubRequest(@"POST", @"https://coinbase.com/api/v1/deposits").
     andReturn(200).
@@ -955,10 +966,12 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST makeDepositToAccount_amount_paymentMethodId_commit"];
 
-    [self.client makeDepositToAccount:@"54e649216291227bd200006a"
-                               amount:@"10.00" paymentMethodId:@"54e6495e6291227bd2000078"
-                               commit:YES
-                           completion:^(CoinbaseTransfer *transfer, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"536a541fa9393bb3c7000034" client:self.client];
+
+    [account depositAmount:@"10.00"
+           paymentMethodId:@"54e6495e6291227bd2000078"
+                    commit:YES
+                completion:^(CoinbaseTransfer *transfer, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(transfer, "transfer should not be nil");
@@ -2131,7 +2144,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST sendAmount_to"];
 
-    [self.client sendAmount:@"1.234" to:@"user1@example.com" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"54e649216291227bd200006a" client:self.client];
+
+    [account sendAmount:@"1.234" to:@"user1@example.com" completion:^(CoinbaseTransaction *transaction, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(transaction, "transaction should not be nil");
@@ -2173,7 +2188,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST transferAmount_to"];
 
-    [self.client transferAmount:@"1.234" to:@"5011f33df8182b142400000a" completion:^(CoinbaseTransaction *transaction, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"54e649216291227bd200006a" client:self.client];
+
+    [account transferAmount:@"1.234" to:@"5011f33df8182b142400000a" completion:^(CoinbaseTransaction *transaction, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(transaction, "transaction should not be nil");
@@ -2216,7 +2233,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST requestAmount_from"];
 
-    [self.client requestAmount:@"1.234" from:@"user1@example.com" notes:@"Sample transaction for you" accountID:nil completion:^(CoinbaseTransaction *transaction, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"54e649216291227bd200006a" client:self.client];
+
+    [account requestAmount:@"1.234" from:@"user1@example.com" notes:@"Sample transaction for you" completion:^(CoinbaseTransaction *transaction, NSError *error) {
 
         XCTAssertNil(error);
         XCTAssertNotNil(transaction, "transaction should not be nil");
@@ -2601,7 +2620,9 @@
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST withdrawAmount_accountID_paymentMethodID"];
 
-    [self.client withdrawAmount:@"10.00" accountID:@"54e649216291227bd200006a" paymentMethodID:@"54e6495e6291227bd2000078" completion:^(CoinbaseTransfer *transfer, NSError *error) {
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"54e649216291227bd200006a"}];
+
+    [account withdrawAmount:@"10.00" paymentMethodID:@"54e6495e6291227bd2000078" completion:^(CoinbaseTransfer *transfer, NSError *error) {
         
         XCTAssertNil(error);
         XCTAssertNotNil(transfer, "transfer should not be nil");
