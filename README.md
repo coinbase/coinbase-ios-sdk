@@ -7,6 +7,7 @@ To try the example project, install [CocoaPods](http://cocoapods.org), then run 
 [![Version](https://img.shields.io/cocoapods/v/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
 [![License](https://img.shields.io/cocoapods/l/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
 [![Platform](https://img.shields.io/cocoapods/p/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
+[![Build Status](https://travis-ci.org/coinbase/coinbase-ios-sdk.svg?branch=master)](https://travis-ci.org/coinbase/coinbase-ios-sdk?branch=master)
 
 ## Installation
 
