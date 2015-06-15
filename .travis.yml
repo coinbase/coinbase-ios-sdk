@@ -1,6 +1,6 @@
 language: objective-c
 xcode_workspace: Example/coinbase.xcworkspace
-xcode_scheme: Coinbase Tests
+xcode_scheme: coinbase
 podfile: Example/Podfile
 
 notifications:
