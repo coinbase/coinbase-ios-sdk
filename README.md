@@ -21,6 +21,12 @@ The Coinbase iOS SDK can be used with both Coinbase API keys and OAuth2 authenti
 
 ### OAuth2
 
+OAuth2 allows you to access other user's accounts. If the Coinbase app is installed on the user's phone, authenticating with OAuth2 is just a single tap.
+
+![Animation of OAuth process](http://i.imgur.com/Uikav7g.gif)
+
+If the Coinbase app is not installed authentication will seamlessly fall back to Safari.
+
 To use OAuth2 you will need to add a custom URI scheme to your application. This URI scheme must start with your app's bundle identifier. For example, if your bundle ID is "com.example.app", your URI scheme could be "com.example.app.coinbase-oauth". To add a URI scheme:
 
 1. In Xcode, click on your project in the Project Navigator
