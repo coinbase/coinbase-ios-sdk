@@ -70,4 +70,7 @@ extern NSString *const CoinbaseOAuthErrorUserInfoKey;
                withParams:(NSDictionary *)params
                completion:(CoinbaseCompletionBlock)completion;
 
+/// Set the base URL that will be used when making API requests. Defaults to "https://api.coinbase.com/"
++ (void)setBaseURL:(NSURL *)URL;
+
 @end

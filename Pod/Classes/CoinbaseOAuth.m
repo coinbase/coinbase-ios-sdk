@@ -12,6 +12,8 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
 
 @implementation CoinbaseOAuth
 
+static NSURL * __strong baseURL;
+
 + (BOOL)isAppOAuthAuthenticationAvailable {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"com.coinbase.oauth-authorize://authorize"]];
 }
@@ -36,7 +38,7 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
     CoinbaseOAuthAuthenticationMechanism mechanism = CoinbaseOAuthMechanismNone;
     NSURL *coinbaseAppUrl = [NSURL URLWithString:[NSString stringWithFormat:@"com.coinbase.oauth-authorize:%@", path]];
     BOOL appSwitchSuccessful = NO;
-    if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl]) {
+    if ([[UIApplication sharedApplication] canOpenURL:coinbaseAppUrl] && baseURL == nil) {
         appSwitchSuccessful = [[UIApplication sharedApplication] openURL:coinbaseAppUrl];
         if (appSwitchSuccessful) {
             mechanism = CoinbaseOAuthMechanismApp;
@@ -44,7 +46,8 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
     }
 
     if (!appSwitchSuccessful) {
-        NSURL *webUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com%@", path]];
+        NSURL *base = [NSURL URLWithString:path relativeToURL:(baseURL == nil ? [NSURL URLWithString:@"https://www.coinbase.com/"] : baseURL)];
+        NSURL *webUrl = [[NSURL URLWithString:path relativeToURL:base] absoluteURL];
         BOOL browserSwitchSuccessful = [[UIApplication sharedApplication] openURL:webUrl];
         if (browserSwitchSuccessful) {
             mechanism = CoinbaseOAuthMechanismBrowser;
@@ -133,7 +136,8 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
                withParams:(NSDictionary *)params
                completion:(CoinbaseCompletionBlock)completion {
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.coinbase.com/oauth/%@", path]];
+    NSURL *base = [NSURL URLWithString:@"oauth/" relativeToURL:(baseURL == nil ? [NSURL URLWithString:@"https://www.coinbase.com/"] : baseURL)];
+    NSURL *url = [[NSURL URLWithString:path relativeToURL:base] absoluteURL];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
@@ -189,6 +193,10 @@ NSString *const CoinbaseOAuthErrorUserInfoKey = @"CoinbaseOAuthError";
     CFStringRef str = (__bridge CFStringRef)string;
     CFStringEncoding encoding = kCFStringEncodingUTF8;
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, str, NULL, charset, encoding));
+}
+
++ (void)setBaseURL:(NSURL *)URL {
+    baseURL = URL;
 }
 
 @end
