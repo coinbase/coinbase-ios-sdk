@@ -124,7 +124,7 @@
 
         if (error)
         {
-            callback(nil, error);
+            callback(NO, error);
             return;
         }
 

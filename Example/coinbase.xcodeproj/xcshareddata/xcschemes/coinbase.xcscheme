@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D77330821AFB20D400C673D6"
+               BlueprintIdentifier = "D7F1473C1B03154700B13F98"
                BuildableName = "Coinbase Tests.xctest"
                BlueprintName = "Coinbase Tests"
                ReferencedContainer = "container:coinbase.xcodeproj">
@@ -56,7 +56,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D77330821AFB20D400C673D6"
+               BlueprintIdentifier = "D7F1473C1B03154700B13F98"
                BuildableName = "Coinbase Tests.xctest"
                BlueprintName = "Coinbase Tests"
                ReferencedContainer = "container:coinbase.xcodeproj">

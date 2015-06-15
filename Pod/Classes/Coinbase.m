@@ -470,7 +470,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
         if (error)
         {
-            callback(nil, error);
+            callback(NO, error);
             return;
         }
 
@@ -478,7 +478,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         {
             BOOL success = [[response objectForKey:@"success"] boolValue];
 
-            callback(success , error);
+            callback(success, error);
         }
     }];
 }
@@ -1928,14 +1928,14 @@ agreeBTCAmountVaries:(BOOL)agreeBTCAmountVaries
 
         if (error)
         {
-            callback(nil, error);
+            callback(NO, error);
             return;
         }
 
         if ([response isKindOfClass:[NSDictionary class]])
         {
             BOOL success = [[response objectForKey:@"success"] boolValue];
-            callback(success , error);
+            callback(success, error);
         }
     }];
 }
