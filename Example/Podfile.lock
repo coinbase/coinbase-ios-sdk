@@ -23,7 +23,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   coinbase-official:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   coinbase-official: 86c1f6cb35b63e6036a85bcdb2c6615e280b3df3
@@ -33,4 +33,4 @@ SPEC CHECKSUMS:
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
   Specta: 15a276a6343867b426d5ed135d5aa4d04123a573
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.2

@@ -14,11 +14,11 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
         // Load currencies
         Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
 
-            if let error = error {
-                let alertView = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
-            } else {
-                self.currencies = (response as? [CoinbaseCurrency])!
+            if let currencies = response as? [CoinbaseCurrency] {
+                self.currencies = currencies
                 self.tableView.reloadData()
+            } else {
+                let alertView = UIAlertView(title: "Error", message: error?.localizedDescription ?? "Unknown error.", delegate: nil, cancelButtonTitle: "OK")
             }
         }
     }

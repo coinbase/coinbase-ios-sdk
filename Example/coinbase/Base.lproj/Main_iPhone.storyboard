@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gdq-L8-F43">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Gdq-L8-F43">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -38,25 +38,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not signed in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-N9-5b6" userLabel="User name">
-                                        <rect key="frame" x="20" y="301" width="280" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="HnJ-oD-Hsz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="30" y="264" width="122.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-FK-bWU" userLabel="User balance">
-                                        <rect key="frame" x="20" y="330" width="280" height="29"/>
+                                        <rect key="frame" x="170" y="264" width="120" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="29" id="wGq-sW-AXw"/>
+                                            <constraint firstAttribute="width" constant="120" id="YXh-Pf-DbM"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hij-Ag-xV0">
-                                        <rect key="frame" x="96" y="367" width="128" height="30"/>
+                                        <rect key="frame" x="96" y="297" width="128" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Mr7-MT-ImZ"/>
                                             <constraint firstAttribute="width" constant="128" id="lf1-1z-nyd"/>
@@ -69,38 +66,29 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2f-Ukd">
-                                        <rect key="frame" x="105" y="48" width="110" height="30"/>
-                                        <state key="normal" title="Load currencies">
+                                        <rect key="frame" x="86.5" y="94" width="148" height="30"/>
+                                        <state key="normal" title="Supported currencies">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <segue destination="bby-w9-l4I" kind="push" id="lE3-RC-feM"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un-Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-Zj-YoU">
-                                        <rect key="frame" x="58" y="20" width="204" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unauthenticated API examples:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-Zj-YoU">
+                                        <rect key="frame" x="16" y="68" width="288" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auT-on-Hnv">
-                                        <rect key="frame" x="89" y="225" width="142" height="30"/>
-                                        <state key="normal" title="List Users' Accounts">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="XyW-nI-UuO" kind="push" id="Cpq-KH-i4X"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atl-Qv-IdI">
-                                        <rect key="frame" x="72" y="147" width="175.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authenticated API examples: (sign in with Coinbase first to try these)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atl-Qv-IdI">
+                                        <rect key="frame" x="16" y="176" width="288" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBU-Ze-gfK">
-                                        <rect key="frame" x="102" y="263" width="116" height="30"/>
-                                        <state key="normal" title="List Transactions">
+                                        <rect key="frame" x="103.5" y="369" width="113" height="30"/>
+                                        <state key="normal" title="Get transactions">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -108,8 +96,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLi-P8-KIJ">
-                                        <rect key="frame" x="105" y="86" width="110" height="30"/>
-                                        <state key="normal" title="Buy &amp; Sell Price">
+                                        <rect key="frame" x="82.5" y="130" width="156" height="30"/>
+                                        <state key="normal" title="Current buy / sell price">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -117,7 +105,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ums-zU-T7z">
-                                        <rect key="frame" x="30" y="187" width="260" height="30"/>
+                                        <rect key="frame" x="30" y="228" width="260" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Wrl-X4-bkE"/>
@@ -130,31 +118,50 @@
                                             <action selector="handleAuthentication:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UWQ-V6-MjA"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Coinbase iOS SDK has methods for all major operations in bitcoin." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3z-RD-aie">
+                                        <rect key="frame" x="16" y="16" width="288" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auT-on-Hnv">
+                                        <rect key="frame" x="114.5" y="333" width="92" height="30"/>
+                                        <state key="normal" title="Get accounts">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="XyW-nI-UuO" kind="push" id="Cpq-KH-i4X"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="centerX" secondItem="SQe-jl-bTj" secondAttribute="centerX" id="0LT-Fb-VIv"/>
-                                    <constraint firstAttribute="trailing" secondItem="VeZ-FK-bWU" secondAttribute="trailing" constant="20" id="2KY-d1-L4t"/>
+                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="6" id="1r4-Vv-c0E"/>
+                                    <constraint firstItem="ums-zU-T7z" firstAttribute="leading" secondItem="h0J-N9-5b6" secondAttribute="leading" id="2lX-Pv-fyy"/>
+                                    <constraint firstAttribute="bottom" secondItem="CBU-Ze-gfK" secondAttribute="bottom" constant="40" id="4U0-I6-1Fa"/>
+                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="6" id="4lU-3A-l6G"/>
                                     <constraint firstItem="anT-2f-Ukd" firstAttribute="centerX" secondItem="pPb-Zj-YoU" secondAttribute="centerX" id="4uh-Mp-had"/>
-                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="top" secondItem="oLi-P8-KIJ" secondAttribute="bottom" constant="31" id="8hi-yu-EIE"/>
-                                    <constraint firstItem="CBU-Ze-gfK" firstAttribute="top" secondItem="auT-on-Hnv" secondAttribute="bottom" constant="8" symbolic="YES" id="9hz-BX-aeO"/>
-                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="20" id="CVy-or-QxW"/>
-                                    <constraint firstItem="ums-zU-T7z" firstAttribute="top" secondItem="atl-Qv-IdI" secondAttribute="bottom" constant="20" id="CuO-2Y-bnf"/>
+                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="top" secondItem="oLi-P8-KIJ" secondAttribute="bottom" constant="16" id="8hi-yu-EIE"/>
+                                    <constraint firstItem="CBU-Ze-gfK" firstAttribute="top" secondItem="auT-on-Hnv" secondAttribute="bottom" constant="6" id="9hz-BX-aeO"/>
+                                    <constraint firstItem="ums-zU-T7z" firstAttribute="top" secondItem="atl-Qv-IdI" secondAttribute="bottom" constant="16" id="CuO-2Y-bnf"/>
                                     <constraint firstItem="oLi-P8-KIJ" firstAttribute="centerX" secondItem="anT-2f-Ukd" secondAttribute="centerX" id="Ff5-Ta-OAS"/>
-                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="centerX" secondItem="VeZ-FK-bWU" secondAttribute="centerX" id="PVP-2f-rBW"/>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="centerX" secondItem="pPb-Zj-YoU" secondAttribute="centerX" id="Pon-Br-fqg"/>
-                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="top" secondItem="VeZ-FK-bWU" secondAttribute="bottom" constant="8" symbolic="YES" id="Qj9-nC-n3u"/>
-                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="centerX" secondItem="oLi-P8-KIJ" secondAttribute="centerX" id="VhG-eN-vlQ"/>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="20" id="Xb6-9S-hgN"/>
+                                    <constraint firstItem="atl-Qv-IdI" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="16" id="LFu-9A-wNk"/>
+                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="leading" secondItem="h0J-N9-5b6" secondAttribute="trailing" constant="18" id="OW6-X1-KKE"/>
+                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="trailing" secondItem="ums-zU-T7z" secondAttribute="trailing" id="OzZ-TH-Ipp"/>
+                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="top" secondItem="VeZ-FK-bWU" secondAttribute="bottom" constant="16" id="Qj9-nC-n3u"/>
+                                    <constraint firstItem="hij-Ag-xV0" firstAttribute="centerX" secondItem="ums-zU-T7z" secondAttribute="centerX" id="SNn-Pr-EJd"/>
+                                    <constraint firstItem="j3z-RD-aie" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="16" id="XYX-7r-pFX"/>
                                     <constraint firstItem="anT-2f-Ukd" firstAttribute="top" secondItem="pPb-Zj-YoU" secondAttribute="bottom" constant="8" symbolic="YES" id="aT9-fb-Ar9"/>
-                                    <constraint firstItem="h0J-N9-5b6" firstAttribute="top" secondItem="CBU-Ze-gfK" secondAttribute="bottom" constant="8" symbolic="YES" id="b1u-dk-OGt"/>
                                     <constraint firstItem="CBU-Ze-gfK" firstAttribute="centerX" secondItem="auT-on-Hnv" secondAttribute="centerX" id="bWD-Gi-Chu"/>
-                                    <constraint firstItem="auT-on-Hnv" firstAttribute="top" secondItem="ums-zU-T7z" secondAttribute="bottom" constant="8" symbolic="YES" id="d9P-s8-jAj"/>
-                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="top" secondItem="anT-2f-Ukd" secondAttribute="bottom" constant="8" symbolic="YES" id="f3r-ar-SFJ"/>
-                                    <constraint firstItem="pPb-Zj-YoU" firstAttribute="top" secondItem="SQe-jl-bTj" secondAttribute="top" constant="20" symbolic="YES" id="fEj-4D-MsW"/>
-                                    <constraint firstAttribute="bottom" secondItem="hij-Ag-xV0" secondAttribute="bottom" constant="413" id="rpG-Zj-gRV"/>
-                                    <constraint firstAttribute="trailing" secondItem="h0J-N9-5b6" secondAttribute="trailing" constant="20" id="xmw-Ie-Mwp"/>
+                                    <constraint firstAttribute="trailing" secondItem="j3z-RD-aie" secondAttribute="trailing" constant="16" id="eCT-Kd-ukb"/>
+                                    <constraint firstItem="oLi-P8-KIJ" firstAttribute="top" secondItem="anT-2f-Ukd" secondAttribute="bottom" constant="6" id="f3r-ar-SFJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="atl-Qv-IdI" secondAttribute="trailing" constant="16" id="grb-Kc-TQq"/>
+                                    <constraint firstItem="pPb-Zj-YoU" firstAttribute="top" secondItem="j3z-RD-aie" secondAttribute="bottom" constant="16" id="mxZ-us-1cR"/>
+                                    <constraint firstItem="j3z-RD-aie" firstAttribute="top" secondItem="SQe-jl-bTj" secondAttribute="top" constant="16" id="n5D-NS-twp"/>
+                                    <constraint firstAttribute="centerX" secondItem="hij-Ag-xV0" secondAttribute="centerX" id="oG9-Cz-HJA"/>
+                                    <constraint firstAttribute="trailing" secondItem="pPb-Zj-YoU" secondAttribute="trailing" constant="16" id="roS-R1-v8k"/>
+                                    <constraint firstItem="pPb-Zj-YoU" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="16" id="xvt-gC-e67"/>
                                     <constraint firstItem="auT-on-Hnv" firstAttribute="centerX" secondItem="atl-Qv-IdI" secondAttribute="centerX" id="xyI-ej-snq"/>
-                                    <constraint firstItem="VeZ-FK-bWU" firstAttribute="top" secondItem="h0J-N9-5b6" secondAttribute="bottom" constant="8" symbolic="YES" id="ykS-ea-Pt5"/>
+                                    <constraint firstItem="auT-on-Hnv" firstAttribute="top" secondItem="hij-Ag-xV0" secondAttribute="bottom" constant="6" id="yFN-dx-ofK"/>
                                     <constraint firstAttribute="trailing" secondItem="ums-zU-T7z" secondAttribute="trailing" constant="30" id="ytV-Nl-yPq"/>
                                     <constraint firstItem="ums-zU-T7z" firstAttribute="leading" secondItem="SQe-jl-bTj" secondAttribute="leading" constant="30" id="zok-We-7VA"/>
                                 </constraints>
@@ -257,7 +264,7 @@
             </objects>
             <point key="canvasLocation" x="860" y="-513"/>
         </scene>
-        <!--Currencies Example-->
+        <!--Supported Currencies-->
         <scene sceneID="tQc-Ok-Jtz">
             <objects>
                 <tableViewController id="bby-w9-l4I" customClass="CoinbaseCurrenciesViewController" customModule="coinbase" customModuleProvider="target" sceneMemberID="viewController">
@@ -291,7 +298,7 @@
                             <outlet property="delegate" destination="bby-w9-l4I" id="j19-a1-6so"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Currencies Example" id="ZqY-jy-1VF"/>
+                    <navigationItem key="navigationItem" title="Supported Currencies" id="ZqY-jy-1VF"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </tableViewController>
@@ -311,19 +318,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4a1-C1-IuY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4a1-C1-IuY">
                                 <rect key="frame" x="16" y="118" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FK3-hf-A06">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FK3-hf-A06">
                                 <rect key="frame" x="16" y="89" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Spot Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mle-ii-SpS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Spot price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mle-ii-SpS">
                                 <rect key="frame" x="16" y="147" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -343,7 +350,7 @@
                             <constraint firstItem="4a1-C1-IuY" firstAttribute="top" secondItem="FK3-hf-A06" secondAttribute="bottom" constant="8" symbolic="YES" id="kbH-RK-qGQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Buy &amp; Sell" id="cgk-HV-Jzp"/>
+                    <navigationItem key="navigationItem" title="Buy / Sell Prices" id="cgk-HV-Jzp"/>
                     <connections>
                         <outlet property="buyTotal" destination="FK3-hf-A06" id="d4g-KZ-9YL"/>
                         <outlet property="sellTotal" destination="4a1-C1-IuY" id="cbe-kJ-AqG"/>

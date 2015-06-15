@@ -1,8 +1,8 @@
 # coinbase
 
-Integrate bitcoin into your iOS application with Coinbase's fully featured bitcoin payments API. Coinbase allows all major operations in bitcoin through one API. For more information, visit https://coinbase.com/docs/api/overview.
+Integrate bitcoin into your iOS application with Coinbase's fully featured bitcoin payments API. Coinbase allows all major operations in bitcoin through one API. For more information, visit https://developers.coinbase.com/docs/wallet.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To try the example project, install [CocoaPods](http://cocoapods.org), then run `pod try coinbase-official`.
 
 [![Version](https://img.shields.io/cocoapods/v/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
 [![License](https://img.shields.io/cocoapods/l/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
@@ -18,17 +18,6 @@ it, simply add the following line to your Podfile:
 ## Authentication
 
 The Coinbase iOS SDK can be used with both Coinbase API keys and OAuth2 authentication. Use API keys if you only need to access your own Coinbase account from within your application. Use OAuth2 if you need to access your user's accounts. Most iOS apps will need to use OAuth2.
-
-### API key authentication
-
-Simply use `coinbaseWithApiKey:secret:`. Example:
-
-```objective-c
-Coinbase *apiClient = [Coinbase coinbaseWithApiKey:myKey secret:mySecret];
-```
-```swift
-let coinbase = Coinbase(apiKey: myKey, secret: mySecret)
-```
 
 ### OAuth2
 
@@ -109,6 +98,18 @@ if url.scheme == "com.example.app.coinbase-oauth" {
 ```
 
 See the `Example` folder for a fully functional example.
+
+
+### API key authentication
+
+Simply use `coinbaseWithApiKey:secret:`. Example:
+
+```objective-c
+Coinbase *apiClient = [Coinbase coinbaseWithApiKey:myKey secret:mySecret];
+```
+```swift
+let coinbase = Coinbase(apiKey: myKey, secret: mySecret)
+```
 
 ## Usage
 

@@ -52,7 +52,7 @@
     {
         // Launch the web browser or Coinbase app to authenticate the user.
         [CoinbaseOAuth startOAuthAuthenticationWithClientId:kCoinbaseDemoClientID
-                                                      scope:@"balance addresses buttons buy contacts deposit orders sell transactions request transfer transfers user recurring_payments oauth_apps reports withdraw"
+                                                      scope:@"balance transactions user"
                                                 redirectUri:@"org.cocoapods.demo.coinbase.coinbase-oauth://coinbase-oauth"
                                                        meta:nil];
     }
@@ -148,7 +148,7 @@
                  {
                      if (primaryAccount.primary == YES)
                      {
-                         self.balanceLabel.text = [NSString stringWithFormat:@"%@: %@ %@\n", primaryAccount.name, primaryAccount.balance.amount, primaryAccount.balance.currency];
+                         self.balanceLabel.text = [NSString stringWithFormat:@"%@ %@\n", primaryAccount.balance.amount, primaryAccount.balance.currency];
                      }
                  }
              }
@@ -170,7 +170,7 @@
             }
         }];
 
-        [self.authenticationButton setTitle:@"Sign Out of Coinbase" forState:UIControlStateNormal];
+        [self.authenticationButton setTitle:@"Sign out" forState:UIControlStateNormal];
     }
     else
     {
