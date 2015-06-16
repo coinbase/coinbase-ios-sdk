@@ -114,7 +114,7 @@
 
 - (void)test__getAccountsList
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/accounts").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -171,7 +171,7 @@
 
 - (void)test__getAccount
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts/536a541fa9393bb3c7000023").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/accounts/536a541fa9393bb3c7000023").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -205,7 +205,7 @@
 
 - (void)test__getPrimaryAccount
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts/primary").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/accounts/primary").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -239,7 +239,7 @@
 
 - (void)test__createAccountWithName
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/accounts").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/accounts").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -273,14 +273,14 @@
 
 - (void)test__getBalance
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts/536a541fa9393bb3c7000034/balance").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/accounts/536a541fa9393bb3c7000034/balance").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getBalance"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"536a541fa9393bb3c7000034"}];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"536a541fa9393bb3c7000034" client:self.client];
 
     [account getBalance:^(CoinbaseBalance *balance, NSError *error) {
 
@@ -301,14 +301,14 @@
 
 - (void)test__getBitcoinAddress
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/accounts/536a541fa9393bb3c7000034/address").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/accounts/536a541fa9393bb3c7000034/address").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getBitcoinAddressForAccount"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"536a541fa9393bb3c7000034"}];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"536a541fa9393bb3c7000034" client:self.client];
 
     [account getBitcoinAddress:^(CoinbaseAddress *address, NSError *error) {
 
@@ -329,7 +329,7 @@
 
 - (void)test__createBitcoinAddressForAccount
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/accounts/536a541fa9393bb3c7000034/address").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/accounts/536a541fa9393bb3c7000034/address").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -358,14 +358,14 @@
 
 - (void)test__modifyAccount_name_completion
 {
-    stubRequest(@"PUT", @"https://coinbase.com/api/v1/accounts/53752d3e46cd93c93c00000c").
+    stubRequest(@"PUT", @"https://api.coinbase.com/v1/accounts/53752d3e46cd93c93c00000c").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"PUT modifyAccount_name_completion"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"53752d3e46cd93c93c00000c"}];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c" client:self.client];
 
     [account modifyWithName:@"Satoshi Wallet" completion:^(CoinbaseAccount *account, NSError *error) {
 
@@ -393,15 +393,14 @@
 
 - (void)test__setAccountAsPrimary
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/accounts/53752d3e46cd93c93c00000c/primary").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/accounts/53752d3e46cd93c93c00000c/primary").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST setAccountAsPrimary"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c"
-                                                            client: self.client];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c" client: self.client];
 
     [account setAsPrimary:^(BOOL success, NSError *error) {
 
@@ -419,7 +418,7 @@
 
 - (void)test__deleteAccount
 {
-    stubRequest(@"DELETE", @"https://coinbase.com/api/v1/accounts/53752d3e46cd93c93c00000c").
+    stubRequest(@"DELETE", @"https://api.coinbase.com/v1/accounts/53752d3e46cd93c93c00000c").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -442,7 +441,7 @@
 
 - (void)test__getAccountChanges
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/account_changes").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/account_changes").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -497,15 +496,14 @@
 
 - (void)test__getAccountAddresses
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/addresses?account_id=53752d3e46cd93c93c00000c").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/addresses?account_id=53752d3e46cd93c93c00000c").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"GET getAccountAddresses"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c"
-                                                            client: self.client];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"53752d3e46cd93c93c00000c" client: self.client];
 
     [account getAccountAddresses:^(NSArray *addresses, CoinbasePagingHelper *paging, NSError *error) {
 
@@ -542,7 +540,7 @@
 
 - (void)test__getAddressWithAddressOrID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/addresses/503c46a4f8182b10650000ad").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/addresses/503c46a4f8182b10650000ad").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -571,7 +569,7 @@
 
 - (void)test__createBitcoinAddress
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/addresses").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/addresses").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -602,7 +600,7 @@
 
 - (void)test__getAuthorizationInformation
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/authorization").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/authorization").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -634,7 +632,7 @@
 
 -(void)test__createButtonWithName_price_priceCurrencyISO
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/buttons").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/buttons").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -698,7 +696,7 @@
 
 -(void)test__getButtonWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/buttons/93865b9cae83706ae59220c013bc0afd").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/buttons/93865b9cae83706ae59220c013bc0afd").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -734,7 +732,7 @@
 
 -(void)test__createOrderForButtonWithID
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/buttons/93865b9cae83706ae59220c013bc0afd/create_order").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/buttons/93865b9cae83706ae59220c013bc0afd/create_order").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -775,7 +773,7 @@
 
 -(void)test__getOrdersForButtonWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/buttons/93865b9cae83706ae59220c013bc0afd/orders").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/buttons/93865b9cae83706ae59220c013bc0afd/orders").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -821,7 +819,7 @@
 
 -(void)test__buy
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/buys").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/buys").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -869,7 +867,7 @@
 
 -(void)test__getContacts
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/contacts").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/contacts").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -902,7 +900,7 @@
 
 -(void)test__getCurrencies
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/currencies").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/currencies").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -937,7 +935,7 @@
 
 -(void)test__getExchangeRates
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/currencies/exchange_rates").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/currencies/exchange_rates").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -959,7 +957,7 @@
 
 -(void)test__depositAmount_paymentMethodId_commit
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/deposits").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/deposits").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1024,7 +1022,7 @@
 
 -(void)test__createMultiSigAccountWithName_type_requiredSignatures_xPubKeys
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/accounts").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/accounts").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1067,7 +1065,7 @@
 
 - (void)test__getSignatureHashesWithTransactionID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/transactions/53f3d9e0cbf034354a000132/sighashes").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/transactions/53f3d9e0cbf034354a000132/sighashes").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1097,7 +1095,7 @@
 
 -(void)test__signaturesForMultiSigTransaction
 {
-    stubRequest(@"PUT", @"https://coinbase.com/api/v1/transactions/53f3d9e0cbf034354a000132/signatures").
+    stubRequest(@"PUT", @"https://api.coinbase.com/v1/transactions/53f3d9e0cbf034354a000132/signatures").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1147,7 +1145,7 @@
 
 -(void)test__getOAuthApplications
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/oauth/applications").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/oauth/applications").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1179,7 +1177,7 @@
 
 -(void) test__getOAuthApplicationWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/oauth/applications/52fe8cf2137f733087000002").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/oauth/applications/52fe8cf2137f733087000002").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1209,7 +1207,7 @@
 
 -(void) test__createOAuthApplicationWithName_reDirectURL
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/oauth/applications").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/oauth/applications").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1241,7 +1239,7 @@
 
 -(void) test__getOrders
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/orders").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/orders").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1287,7 +1285,7 @@
 
 -(void)test__createOrderWithName
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/orders").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/orders").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1326,7 +1324,7 @@
 
 -(void) test__getOrderWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/orders/A7C52JQT").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/orders/A7C52JQT").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1369,7 +1367,7 @@
 
 -(void) test__refundOrderWithID_refundISOCode
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/orders/A7C52JQT/refund").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/orders/A7C52JQT/refund").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1425,7 +1423,7 @@
 
 -(void) test__getPaymentMethods
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/payment_methods").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/payment_methods").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1466,7 +1464,7 @@
 
 -(void) test__paymentMethodWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/payment_methods/530eb5b217cb34e07a000011").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/payment_methods/530eb5b217cb34e07a000011").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1494,7 +1492,7 @@
 
 -(void) test__getBuyPrice
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/prices/buy").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/prices/buy").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1533,7 +1531,7 @@
 
 -(void) test__getSellPrice
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/prices/sell").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/prices/sell").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1568,7 +1566,7 @@
 
 -(void) test__getSpotRate
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/prices/spot_rate").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/prices/spot_rate").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1594,7 +1592,7 @@
 
 -(void) test__getRecurringPayments
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/recurring_payments").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/recurring_payments").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1657,7 +1655,7 @@
 
 -(void) test__recurringPaymentWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/recurring_payments/5193377ef8182b7c19000015").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/recurring_payments/5193377ef8182b7c19000015").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1697,7 +1695,7 @@
 
 -(void) test__refundWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/refunds/L9HBEX9R").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/refunds/L9HBEX9R").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1733,7 +1731,7 @@
 
 -(void) test__getReports
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/reports").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/reports").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1774,7 +1772,7 @@
 
 -(void) test__reportWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/reports/533e5de1137f73ccf1000139").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/reports/533e5de1137f73ccf1000139").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1812,7 +1810,7 @@
 
 -(void) test__createReportWithType_email
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/reports").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/reports").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1850,7 +1848,7 @@
 
 -(void) test__sellQuantity
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/sells").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/sells").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1898,7 +1896,7 @@
 
 -(void) test__getSubscribers
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/subscribers").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/subscribers").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1942,7 +1940,7 @@
 
 -(void) test__subscriptionWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/subscribers/51a7cf58f8182b4b220000d5").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/subscribers/51a7cf58f8182b4b220000d5").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -1974,7 +1972,7 @@
 
 -(void) test__createToken
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/tokens").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/tokens").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2000,7 +1998,7 @@
 
 -(void) test__redeemTokenWithID
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/tokens/redeem").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/tokens/redeem").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2022,7 +2020,7 @@
 
 -(void) test__getTransactions
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/transactions").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/transactions").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2099,7 +2097,7 @@
 
 -(void) test__transactionWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/transactions/5018f833f8182b129c00002f").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/transactions/5018f833f8182b129c00002f").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2137,7 +2135,7 @@
 
 -(void) test__sendAmount_to
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/send_money").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/transactions/send_money").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2181,7 +2179,7 @@
 
 -(void) test__transferAmount_to
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/transfer_money").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/transactions/transfer_money").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2226,7 +2224,7 @@
 
 -(void) test__requestAmount_from
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/transactions/request_money").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/transactions/request_money").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2269,7 +2267,7 @@
 
 -(void) test__resendRequestWithID
 {
-    stubRequest(@"PUT", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/resend_request").
+    stubRequest(@"PUT", @"https://api.coinbase.com/v1/transactions/501a3554f8182b2754000003/resend_request").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2294,7 +2292,7 @@
 
 -(void) test__completeRequestWithID
 {
-    stubRequest(@"PUT", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/complete_request").
+    stubRequest(@"PUT", @"https://api.coinbase.com/v1/transactions/501a3554f8182b2754000003/complete_request").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2337,7 +2335,7 @@
 
 -(void) test__cancelRequestWithID
 {
-    stubRequest(@"DELETE", @"https://coinbase.com/api/v1/transactions/501a3554f8182b2754000003/cancel_request").
+    stubRequest(@"DELETE", @"https://api.coinbase.com/v1/transactions/501a3554f8182b2754000003/cancel_request").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2362,7 +2360,7 @@
 
 -(void) test__getTransfers
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/transfers").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/transfers").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2414,7 +2412,7 @@
 
 -(void) test__transferWithID
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/transfers/544047e346cd9333bd000066").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/transfers/544047e346cd9333bd000066").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2463,7 +2461,7 @@
 
 -(void) test__commitTransferWithID
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/transfers/5474d23a629122e172000238/commit").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/transfers/5474d23a629122e172000238/commit").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2525,7 +2523,7 @@
 
 -(void) test__getCurrentUser
 {
-    stubRequest(@"GET", @"https://coinbase.com/api/v1/users/self").
+    stubRequest(@"GET", @"https://api.coinbase.com/v1/users/self").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2574,7 +2572,7 @@
 
 -(void) test__modifyCurrentUserName
 {
-    stubRequest(@"PUT", @"https://coinbase.com/api/v1/users/self").
+    stubRequest(@"PUT", @"https://api.coinbase.com/v1/users/self").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
@@ -2613,14 +2611,14 @@
 
 -(void) test__withdrawAmount_accountID_paymentMethodID
 {
-    stubRequest(@"POST", @"https://coinbase.com/api/v1/withdrawals").
+    stubRequest(@"POST", @"https://api.coinbase.com/v1/withdrawals").
     andReturn(200).
     withHeaders(@{@"Content-Type": @"application/json"}).
     withBody([self loadMockJSONFromFile]);
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"POST withdrawAmount_accountID_paymentMethodID"];
 
-    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithDictionary:@{@"id" : @"54e649216291227bd200006a"}];
+    CoinbaseAccount *account = [[CoinbaseAccount alloc] initWithID:@"54e649216291227bd200006a" client:self.client];
 
     [account withdrawAmount:@"10.00" paymentMethodID:@"54e6495e6291227bd2000078" completion:^(CoinbaseTransfer *transfer, NSError *error) {
         
