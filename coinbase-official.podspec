@@ -15,16 +15,18 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.resources = 'Pod/Assets'
+  s.source_files = 'Pod/Classes/CoinbaseDefines.[hm]'
+  s.public_header_files = 'Pod/Classes/CoinbaseDefines.h'
 
-  s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 
   s.subspec 'OAuth' do |ss|
-    ss.source_files = 'Pod/Classes/{CoinbaseOAuth,CoinbaseDefines}.[hm]'
+    ss.source_files = 'Pod/Classes/OAuth/*.[hm]'
+    ss.public_header_files = 'Pod/Classes/OAuth/*.h'
   end
 
   s.subspec 'client' do |ss|
-    ss.dependency 'coinbase-official/OAuth'
-    ss.source_files = 'Pod/Classes/{Coinbase,CoinbaseAccount,CoinbaseAccountChange,CoinbaseAddress,CoinbaseApplication,CoinbaseAuthorization,CoinbaseBalance,CoinbaseButton,CoinbaseContact,CoinbaseCurrency,CoinbaseObject,CoinbaseOrder,CoinbasePagingHelper,CoinbasePaymentMethod,CoinbasePrice,CoinbaseRecurringPayment,CoinbaseRefund,CoinbaseReport,CoinbaseToken,CoinbaseTransaction,CoinbaseTransfer,CoinbaseUser}.[hm]'
+    ss.source_files = 'Pod/Classes/Client/*.[hm]'
+    ss.public_header_files = 'Pod/Classes/Client/*.h'
   end
 end

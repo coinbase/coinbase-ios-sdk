@@ -2,8 +2,7 @@ PODS:
   - coinbase-official (3.0):
     - coinbase-official/client (= 3.0)
     - coinbase-official/OAuth (= 3.0)
-  - coinbase-official/client (3.0):
-    - coinbase-official/OAuth
+  - coinbase-official/client (3.0)
   - coinbase-official/OAuth (3.0)
   - Nocilla (0.10.0)
 
@@ -16,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  coinbase-official: 7580d71653ea5aff94f54b72467a87daf57cff45
+  coinbase-official: 9117ac674501ecc5720fcad589c29cbbc1936a70
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
 
 COCOAPODS: 0.37.2
