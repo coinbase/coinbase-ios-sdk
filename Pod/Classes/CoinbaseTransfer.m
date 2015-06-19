@@ -7,6 +7,7 @@
 //
 
 #import "CoinbaseTransfer.h"
+#import "CoinbaseInternal.h"
 
 @implementation CoinbaseTransfer
 

@@ -16,6 +16,7 @@
 #import "CoinbaseTransfer.h"
 #import "CoinbaseUser.h"
 #import "CoinbaseToken.h"
+#import "CoinbaseInternal.h"
 
 #import "CoinbasePagingHelper.h"
 

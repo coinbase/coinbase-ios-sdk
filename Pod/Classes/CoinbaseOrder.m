@@ -7,6 +7,7 @@
 //
 
 #import "CoinbaseOrder.h"
+#import "CoinbaseInternal.h"
 
 @implementation CoinbaseOrder
 

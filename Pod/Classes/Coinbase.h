@@ -33,11 +33,6 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
     CoinbaseRequestTypePostMultiPart
 };
 
-static id ObjectOrEmptyString(id object)
-{
-    return object ?: @"";
-}
-
 /// The `Coinbase` class is the interface to the Coinbase API. Create a `Coinbase` object using
 /// `coinbaseWithOAuthAccessToken:` or `coinbaseWithApiKey:secret:` to call API methods.
 @interface Coinbase : NSObject
