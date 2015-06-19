@@ -5,21 +5,11 @@ PODS:
   - coinbase-official/client (3.0):
     - coinbase-official/OAuth
   - coinbase-official/OAuth (3.0)
-  - Expecta (0.4.2)
-  - Expecta+Snapshots (1.3.2):
-    - Expecta (~> 0.3)
-    - FBSnapshotTestCase (= 1.6)
-  - FBSnapshotTestCase (1.6)
   - Nocilla (0.10.0)
-  - Specta (0.2.1)
 
 DEPENDENCIES:
   - coinbase-official (from `../`)
-  - Expecta
-  - Expecta+Snapshots
-  - FBSnapshotTestCase
   - Nocilla
-  - Specta (~> 0.2.1)
 
 EXTERNAL SOURCES:
   coinbase-official:
@@ -27,10 +17,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   coinbase-official: 7580d71653ea5aff94f54b72467a87daf57cff45
-  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
-  Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
-  FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
-  Specta: 15a276a6343867b426d5ed135d5aa4d04123a573
 
 COCOAPODS: 0.37.2

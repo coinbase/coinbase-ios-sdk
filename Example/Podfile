@@ -4,10 +4,5 @@ end
 
 target 'Coinbase Tests', :exclusive => true do
   pod "coinbase-official", :path => "../"
-
-  pod 'Specta', '~> 0.2.1'
-  pod 'Expecta'
-  pod 'FBSnapshotTestCase'
-  pod 'Expecta+Snapshots'
   pod 'Nocilla'
 end
