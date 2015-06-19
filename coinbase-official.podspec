@@ -31,6 +31,5 @@ Pod::Spec.new do |s|
     ss.dependency 'coinbase-official/core'
     ss.source_files = 'Pod/Classes/Client/*.[hm]'
     ss.public_header_files = 'Pod/Classes/Client/*.h'
-    ss.private_header_files = 'Pod/Classes/Client/CoinbaseInternal.h'
   end
 end
