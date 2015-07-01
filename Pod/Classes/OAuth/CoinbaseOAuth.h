@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "CoinbaseDefines.h"
 
 ///  Indicates where user authentication takes place
