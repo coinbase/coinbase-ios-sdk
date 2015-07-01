@@ -39,6 +39,16 @@ extern NSString *const CoinbaseOAuthErrorUserInfoKey;
                                                                  redirectUri:(NSString *)redirectUri
                                                                         meta:(NSDictionary *)meta;
 
+/// Start the OAuth authentication process. This will open a different application to complete the
+/// authentication flow.
+///
+/// @return the mechanism of authentication. Example: CoinbaseOAuthMechanismApp
++ (CoinbaseOAuthAuthenticationMechanism)startOAuthAuthenticationWithClientId:(NSString *)clientId
+                                                                       scope:(NSString *)scope
+                                                                 redirectUri:(NSString *)redirectUri
+                                                                        meta:(NSDictionary *)meta
+                                                                      layout:(NSString *)layout;
+
 /// Finish the OAuth authentication process. This should be called when your application is opened
 /// for a Coinbase OAuth URI.
 ///

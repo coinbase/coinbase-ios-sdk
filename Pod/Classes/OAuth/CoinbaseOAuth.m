@@ -22,6 +22,15 @@ static NSURL * __strong baseURL;
                                                                        scope:(NSString *)scope
                                                                  redirectUri:(NSString *)redirectUri
                                                                         meta:(NSDictionary *)meta {
+    return [CoinbaseOAuth startOAuthAuthenticationWithClientId:clientId scope:scope redirectUri:redirectUri meta:meta layout:nil];
+}
+
+
++ (CoinbaseOAuthAuthenticationMechanism)startOAuthAuthenticationWithClientId:(NSString *)clientId
+                                                                       scope:(NSString *)scope
+                                                                 redirectUri:(NSString *)redirectUri
+                                                                        meta:(NSDictionary *)meta
+                                                                      layout:(NSString *)layout {
     NSString *path = [NSString stringWithFormat: @"/oauth/authorize?response_type=code&client_id=%@", clientId];
     if (scope) {
         path = [path stringByAppendingFormat:@"&scope=%@", [self URLEncodedStringFromString:scope]];
@@ -33,6 +42,9 @@ static NSURL * __strong baseURL;
         for (NSString *key in meta) {
             path = [path stringByAppendingFormat:@"&meta[%@]=%@", [self URLEncodedStringFromString:key], [self URLEncodedStringFromString:meta[key]]];
         }
+    }
+    if (layout) {
+        path = [path stringByAppendingFormat:@"&layout=%@", [self URLEncodedStringFromString:layout]];
     }
 
     CoinbaseOAuthAuthenticationMechanism mechanism = CoinbaseOAuthMechanismNone;
