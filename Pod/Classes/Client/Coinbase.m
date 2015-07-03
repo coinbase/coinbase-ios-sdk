@@ -316,7 +316,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     if (headers != nil) {
         for (NSString *header in [headers keyEnumerator]) {
-            [request setValue:headers[header] forKey:header];
+            [request setValue:headers[header] forHTTPHeaderField:header];
         }
     }
 
@@ -608,7 +608,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
                                        @"price_currency_iso" : ObjectOrEmptyString(priceCurrencyISO)
                                        }
                                  };
-    
+
     [self doRequestType:CoinbaseRequestTypePost path:@"buttons" parameters:parameters headers:nil completion:^(id response, NSError *error) {
 
         if (error)
