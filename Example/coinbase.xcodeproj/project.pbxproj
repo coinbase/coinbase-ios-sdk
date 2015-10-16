@@ -647,6 +647,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Coinbase;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Isaac Waller";
 				TargetAttributes = {
