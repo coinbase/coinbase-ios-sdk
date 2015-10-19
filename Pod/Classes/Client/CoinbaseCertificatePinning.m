@@ -43,48 +43,28 @@
 
         SecTrustRef trust = challenge.protectionSpace.serverTrust;
         SecTrustResultType result;
-        OSStatus err = errSecSuccess;
+        OSStatus errStatus = errSecSuccess;
        
-        if (err == errSecSuccess) {
-            err = SecTrustSetAnchorCertificates(trust,self.certChaninArrayRef);
+        if (errStatus == errSecSuccess) {
+            errStatus = SecTrustSetAnchorCertificates(trust,self.certChaninArrayRef);
         }
 
-        if (err == errSecSuccess) {
-            err = SecTrustSetAnchorCertificatesOnly(trust, YES);
+        if (errStatus == errSecSuccess) {
+            errStatus = SecTrustSetAnchorCertificatesOnly(trust, YES);
         }
         
-        if (err == errSecSuccess) {
-            err = SecTrustEvaluate(trust, &result);
+        if (errStatus == errSecSuccess) {
+            errStatus = SecTrustEvaluate(trust, &result);
         }
         
-        if (err == errSecSuccess) {
-            switch (result) {
-                case kSecTrustResultProceed:
-                    completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:trust]);
-                    return;
-                    break;
-                case kSecTrustResultUnspecified:
-                    completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:trust]);
-                    return;
-                    break;
-                case kSecTrustResultInvalid:
-                    break;
-                case kSecTrustResultDeny:
-                    break;
-                case kSecTrustResultFatalTrustFailure:
-                    break;
-                case kSecTrustResultOtherError:
-                    break;
-                case kSecTrustResultRecoverableTrustFailure:
-                    break;
-                default:
-                    NSAssert(NO,@"Unexpected result: %d", result);
-                    break;
+        if (errStatus == errSecSuccess) {
+            if (result == kSecTrustResultProceed || result == kSecTrustResultUnspecified) {
+                completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:trust]);
+                return;
             }
-        };
-    
-    completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
-        return;
+        }
+        
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
     }
 }
 
