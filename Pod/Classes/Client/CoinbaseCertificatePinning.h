@@ -2,7 +2,7 @@
 //  CoinbaseCertificatePinning.h
 //  Pods
 //
-//  Created by David Hovey on 15/10/2015.
+//  Created by Dai Hovey on 19/10/2015.
 //
 //
 
@@ -13,6 +13,6 @@
 
 + (instancetype)shared;
 
-- (void) setupSSLPins;
+-(void) setupCertificates;
 
 @end

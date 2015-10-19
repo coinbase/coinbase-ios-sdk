@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             // Setup SSLPins
-            [[CoinbaseCertificatePinning shared] setupSSLPins];
+            [[CoinbaseCertificatePinning shared] setupCertificates];
         });
     }
     return self;
