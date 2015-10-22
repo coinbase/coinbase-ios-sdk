@@ -50,10 +50,6 @@
         }
 
         if (errStatus == errSecSuccess) {
-            errStatus = SecTrustSetAnchorCertificatesOnly(trust, YES);
-        }
-        
-        if (errStatus == errSecSuccess) {
             errStatus = SecTrustEvaluate(trust, &result);
         }
         
