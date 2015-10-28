@@ -17,8 +17,8 @@
 #import "CoinbaseUser.h"
 #import "CoinbaseToken.h"
 #import "CoinbaseInternal.h"
-
 #import "CoinbasePagingHelper.h"
+#import "CoinbaseCertificatePinning.h"
 
 typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     CoinbaseAuthenticationTypeAPIKey,
@@ -54,6 +54,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     self = [super init];
     if (self) {
         self.authenticationType = CoinbaseAuthenticationTypeNone;
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // Setup SSLPins
+            [[CoinbaseCertificatePinning shared] setupCertificates];
+        });
     }
     return self;
 }
@@ -321,7 +327,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
     }
 
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:[CoinbaseCertificatePinning shared] delegateQueue:nil];
     NSURLSessionDataTask *task;
     task = [session dataTaskWithRequest:request
                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

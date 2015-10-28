@@ -1,12 +1,12 @@
 PODS:
-  - coinbase-official (3.0):
-    - coinbase-official/client (= 3.0)
-    - coinbase-official/core (= 3.0)
-    - coinbase-official/OAuth (= 3.0)
-  - coinbase-official/client (3.0):
+  - coinbase-official (3.0.2):
+    - coinbase-official/client (= 3.0.2)
+    - coinbase-official/core (= 3.0.2)
+    - coinbase-official/OAuth (= 3.0.2)
+  - coinbase-official/client (3.0.2):
     - coinbase-official/core
-  - coinbase-official/core (3.0)
-  - coinbase-official/OAuth (3.0):
+  - coinbase-official/core (3.0.2)
+  - coinbase-official/OAuth (3.0.2):
     - coinbase-official/core
   - Nocilla (0.10.0)
 
@@ -16,10 +16,10 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   coinbase-official:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  coinbase-official: 98158d256f683b7649efadc78944fba728057371
+  coinbase-official: 92b3478440822aa7a7245c3a96b531ca9f79190b
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

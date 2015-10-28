@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.resources = 'Pod/Assets'
+  s.ios.resource_bundle = { 'CBCertificates' => 'Pod/Assets/Certificates/*.der' }
   s.frameworks = 'UIKit'
 
   s.subspec 'core' do |ss|

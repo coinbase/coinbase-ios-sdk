@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSource {
+class CoinbaseCurrenciesViewController: UITableViewController {
 
     var currencies : [CoinbaseCurrency]?
 
@@ -19,6 +19,7 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
                 self.tableView.reloadData()
             } else {
                 let alertView = UIAlertView(title: "Error", message: error?.localizedDescription ?? "Unknown error.", delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
             }
         }
     }
@@ -33,7 +34,7 @@ class CoinbaseCurrenciesViewController: UITableViewController, UITableViewDataSo
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("currency") as? UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("currency")
 
         let label = cell?.viewWithTag(1) as? UILabel
 
