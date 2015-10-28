@@ -20,6 +20,7 @@ class CoinbaseBuySellViewController: UIViewController {
 
             if let error = error {
                 let alertView = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
             } else {
                 self.buyTotal.text = "Buy price: \(total!.amount!) BTC"
             }
@@ -29,6 +30,7 @@ class CoinbaseBuySellViewController: UIViewController {
 
             if let error = error {
                 let alertView = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
             } else {
                 self.sellTotal.text = "Sell price: \(total!.amount) BTC"
             }
@@ -38,6 +40,7 @@ class CoinbaseBuySellViewController: UIViewController {
 
             if let error = error {
                 let alertView = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
             } else {
                 self.spotPrice.text = "Spot price: \(spotPrice!.amount!) BTC"
             }
