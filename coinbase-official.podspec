@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/coinbase/coinbase-ios-sdk.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/coinbase'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.ios.resource_bundle = { 'CBCertificates' => 'Pod/Assets/Certificates/*.der' }
