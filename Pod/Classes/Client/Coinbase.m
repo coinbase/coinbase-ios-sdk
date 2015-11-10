@@ -87,6 +87,11 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
               response:(NSData *)data
             completion:(CoinbaseCompletionBlock)completion {
     NSError *error = nil;
+    
+    if (data.length == 0) {
+        NSString *tempData = @"{}";
+        data = [tempData dataUsingEncoding:NSUTF8StringEncoding];
+    }
     id response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if (response == nil) {
         response = @{};
@@ -113,7 +118,7 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 // http://stackoverflow.com/a/16458798/764272
 - (NSString *)generateSignature:(NSString *)body {
     const char *cKey  = [self.apiSecret cStringUsingEncoding:NSASCIIStringEncoding];
-    const char *cData = [body cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cData = [body cStringUsingEncoding:NSUTF8StringEncoding];
 
     unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
 
