@@ -148,7 +148,7 @@ static NSURL * __strong baseURL;
                withParams:(NSDictionary *)params
                completion:(CoinbaseCompletionBlock)completion {
 
-    NSURL *base = [NSURL URLWithString:@"oauth/" relativeToURL:(baseURL == nil ? [NSURL URLWithString:@"https://www.coinbase.com/"] : baseURL)];
+    NSURL *base = [NSURL URLWithString:@"oauth/" relativeToURL:(baseURL == nil ? [NSURL URLWithString:@"https://api.coinbase.com/"] : baseURL)];
     NSURL *url = [[NSURL URLWithString:path relativeToURL:base] absoluteURL];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
@@ -179,7 +179,7 @@ static NSURL * __strong baseURL;
                                 NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                 if (!error) {
                                     if ([parsedBody objectForKey:@"error"] || [httpResponse statusCode] > 300) {
-                                        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"] };
+                                        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"], NSLocalizedRecoverySuggestionErrorKey: [parsedBody objectForKey:@"2fa_authentication"] };
                                         error = [NSError errorWithDomain:CoinbaseErrorDomain
                                                                     code:CoinbaseOAuthError
                                                                 userInfo:userInfo];
