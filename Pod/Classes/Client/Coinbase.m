@@ -331,6 +331,12 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         }
     }
 
+    NSArray *languages = [NSBundle mainBundle].preferredLocalizations;
+    NSString *deviceLanguage = [languages firstObject];
+    if (deviceLanguage != nil || [deviceLanguage isEqualToString:@""]) {
+        [request setValue:@"Accept-Language" forHTTPHeaderField:deviceLanguage];
+    }
+    
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:[CoinbaseCertificatePinning shared] delegateQueue:nil];
     NSURLSessionDataTask *task;
