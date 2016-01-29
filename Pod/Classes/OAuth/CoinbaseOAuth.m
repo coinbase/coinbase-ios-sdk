@@ -179,7 +179,12 @@ static NSURL * __strong baseURL;
                                 NSDictionary *parsedBody = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                 if (!error) {
                                     if ([parsedBody objectForKey:@"error"] || [httpResponse statusCode] > 300) {
-                                        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"], NSLocalizedRecoverySuggestionErrorKey: [parsedBody objectForKey:@"2fa_authentication"] };
+                                        NSString *authentication = @"";
+                                        if ([parsedBody objectForKey:@"2fa_authentication"] != nil) {
+                                            authentication = [parsedBody objectForKey:@"2fa_authentication"];
+                                        }
+                                        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [parsedBody objectForKey:@"error"], NSLocalizedRecoverySuggestionErrorKey: authentication };
+
                                         error = [NSError errorWithDomain:CoinbaseErrorDomain
                                                                     code:CoinbaseOAuthError
                                                                 userInfo:userInfo];
