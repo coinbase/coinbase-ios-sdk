@@ -35,6 +35,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
 @end
 
+static NSNumber * __strong requestTimeoutInterval;
+
 @implementation Coinbase
 
 + (Coinbase *)coinbaseWithOAuthAccessToken:(NSString *)accessToken {
@@ -81,6 +83,10 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
         self.apiSecret = secret;
     }
     return self;
+}
+
++ (void)setRequestTimeoutInterval:(NSNumber *)timeoutInterval {
+    requestTimeoutInterval = timeoutInterval;
 }
 
 - (void)requestSuccess:(NSHTTPURLResponse *)operation
@@ -284,7 +290,8 @@ typedef NS_ENUM(NSUInteger, CoinbaseAuthenticationType) {
 
     NSURL *baseURL = [NSURL URLWithString:@"v1/" relativeToURL:(self.baseURL == nil ? [NSURL URLWithString:@"https://api.coinbase.com/"] : self.baseURL)];
     NSURL *URL = [[NSURL URLWithString:path relativeToURL:baseURL] absoluteURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:(requestTimeoutInterval == nil ? 10.0f : requestTimeoutInterval.doubleValue)];
+    
     if (body) {
         [request setHTTPBody:body];
     }

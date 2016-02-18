@@ -52,6 +52,9 @@ typedef NS_ENUM(NSUInteger, CoinbaseRequestType) {
 /// Base URL that will be used when making API requests. Defaults to "https://api.coinbase.com/"
 @property (nonatomic, strong) NSURL *baseURL;
 
+/// Set the API request's timeout interval. Defaults to 10 seconds.
++ (void)setRequestTimeoutInterval:(NSNumber *)timeoutInterval;
+
 /// Make a GET request to the Coinbase API.
 - (void)doGet:(NSString *)path
    parameters:(NSDictionary *)parameters
