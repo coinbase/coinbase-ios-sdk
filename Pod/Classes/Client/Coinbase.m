@@ -290,7 +290,7 @@ static NSNumber * __strong requestTimeoutInterval;
 
     NSURL *baseURL = [NSURL URLWithString:@"v1/" relativeToURL:(self.baseURL == nil ? [NSURL URLWithString:@"https://api.coinbase.com/"] : self.baseURL)];
     NSURL *URL = [[NSURL URLWithString:path relativeToURL:baseURL] absoluteURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:(requestTimeoutInterval == nil ? 10.0f : requestTimeoutInterval.doubleValue)];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:(requestTimeoutInterval == nil ? 15.0f : requestTimeoutInterval.doubleValue)];
     
     if (body) {
         [request setHTTPBody:body];
