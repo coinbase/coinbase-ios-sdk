@@ -11,6 +11,8 @@ class CoinbaseCurrenciesViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
 
+        Coinbase.setRequestTimeoutInterval(NSNumber(double: 15))
+        
         // Load currencies
         Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
 
