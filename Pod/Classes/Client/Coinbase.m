@@ -331,11 +331,15 @@ static NSNumber * __strong requestTimeoutInterval;
         // OAuth
         [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
     }
+    NSMutableDictionary *mutableHeaders = [(headers == nil ? @{} : headers) mutableCopy];
+    
+    NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    [mutableHeaders setValue:[NSString stringWithFormat:@"%@/%@", bundleIdentifier, appVersionString] forKey:@"USER-AGENT"];
 
-    if (headers != nil) {
-        for (NSString *header in [headers keyEnumerator]) {
-            [request setValue:headers[header] forHTTPHeaderField:header];
-        }
+    for (NSString *header in [mutableHeaders keyEnumerator]) {
+        [request setValue:mutableHeaders[header] forHTTPHeaderField:header];
     }
 
     NSArray *languages = [NSBundle mainBundle].preferredLocalizations;
