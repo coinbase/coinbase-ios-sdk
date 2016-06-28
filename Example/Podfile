@@ -1,8 +1,11 @@
-target 'coinbase', :exclusive => true do
+target 'coinbase' do
   pod "coinbase-official", :path => "../"
+  
+  target 'Coinbase Tests' do
+      inherit! :search_paths
+      pod "coinbase-official", :path => "../"
+      pod 'Nocilla'
+  end
 end
 
-target 'Coinbase Tests', :exclusive => true do
-  pod "coinbase-official", :path => "../"
-  pod 'Nocilla'
-end
+

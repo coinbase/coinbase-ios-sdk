@@ -331,14 +331,21 @@ static NSNumber * __strong requestTimeoutInterval;
         // OAuth
         [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
     }
+    
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    
+    NSMutableDictionary *mutableHeaders = [(headers == nil ? @{} : headers) mutableCopy];
+    
+    NSString *appVersionString = [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *bundleIdentifier = [mainBundle bundleIdentifier];
+    
+    [mutableHeaders setValue:[NSString stringWithFormat:@"%@/%@", bundleIdentifier, appVersionString] forKey:@"USER-AGENT"];
 
-    if (headers != nil) {
-        for (NSString *header in [headers keyEnumerator]) {
-            [request setValue:headers[header] forHTTPHeaderField:header];
-        }
+    for (NSString *header in [mutableHeaders keyEnumerator]) {
+        [request setValue:mutableHeaders[header] forHTTPHeaderField:header];
     }
 
-    NSArray *languages = [NSBundle mainBundle].preferredLocalizations;
+    NSArray *languages = mainBundle.preferredLocalizations;
     NSString *deviceLanguage = [languages firstObject];
     if (deviceLanguage != nil || [deviceLanguage isEqualToString:@""]) {
         [request setValue:deviceLanguage forHTTPHeaderField:@"Accept-Language"];
