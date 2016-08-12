@@ -339,7 +339,7 @@ static NSNumber * __strong requestTimeoutInterval;
     NSString *appVersionString = [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSString *bundleIdentifier = [mainBundle bundleIdentifier];
     
-    [mutableHeaders setValue:[NSString stringWithFormat:@"%@/%@", bundleIdentifier, appVersionString] forKey:@"USER-AGENT"];
+    [mutableHeaders setValue:[NSString stringWithFormat:@"%@/%@", bundleIdentifier, appVersionString] forKey:@"CB-CLIENT"];
 
     for (NSString *header in [mutableHeaders keyEnumerator]) {
         [request setValue:mutableHeaders[header] forHTTPHeaderField:header];
