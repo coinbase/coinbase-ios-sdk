@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Client/CoinbaseApplication.h
