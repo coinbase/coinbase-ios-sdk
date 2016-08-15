@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Client/CoinbaseBalance.h
