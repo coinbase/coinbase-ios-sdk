@@ -9,12 +9,13 @@ class CoinbaseCurrenciesViewController: UITableViewController {
 
     var currencies : [CoinbaseCurrency]?
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 
-        Coinbase.setRequestTimeoutInterval(NSNumber(double: 15))
+        Coinbase.setRequestTimeoutInterval(NSNumber(value: 15 as Double))
         
         // Load currencies
-        Coinbase().getSupportedCurrencies() { (response: Array?, error: NSError?) in
+        
+        Coinbase().getSupportedCurrencies() { (response: [Any]?, error: Error?) in
 
             if let currencies = response as? [CoinbaseCurrency] {
                 self.currencies = currencies
@@ -26,7 +27,7 @@ class CoinbaseCurrenciesViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let currencies = self.currencies {
             return currencies.count
         } else {
@@ -34,9 +35,9 @@ class CoinbaseCurrenciesViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("currency")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "currency")
 
         let label = cell?.viewWithTag(1) as? UILabel
 

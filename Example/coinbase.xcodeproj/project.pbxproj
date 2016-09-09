@@ -647,6 +647,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Isaac Waller";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						LastSwiftMigration = 0800;
+					};
 					D7F1473C1B03154700B13F98 = {
 						CreatedOnToolsVersion = 6.3.1;
 						TestTargetID = 6003F589195388D20070C39A;
@@ -990,6 +993,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "coinbase/coinbase-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1008,6 +1012,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "coinbase/coinbase-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
