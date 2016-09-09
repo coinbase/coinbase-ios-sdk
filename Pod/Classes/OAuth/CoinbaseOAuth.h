@@ -21,6 +21,7 @@ extern NSString *const CoinbaseOAuthErrorUserInfoKey;
 /// `CoinbaseOAuth` contains methods to authenticate users through OAuth2. After obtaining an
 /// access token using this class, you can call Coinbase API methods
 /// using `[Coinbase coinbaseWithOAuthAccessToken:]`.
+NS_EXTENSION_UNAVAILABLE_IOS("OAuth is currently not allowed in extensions")
 @interface CoinbaseOAuth : NSObject
 
 /// Test if the Coinbase app is installed and if the OAuth authentication process will use the Coinbase
