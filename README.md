@@ -39,6 +39,9 @@ To use OAuth2 you will need to add a custom URI scheme to your application. This
 
 You now need to create an OAuth2 application for your iOS application at [https://www.coinbase.com/oauth/applications](https://www.coinbase.com/oauth/applications). Click `+ Create an Application` and enter a name for your application. In `Permitted Redirect URIs`, you should enter "your_scheme://coinbase-oauth" - for example, if your custom URI scheme is "com.example.app.coinbase-oauth", then you should enter "com.example.app.coinbase-oauth://coinbase-oauth". Save the application and take note of the Client ID and Secret.
 
+You also need to add `com.coinbase.oauth-authorize` to `LSApplicationQueriesSchemes` in the `info.plist` file.
+This will allow your app to open Coinbase app and make the whole flow of authorization simpler if user already has the app installed.
+
 You can now integrate the OAuth2 sign in flow into your application. Use `startOAuthAuthenticationWithClientId:scope:redirectUri:meta:` to start the external sign in process.
 
 ```objective-c
