@@ -1,3 +1,7 @@
+# Deprecated
+This version of the SDK is now deprecated. Development of V2 is now in progress, please check back soon for more updates.
+-----
+
 # coinbase
 
 Integrate bitcoin into your iOS application with Coinbase's fully featured bitcoin payments API. Coinbase allows all major operations in bitcoin through one API. For more information, visit https://developers.coinbase.com/docs/wallet.
