@@ -1,5 +1,5 @@
 # Deprecated
-This version of the SDK is now deprecated. Development of V2 is now in progress, please check back soon for more updates.
+This version of the SDK is now deprecated. Development of V2 is in progress, please check back soon for more updates.
 -----
 
 # coinbase
