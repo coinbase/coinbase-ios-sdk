@@ -1,0 +1,1 @@
+{"data":{"base":"BTC","currency":"USD","amount":"17130.91"},"warnings":[{"id":"missing_version","message":"Please supply API version (YYYY-MM-DD) as CB-VERSION header","url":"https://developers.coinbase.com/api#versioning"}]}

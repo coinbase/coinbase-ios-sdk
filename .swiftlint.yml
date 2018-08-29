@@ -1,0 +1,22 @@
+disabled_rules:
+  - trailing_whitespace
+opt_in_rules:
+  - empty_count
+
+included:
+  - Source
+  - Tests
+  
+force_cast: 
+  severity: warning
+force_try:
+  severity: warning
+
+line_length: 190
+
+identifier_name:
+  excluded:
+    - id
+    - to
+    - url
+    - at

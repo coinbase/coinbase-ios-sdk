@@ -1,0 +1,62 @@
+{
+  "data": {
+    "id": "payment_method_id",
+    "type": "fiat_account",
+    "name": "USD Wallet",
+    "currency": "USD",
+    "primary_buy": false,
+    "primary_sell": true,
+    "allow_buy": true,
+    "allow_sell": true,
+    "allow_deposit": true,
+    "allow_withdraw": true,
+    "instant_buy": true,
+    "instant_sell": true,
+    "created_at": "2018-03-14T01:30:38Z",
+    "updated_at": "2018-03-14T01:30:38Z",
+    "resource": "payment_method",
+    "resource_path": "/v2/payment-methods/payment_method_id",
+    "limits": {
+      "type": "fiat_account",
+      "name": "Coinbase Account",
+      "buy": [
+        {
+          "period_in_days": 7,
+          "total": {
+            "amount": "100000.00",
+            "currency": "USD"
+          },
+          "remaining": {
+            "amount": "100000.00",
+            "currency": "USD"
+          },
+          "description": "$100,000 of your $100,000 weekly Coinbase account limit remaining",
+          "label": "Total USD limit",
+          "next_requirement": null
+        }
+      ],
+      "sell": [
+        {
+          "period_in_days": 7,
+          "total": {
+            "amount": "100000.00",
+            "currency": "USD"
+          },
+          "remaining": {
+            "amount": "100000.00",
+            "currency": "USD"
+          },
+          "description": "$100,000 of your $100,000 weekly Coinbase account limit remaining",
+          "label": "Total USD limit",
+          "next_requirement": null
+        }
+      ]
+    },
+    "fiat_account": {
+      "id": "fiat_account_id",
+      "resource": "account",
+      "resource_path": "/v2/accounts/fiat_account_id"
+    },
+    "verified": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "data": {
+    "id": "buy_id",
+    "status": "completed",
+    "payment_method": {
+      "id": "payment_method_id",
+      "type": "ach_bank_account",
+      "name": "BANK ******1111",
+      "currency": "USD",
+      "primary_buy": false,
+      "primary_sell": true,
+      "allow_buy": true,
+      "allow_sell": true,
+      "allow_deposit": true,
+      "allow_withdraw": true,
+      "instant_buy": false,
+      "instant_sell": false,
+      "created_at": "2018-03-06T19:39:11Z",
+      "updated_at": "2018-03-14T01:26:52Z",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method",
+      "verified": true
+    },
+    "transaction": {
+      "id": "transaction_id",
+      "type": "buy",
+      "status": "completed",
+      "amount": {
+        "amount": "0.00096735",
+        "currency": "BTC"
+      },
+      "native_amount": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "description": null,
+      "created_at": "2018-03-14T01:59:47Z",
+      "updated_at": "2018-03-21T01:59:57Z",
+      "resource": "transaction",
+      "resource_path": "/v2/accounts/account_id/transactions/transaction_id",
+      "instant_exchange": false,
+      "buy": {
+        "id": "buy_id",
+        "resource": "buy",
+        "resource_path": "/v2/accounts/account_id/buys/buy_id"
+      },
+      "details": {
+        "title": "Bought Bitcoin",
+        "subtitle": "Using BANK ******1111",
+        "payment_method_name": "BANK ******1111"
+      }
+    },
+    "user_reference": "user_reference",
+    "created_at": "2018-03-14T01:59:44Z",
+    "updated_at": "2018-03-21T01:59:58Z",
+    "resource": "buy",
+    "resource_path": "/v2/accounts/account_id/buys/buy_id",
+    "committed": true,
+    "payout_at": "2018-03-22T01:59:46Z",
+    "instant": false,
+    "fee": {
+      "amount": "0.99",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "0.00096735",
+      "currency": "BTC"
+    },
+    "total": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "9.01",
+      "currency": "USD"
+    },
+    "hold_until": null,
+    "hold_days": 0,
+    "requires_completion_step": false,
+    "is_first_buy": true
+  }
+}

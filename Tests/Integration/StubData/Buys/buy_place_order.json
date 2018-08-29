@@ -1,0 +1,40 @@
+{
+  "data": {
+    "id": "buy_id",
+    "status": "created",
+    "payment_method": {
+      "id": "payment_method_id",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id"
+    },
+    "transaction": null,
+    "user_reference": "user_reference",
+    "created_at": "2018-05-14T11:09:07Z",
+    "updated_at": "2018-05-14T11:09:07Z",
+    "resource": "buy",
+    "resource_path": "/v2/accounts/account_id/buys/buy_id",
+    "committed": false,
+    "payout_at": "2018-05-15T11:09:07Z",
+    "instant": false,
+    "fee": {
+      "amount": "0.99",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "0.00140344",
+      "currency": "ETH"
+    },
+    "total": {
+      "amount": "1.99",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "1.00",
+      "currency": "USD"
+    },
+    "hold_until": null,
+    "hold_days": 0,
+    "requires_completion_step": false,
+    "is_first_buy": false
+  }
+}

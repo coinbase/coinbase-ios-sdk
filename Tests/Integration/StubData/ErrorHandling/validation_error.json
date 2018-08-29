@@ -1,0 +1,8 @@
+{
+  "errors": [
+    {
+      "id": "validation_error",
+      "message": "Please enter a valid email or bitcoin address"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+	"pagination": {
+		"ending_before": null,
+		"starting_after": null,
+		"limit": 25,
+		"order": "desc",
+		"previous_uri": null,
+		"next_uri": null
+	},
+	"data": [
+		{
+			"id": "account_id1",
+			"name": "Cash (USD)",
+			"primary": false,
+			"type": "fiat",
+			"currency": {
+				"code": "USD",
+				"name": "United States Dollar",
+				"color": "#0066cf",
+				"exponent": 2,
+				"type": "fiat"
+			},
+			"balance": {
+				"amount": "0.00",
+				"currency": "USD"
+			},
+			"created_at": "2018-03-20T20:44:36Z",
+			"updated_at": "2018-03-20T20:44:36Z",
+			"resource": "account",
+			"resource_path": "/v2/accounts/account_id1"
+		},
+		{
+			"id": "account_id2",
+			"name": "LTC Wallet",
+			"primary": false,
+			"type": "wallet",
+			"currency": {
+				"code": "LTC",
+				"name": "Litecoin",
+				"color": "#B5B5B5",
+				"exponent": 8,
+				"type": "crypto",
+				"address_regex": "^((L|M|3)[a-km-zA-HJ-NP-Z1-9]{25,34})|^(ltc1([qpzry9x8gf2tvdw0s3jn54khce6mua7l]{39}|[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{59}))$"
+			},
+			"balance": {
+				"amount": "0.00772320",
+				"currency": "LTC"
+			},
+			"created_at": "2018-03-20T20:43:18Z",
+			"updated_at": "2018-04-13T11:13:50Z",
+			"resource": "account",
+			"resource_path": "/v2/accounts/account_id2"
+		},
+		{
+			"id": "account_id3",
+			"name": "ETH Wallet",
+			"primary": false,
+			"type": "wallet",
+			"currency": {
+				"code": "ETH",
+				"name": "Ethereum",
+				"color": "#6F7CBA",
+				"exponent": 8,
+				"type": "crypto",
+				"address_regex": "^(?:0x)?[0-9a-fA-F]{40}$"
+			},
+			"balance": {
+				"amount": "0.00194399",
+				"currency": "ETH"
+			},
+			"created_at": "2018-03-20T20:43:18Z",
+			"updated_at": "2018-04-13T11:07:11Z",
+			"resource": "account",
+			"resource_path": "/v2/accounts/account_id3"
+		},
+		{
+			"id": "account_id4",
+			"name": "BCH Wallet",
+			"primary": false,
+			"type": "wallet",
+			"currency": {
+				"code": "BCH",
+				"name": "Bitcoin Cash",
+				"color": "#8DC451",
+				"exponent": 8,
+				"type": "crypto",
+				"address_regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})|^((bitcoincash:)?(q|p)[a-z0-9]{41})|^((BITCOINCASH:)?(Q|P)[A-Z0-9]{41})$"
+			},
+			"balance": {
+				"amount": "0.00131711",
+				"currency": "BCH"
+			},
+			"created_at": "2018-03-20T20:43:18Z",
+			"updated_at": "2018-04-13T12:19:40Z",
+			"resource": "account",
+			"resource_path": "/v2/accounts/4"
+		},
+		{
+			"id": "account_id5",
+			"name": "BTC Wallet",
+			"primary": true,
+			"type": "wallet",
+			"currency": {
+				"code": "BTC",
+				"name": "Bitcoin",
+				"color": "#FFB119",
+				"exponent": 8,
+				"type": "crypto",
+				"address_regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})|^(bc1([qpzry9x8gf2tvdw0s3jn54khce6mua7l]{39}|[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{59}))$"
+			},
+			"balance": {
+				"amount": "0.00026402",
+				"currency": "BTC"
+			},
+			"created_at": "2018-03-20T20:43:17Z",
+			"updated_at": "2018-04-06T10:52:12Z",
+			"resource": "account",
+			"resource_path": "/v2/accounts/account_id5"
+		}
+	]
+}

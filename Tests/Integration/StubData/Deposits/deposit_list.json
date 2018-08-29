@@ -1,0 +1,84 @@
+{
+  "pagination": {
+    "ending_before": null,
+    "starting_after": null,
+    "limit": 25,
+    "order": "desc",
+    "previous_uri": null,
+    "next_uri": null
+  },
+  "data": [
+    {
+      "id": "deposit_id",
+      "status": "completed",
+      "payment_method": {
+        "id": "payment_method_id",
+        "resource": "payment_method",
+        "resource_path": "/v2/payment-methods/payment_method_id"
+      },
+      "transaction": {
+        "id": "transaction_id",
+        "resource": "transaction",
+        "resource_path": "/v2/accounts/account_id/transactions/transaction_id"
+      },
+      "user_reference": "user_reference",
+      "created_at": "2018-04-13T15:29:52Z",
+      "updated_at": "2018-04-19T15:33:57Z",
+      "resource": "deposit",
+      "resource_path": "/v2/accounts/account_id/deposits/deposit_id",
+      "committed": true,
+      "payout_at": "2018-04-20T15:33:55Z",
+      "instant": false,
+      "fee": {
+        "amount": "0.00",
+        "currency": "USD"
+      },
+      "amount": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "subtotal": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "hold_until": null,
+      "hold_days": 0
+    },
+    {
+      "id": "deposit_id_1",
+      "status": "completed",
+      "payment_method": {
+        "id": "payment_method_id",
+        "resource": "payment_method",
+        "resource_path": "/v2/payment-methods/payment_method_id"
+      },
+      "transaction": {
+        "id": "transaction_id_1",
+        "resource": "transaction",
+        "resource_path": "/v2/accounts/account_id/transactions/transaction_id_1"
+      },
+      "user_reference": "user_reference_1",
+      "created_at": "2018-03-14T02:00:03Z",
+      "updated_at": "2018-03-21T02:00:07Z",
+      "resource": "deposit",
+      "resource_path": "/v2/accounts/account_id/deposits/deposit_id_1",
+      "committed": true,
+      "payout_at": "2018-03-22T02:00:04Z",
+      "instant": false,
+      "fee": {
+        "amount": "0.00",
+        "currency": "USD"
+      },
+      "amount": {
+        "amount": "100.00",
+        "currency": "USD"
+      },
+      "subtotal": {
+        "amount": "100.00",
+        "currency": "USD"
+      },
+      "hold_until": null,
+      "hold_days": 0
+    }
+  ]
+}

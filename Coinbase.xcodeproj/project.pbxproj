@@ -1,0 +1,2182 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09196F0E20A459DB00334F92 /* RefreshTokenSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09196F0D20A459DB00334F92 /* RefreshTokenSpec.swift */; };
+		0937B5B1206E5021009E8826 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */; };
+		0937B5B2206E502A009E8826 /* OHHTTPStubs.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0937B5C9206E9332009E8826 /* ResultMatchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937B5C8206E9332009E8826 /* ResultMatchers.swift */; };
+		0937B5CE206E93B7009E8826 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0937B5CC206E93B7009E8826 /* currencies.json */; };
+		0937B5D1206E949F009E8826 /* CurrenciesResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937B5D0206E949F009E8826 /* CurrenciesResourceSpec.swift */; };
+		3925480E208A697D0075B464 /* transaction_from_btc_address.json in Resources */ = {isa = PBXBuildFile; fileRef = 39254806208A697D0075B464 /* transaction_from_btc_address.json */; };
+		3925480F208A697D0075B464 /* transaction_from_email.json in Resources */ = {isa = PBXBuildFile; fileRef = 39254807208A697D0075B464 /* transaction_from_email.json */; };
+		39254810208A697D0075B464 /* transaction_to_btc_address.json in Resources */ = {isa = PBXBuildFile; fileRef = 39254808208A697D0075B464 /* transaction_to_btc_address.json */; };
+		39254811208A697D0075B464 /* transaction_to_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 39254809208A697D0075B464 /* transaction_to_user.json */; };
+		39254812208A697D0075B464 /* transaction_from_account.json in Resources */ = {isa = PBXBuildFile; fileRef = 3925480A208A697D0075B464 /* transaction_from_account.json */; };
+		39254813208A697D0075B464 /* transaction_to_account.json in Resources */ = {isa = PBXBuildFile; fileRef = 3925480B208A697D0075B464 /* transaction_to_account.json */; };
+		39254814208A697D0075B464 /* transaction_to_email.json in Resources */ = {isa = PBXBuildFile; fileRef = 3925480C208A697D0075B464 /* transaction_to_email.json */; };
+		39254815208A697D0075B464 /* transaction_from_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 3925480D208A697D0075B464 /* transaction_from_user.json */; };
+		3944F10B2093B8640098276D /* MockedSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C382208FFB8400AC973A /* MockedSessionManager.swift */; };
+		3944F10D2093BE260098276D /* OAuthURLBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F10C2093BE260098276D /* OAuthURLBuilderSpec.swift */; };
+		39934020209795A400805D99 /* RequestConvertibleSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993401E2097958300805D99 /* RequestConvertibleSpec.swift */; };
+		399BEFD120927FE0008A0B8B /* OAuthSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BEFCD20926E6A008A0B8B /* OAuthSpec.swift */; };
+		39BF3328208E7EC3003BD80A /* TransactionParty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF3327208E7EC3003BD80A /* TransactionParty.swift */; };
+		39BF332A208E83E8003BD80A /* EmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF3329208E83E8003BD80A /* EmailModel.swift */; };
+		39BF332C208E840F003BD80A /* CryptoAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF332B208E840F003BD80A /* CryptoAddress.swift */; };
+		39BF3331208EA525003BD80A /* show_transaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 39BF332F208EA525003BD80A /* show_transaction.json */; };
+		39BF3332208EA525003BD80A /* list_transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 39BF3330208EA525003BD80A /* list_transactions.json */; };
+		39BF3334208FA091003BD80A /* transaction_from_unsupported_party.json in Resources */ = {isa = PBXBuildFile; fileRef = 39BF3333208FA091003BD80A /* transaction_from_unsupported_party.json */; };
+		39BF3338208FB4E9003BD80A /* request_money.json in Resources */ = {isa = PBXBuildFile; fileRef = 39BF3337208FB4E9003BD80A /* request_money.json */; };
+		39BF333B208FDBD6003BD80A /* EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF3339208FDB81003BD80A /* EmptyData.swift */; };
+		39BF333D208FE10B003BD80A /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF333C208FE10B003BD80A /* ApplicationModel.swift */; };
+		39F2ED50208FFAC800FF3B32 /* TransactionPartySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F2ED4F208FFAC800FF3B32 /* TransactionPartySpec.swift */; };
+		39F2ED522090EE5300FF3B32 /* transaction_to_unsupported_party.json in Resources */ = {isa = PBXBuildFile; fileRef = 39F2ED512090EE5300FF3B32 /* transaction_to_unsupported_party.json */; };
+		39F2ED5C2092494E00FF3B32 /* URLOpenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F2ED5B2092494E00FF3B32 /* URLOpenerProtocol.swift */; };
+		39FCCD312097837F003F1364 /* TransactionExpandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCCD302097837F003F1364 /* TransactionExpandOption.swift */; };
+		7C13EA6820C7DC2A00C95921 /* Digicert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7C13EA6620C7DC1400C95921 /* Digicert.cer */; };
+		7C13EA6920C7DC2A00C95921 /* DigicertEV.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7C13EA6520C7DC1400C95921 /* DigicertEV.cer */; };
+		7C13EA6A20C7DC2A00C95921 /* Verisign.cer in Resources */ = {isa = PBXBuildFile; fileRef = 7C13EA6720C7DC1400C95921 /* Verisign.cer */; };
+		7C1F0CF9207E209400B4B4C4 /* ExchangeRatesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0CF7207E209400B4B4C4 /* ExchangeRatesAPI.swift */; };
+		7C1F0CFA207E209400B4B4C4 /* ExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0CF8207E209400B4B4C4 /* ExchangeRates.swift */; };
+		7C1F0CFC207E229300B4B4C4 /* ExchangeRatesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0CFB207E229300B4B4C4 /* ExchangeRatesResource.swift */; };
+		7C1F0CFF207E239500B4B4C4 /* exchange_rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0CFD207E239200B4B4C4 /* exchange_rates.json */; };
+		7C1F0D02207E241700B4B4C4 /* ExchangeRatesResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D00207E23A200B4B4C4 /* ExchangeRatesResourceSpec.swift */; };
+		7C1F0D05207E250800B4B4C4 /* TimeResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D04207E250800B4B4C4 /* TimeResource.swift */; };
+		7C1F0D08207E257500B4B4C4 /* TimeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D06207E257500B4B4C4 /* TimeAPI.swift */; };
+		7C1F0D09207E257500B4B4C4 /* TimeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D07207E257500B4B4C4 /* TimeInfo.swift */; };
+		7C1F0D0D207E261900B4B4C4 /* TimeResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D0C207E261900B4B4C4 /* TimeResourceSpec.swift */; };
+		7C1F0D10207E26DA00B4B4C4 /* PricesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D0F207E26DA00B4B4C4 /* PricesResource.swift */; };
+		7C1F0D19207E27AC00B4B4C4 /* buy_price.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D14207E27A400B4B4C4 /* buy_price.json */; };
+		7C1F0D1A207E27AC00B4B4C4 /* sell_price.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D12207E27A400B4B4C4 /* sell_price.json */; };
+		7C1F0D1B207E27AC00B4B4C4 /* spot_price_btc_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D13207E27A400B4B4C4 /* spot_price_btc_usd.json */; };
+		7C1F0D1C207E27AC00B4B4C4 /* spot_prices_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D11207E27A400B4B4C4 /* spot_prices_usd.json */; };
+		7C1F0D1F207E280E00B4B4C4 /* PricesResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D1D207E27B600B4B4C4 /* PricesResourceSpec.swift */; };
+		7C1F0D22207E289C00B4B4C4 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D20207E289C00B4B4C4 /* Price.swift */; };
+		7C1F0D23207E289C00B4B4C4 /* PricesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F0D21207E289C00B4B4C4 /* PricesAPI.swift */; };
+		7C33AAA820690B210066449A /* CoinbaseSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EC38E8B72056A40200AFD71F /* CoinbaseSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C33AAB020690B3F0066449A /* CoinbaseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */; };
+		7C33AB35206CF6DB0066449A /* SessionManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C33AB2C206CF6850066449A /* SessionManager+Rx.swift */; };
+		7C33AB39206D1C4B0066449A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C33AB37206D1C4B0066449A /* Quick.framework */; };
+		7C33AB3A206D1C4B0066449A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C33AB38206D1C4B0066449A /* Nimble.framework */; };
+		7C33AB3C206D25200066449A /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C33AB38206D1C4B0066449A /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C33AB3D206D25200066449A /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C33AB37206D1C4B0066449A /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C33AB49206D293D0066449A /* SpecHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C33AB48206D293D0066449A /* SpecHelpers.swift */; };
+		7C33AB4D206D34D20066449A /* UsersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C33AB4C206D34D20066449A /* UsersSpec.swift */; };
+		7C3C02FF20B5C550002AED72 /* URLSessionProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3C02FE20B5C550002AED72 /* URLSessionProviderProtocol.swift */; };
+		7C443BC320926EDB004E3380 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 39BF3335208FA93B003BD80A /* empty.json */; };
+		7C67268F20938DC700CDE8C6 /* AccountsResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C67268E20938DC700CDE8C6 /* AccountsResourceSpec.swift */; };
+		7C67269120938E2800CDE8C6 /* AccountResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C67269020938E2800CDE8C6 /* AccountResource.swift */; };
+		7C67269320938E3100CDE8C6 /* AccountsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C67269220938E3100CDE8C6 /* AccountsAPI.swift */; };
+		7C6726992093943500CDE8C6 /* accounts_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C6726982093943500CDE8C6 /* accounts_list.json */; };
+		7C67269D2093BA8A00CDE8C6 /* account.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C67269C2093BA8A00CDE8C6 /* account.json */; };
+		7C6C9A6D20977DC6002B54DD /* CoinbaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C9A6A20977D8F002B54DD /* CoinbaseSpec.swift */; };
+		7C6C9A6F2097C85C002B54DD /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C9A6E2097C85C002B54DD /* SessionDelegate.swift */; };
+		7C7BAB8B20BD63E5009E8A06 /* StubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66920B2EAFA00C3E0BC /* StubConstants.swift */; };
+		7C87580620E127CD007C7FD9 /* PromiseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87580420E12798007C7FD9 /* PromiseSpec.swift */; };
+		7C87580920E1300C007C7FD9 /* SessionManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87580720E13008007C7FD9 /* SessionManagerSpec.swift */; };
+		7C87EE8220A1F7CE00F1F5FD /* PaymentMethodResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87EE8120A1F7CE00F1F5FD /* PaymentMethodResource+Rx.swift */; };
+		7C87EE8520A1F7E400F1F5FD /* PaymentMethodResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87EE8320A1F7DE00F1F5FD /* PaymentMethodResourceRxSpec.swift */; };
+		7C87EE8820A2002F00F1F5FD /* Array+rawValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87EE8720A2002F00F1F5FD /* Array+rawValues.swift */; };
+		7C8F9CA52099157A00373028 /* AccountsResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8F9CA42099157A00373028 /* AccountsResource+Rx.swift */; };
+		7C8F9CA72099161800373028 /* AccountsResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8F9CA62099161800373028 /* AccountsResourceRxSpec.swift */; };
+		7C8F9CAE209B7CE400373028 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8F9CAD209B7CE400373028 /* Logging.swift */; };
+		7C937A8E20A999F300EE974A /* TokenAutoRefreshInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C937A8D20A999F300EE974A /* TokenAutoRefreshInterceptor.swift */; };
+		7C937A9320AAE18C00EE974A /* Result+PromiseCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C937A9220AAE18C00EE974A /* Result+PromiseCallback.swift */; };
+		7C937A9520AB262E00EE974A /* SessionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C937A9420AB262E00EE974A /* SessionManagerProtocol.swift */; };
+		7C937AD520ADB76F00EE974A /* GeneralDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C937AD420ADB76F00EE974A /* GeneralDeviceInfo.swift */; };
+		7CA5564420860E7B001926D8 /* time.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D0A207E260F00B4B4C4 /* time.json */; };
+		7CA5564B208E3F2B001926D8 /* PaginationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5564A208E3F2B001926D8 /* PaginationParameters.swift */; };
+		7CA5564E208E409B001926D8 /* PaginationParametersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5564C208E4073001926D8 /* PaginationParametersSpec.swift */; };
+		7CA6C35C208FD1A900AC973A /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */; };
+		7CA6C35D208FD1A900AC973A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C33AB37206D1C4B0066449A /* Quick.framework */; };
+		7CA6C35E208FD1A900AC973A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C33AB38206D1C4B0066449A /* Nimble.framework */; };
+		7CA6C35F208FD1A900AC973A /* CoinbaseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */; };
+		7CA6C361208FD1A900AC973A /* spot_price_btc_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D13207E27A400B4B4C4 /* spot_price_btc_usd.json */; };
+		7CA6C362208FD1A900AC973A /* time.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D0A207E260F00B4B4C4 /* time.json */; };
+		7CA6C363208FD1A900AC973A /* spot_prices_usd.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D11207E27A400B4B4C4 /* spot_prices_usd.json */; };
+		7CA6C364208FD1A900AC973A /* auth_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC61F5820725303000EF8ED /* auth_user.json */; };
+		7CA6C365208FD1A900AC973A /* exchange_rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0CFD207E239200B4B4C4 /* exchange_rates.json */; };
+		7CA6C366208FD1A900AC973A /* sell_price.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D12207E27A400B4B4C4 /* sell_price.json */; };
+		7CA6C367208FD1A900AC973A /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0937B5CC206E93B7009E8826 /* currencies.json */; };
+		7CA6C368208FD1A900AC973A /* buy_price.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C1F0D14207E27A400B4B4C4 /* buy_price.json */; };
+		7CA6C36A208FD1A900AC973A /* OHHTTPStubs.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CA6C36B208FD1A900AC973A /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C33AB38206D1C4B0066449A /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CA6C36C208FD1A900AC973A /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7C33AB37206D1C4B0066449A /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CA6C374208FD2CD00AC973A /* UserResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C373208FD2CD00AC973A /* UserResourceRxSpec.swift */; };
+		7CA6C377208FD30600AC973A /* SpecHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C33AB48206D293D0066449A /* SpecHelpers.swift */; };
+		7CA6C37A208FD36E00AC973A /* RxCoinbaseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C33AAAD20690B210066449A /* RxCoinbaseSDK.framework */; };
+		7CA6C381208FD4B500AC973A /* RxSpecHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C380208FD4B500AC973A /* RxSpecHelpers.swift */; };
+		7CA6C383208FFB8400AC973A /* MockedSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C382208FFB8400AC973A /* MockedSessionManager.swift */; };
+		7CA6C385209005EE00AC973A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA6C384209005ED00AC973A /* RxSwift.framework */; };
+		7CA6C386209005F800AC973A /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7CA6C384209005ED00AC973A /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CA6C3882090097E00AC973A /* CurrenciesResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C3872090097E00AC973A /* CurrenciesResourceRxSpec.swift */; };
+		7CA6C38A2090DF5A00AC973A /* ExchangeRatesResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C3892090DF5A00AC973A /* ExchangeRatesResourceRxSpec.swift */; };
+		7CA6C38C2090E09200AC973A /* TimeResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C38B2090E09200AC973A /* TimeResourceRxSpec.swift */; };
+		7CA6C38F2090E14600AC973A /* PricesResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C38E2090E14600AC973A /* PricesResourceRxSpec.swift */; };
+		7CA6C3912090E5B800AC973A /* TokenResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C3902090E5B800AC973A /* TokenResourceRxSpec.swift */; };
+		7CA6C3932090E73400AC973A /* SessionManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C3922090E73400AC973A /* SessionManagerSpec.swift */; };
+		7CA6C396209119C300AC973A /* TokenResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6C395209119C300AC973A /* TokenResourceSpec.swift */; };
+		7CA6C39820911F2100AC973A /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA6C39720911F2100AC973A /* token.json */; };
+		7CA6C39F20924ADB00AC973A /* user_by_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA6C39E20924ADB00AC973A /* user_by_id.json */; };
+		7CA6C3A320924BEE00AC973A /* auth_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA6C3A220924BEE00AC973A /* auth_info.json */; };
+		7CA87564207F7888001384E4 /* ErrorHandlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA87562207F786E001384E4 /* ErrorHandlingSpec.swift */; };
+		7CA8756E2080B882001384E4 /* malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA8756B2080B881001384E4 /* malformed.json */; };
+		7CA8756F2080B882001384E4 /* validation_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA8756C2080B882001384E4 /* validation_error.json */; };
+		7CA875702080B882001384E4 /* oauth_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CA8756D2080B882001384E4 /* oauth_error.json */; };
+		7CA875722080C43F001384E4 /* IntegrationSpecHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA875712080C43F001384E4 /* IntegrationSpecHelpers.swift */; };
+		7CB2E5AC207E134D001D792D /* CurrencyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2E5AB207E134D001D792D /* CurrencyInfo.swift */; };
+		7CC2DB9520A1AA8E00C9758D /* PaymentMethodsResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9420A1AA8E00C9758D /* PaymentMethodsResourceSpec.swift */; };
+		7CC2DB9820A1B2B500C9758D /* PaymentMethodResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9720A1B2B500C9758D /* PaymentMethodResource.swift */; };
+		7CC2DB9A20A1B32F00C9758D /* PaymentMethodsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9920A1B32F00C9758D /* PaymentMethodsAPI.swift */; };
+		7CC2DB9C20A1B33600C9758D /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9B20A1B33600C9758D /* PaymentMethod.swift */; };
+		7CC2DB9E20A1B60500C9758D /* payment_methods.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9D20A1B60500C9758D /* payment_methods.json */; };
+		7CC2DBA020A1B60E00C9758D /* payment_method_by_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2DB9F20A1B60E00C9758D /* payment_method_by_id.json */; };
+		7CC2DBA220A1B82A00C9758D /* PaymentMethodExpandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DBA120A1B82A00C9758D /* PaymentMethodExpandOption.swift */; };
+		7CC2DBA720A1BCEA00C9758D /* PaymentMethodLimits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DBA620A1BCEA00C9758D /* PaymentMethodLimits.swift */; };
+		7CC2DBA920A1BCF000C9758D /* PaymentMethodLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DBA820A1BCF000C9758D /* PaymentMethodLimit.swift */; };
+		7CC2DBAD20A1BFC200C9758D /* NextRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2DBAC20A1BFC200C9758D /* NextRequirement.swift */; };
+		7CC61F572072521B000EF8ED /* UserResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC61F55207251E7000EF8ED /* UserResourceSpec.swift */; };
+		7CC61F5920725303000EF8ED /* auth_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC61F5820725303000EF8ED /* auth_user.json */; };
+		7CD32C5D208E829F00048964 /* PaginationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C5B208E827900048964 /* PaginationSpec.swift */; };
+		7CD32C5F208F96DF00048964 /* TokenResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C5E208F96DF00048964 /* TokenResource+Rx.swift */; };
+		7CD32C63208F994900048964 /* UserResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C62208F994900048964 /* UserResource+Rx.swift */; };
+		7CD32C65208F9A4300048964 /* CurrenciesResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C64208F9A4300048964 /* CurrenciesResource+Rx.swift */; };
+		7CD32C73208FC84F00048964 /* ExchangeRatesResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C72208FC84F00048964 /* ExchangeRatesResource+Rx.swift */; };
+		7CD32C75208FC8E000048964 /* TimeResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C74208FC8E000048964 /* TimeResource+Rx.swift */; };
+		7CD32C77208FC94200048964 /* PricesResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD32C76208FC94200048964 /* PricesResource+Rx.swift */; };
+		7CE0E8C220C0230500A3531E /* ServerTrustValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE0E8C120C0230500A3531E /* ServerTrustValidator.swift */; };
+		EC0B305120C551AA00D61A9C /* TokenRefreshDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B305020C551AA00D61A9C /* TokenRefreshDataProvider.swift */; };
+		EC15553D2102137F0031D259 /* RedirectURIsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC15553C2102137F0031D259 /* RedirectURIsValidator.swift */; };
+		EC20785720A1B9860054A091 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20785620A1B9860054A091 /* Address.swift */; };
+		EC20785920A1B9960054A091 /* AddressResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20785820A1B9960054A091 /* AddressResource.swift */; };
+		EC20785B20A1B9A00054A091 /* AddressesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20785A20A1B9A00054A091 /* AddressesAPI.swift */; };
+		EC20786220A1F4510054A091 /* addresses_list.json in Resources */ = {isa = PBXBuildFile; fileRef = EC20785F20A1F4510054A091 /* addresses_list.json */; };
+		EC20786320A1F4510054A091 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = EC20786020A1F4510054A091 /* address.json */; };
+		EC20786420A1F4510054A091 /* address_transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = EC20786120A1F4510054A091 /* address_transactions.json */; };
+		EC20786520A1F4880054A091 /* AddressResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20785C20A1F3D00054A091 /* AddressResourceSpec.swift */; };
+		EC20786820A20D2E0054A091 /* AddressResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20786620A20D150054A091 /* AddressResource+Rx.swift */; };
+		EC273F7E2056B07700056618 /* Coinbase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC273F7D2056B07700056618 /* Coinbase.swift */; };
+		EC273F802056C0DE00056618 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC273F7F2056C0DE00056618 /* OAuth.swift */; };
+		EC277C4721075DA600403C42 /* OAuthFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC277C4621075DA600403C42 /* OAuthFlowType.swift */; };
+		EC2D14E520761108008CD344 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D14E420761108008CD344 /* ResponseModel.swift */; };
+		EC2D14E7207629E8008CD344 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D14E6207629E8008CD344 /* UserToken.swift */; };
+		EC2D14ED20762EFA008CD344 /* Warning.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D14EC20762EFA008CD344 /* Warning.swift */; };
+		EC2D14EF20762FB6008CD344 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D14EE20762FB6008CD344 /* Pagination.swift */; };
+		EC36BC00207E56700092BCFE /* BaseResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC36BBFE207E4F630092BCFE /* BaseResource.swift */; };
+		EC3837AF205BF2FC0046DC9C /* OAuthURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3837AE205BF2FC0046DC9C /* OAuthURLBuilder.swift */; };
+		EC3837B3205C1B910046DC9C /* OAuthErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3837B2205C1B910046DC9C /* OAuthErrorResponse.swift */; };
+		EC38E8BE2056A40200AFD71F /* CoinbaseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */; };
+		EC38E8C52056A40200AFD71F /* CoinbaseSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EC38E8B72056A40200AFD71F /* CoinbaseSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC480F862063E70F00A48CA6 /* CurrenciesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC480F852063E70F00A48CA6 /* CurrenciesAPI.swift */; };
+		EC480F882063E9A000A48CA6 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC480F872063E9A000A48CA6 /* NetworkConstants.swift */; };
+		EC4DAD7520DD442C00710ED4 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4DAD7420DD442C00710ED4 /* AccessTokenProvider.swift */; };
+		EC4F450B20D16E300044F369 /* DictionaryMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F450920D16E2D0044F369 /* DictionaryMatcher.swift */; };
+		EC4F450C20D16E490044F369 /* DictionaryMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F450920D16E2D0044F369 /* DictionaryMatcher.swift */; };
+		EC4FE5082099059400F35A20 /* TransactionResource+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FE5072099059400F35A20 /* TransactionResource+Rx.swift */; };
+		EC4FE50B20990B3400F35A20 /* TransactionResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FE50920990B0400F35A20 /* TransactionResourceRxSpec.swift */; };
+		EC56E74820D7BFAE00EFA9D7 /* String+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56E74720D7BFAE00EFA9D7 /* String+Random.swift */; };
+		EC56E74C20D7FCD600EFA9D7 /* AccountAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56E74B20D7FCD600EFA9D7 /* AccountAccess.swift */; };
+		EC6643E120AF116D00618ECC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6643DF20AF116D00618ECC /* Currency.swift */; };
+		EC6643E220AF116D00618ECC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6643E020AF116D00618ECC /* Account.swift */; };
+		EC6643E420AF182000618ECC /* SellResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6643E320AF182000618ECC /* SellResource.swift */; };
+		EC6643E620AF183800618ECC /* Sell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6643E520AF183800618ECC /* Sell.swift */; };
+		EC6C54A620737198009F02B8 /* NetworkPromises.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6C54A520737198009F02B8 /* NetworkPromises.swift */; };
+		EC6C54A820738776009F02B8 /* ValidationOptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6C54A720738776009F02B8 /* ValidationOptionsProtocol.swift */; };
+		EC70B5BC20596B0400F68F0C /* OAuthConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70B5BB20596B0400F68F0C /* OAuthConstants.swift */; };
+		EC74F52C205FE98800276CA5 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74F52B205FE98800276CA5 /* SessionManager.swift */; };
+		EC74F52E205FEA0600276CA5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74F52D205FEA0600276CA5 /* Result.swift */; };
+		EC74F530205FEA2800276CA5 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74F52F205FEA2800276CA5 /* NetworkErrors.swift */; };
+		EC74F532205FF23100276CA5 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74F531205FF23100276CA5 /* NetworkUtils.swift */; };
+		EC7CFEBE20C93451008AAA35 /* RequestTransactionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7CFEBD20C93451008AAA35 /* RequestTransactionParameters.swift */; };
+		EC87D89C20B70680009A0080 /* MockedURLOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87D89A20B7066C009A0080 /* MockedURLOpener.swift */; };
+		EC87D89E20B70998009A0080 /* IntegrationQuickConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87D89D20B70998009A0080 /* IntegrationQuickConfiguration.swift */; };
+		EC87D8A020B70A8F009A0080 /* IntegrationSpecProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87D89F20B70A8F009A0080 /* IntegrationSpecProtocol.swift */; };
+		EC8B60D0205A8EDC003D5206 /* OAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B60CF205A8EDC003D5206 /* OAuthError.swift */; };
+		EC945768208548EE007AAFD7 /* TransactionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC945767208548EE007AAFD7 /* TransactionParameters.swift */; };
+		EC94576A20854916007AAFD7 /* SendTransactionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC94576920854916007AAFD7 /* SendTransactionParameters.swift */; };
+		EC945773208615AA007AAFD7 /* TransactionResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC945772208615AA007AAFD7 /* TransactionResourceSpec.swift */; };
+		EC945775208615B5007AAFD7 /* send_money_confirmed.json in Resources */ = {isa = PBXBuildFile; fileRef = EC945774208615B4007AAFD7 /* send_money_confirmed.json */; };
+		EC9C0CDF20A5D2F3007869A4 /* TradesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CDE20A5D2F3007869A4 /* TradesAPI.swift */; };
+		EC9C0CE420A5F51D007869A4 /* TradeResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CE320A5F51D007869A4 /* TradeResourceProtocol.swift */; };
+		EC9C0CE720A5F638007869A4 /* BuyResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CE620A5F638007869A4 /* BuyResource.swift */; };
+		EC9C0CE920A5F642007869A4 /* Buy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CE820A5F642007869A4 /* Buy.swift */; };
+		EC9C0CEB20A5F689007869A4 /* BuySellParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CEA20A5F689007869A4 /* BuySellParameters.swift */; };
+		EC9C0CEE20A5FAD2007869A4 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CED20A5FAD2007869A4 /* Trade.swift */; };
+		EC9C0CF720A5FD33007869A4 /* sell.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9C0CF020A5FD32007869A4 /* sell.json */; };
+		EC9C0CF920A5FD33007869A4 /* buy.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9C0CF420A5FD33007869A4 /* buy.json */; };
+		EC9C0CFE20A607DC007869A4 /* TradeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0CFD20A607DC007869A4 /* TradeParameters.swift */; };
+		EC9C0D0520A98EFA007869A4 /* TradeExpandOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0D0420A98EFA007869A4 /* TradeExpandOption.swift */; };
+		EC9C0D0820A9A15E007869A4 /* buy_list.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9C0D0720A9A15E007869A4 /* buy_list.json */; };
+		EC9C0D0B20A9DD41007869A4 /* buy_commit.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9C0D0920A9DD41007869A4 /* buy_commit.json */; };
+		EC9C0D0C20A9DD41007869A4 /* buy_place_order.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9C0D0A20A9DD41007869A4 /* buy_place_order.json */; };
+		EC9C0D0F20AAE6C7007869A4 /* TradeResourceProtocol+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0D0D20AAE6A5007869A4 /* TradeResourceProtocol+Rx.swift */; };
+		EC9C0D1220AAED98007869A4 /* BuyResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C0D1020AAED6E007869A4 /* BuyResourceRxSpec.swift */; };
+		ECAE7E9E2077A22400380F2C /* TokenResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7E9D2077A22400380F2C /* TokenResource.swift */; };
+		ECAE7EA52077A47700380F2C /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EA02077A47700380F2C /* UsersAPI.swift */; };
+		ECAE7EA62077A47700380F2C /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EA12077A47700380F2C /* UserResource.swift */; };
+		ECAE7EA72077A47700380F2C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EA22077A47700380F2C /* User.swift */; };
+		ECAE7EA82077A47700380F2C /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EA32077A47700380F2C /* Country.swift */; };
+		ECAE7EA92077A47700380F2C /* AuthorizationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EA42077A47700380F2C /* AuthorizationInfo.swift */; };
+		ECAE7EAC2077A8DE00380F2C /* CurrenciesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE7EAB2077A8DE00380F2C /* CurrenciesResource.swift */; };
+		ECB1C7B120650DC400D61180 /* TokensAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB1C7B020650DC400D61180 /* TokensAPI.swift */; };
+		ECC1DE822069056A000ECEE3 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC1DE812069056A000ECEE3 /* ErrorResponse.swift */; };
+		ECC1DE8420690918000ECEE3 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC1DE8320690918000ECEE3 /* ErrorModel.swift */; };
+		ECC67DB720BDA39800BE7EFD /* expired_token.json in Resources */ = {isa = PBXBuildFile; fileRef = ECC67DB520BDA39700BE7EFD /* expired_token.json */; };
+		ECC67DB820BDA39800BE7EFD /* invalid_token.json in Resources */ = {isa = PBXBuildFile; fileRef = ECC67DB620BDA39700BE7EFD /* invalid_token.json */; };
+		ECCAF57520AF47D600950F9F /* DepositResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAF57420AF47D600950F9F /* DepositResource.swift */; };
+		ECCAF57720AF47E300950F9F /* Deposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAF57620AF47E300950F9F /* Deposit.swift */; };
+		ECCAF57920AF47FC00950F9F /* WithdrawalResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAF57820AF47FC00950F9F /* WithdrawalResource.swift */; };
+		ECCAF57B20AF480800950F9F /* Withdrawal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAF57A20AF480800950F9F /* Withdrawal.swift */; };
+		ECCAF57D20B2CCA900950F9F /* DictionaryConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAF57C20B2CCA900950F9F /* DictionaryConvertible.swift */; };
+		ECCE3447206177AC00262B5D /* RequestConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE3446206177AC00262B5D /* RequestConvertable.swift */; };
+		ECCFA3CB20723F690050C893 /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFA3CA20723F690050C893 /* DefaultResponse.swift */; };
+		ECCFA3CD207240960050C893 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFA3CC207240960050C893 /* Response.swift */; };
+		ECCFA3D0207241DD0050C893 /* ConvertibleFromData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFA3CF207241DD0050C893 /* ConvertibleFromData.swift */; };
+		ECCFA3D22072587E0050C893 /* ResourceAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCFA3D12072587E0050C893 /* ResourceAPIProtocol.swift */; };
+		ECD4C28920A2120A00A7E658 /* AddressResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD4C28720A211F200A7E658 /* AddressResourceRxSpec.swift */; };
+		ECE2D66420B2D8C400C3E0BC /* DepositWithdrawalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66320B2D8C400C3E0BC /* DepositWithdrawalParameters.swift */; };
+		ECE2D66620B2E69B00C3E0BC /* BuyResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66520B2E69B00C3E0BC /* BuyResourceSpec.swift */; };
+		ECE2D66820B2E9BC00C3E0BC /* TradeResourceSpecProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66720B2E9BC00C3E0BC /* TradeResourceSpecProtocol.swift */; };
+		ECE2D66A20B2EAFA00C3E0BC /* StubConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66920B2EAFA00C3E0BC /* StubConstants.swift */; };
+		ECE2D66C20B2EDB600C3E0BC /* SellResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66B20B2EDB600C3E0BC /* SellResourceSpec.swift */; };
+		ECE2D66E20B3182400C3E0BC /* TradeResourceRxSpecProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66D20B3182400C3E0BC /* TradeResourceRxSpecProtocol.swift */; };
+		ECE2D67020B318EF00C3E0BC /* SellResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D66F20B318EF00C3E0BC /* SellResourceRxSpec.swift */; };
+		ECE2D67220B3198800C3E0BC /* DepositResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D67120B3198800C3E0BC /* DepositResourceRxSpec.swift */; };
+		ECE2D67420B3199A00C3E0BC /* WithdrawalResourceRxSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D67320B3199A00C3E0BC /* WithdrawalResourceRxSpec.swift */; };
+		ECE2D67820B3249900C3E0BC /* sell_commit.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67520B3249800C3E0BC /* sell_commit.json */; };
+		ECE2D67920B3249900C3E0BC /* sell_place_order.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67620B3249800C3E0BC /* sell_place_order.json */; };
+		ECE2D67A20B3249900C3E0BC /* sell_list.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67720B3249900C3E0BC /* sell_list.json */; };
+		ECE2D67F20B4177D00C3E0BC /* deposit_list.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67B20B4177D00C3E0BC /* deposit_list.json */; };
+		ECE2D68020B4177D00C3E0BC /* deposit_commit.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67C20B4177D00C3E0BC /* deposit_commit.json */; };
+		ECE2D68120B4177D00C3E0BC /* deposit.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67D20B4177D00C3E0BC /* deposit.json */; };
+		ECE2D68220B4177D00C3E0BC /* deposit_place_order.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D67E20B4177D00C3E0BC /* deposit_place_order.json */; };
+		ECE2D68420B417AA00C3E0BC /* DepositResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D68320B417AA00C3E0BC /* DepositResourceSpec.swift */; };
+		ECE2D68620B4185000C3E0BC /* WithdrawalResourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2D68520B4185000C3E0BC /* WithdrawalResourceSpec.swift */; };
+		ECE2D68B20B41E2100C3E0BC /* withdrawal_commit.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D68720B41E2000C3E0BC /* withdrawal_commit.json */; };
+		ECE2D68C20B41E2100C3E0BC /* withdrawal_list.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D68820B41E2100C3E0BC /* withdrawal_list.json */; };
+		ECE2D68D20B41E2100C3E0BC /* withdrawal_place_order.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D68920B41E2100C3E0BC /* withdrawal_place_order.json */; };
+		ECE2D68E20B41E2100C3E0BC /* withdrawal.json in Resources */ = {isa = PBXBuildFile; fileRef = ECE2D68A20B41E2100C3E0BC /* withdrawal.json */; };
+		ECE3BB522080C1C9009AC6DC /* TransactionResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB512080C1C9009AC6DC /* TransactionResource.swift */; };
+		ECE3BB542080C1D8009AC6DC /* TransactionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB532080C1D8009AC6DC /* TransactionsAPI.swift */; };
+		ECE3BB562080C1E3009AC6DC /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB552080C1E3009AC6DC /* Transaction.swift */; };
+		ECE3BB582080D3F3009AC6DC /* MoneyHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB572080D3F3009AC6DC /* MoneyHash.swift */; };
+		ECE3BB5A2080DA87009AC6DC /* TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB592080DA87009AC6DC /* TransactionDetails.swift */; };
+		ECE3BB5C2080DE1A009AC6DC /* TransactionNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB5B2080DE1A009AC6DC /* TransactionNetwork.swift */; };
+		ECE3BB5E2080E05C009AC6DC /* ResourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE3BB5D2080E05C009AC6DC /* ResourceObject.swift */; };
+		ECE5C093206BD1CE0083EE44 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE5C092206BD1CE0083EE44 /* Promise.swift */; };
+		ECE5C098206CFCC50083EE44 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE5C097206CFCC50083EE44 /* State.swift */; };
+		ECE5C09A206CFE940083EE44 /* Callback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE5C099206CFE940083EE44 /* Callback.swift */; };
+		ECE9C2C52108C52B0072A429 /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9C2C42108C52B0072A429 /* ErrorsSpec.swift */; };
+		ECE9C2C72108C56D0072A429 /* SafariControllerOpenerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9C2C62108C56D0072A429 /* SafariControllerOpenerSpec.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7CA6C37B208FD37800AC973A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC38E8AB2056A40100AFD71F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C33AA9020690B210066449A;
+			remoteInfo = CoinbaseRx;
+		};
+		EC38E8BF2056A40200AFD71F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC38E8AB2056A40100AFD71F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC38E8B32056A40200AFD71F;
+			remoteInfo = Coinbase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7C33AB3B206D25090066449A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0937B5B2206E502A009E8826 /* OHHTTPStubs.framework in CopyFiles */,
+				7C33AB3C206D25200066449A /* Nimble.framework in CopyFiles */,
+				7C33AB3D206D25200066449A /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CA6C369208FD1A900AC973A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7CA6C386209005F800AC973A /* RxSwift.framework in CopyFiles */,
+				7CA6C36A208FD1A900AC973A /* OHHTTPStubs.framework in CopyFiles */,
+				7CA6C36B208FD1A900AC973A /* Nimble.framework in CopyFiles */,
+				7CA6C36C208FD1A900AC973A /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		09196F0D20A459DB00334F92 /* RefreshTokenSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenSpec.swift; sourceTree = "<group>"; };
+		0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
+		0937B5C8206E9332009E8826 /* ResultMatchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultMatchers.swift; sourceTree = "<group>"; };
+		0937B5CC206E93B7009E8826 /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
+		0937B5D0206E949F009E8826 /* CurrenciesResourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesResourceSpec.swift; sourceTree = "<group>"; };
+		39254806208A697D0075B464 /* transaction_from_btc_address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_from_btc_address.json; sourceTree = "<group>"; };
+		39254807208A697D0075B464 /* transaction_from_email.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_from_email.json; sourceTree = "<group>"; };
+		39254808208A697D0075B464 /* transaction_to_btc_address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_to_btc_address.json; sourceTree = "<group>"; };
+		39254809208A697D0075B464 /* transaction_to_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_to_user.json; sourceTree = "<group>"; };
+		3925480A208A697D0075B464 /* transaction_from_account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_from_account.json; sourceTree = "<group>"; };
+		3925480B208A697D0075B464 /* transaction_to_account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_to_account.json; sourceTree = "<group>"; };
+		3925480C208A697D0075B464 /* transaction_to_email.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_to_email.json; sourceTree = "<group>"; };
+		3925480D208A697D0075B464 /* transaction_from_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_from_user.json; sourceTree = "<group>"; };
+		3944F10C2093BE260098276D /* OAuthURLBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthURLBuilderSpec.swift; sourceTree = "<group>"; };
+		3993401E2097958300805D99 /* RequestConvertibleSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConvertibleSpec.swift; sourceTree = "<group>"; };
+		399BEFCD20926E6A008A0B8B /* OAuthSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthSpec.swift; sourceTree = "<group>"; };
+		39BF3327208E7EC3003BD80A /* TransactionParty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParty.swift; sourceTree = "<group>"; };
+		39BF3329208E83E8003BD80A /* EmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModel.swift; sourceTree = "<group>"; };
+		39BF332B208E840F003BD80A /* CryptoAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAddress.swift; sourceTree = "<group>"; };
+		39BF332F208EA525003BD80A /* show_transaction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = show_transaction.json; sourceTree = "<group>"; };
+		39BF3330208EA525003BD80A /* list_transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = list_transactions.json; sourceTree = "<group>"; };
+		39BF3333208FA091003BD80A /* transaction_from_unsupported_party.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_from_unsupported_party.json; sourceTree = "<group>"; };
+		39BF3335208FA93B003BD80A /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
+		39BF3337208FB4E9003BD80A /* request_money.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_money.json; sourceTree = "<group>"; };
+		39BF3339208FDB81003BD80A /* EmptyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyData.swift; sourceTree = "<group>"; };
+		39BF333C208FE10B003BD80A /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
+		39F2ED4F208FFAC800FF3B32 /* TransactionPartySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPartySpec.swift; sourceTree = "<group>"; };
+		39F2ED512090EE5300FF3B32 /* transaction_to_unsupported_party.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transaction_to_unsupported_party.json; sourceTree = "<group>"; };
+		39F2ED5B2092494E00FF3B32 /* URLOpenerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLOpenerProtocol.swift; sourceTree = "<group>"; };
+		39FCCD302097837F003F1364 /* TransactionExpandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExpandOption.swift; sourceTree = "<group>"; };
+		7C13EA6520C7DC1400C95921 /* DigicertEV.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigicertEV.cer; sourceTree = "<group>"; };
+		7C13EA6620C7DC1400C95921 /* Digicert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digicert.cer; sourceTree = "<group>"; };
+		7C13EA6720C7DC1400C95921 /* Verisign.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verisign.cer; sourceTree = "<group>"; };
+		7C1F0CF7207E209400B4B4C4 /* ExchangeRatesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesAPI.swift; sourceTree = "<group>"; };
+		7C1F0CF8207E209400B4B4C4 /* ExchangeRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRates.swift; sourceTree = "<group>"; };
+		7C1F0CFB207E229300B4B4C4 /* ExchangeRatesResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesResource.swift; sourceTree = "<group>"; };
+		7C1F0CFD207E239200B4B4C4 /* exchange_rates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = exchange_rates.json; sourceTree = "<group>"; };
+		7C1F0D00207E23A200B4B4C4 /* ExchangeRatesResourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesResourceSpec.swift; sourceTree = "<group>"; };
+		7C1F0D04207E250800B4B4C4 /* TimeResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeResource.swift; sourceTree = "<group>"; };
+		7C1F0D06207E257500B4B4C4 /* TimeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAPI.swift; sourceTree = "<group>"; };
+		7C1F0D07207E257500B4B4C4 /* TimeInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInfo.swift; sourceTree = "<group>"; };
+		7C1F0D0A207E260F00B4B4C4 /* time.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time.json; sourceTree = "<group>"; };
+		7C1F0D0C207E261900B4B4C4 /* TimeResourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeResourceSpec.swift; sourceTree = "<group>"; };
+		7C1F0D0F207E26DA00B4B4C4 /* PricesResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesResource.swift; sourceTree = "<group>"; };
+		7C1F0D11207E27A400B4B4C4 /* spot_prices_usd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spot_prices_usd.json; sourceTree = "<group>"; };
+		7C1F0D12207E27A400B4B4C4 /* sell_price.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sell_price.json; sourceTree = "<group>"; };
+		7C1F0D13207E27A400B4B4C4 /* spot_price_btc_usd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spot_price_btc_usd.json; sourceTree = "<group>"; };
+		7C1F0D14207E27A400B4B4C4 /* buy_price.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buy_price.json; sourceTree = "<group>"; };
+		7C1F0D1D207E27B600B4B4C4 /* PricesResourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricesResourceSpec.swift; sourceTree = "<group>"; };
+		7C1F0D20207E289C00B4B4C4 /* Price.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		7C1F0D21207E289C00B4B4C4 /* PricesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricesAPI.swift; sourceTree = "<group>"; };
+		7C33AAAD20690B210066449A /* RxCoinbaseSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCoinbaseSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C33AB2C206CF6850066449A /* SessionManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManager+Rx.swift"; sourceTree = "<group>"; };
+		7C33AB37206D1C4B0066449A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		7C33AB38206D1C4B0066449A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		7C33AB48206D293D0066449A /* SpecHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecHelpers.swift; sourceTree = "<group>"; };
+		7C33AB4C206D34D20066449A /* UsersSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersSpec.swift; sourceTree = "<group>"; };
+		7C3C02FE20B5C550002AED72 /* URLSessionProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProviderProtocol.swift; sourceTree = "<group>"; };
+		7C67268E20938DC700CDE8C6 /* AccountsResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResourceSpec.swift; sourceTree = "<group>"; };
+		7C67269020938E2800CDE8C6 /* AccountResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResource.swift; sourceTree = "<group>"; };
+		7C67269220938E3100CDE8C6 /* AccountsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsAPI.swift; sourceTree = "<group>"; };
+		7C6726982093943500CDE8C6 /* accounts_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = accounts_list.json; sourceTree = "<group>"; };
+		7C67269C2093BA8A00CDE8C6 /* account.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = account.json; sourceTree = "<group>"; };
+		7C6C9A6A20977D8F002B54DD /* CoinbaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseSpec.swift; sourceTree = "<group>"; };
+		7C6C9A6E2097C85C002B54DD /* SessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
+		7C87580420E12798007C7FD9 /* PromiseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseSpec.swift; sourceTree = "<group>"; };
+		7C87580720E13008007C7FD9 /* SessionManagerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerSpec.swift; sourceTree = "<group>"; };
+		7C87EE8120A1F7CE00F1F5FD /* PaymentMethodResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentMethodResource+Rx.swift"; sourceTree = "<group>"; };
+		7C87EE8320A1F7DE00F1F5FD /* PaymentMethodResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResourceRxSpec.swift; sourceTree = "<group>"; };
+		7C87EE8720A2002F00F1F5FD /* Array+rawValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+rawValues.swift"; sourceTree = "<group>"; };
+		7C8F9CA42099157A00373028 /* AccountsResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountsResource+Rx.swift"; sourceTree = "<group>"; };
+		7C8F9CA62099161800373028 /* AccountsResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResourceRxSpec.swift; sourceTree = "<group>"; };
+		7C8F9CAD209B7CE400373028 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		7C937A8D20A999F300EE974A /* TokenAutoRefreshInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAutoRefreshInterceptor.swift; sourceTree = "<group>"; };
+		7C937A9220AAE18C00EE974A /* Result+PromiseCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+PromiseCallback.swift"; sourceTree = "<group>"; };
+		7C937A9420AB262E00EE974A /* SessionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerProtocol.swift; sourceTree = "<group>"; };
+		7C937AD420ADB76F00EE974A /* GeneralDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDeviceInfo.swift; sourceTree = "<group>"; };
+		7CA5564A208E3F2B001926D8 /* PaginationParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParameters.swift; sourceTree = "<group>"; };
+		7CA5564C208E4073001926D8 /* PaginationParametersSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParametersSpec.swift; sourceTree = "<group>"; };
+		7CA6C370208FD1A900AC973A /* CoinbaseRxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinbaseRxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CA6C373208FD2CD00AC973A /* UserResourceRxSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C380208FD4B500AC973A /* RxSpecHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSpecHelpers.swift; sourceTree = "<group>"; };
+		7CA6C382208FFB8400AC973A /* MockedSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedSessionManager.swift; sourceTree = "<group>"; };
+		7CA6C384209005ED00AC973A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		7CA6C3872090097E00AC973A /* CurrenciesResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C3892090DF5A00AC973A /* ExchangeRatesResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C38B2090E09200AC973A /* TimeResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C38E2090E14600AC973A /* PricesResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C3902090E5B800AC973A /* TokenResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResourceRxSpec.swift; sourceTree = "<group>"; };
+		7CA6C3922090E73400AC973A /* SessionManagerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerSpec.swift; sourceTree = "<group>"; };
+		7CA6C395209119C300AC973A /* TokenResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResourceSpec.swift; sourceTree = "<group>"; };
+		7CA6C39720911F2100AC973A /* token.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = token.json; sourceTree = "<group>"; };
+		7CA6C39E20924ADB00AC973A /* user_by_id.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user_by_id.json; sourceTree = "<group>"; };
+		7CA6C3A220924BEE00AC973A /* auth_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = auth_info.json; sourceTree = "<group>"; };
+		7CA87562207F786E001384E4 /* ErrorHandlingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingSpec.swift; sourceTree = "<group>"; };
+		7CA8756B2080B881001384E4 /* malformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed.json; sourceTree = "<group>"; };
+		7CA8756C2080B882001384E4 /* validation_error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = validation_error.json; sourceTree = "<group>"; };
+		7CA8756D2080B882001384E4 /* oauth_error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = oauth_error.json; sourceTree = "<group>"; };
+		7CA875712080C43F001384E4 /* IntegrationSpecHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationSpecHelpers.swift; sourceTree = "<group>"; };
+		7CB2E5AB207E134D001D792D /* CurrencyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyInfo.swift; sourceTree = "<group>"; };
+		7CC2DB9420A1AA8E00C9758D /* PaymentMethodsResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsResourceSpec.swift; sourceTree = "<group>"; };
+		7CC2DB9720A1B2B500C9758D /* PaymentMethodResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodResource.swift; sourceTree = "<group>"; };
+		7CC2DB9920A1B32F00C9758D /* PaymentMethodsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsAPI.swift; sourceTree = "<group>"; };
+		7CC2DB9B20A1B33600C9758D /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		7CC2DB9D20A1B60500C9758D /* payment_methods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payment_methods.json; sourceTree = "<group>"; };
+		7CC2DB9F20A1B60E00C9758D /* payment_method_by_id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payment_method_by_id.json; sourceTree = "<group>"; };
+		7CC2DBA120A1B82A00C9758D /* PaymentMethodExpandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodExpandOption.swift; sourceTree = "<group>"; };
+		7CC2DBA620A1BCEA00C9758D /* PaymentMethodLimits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodLimits.swift; sourceTree = "<group>"; };
+		7CC2DBA820A1BCF000C9758D /* PaymentMethodLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodLimit.swift; sourceTree = "<group>"; };
+		7CC2DBAC20A1BFC200C9758D /* NextRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextRequirement.swift; sourceTree = "<group>"; };
+		7CC61F55207251E7000EF8ED /* UserResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResourceSpec.swift; sourceTree = "<group>"; };
+		7CC61F5820725303000EF8ED /* auth_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth_user.json; sourceTree = "<group>"; };
+		7CD32C5B208E827900048964 /* PaginationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationSpec.swift; sourceTree = "<group>"; };
+		7CD32C5E208F96DF00048964 /* TokenResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TokenResource+Rx.swift"; sourceTree = "<group>"; };
+		7CD32C62208F994900048964 /* UserResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserResource+Rx.swift"; sourceTree = "<group>"; };
+		7CD32C64208F9A4300048964 /* CurrenciesResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrenciesResource+Rx.swift"; sourceTree = "<group>"; };
+		7CD32C72208FC84F00048964 /* ExchangeRatesResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRatesResource+Rx.swift"; sourceTree = "<group>"; };
+		7CD32C74208FC8E000048964 /* TimeResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeResource+Rx.swift"; sourceTree = "<group>"; };
+		7CD32C76208FC94200048964 /* PricesResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PricesResource+Rx.swift"; sourceTree = "<group>"; };
+		7CE0E8C120C0230500A3531E /* ServerTrustValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTrustValidator.swift; sourceTree = "<group>"; };
+		EC0B305020C551AA00D61A9C /* TokenRefreshDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshDataProvider.swift; sourceTree = "<group>"; };
+		EC15553C2102137F0031D259 /* RedirectURIsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectURIsValidator.swift; sourceTree = "<group>"; };
+		EC20785620A1B9860054A091 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		EC20785820A1B9960054A091 /* AddressResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResource.swift; sourceTree = "<group>"; };
+		EC20785A20A1B9A00054A091 /* AddressesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesAPI.swift; sourceTree = "<group>"; };
+		EC20785C20A1F3D00054A091 /* AddressResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResourceSpec.swift; sourceTree = "<group>"; };
+		EC20785F20A1F4510054A091 /* addresses_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = addresses_list.json; sourceTree = "<group>"; };
+		EC20786020A1F4510054A091 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		EC20786120A1F4510054A091 /* address_transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address_transactions.json; sourceTree = "<group>"; };
+		EC20786620A20D150054A091 /* AddressResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddressResource+Rx.swift"; sourceTree = "<group>"; };
+		EC273F7D2056B07700056618 /* Coinbase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coinbase.swift; sourceTree = "<group>"; };
+		EC273F7F2056C0DE00056618 /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		EC277C4621075DA600403C42 /* OAuthFlowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthFlowType.swift; sourceTree = "<group>"; };
+		EC2D14E420761108008CD344 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		EC2D14E6207629E8008CD344 /* UserToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
+		EC2D14EC20762EFA008CD344 /* Warning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warning.swift; sourceTree = "<group>"; };
+		EC2D14EE20762FB6008CD344 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		EC36BBFE207E4F630092BCFE /* BaseResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResource.swift; sourceTree = "<group>"; };
+		EC3837AE205BF2FC0046DC9C /* OAuthURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthURLBuilder.swift; sourceTree = "<group>"; };
+		EC3837B2205C1B910046DC9C /* OAuthErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthErrorResponse.swift; sourceTree = "<group>"; };
+		EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoinbaseSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC38E8B72056A40200AFD71F /* CoinbaseSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinbaseSDK.h; sourceTree = "<group>"; };
+		EC38E8B82056A40200AFD71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC38E8BD2056A40200AFD71F /* CoinbaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinbaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC38E8C42056A40200AFD71F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC480F852063E70F00A48CA6 /* CurrenciesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesAPI.swift; sourceTree = "<group>"; };
+		EC480F872063E9A000A48CA6 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		EC4DAD7420DD442C00710ED4 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
+		EC4F450920D16E2D0044F369 /* DictionaryMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryMatcher.swift; sourceTree = "<group>"; };
+		EC4FE5072099059400F35A20 /* TransactionResource+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionResource+Rx.swift"; sourceTree = "<group>"; };
+		EC4FE50920990B0400F35A20 /* TransactionResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionResourceRxSpec.swift; sourceTree = "<group>"; };
+		EC56E74720D7BFAE00EFA9D7 /* String+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Random.swift"; sourceTree = "<group>"; };
+		EC56E74B20D7FCD600EFA9D7 /* AccountAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAccess.swift; sourceTree = "<group>"; };
+		EC6643DF20AF116D00618ECC /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		EC6643E020AF116D00618ECC /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		EC6643E320AF182000618ECC /* SellResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellResource.swift; sourceTree = "<group>"; };
+		EC6643E520AF183800618ECC /* Sell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sell.swift; sourceTree = "<group>"; };
+		EC6C54A520737198009F02B8 /* NetworkPromises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPromises.swift; sourceTree = "<group>"; };
+		EC6C54A720738776009F02B8 /* ValidationOptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationOptionsProtocol.swift; sourceTree = "<group>"; };
+		EC70B5BB20596B0400F68F0C /* OAuthConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthConstants.swift; sourceTree = "<group>"; };
+		EC74F52B205FE98800276CA5 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		EC74F52D205FEA0600276CA5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		EC74F52F205FEA2800276CA5 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		EC74F531205FF23100276CA5 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		EC7CFEBD20C93451008AAA35 /* RequestTransactionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTransactionParameters.swift; sourceTree = "<group>"; };
+		EC87D89A20B7066C009A0080 /* MockedURLOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedURLOpener.swift; sourceTree = "<group>"; };
+		EC87D89D20B70998009A0080 /* IntegrationQuickConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationQuickConfiguration.swift; sourceTree = "<group>"; };
+		EC87D89F20B70A8F009A0080 /* IntegrationSpecProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationSpecProtocol.swift; sourceTree = "<group>"; };
+		EC8B60CF205A8EDC003D5206 /* OAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthError.swift; sourceTree = "<group>"; };
+		EC945767208548EE007AAFD7 /* TransactionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionParameters.swift; sourceTree = "<group>"; };
+		EC94576920854916007AAFD7 /* SendTransactionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionParameters.swift; sourceTree = "<group>"; };
+		EC945772208615AA007AAFD7 /* TransactionResourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionResourceSpec.swift; sourceTree = "<group>"; };
+		EC945774208615B4007AAFD7 /* send_money_confirmed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = send_money_confirmed.json; sourceTree = "<group>"; };
+		EC9C0CDE20A5D2F3007869A4 /* TradesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesAPI.swift; sourceTree = "<group>"; };
+		EC9C0CE320A5F51D007869A4 /* TradeResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeResourceProtocol.swift; sourceTree = "<group>"; };
+		EC9C0CE620A5F638007869A4 /* BuyResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyResource.swift; sourceTree = "<group>"; };
+		EC9C0CE820A5F642007869A4 /* Buy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buy.swift; sourceTree = "<group>"; };
+		EC9C0CEA20A5F689007869A4 /* BuySellParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellParameters.swift; sourceTree = "<group>"; };
+		EC9C0CED20A5FAD2007869A4 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
+		EC9C0CF020A5FD32007869A4 /* sell.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sell.json; sourceTree = "<group>"; };
+		EC9C0CF420A5FD33007869A4 /* buy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buy.json; sourceTree = "<group>"; };
+		EC9C0CFD20A607DC007869A4 /* TradeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeParameters.swift; sourceTree = "<group>"; };
+		EC9C0D0420A98EFA007869A4 /* TradeExpandOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeExpandOption.swift; sourceTree = "<group>"; };
+		EC9C0D0720A9A15E007869A4 /* buy_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buy_list.json; sourceTree = "<group>"; };
+		EC9C0D0920A9DD41007869A4 /* buy_commit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buy_commit.json; sourceTree = "<group>"; };
+		EC9C0D0A20A9DD41007869A4 /* buy_place_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buy_place_order.json; sourceTree = "<group>"; };
+		EC9C0D0D20AAE6A5007869A4 /* TradeResourceProtocol+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TradeResourceProtocol+Rx.swift"; sourceTree = "<group>"; };
+		EC9C0D1020AAED6E007869A4 /* BuyResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyResourceRxSpec.swift; sourceTree = "<group>"; };
+		ECAE7E9D2077A22400380F2C /* TokenResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResource.swift; sourceTree = "<group>"; };
+		ECAE7EA02077A47700380F2C /* UsersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
+		ECAE7EA12077A47700380F2C /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
+		ECAE7EA22077A47700380F2C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ECAE7EA32077A47700380F2C /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		ECAE7EA42077A47700380F2C /* AuthorizationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInfo.swift; sourceTree = "<group>"; };
+		ECAE7EAB2077A8DE00380F2C /* CurrenciesResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesResource.swift; sourceTree = "<group>"; };
+		ECB1C7B020650DC400D61180 /* TokensAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensAPI.swift; sourceTree = "<group>"; };
+		ECC1DE812069056A000ECEE3 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		ECC1DE8320690918000ECEE3 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		ECC67DB520BDA39700BE7EFD /* expired_token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = expired_token.json; sourceTree = "<group>"; };
+		ECC67DB620BDA39700BE7EFD /* invalid_token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_token.json; sourceTree = "<group>"; };
+		ECCAF57420AF47D600950F9F /* DepositResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositResource.swift; sourceTree = "<group>"; };
+		ECCAF57620AF47E300950F9F /* Deposit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deposit.swift; sourceTree = "<group>"; };
+		ECCAF57820AF47FC00950F9F /* WithdrawalResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResource.swift; sourceTree = "<group>"; };
+		ECCAF57A20AF480800950F9F /* Withdrawal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdrawal.swift; sourceTree = "<group>"; };
+		ECCAF57C20B2CCA900950F9F /* DictionaryConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryConvertible.swift; sourceTree = "<group>"; };
+		ECCE3446206177AC00262B5D /* RequestConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConvertable.swift; sourceTree = "<group>"; };
+		ECCFA3CA20723F690050C893 /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
+		ECCFA3CC207240960050C893 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		ECCFA3CF207241DD0050C893 /* ConvertibleFromData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleFromData.swift; sourceTree = "<group>"; };
+		ECCFA3D12072587E0050C893 /* ResourceAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAPIProtocol.swift; sourceTree = "<group>"; };
+		ECD4C28720A211F200A7E658 /* AddressResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResourceRxSpec.swift; sourceTree = "<group>"; };
+		ECE2D66320B2D8C400C3E0BC /* DepositWithdrawalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositWithdrawalParameters.swift; sourceTree = "<group>"; };
+		ECE2D66520B2E69B00C3E0BC /* BuyResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyResourceSpec.swift; sourceTree = "<group>"; };
+		ECE2D66720B2E9BC00C3E0BC /* TradeResourceSpecProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeResourceSpecProtocol.swift; sourceTree = "<group>"; };
+		ECE2D66920B2EAFA00C3E0BC /* StubConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubConstants.swift; sourceTree = "<group>"; };
+		ECE2D66B20B2EDB600C3E0BC /* SellResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellResourceSpec.swift; sourceTree = "<group>"; };
+		ECE2D66D20B3182400C3E0BC /* TradeResourceRxSpecProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeResourceRxSpecProtocol.swift; sourceTree = "<group>"; };
+		ECE2D66F20B318EF00C3E0BC /* SellResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellResourceRxSpec.swift; sourceTree = "<group>"; };
+		ECE2D67120B3198800C3E0BC /* DepositResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositResourceRxSpec.swift; sourceTree = "<group>"; };
+		ECE2D67320B3199A00C3E0BC /* WithdrawalResourceRxSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResourceRxSpec.swift; sourceTree = "<group>"; };
+		ECE2D67520B3249800C3E0BC /* sell_commit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sell_commit.json; sourceTree = "<group>"; };
+		ECE2D67620B3249800C3E0BC /* sell_place_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sell_place_order.json; sourceTree = "<group>"; };
+		ECE2D67720B3249900C3E0BC /* sell_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sell_list.json; sourceTree = "<group>"; };
+		ECE2D67B20B4177D00C3E0BC /* deposit_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deposit_list.json; sourceTree = "<group>"; };
+		ECE2D67C20B4177D00C3E0BC /* deposit_commit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deposit_commit.json; sourceTree = "<group>"; };
+		ECE2D67D20B4177D00C3E0BC /* deposit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deposit.json; sourceTree = "<group>"; };
+		ECE2D67E20B4177D00C3E0BC /* deposit_place_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deposit_place_order.json; sourceTree = "<group>"; };
+		ECE2D68320B417AA00C3E0BC /* DepositResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositResourceSpec.swift; sourceTree = "<group>"; };
+		ECE2D68520B4185000C3E0BC /* WithdrawalResourceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResourceSpec.swift; sourceTree = "<group>"; };
+		ECE2D68720B41E2000C3E0BC /* withdrawal_commit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = withdrawal_commit.json; sourceTree = "<group>"; };
+		ECE2D68820B41E2100C3E0BC /* withdrawal_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = withdrawal_list.json; sourceTree = "<group>"; };
+		ECE2D68920B41E2100C3E0BC /* withdrawal_place_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = withdrawal_place_order.json; sourceTree = "<group>"; };
+		ECE2D68A20B41E2100C3E0BC /* withdrawal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = withdrawal.json; sourceTree = "<group>"; };
+		ECE3BB512080C1C9009AC6DC /* TransactionResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionResource.swift; sourceTree = "<group>"; };
+		ECE3BB532080C1D8009AC6DC /* TransactionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAPI.swift; sourceTree = "<group>"; };
+		ECE3BB552080C1E3009AC6DC /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		ECE3BB572080D3F3009AC6DC /* MoneyHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyHash.swift; sourceTree = "<group>"; };
+		ECE3BB592080DA87009AC6DC /* TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetails.swift; sourceTree = "<group>"; };
+		ECE3BB5B2080DE1A009AC6DC /* TransactionNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionNetwork.swift; sourceTree = "<group>"; };
+		ECE3BB5D2080E05C009AC6DC /* ResourceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceObject.swift; sourceTree = "<group>"; };
+		ECE5C092206BD1CE0083EE44 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		ECE5C097206CFCC50083EE44 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		ECE5C099206CFE940083EE44 /* Callback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callback.swift; sourceTree = "<group>"; };
+		ECE9C2C42108C52B0072A429 /* ErrorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsSpec.swift; sourceTree = "<group>"; };
+		ECE9C2C62108C56D0072A429 /* SafariControllerOpenerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariControllerOpenerSpec.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7C33AAA620690B210066449A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C33AAB020690B3F0066449A /* CoinbaseSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CA6C35B208FD1A900AC973A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CA6C385209005EE00AC973A /* RxSwift.framework in Frameworks */,
+				7CA6C35C208FD1A900AC973A /* OHHTTPStubs.framework in Frameworks */,
+				7CA6C35D208FD1A900AC973A /* Quick.framework in Frameworks */,
+				7CA6C35E208FD1A900AC973A /* Nimble.framework in Frameworks */,
+				7CA6C35F208FD1A900AC973A /* CoinbaseSDK.framework in Frameworks */,
+				7CA6C37A208FD36E00AC973A /* RxCoinbaseSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8B02056A40200AFD71F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8BA2056A40200AFD71F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0937B5B1206E5021009E8826 /* OHHTTPStubs.framework in Frameworks */,
+				7C33AB39206D1C4B0066449A /* Quick.framework in Frameworks */,
+				7C33AB3A206D1C4B0066449A /* Nimble.framework in Frameworks */,
+				EC38E8BE2056A40200AFD71F /* CoinbaseSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09196F0F20A489A100334F92 /* PaymentMethods */ = {
+			isa = PBXGroup;
+			children = (
+				7CC2DB9D20A1B60500C9758D /* payment_methods.json */,
+				7CC2DB9F20A1B60E00C9758D /* payment_method_by_id.json */,
+			);
+			path = PaymentMethods;
+			sourceTree = "<group>";
+		};
+		0937B5C7206E9318009E8826 /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				EC4F450920D16E2D0044F369 /* DictionaryMatcher.swift */,
+				0937B5C8206E9332009E8826 /* ResultMatchers.swift */,
+			);
+			path = Matchers;
+			sourceTree = "<group>";
+		};
+		0937B5CF206E9487009E8826 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				7CC61F642073A5C1000EF8ED /* StubData */,
+				09196F0D20A459DB00334F92 /* RefreshTokenSpec.swift */,
+				7CA87562207F786E001384E4 /* ErrorHandlingSpec.swift */,
+				7C6C9A6A20977D8F002B54DD /* CoinbaseSpec.swift */,
+				7CA6C395209119C300AC973A /* TokenResourceSpec.swift */,
+				7CC61F55207251E7000EF8ED /* UserResourceSpec.swift */,
+				7C67268E20938DC700CDE8C6 /* AccountsResourceSpec.swift */,
+				EC20785C20A1F3D00054A091 /* AddressResourceSpec.swift */,
+				39F2ED4F208FFAC800FF3B32 /* TransactionPartySpec.swift */,
+				EC945772208615AA007AAFD7 /* TransactionResourceSpec.swift */,
+				ECE2D66520B2E69B00C3E0BC /* BuyResourceSpec.swift */,
+				ECE2D66B20B2EDB600C3E0BC /* SellResourceSpec.swift */,
+				ECE2D68320B417AA00C3E0BC /* DepositResourceSpec.swift */,
+				ECE2D68520B4185000C3E0BC /* WithdrawalResourceSpec.swift */,
+				7CC2DB9420A1AA8E00C9758D /* PaymentMethodsResourceSpec.swift */,
+				0937B5D0206E949F009E8826 /* CurrenciesResourceSpec.swift */,
+				7C1F0D00207E23A200B4B4C4 /* ExchangeRatesResourceSpec.swift */,
+				7C1F0D1D207E27B600B4B4C4 /* PricesResourceSpec.swift */,
+				7C1F0D0C207E261900B4B4C4 /* TimeResourceSpec.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		09B8D0D820D7A2C700462E31 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				ECC1DE8320690918000ECEE3 /* ErrorModel.swift */,
+				ECC1DE812069056A000ECEE3 /* ErrorResponse.swift */,
+				EC74F52F205FEA2800276CA5 /* NetworkErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		09B8D0D920D7A2F700462E31 /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				EC2D14E420761108008CD344 /* ResponseModel.swift */,
+				EC2D14EC20762EFA008CD344 /* Warning.swift */,
+				EC2D14EE20762FB6008CD344 /* Pagination.swift */,
+				39BF3339208FDB81003BD80A /* EmptyData.swift */,
+			);
+			path = ResponseModels;
+			sourceTree = "<group>";
+		};
+		39254805208A697D0075B464 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				39254809208A697D0075B464 /* transaction_to_user.json */,
+				3925480D208A697D0075B464 /* transaction_from_user.json */,
+				39254808208A697D0075B464 /* transaction_to_btc_address.json */,
+				39254806208A697D0075B464 /* transaction_from_btc_address.json */,
+				3925480C208A697D0075B464 /* transaction_to_email.json */,
+				39254807208A697D0075B464 /* transaction_from_email.json */,
+				3925480B208A697D0075B464 /* transaction_to_account.json */,
+				3925480A208A697D0075B464 /* transaction_from_account.json */,
+				39F2ED512090EE5300FF3B32 /* transaction_to_unsupported_party.json */,
+				39BF3333208FA091003BD80A /* transaction_from_unsupported_party.json */,
+				39BF3330208EA525003BD80A /* list_transactions.json */,
+				39BF332F208EA525003BD80A /* show_transaction.json */,
+				39BF3337208FB4E9003BD80A /* request_money.json */,
+				EC945774208615B4007AAFD7 /* send_money_confirmed.json */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		399BEFC920926E45008A0B8B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		399BEFCC20926E6A008A0B8B /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				399BEFCD20926E6A008A0B8B /* OAuthSpec.swift */,
+				ECE9C2C42108C52B0072A429 /* ErrorsSpec.swift */,
+				ECE9C2C62108C56D0072A429 /* SafariControllerOpenerSpec.swift */,
+				3944F10C2093BE260098276D /* OAuthURLBuilderSpec.swift */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		39BF332D208E8CA5003BD80A /* RequestParameters */ = {
+			isa = PBXGroup;
+			children = (
+				EC945767208548EE007AAFD7 /* TransactionParameters.swift */,
+				EC94576920854916007AAFD7 /* SendTransactionParameters.swift */,
+				EC7CFEBD20C93451008AAA35 /* RequestTransactionParameters.swift */,
+			);
+			path = RequestParameters;
+			sourceTree = "<group>";
+		};
+		39BF332E208E8CC1003BD80A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ECE3BB552080C1E3009AC6DC /* Transaction.swift */,
+				ECE3BB572080D3F3009AC6DC /* MoneyHash.swift */,
+				ECE3BB5B2080DE1A009AC6DC /* TransactionNetwork.swift */,
+				ECE3BB592080DA87009AC6DC /* TransactionDetails.swift */,
+				ECE3BB5D2080E05C009AC6DC /* ResourceObject.swift */,
+				39BF3327208E7EC3003BD80A /* TransactionParty.swift */,
+				39BF3329208E83E8003BD80A /* EmailModel.swift */,
+				39BF332B208E840F003BD80A /* CryptoAddress.swift */,
+				39BF333C208FE10B003BD80A /* ApplicationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7C13EA6B20C7DC3400C95921 /* PinnedCertificates */ = {
+			isa = PBXGroup;
+			children = (
+				7C13EA6620C7DC1400C95921 /* Digicert.cer */,
+				7C13EA6520C7DC1400C95921 /* DigicertEV.cer */,
+				7C13EA6720C7DC1400C95921 /* Verisign.cer */,
+			);
+			path = PinnedCertificates;
+			sourceTree = "<group>";
+		};
+		7C1F0CF4207E1FEA00B4B4C4 /* ExchangeRates */ = {
+			isa = PBXGroup;
+			children = (
+				7C1F0CFB207E229300B4B4C4 /* ExchangeRatesResource.swift */,
+				7C1F0CF7207E209400B4B4C4 /* ExchangeRatesAPI.swift */,
+				7C1F0CF8207E209400B4B4C4 /* ExchangeRates.swift */,
+			);
+			path = ExchangeRates;
+			sourceTree = "<group>";
+		};
+		7C1F0D03207E24E100B4B4C4 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				7C1F0D04207E250800B4B4C4 /* TimeResource.swift */,
+				7C1F0D06207E257500B4B4C4 /* TimeAPI.swift */,
+				7C1F0D07207E257500B4B4C4 /* TimeInfo.swift */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
+		7C1F0D0E207E26BF00B4B4C4 /* Prices */ = {
+			isa = PBXGroup;
+			children = (
+				7C1F0D0F207E26DA00B4B4C4 /* PricesResource.swift */,
+				7C1F0D21207E289C00B4B4C4 /* PricesAPI.swift */,
+				7C1F0D20207E289C00B4B4C4 /* Price.swift */,
+			);
+			path = Prices;
+			sourceTree = "<group>";
+		};
+		7C33AA862069041E0066449A /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				7C33AA872069045F0066449A /* RxSwift */,
+				7C937A8D20A999F300EE974A /* TokenAutoRefreshInterceptor.swift */,
+				7C937A9220AAE18C00EE974A /* Result+PromiseCallback.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		7C33AA872069045F0066449A /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				7C33AB2C206CF6850066449A /* SessionManager+Rx.swift */,
+				7CD32C5E208F96DF00048964 /* TokenResource+Rx.swift */,
+				7CD32C62208F994900048964 /* UserResource+Rx.swift */,
+				EC20786620A20D150054A091 /* AddressResource+Rx.swift */,
+				7C8F9CA42099157A00373028 /* AccountsResource+Rx.swift */,
+				EC4FE5072099059400F35A20 /* TransactionResource+Rx.swift */,
+				EC9C0D0D20AAE6A5007869A4 /* TradeResourceProtocol+Rx.swift */,
+				7C87EE8120A1F7CE00F1F5FD /* PaymentMethodResource+Rx.swift */,
+				7CD32C64208F9A4300048964 /* CurrenciesResource+Rx.swift */,
+				7CD32C72208FC84F00048964 /* ExchangeRatesResource+Rx.swift */,
+				7CD32C76208FC94200048964 /* PricesResource+Rx.swift */,
+				7CD32C74208FC8E000048964 /* TimeResource+Rx.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		7C33AAAF20690B3F0066449A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6C384209005ED00AC973A /* RxSwift.framework */,
+				0937B5B0206E5021009E8826 /* OHHTTPStubs.framework */,
+				7C33AB38206D1C4B0066449A /* Nimble.framework */,
+				7C33AB37206D1C4B0066449A /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C33AB3E206D27D00066449A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				0937B5C7206E9318009E8826 /* Matchers */,
+				7C33AB48206D293D0066449A /* SpecHelpers.swift */,
+				7CA875712080C43F001384E4 /* IntegrationSpecHelpers.swift */,
+				EC87D89F20B70A8F009A0080 /* IntegrationSpecProtocol.swift */,
+				EC87D89D20B70998009A0080 /* IntegrationQuickConfiguration.swift */,
+				7CA6C382208FFB8400AC973A /* MockedSessionManager.swift */,
+				EC87D89A20B7066C009A0080 /* MockedURLOpener.swift */,
+				ECE2D66720B2E9BC00C3E0BC /* TradeResourceSpecProtocol.swift */,
+				ECE2D66920B2EAFA00C3E0BC /* StubConstants.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		7C33AB4A206D34AC0066449A /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				399BEFCC20926E6A008A0B8B /* OAuth */,
+				7C33AB4B206D34BB0066449A /* Resources */,
+				7CA5564C208E4073001926D8 /* PaginationParametersSpec.swift */,
+				7CD32C5B208E827900048964 /* PaginationSpec.swift */,
+				7C87580420E12798007C7FD9 /* PromiseSpec.swift */,
+				7C87580720E13008007C7FD9 /* SessionManagerSpec.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		7C33AB4B206D34BB0066449A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7C33AB4C206D34D20066449A /* UsersSpec.swift */,
+				3993401E2097958300805D99 /* RequestConvertibleSpec.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7C67268C20938D7600CDE8C6 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				7C67269020938E2800CDE8C6 /* AccountResource.swift */,
+				7C67269220938E3100CDE8C6 /* AccountsAPI.swift */,
+				EC6643DE20AF116D00618ECC /* Models */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		7C87EE8620A2000700F1F5FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7C8F9CAD209B7CE400373028 /* Logging.swift */,
+				7C87EE8720A2002F00F1F5FD /* Array+rawValues.swift */,
+				ECCAF57C20B2CCA900950F9F /* DictionaryConvertible.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7CA6C372208FD2CD00AC973A /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6C38D2090E0B100AC973A /* Resources */,
+				7CA6C380208FD4B500AC973A /* RxSpecHelpers.swift */,
+				7CA6C3922090E73400AC973A /* SessionManagerSpec.swift */,
+				ECE2D66D20B3182400C3E0BC /* TradeResourceRxSpecProtocol.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		7CA6C38D2090E0B100AC973A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6C3902090E5B800AC973A /* TokenResourceRxSpec.swift */,
+				7CA6C373208FD2CD00AC973A /* UserResourceRxSpec.swift */,
+				7C8F9CA62099161800373028 /* AccountsResourceRxSpec.swift */,
+				ECD4C28720A211F200A7E658 /* AddressResourceRxSpec.swift */,
+				EC4FE50920990B0400F35A20 /* TransactionResourceRxSpec.swift */,
+				EC9C0D1020AAED6E007869A4 /* BuyResourceRxSpec.swift */,
+				ECE2D66F20B318EF00C3E0BC /* SellResourceRxSpec.swift */,
+				ECE2D67120B3198800C3E0BC /* DepositResourceRxSpec.swift */,
+				ECE2D67320B3199A00C3E0BC /* WithdrawalResourceRxSpec.swift */,
+				7C87EE8320A1F7DE00F1F5FD /* PaymentMethodResourceRxSpec.swift */,
+				7CA6C3872090097E00AC973A /* CurrenciesResourceRxSpec.swift */,
+				7CA6C3892090DF5A00AC973A /* ExchangeRatesResourceRxSpec.swift */,
+				7CA6C38E2090E14600AC973A /* PricesResourceRxSpec.swift */,
+				7CA6C38B2090E09200AC973A /* TimeResourceRxSpec.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7CC2DB9620A1B27E00C9758D /* PaymentMethods */ = {
+			isa = PBXGroup;
+			children = (
+				7CC2DB9720A1B2B500C9758D /* PaymentMethodResource.swift */,
+				7CC2DB9920A1B32F00C9758D /* PaymentMethodsAPI.swift */,
+				7CC2DBA120A1B82A00C9758D /* PaymentMethodExpandOption.swift */,
+				7CC2DBA520A1BCDF00C9758D /* Models */,
+			);
+			path = PaymentMethods;
+			sourceTree = "<group>";
+		};
+		7CC2DBA520A1BCDF00C9758D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CC2DB9B20A1B33600C9758D /* PaymentMethod.swift */,
+				7CC2DBA620A1BCEA00C9758D /* PaymentMethodLimits.swift */,
+				7CC2DBA820A1BCF000C9758D /* PaymentMethodLimit.swift */,
+				7CC2DBAC20A1BFC200C9758D /* NextRequirement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7CC61F642073A5C1000EF8ED /* StubData */ = {
+			isa = PBXGroup;
+			children = (
+				ECC67DB320BDA1A500BE7EFD /* ErrorHandling */,
+				ECC67DB420BDA1ED00BE7EFD /* Token */,
+				ECC67DB920BDA3BE00BE7EFD /* RefreshToken */,
+				ECC67DAF20BDA0D200BE7EFD /* Users */,
+				ECC67DB020BDA0F900BE7EFD /* Account */,
+				EC20785E20A1F43F0054A091 /* Address */,
+				39254805208A697D0075B464 /* Transactions */,
+				EC9C0CF320A5FD33007869A4 /* Buys */,
+				EC9C0CEF20A5FD32007869A4 /* Sells */,
+				EC9C0CF120A5FD32007869A4 /* Deposits */,
+				EC9C0CF520A5FD33007869A4 /* Withdrawals */,
+				09196F0F20A489A100334F92 /* PaymentMethods */,
+				ECC67DB220BDA16D00BE7EFD /* DataResources */,
+				39BF3335208FA93B003BD80A /* empty.json */,
+			);
+			path = StubData;
+			sourceTree = "<group>";
+		};
+		EC20785520A1B8FC0054A091 /* Addresses */ = {
+			isa = PBXGroup;
+			children = (
+				EC20785820A1B9960054A091 /* AddressResource.swift */,
+				EC20785A20A1B9A00054A091 /* AddressesAPI.swift */,
+				EC20785620A1B9860054A091 /* Address.swift */,
+			);
+			path = Addresses;
+			sourceTree = "<group>";
+		};
+		EC20785E20A1F43F0054A091 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				EC20786120A1F4510054A091 /* address_transactions.json */,
+				EC20786020A1F4510054A091 /* address.json */,
+				EC20785F20A1F4510054A091 /* addresses_list.json */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		EC38E8AA2056A40100AFD71F = {
+			isa = PBXGroup;
+			children = (
+				EC38E8B62056A40200AFD71F /* Source */,
+				EC38E8C12056A40200AFD71F /* Tests */,
+				EC38E8B52056A40200AFD71F /* Products */,
+				7C33AAAF20690B3F0066449A /* Frameworks */,
+				399BEFC920926E45008A0B8B /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		EC38E8B52056A40200AFD71F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */,
+				EC38E8BD2056A40200AFD71F /* CoinbaseTests.xctest */,
+				7C33AAAD20690B210066449A /* RxCoinbaseSDK.framework */,
+				7CA6C370208FD1A900AC973A /* CoinbaseRxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC38E8B62056A40200AFD71F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F7D2056B07700056618 /* Coinbase.swift */,
+				EC4DAD7620DD444200710ED4 /* DataProviders */,
+				EC70B5B7205959DB00F68F0C /* OAuth */,
+				EC480F842063E6C900A48CA6 /* Resources */,
+				EC74F526205FE94F00276CA5 /* Network */,
+				7C87EE8620A2000700F1F5FD /* Utils */,
+				EC70B5B820595A4A00F68F0C /* Supporting Files */,
+				7C33AA862069041E0066449A /* Extentions */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		EC38E8C12056A40200AFD71F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6C372208FD2CD00AC973A /* RxSwift */,
+				0937B5CF206E9487009E8826 /* Integration */,
+				7C33AB4A206D34AC0066449A /* UnitTests */,
+				7C33AB3E206D27D00066449A /* Support */,
+				EC38E8C42056A40200AFD71F /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		EC480F842063E6C900A48CA6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC36BBFE207E4F630092BCFE /* BaseResource.swift */,
+				ECAE7E972077847300380F2C /* Token */,
+				ECAE7E9F2077A47700380F2C /* Users */,
+				EC20785520A1B8FC0054A091 /* Addresses */,
+				7C67268C20938D7600CDE8C6 /* Accounts */,
+				ECE3BB502080C19C009AC6DC /* Transactions */,
+				EC9C0CEC20A5F6BF007869A4 /* Trades */,
+				EC9C0CE520A5F61B007869A4 /* Buys */,
+				EC9C0CFF20A60C9F007869A4 /* Sells */,
+				EC9C0D0020A60CA6007869A4 /* Deposits */,
+				EC9C0D0120A60CB4007869A4 /* Withdrawals */,
+				7CC2DB9620A1B27E00C9758D /* PaymentMethods */,
+				ECAE7EAA2077A8A800380F2C /* Currencies */,
+				7C1F0CF4207E1FEA00B4B4C4 /* ExchangeRates */,
+				7C1F0D0E207E26BF00B4B4C4 /* Prices */,
+				7C1F0D03207E24E100B4B4C4 /* Time */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC4DAD7620DD444200710ED4 /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				EC0B305020C551AA00D61A9C /* TokenRefreshDataProvider.swift */,
+				EC4DAD7420DD442C00710ED4 /* AccessTokenProvider.swift */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		EC6643DE20AF116D00618ECC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC6643E020AF116D00618ECC /* Account.swift */,
+				EC6643DF20AF116D00618ECC /* Currency.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC70B5B7205959DB00F68F0C /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F7F2056C0DE00056618 /* OAuth.swift */,
+				EC277C4621075DA600403C42 /* OAuthFlowType.swift */,
+				EC8B60CF205A8EDC003D5206 /* OAuthError.swift */,
+				EC3837B2205C1B910046DC9C /* OAuthErrorResponse.swift */,
+				EC70B5BB20596B0400F68F0C /* OAuthConstants.swift */,
+				EC3837AE205BF2FC0046DC9C /* OAuthURLBuilder.swift */,
+				EC15553C2102137F0031D259 /* RedirectURIsValidator.swift */,
+				EC56E74B20D7FCD600EFA9D7 /* AccountAccess.swift */,
+				EC56E74720D7BFAE00EFA9D7 /* String+Random.swift */,
+				39F2ED5B2092494E00FF3B32 /* URLOpenerProtocol.swift */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		EC70B5B820595A4A00F68F0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C13EA6B20C7DC3400C95921 /* PinnedCertificates */,
+				EC38E8B72056A40200AFD71F /* CoinbaseSDK.h */,
+				EC38E8B82056A40200AFD71F /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC74F526205FE94F00276CA5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EC480F872063E9A000A48CA6 /* NetworkConstants.swift */,
+				7C937A9420AB262E00EE974A /* SessionManagerProtocol.swift */,
+				EC74F52B205FE98800276CA5 /* SessionManager.swift */,
+				7C6C9A6E2097C85C002B54DD /* SessionDelegate.swift */,
+				7CE0E8C120C0230500A3531E /* ServerTrustValidator.swift */,
+				EC74F531205FF23100276CA5 /* NetworkUtils.swift */,
+				7C937AD420ADB76F00EE974A /* GeneralDeviceInfo.swift */,
+				EC6C54A520737198009F02B8 /* NetworkPromises.swift */,
+				ECCFA3CE207241B60050C893 /* Protocols */,
+				ECE5C096206CFCB50083EE44 /* Promise */,
+				ECF190EA2073B65900FC44F3 /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EC9C0CE520A5F61B007869A4 /* Buys */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C0CE620A5F638007869A4 /* BuyResource.swift */,
+				EC9C0CE820A5F642007869A4 /* Buy.swift */,
+			);
+			path = Buys;
+			sourceTree = "<group>";
+		};
+		EC9C0CEC20A5F6BF007869A4 /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C0CE320A5F51D007869A4 /* TradeResourceProtocol.swift */,
+				EC9C0CDE20A5D2F3007869A4 /* TradesAPI.swift */,
+				EC9C0D0420A98EFA007869A4 /* TradeExpandOption.swift */,
+				EC9C0D0620A99A0F007869A4 /* RequestParameters */,
+				EC9C0CED20A5FAD2007869A4 /* Trade.swift */,
+			);
+			path = Trades;
+			sourceTree = "<group>";
+		};
+		EC9C0CEF20A5FD32007869A4 /* Sells */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C0CF020A5FD32007869A4 /* sell.json */,
+				ECE2D67720B3249900C3E0BC /* sell_list.json */,
+				ECE2D67620B3249800C3E0BC /* sell_place_order.json */,
+				ECE2D67520B3249800C3E0BC /* sell_commit.json */,
+			);
+			path = Sells;
+			sourceTree = "<group>";
+		};
+		EC9C0CF120A5FD32007869A4 /* Deposits */ = {
+			isa = PBXGroup;
+			children = (
+				ECE2D67D20B4177D00C3E0BC /* deposit.json */,
+				ECE2D67B20B4177D00C3E0BC /* deposit_list.json */,
+				ECE2D67E20B4177D00C3E0BC /* deposit_place_order.json */,
+				ECE2D67C20B4177D00C3E0BC /* deposit_commit.json */,
+			);
+			path = Deposits;
+			sourceTree = "<group>";
+		};
+		EC9C0CF320A5FD33007869A4 /* Buys */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C0CF420A5FD33007869A4 /* buy.json */,
+				EC9C0D0720A9A15E007869A4 /* buy_list.json */,
+				EC9C0D0A20A9DD41007869A4 /* buy_place_order.json */,
+				EC9C0D0920A9DD41007869A4 /* buy_commit.json */,
+			);
+			path = Buys;
+			sourceTree = "<group>";
+		};
+		EC9C0CF520A5FD33007869A4 /* Withdrawals */ = {
+			isa = PBXGroup;
+			children = (
+				ECE2D68A20B41E2100C3E0BC /* withdrawal.json */,
+				ECE2D68820B41E2100C3E0BC /* withdrawal_list.json */,
+				ECE2D68920B41E2100C3E0BC /* withdrawal_place_order.json */,
+				ECE2D68720B41E2000C3E0BC /* withdrawal_commit.json */,
+			);
+			path = Withdrawals;
+			sourceTree = "<group>";
+		};
+		EC9C0CFF20A60C9F007869A4 /* Sells */ = {
+			isa = PBXGroup;
+			children = (
+				EC6643E320AF182000618ECC /* SellResource.swift */,
+				EC6643E520AF183800618ECC /* Sell.swift */,
+			);
+			path = Sells;
+			sourceTree = "<group>";
+		};
+		EC9C0D0020A60CA6007869A4 /* Deposits */ = {
+			isa = PBXGroup;
+			children = (
+				ECCAF57420AF47D600950F9F /* DepositResource.swift */,
+				ECCAF57620AF47E300950F9F /* Deposit.swift */,
+			);
+			path = Deposits;
+			sourceTree = "<group>";
+		};
+		EC9C0D0120A60CB4007869A4 /* Withdrawals */ = {
+			isa = PBXGroup;
+			children = (
+				ECCAF57820AF47FC00950F9F /* WithdrawalResource.swift */,
+				ECCAF57A20AF480800950F9F /* Withdrawal.swift */,
+			);
+			path = Withdrawals;
+			sourceTree = "<group>";
+		};
+		EC9C0D0620A99A0F007869A4 /* RequestParameters */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C0CFD20A607DC007869A4 /* TradeParameters.swift */,
+				EC9C0CEA20A5F689007869A4 /* BuySellParameters.swift */,
+				ECE2D66320B2D8C400C3E0BC /* DepositWithdrawalParameters.swift */,
+			);
+			path = RequestParameters;
+			sourceTree = "<group>";
+		};
+		ECAE7E972077847300380F2C /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				ECAE7E9D2077A22400380F2C /* TokenResource.swift */,
+				ECB1C7B020650DC400D61180 /* TokensAPI.swift */,
+				EC2D14E6207629E8008CD344 /* UserToken.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		ECAE7E9F2077A47700380F2C /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				ECAE7EA12077A47700380F2C /* UserResource.swift */,
+				ECAE7EA02077A47700380F2C /* UsersAPI.swift */,
+				ECD484B8209A2A3E00A5B34C /* Models */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		ECAE7EAA2077A8A800380F2C /* Currencies */ = {
+			isa = PBXGroup;
+			children = (
+				ECAE7EAB2077A8DE00380F2C /* CurrenciesResource.swift */,
+				EC480F852063E70F00A48CA6 /* CurrenciesAPI.swift */,
+				7CB2E5AB207E134D001D792D /* CurrencyInfo.swift */,
+			);
+			path = Currencies;
+			sourceTree = "<group>";
+		};
+		ECC67DAF20BDA0D200BE7EFD /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				7CC61F5820725303000EF8ED /* auth_user.json */,
+				7CA6C39E20924ADB00AC973A /* user_by_id.json */,
+				7CA6C3A220924BEE00AC973A /* auth_info.json */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		ECC67DB020BDA0F900BE7EFD /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				7C6726982093943500CDE8C6 /* accounts_list.json */,
+				7C67269C2093BA8A00CDE8C6 /* account.json */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		ECC67DB120BDA15700BE7EFD /* Prices */ = {
+			isa = PBXGroup;
+			children = (
+				7C1F0D14207E27A400B4B4C4 /* buy_price.json */,
+				7C1F0D12207E27A400B4B4C4 /* sell_price.json */,
+				7C1F0D13207E27A400B4B4C4 /* spot_price_btc_usd.json */,
+				7C1F0D11207E27A400B4B4C4 /* spot_prices_usd.json */,
+			);
+			path = Prices;
+			sourceTree = "<group>";
+		};
+		ECC67DB220BDA16D00BE7EFD /* DataResources */ = {
+			isa = PBXGroup;
+			children = (
+				0937B5CC206E93B7009E8826 /* currencies.json */,
+				7C1F0CFD207E239200B4B4C4 /* exchange_rates.json */,
+				ECC67DB120BDA15700BE7EFD /* Prices */,
+				7C1F0D0A207E260F00B4B4C4 /* time.json */,
+			);
+			path = DataResources;
+			sourceTree = "<group>";
+		};
+		ECC67DB320BDA1A500BE7EFD /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				7CA8756B2080B881001384E4 /* malformed.json */,
+				7CA8756D2080B882001384E4 /* oauth_error.json */,
+				7CA8756C2080B882001384E4 /* validation_error.json */,
+			);
+			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		ECC67DB420BDA1ED00BE7EFD /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6C39720911F2100AC973A /* token.json */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		ECC67DB920BDA3BE00BE7EFD /* RefreshToken */ = {
+			isa = PBXGroup;
+			children = (
+				ECC67DB520BDA39700BE7EFD /* expired_token.json */,
+				ECC67DB620BDA39700BE7EFD /* invalid_token.json */,
+			);
+			path = RefreshToken;
+			sourceTree = "<group>";
+		};
+		ECCFA3CE207241B60050C893 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EC6C54A720738776009F02B8 /* ValidationOptionsProtocol.swift */,
+				ECCFA3D12072587E0050C893 /* ResourceAPIProtocol.swift */,
+				ECCE3446206177AC00262B5D /* RequestConvertable.swift */,
+				ECCFA3CF207241DD0050C893 /* ConvertibleFromData.swift */,
+				7C3C02FE20B5C550002AED72 /* URLSessionProviderProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ECD484B8209A2A3E00A5B34C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ECAE7EA22077A47700380F2C /* User.swift */,
+				ECAE7EA32077A47700380F2C /* Country.swift */,
+				ECAE7EA42077A47700380F2C /* AuthorizationInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ECE3BB502080C19C009AC6DC /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				ECE3BB512080C1C9009AC6DC /* TransactionResource.swift */,
+				ECE3BB532080C1D8009AC6DC /* TransactionsAPI.swift */,
+				39FCCD302097837F003F1364 /* TransactionExpandOption.swift */,
+				39BF332D208E8CA5003BD80A /* RequestParameters */,
+				39BF332E208E8CC1003BD80A /* Models */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		ECE5C096206CFCB50083EE44 /* Promise */ = {
+			isa = PBXGroup;
+			children = (
+				ECE5C092206BD1CE0083EE44 /* Promise.swift */,
+				ECE5C097206CFCC50083EE44 /* State.swift */,
+				ECE5C099206CFE940083EE44 /* Callback.swift */,
+			);
+			path = Promise;
+			sourceTree = "<group>";
+		};
+		ECF190EA2073B65900FC44F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				09B8D0D920D7A2F700462E31 /* ResponseModels */,
+				09B8D0D820D7A2C700462E31 /* Errors */,
+				ECCFA3CA20723F690050C893 /* DefaultResponse.swift */,
+				ECCFA3CC207240960050C893 /* Response.swift */,
+				EC74F52D205FEA0600276CA5 /* Result.swift */,
+				7CA5564A208E3F2B001926D8 /* PaginationParameters.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7C33AAA720690B210066449A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C33AAA820690B210066449A /* CoinbaseSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8B12056A40200AFD71F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC38E8C52056A40200AFD71F /* CoinbaseSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7C33AA9020690B210066449A /* RxCoinbaseSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C33AAAA20690B210066449A /* Build configuration list for PBXNativeTarget "RxCoinbaseSDK" */;
+			buildPhases = (
+				7C33AA9120690B210066449A /* Sources */,
+				7C33AAA620690B210066449A /* Frameworks */,
+				7C33AAA720690B210066449A /* Headers */,
+				7C33AAA920690B210066449A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RxCoinbaseSDK;
+			productName = Coinbase;
+			productReference = 7C33AAAD20690B210066449A /* RxCoinbaseSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7CA6C34D208FD1A900AC973A /* CoinbaseRxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CA6C36D208FD1A900AC973A /* Build configuration list for PBXNativeTarget "CoinbaseRxTests" */;
+			buildPhases = (
+				7CA6C350208FD1A900AC973A /* Sources */,
+				7CA6C35B208FD1A900AC973A /* Frameworks */,
+				7CA6C360208FD1A900AC973A /* Resources */,
+				7CA6C369208FD1A900AC973A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7CA6C37C208FD37800AC973A /* PBXTargetDependency */,
+			);
+			name = CoinbaseRxTests;
+			productName = CoinbaseTests;
+			productReference = 7CA6C370208FD1A900AC973A /* CoinbaseRxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EC38E8B32056A40200AFD71F /* CoinbaseSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC38E8C82056A40200AFD71F /* Build configuration list for PBXNativeTarget "CoinbaseSDK" */;
+			buildPhases = (
+				EC38E8AF2056A40200AFD71F /* Sources */,
+				7CC61F9520764BE6000EF8ED /* SwiftLint */,
+				EC38E8B02056A40200AFD71F /* Frameworks */,
+				EC38E8B12056A40200AFD71F /* Headers */,
+				EC38E8B22056A40200AFD71F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoinbaseSDK;
+			productName = Coinbase;
+			productReference = EC38E8B42056A40200AFD71F /* CoinbaseSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EC38E8BC2056A40200AFD71F /* CoinbaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC38E8CB2056A40200AFD71F /* Build configuration list for PBXNativeTarget "CoinbaseTests" */;
+			buildPhases = (
+				EC38E8B92056A40200AFD71F /* Sources */,
+				EC38E8BA2056A40200AFD71F /* Frameworks */,
+				EC38E8BB2056A40200AFD71F /* Resources */,
+				7C33AB3B206D25090066449A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC38E8C02056A40200AFD71F /* PBXTargetDependency */,
+			);
+			name = CoinbaseTests;
+			productName = CoinbaseTests;
+			productReference = EC38E8BD2056A40200AFD71F /* CoinbaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC38E8AB2056A40100AFD71F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Coinbase, Inc.";
+				TargetAttributes = {
+					7C33AA9020690B210066449A = {
+						ProvisioningStyle = Automatic;
+					};
+					7CA6C34D208FD1A900AC973A = {
+						ProvisioningStyle = Automatic;
+					};
+					EC38E8B32056A40200AFD71F = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					EC38E8BC2056A40200AFD71F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EC38E8AE2056A40100AFD71F /* Build configuration list for PBXProject "Coinbase" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EC38E8AA2056A40100AFD71F;
+			productRefGroup = EC38E8B52056A40200AFD71F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC38E8B32056A40200AFD71F /* CoinbaseSDK */,
+				7C33AA9020690B210066449A /* RxCoinbaseSDK */,
+				EC38E8BC2056A40200AFD71F /* CoinbaseTests */,
+				7CA6C34D208FD1A900AC973A /* CoinbaseRxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7C33AAA920690B210066449A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CA6C360208FD1A900AC973A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CA6C361208FD1A900AC973A /* spot_price_btc_usd.json in Resources */,
+				7CA6C362208FD1A900AC973A /* time.json in Resources */,
+				7CA6C363208FD1A900AC973A /* spot_prices_usd.json in Resources */,
+				7CA6C364208FD1A900AC973A /* auth_user.json in Resources */,
+				7CA6C365208FD1A900AC973A /* exchange_rates.json in Resources */,
+				7CA6C366208FD1A900AC973A /* sell_price.json in Resources */,
+				7CA6C367208FD1A900AC973A /* currencies.json in Resources */,
+				7CA6C368208FD1A900AC973A /* buy_price.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8B22056A40200AFD71F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C13EA6920C7DC2A00C95921 /* DigicertEV.cer in Resources */,
+				7C13EA6A20C7DC2A00C95921 /* Verisign.cer in Resources */,
+				7C13EA6820C7DC2A00C95921 /* Digicert.cer in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8BB2056A40200AFD71F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC9C0D0820A9A15E007869A4 /* buy_list.json in Resources */,
+				7CA5564420860E7B001926D8 /* time.json in Resources */,
+				ECE2D67F20B4177D00C3E0BC /* deposit_list.json in Resources */,
+				7CA875702080B882001384E4 /* oauth_error.json in Resources */,
+				7CA8756E2080B882001384E4 /* malformed.json in Resources */,
+				ECC67DB820BDA39800BE7EFD /* invalid_token.json in Resources */,
+				7CC2DB9E20A1B60500C9758D /* payment_methods.json in Resources */,
+				ECE2D68220B4177D00C3E0BC /* deposit_place_order.json in Resources */,
+				ECE2D68020B4177D00C3E0BC /* deposit_commit.json in Resources */,
+				39254814208A697D0075B464 /* transaction_to_email.json in Resources */,
+				ECE2D68120B4177D00C3E0BC /* deposit.json in Resources */,
+				7C1F0D1B207E27AC00B4B4C4 /* spot_price_btc_usd.json in Resources */,
+				39BF3331208EA525003BD80A /* show_transaction.json in Resources */,
+				EC9C0D0C20A9DD41007869A4 /* buy_place_order.json in Resources */,
+				7C1F0D1C207E27AC00B4B4C4 /* spot_prices_usd.json in Resources */,
+				7CC61F5920725303000EF8ED /* auth_user.json in Resources */,
+				ECE2D68E20B41E2100C3E0BC /* withdrawal.json in Resources */,
+				ECE2D68C20B41E2100C3E0BC /* withdrawal_list.json in Resources */,
+				39254810208A697D0075B464 /* transaction_to_btc_address.json in Resources */,
+				EC20786420A1F4510054A091 /* address_transactions.json in Resources */,
+				ECE2D68D20B41E2100C3E0BC /* withdrawal_place_order.json in Resources */,
+				7CA6C39F20924ADB00AC973A /* user_by_id.json in Resources */,
+				ECE2D67920B3249900C3E0BC /* sell_place_order.json in Resources */,
+				7C1F0CFF207E239500B4B4C4 /* exchange_rates.json in Resources */,
+				7CA6C39820911F2100AC973A /* token.json in Resources */,
+				7C6726992093943500CDE8C6 /* accounts_list.json in Resources */,
+				7CC2DBA020A1B60E00C9758D /* payment_method_by_id.json in Resources */,
+				39BF3332208EA525003BD80A /* list_transactions.json in Resources */,
+				ECC67DB720BDA39800BE7EFD /* expired_token.json in Resources */,
+				39BF3338208FB4E9003BD80A /* request_money.json in Resources */,
+				7C1F0D1A207E27AC00B4B4C4 /* sell_price.json in Resources */,
+				EC9C0CF920A5FD33007869A4 /* buy.json in Resources */,
+				7C67269D2093BA8A00CDE8C6 /* account.json in Resources */,
+				ECE2D68B20B41E2100C3E0BC /* withdrawal_commit.json in Resources */,
+				7CA8756F2080B882001384E4 /* validation_error.json in Resources */,
+				39254813208A697D0075B464 /* transaction_to_account.json in Resources */,
+				ECE2D67A20B3249900C3E0BC /* sell_list.json in Resources */,
+				7CA6C3A320924BEE00AC973A /* auth_info.json in Resources */,
+				0937B5CE206E93B7009E8826 /* currencies.json in Resources */,
+				39254811208A697D0075B464 /* transaction_to_user.json in Resources */,
+				39BF3334208FA091003BD80A /* transaction_from_unsupported_party.json in Resources */,
+				EC9C0D0B20A9DD41007869A4 /* buy_commit.json in Resources */,
+				EC945775208615B5007AAFD7 /* send_money_confirmed.json in Resources */,
+				7C443BC320926EDB004E3380 /* empty.json in Resources */,
+				39F2ED522090EE5300FF3B32 /* transaction_to_unsupported_party.json in Resources */,
+				EC9C0CF720A5FD33007869A4 /* sell.json in Resources */,
+				39254812208A697D0075B464 /* transaction_from_account.json in Resources */,
+				39254815208A697D0075B464 /* transaction_from_user.json in Resources */,
+				3925480F208A697D0075B464 /* transaction_from_email.json in Resources */,
+				EC20786320A1F4510054A091 /* address.json in Resources */,
+				7C1F0D19207E27AC00B4B4C4 /* buy_price.json in Resources */,
+				EC20786220A1F4510054A091 /* addresses_list.json in Resources */,
+				3925480E208A697D0075B464 /* transaction_from_btc_address.json in Resources */,
+				ECE2D67820B3249900C3E0BC /* sell_commit.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CC61F9520764BE6000EF8ED /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C33AA9120690B210066449A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CD32C65208F9A4300048964 /* CurrenciesResource+Rx.swift in Sources */,
+				7C87EE8220A1F7CE00F1F5FD /* PaymentMethodResource+Rx.swift in Sources */,
+				7C8F9CA52099157A00373028 /* AccountsResource+Rx.swift in Sources */,
+				7CD32C77208FC94200048964 /* PricesResource+Rx.swift in Sources */,
+				EC4FE5082099059400F35A20 /* TransactionResource+Rx.swift in Sources */,
+				7CD32C63208F994900048964 /* UserResource+Rx.swift in Sources */,
+				7C33AB35206CF6DB0066449A /* SessionManager+Rx.swift in Sources */,
+				7CD32C73208FC84F00048964 /* ExchangeRatesResource+Rx.swift in Sources */,
+				7CD32C75208FC8E000048964 /* TimeResource+Rx.swift in Sources */,
+				EC20786820A20D2E0054A091 /* AddressResource+Rx.swift in Sources */,
+				7CD32C5F208F96DF00048964 /* TokenResource+Rx.swift in Sources */,
+				EC9C0D0F20AAE6C7007869A4 /* TradeResourceProtocol+Rx.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CA6C350208FD1A900AC973A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE2D67020B318EF00C3E0BC /* SellResourceRxSpec.swift in Sources */,
+				ECE2D67220B3198800C3E0BC /* DepositResourceRxSpec.swift in Sources */,
+				7CA6C38A2090DF5A00AC973A /* ExchangeRatesResourceRxSpec.swift in Sources */,
+				ECE2D66E20B3182400C3E0BC /* TradeResourceRxSpecProtocol.swift in Sources */,
+				7CA6C374208FD2CD00AC973A /* UserResourceRxSpec.swift in Sources */,
+				7CA6C3882090097E00AC973A /* CurrenciesResourceRxSpec.swift in Sources */,
+				7CA6C38F2090E14600AC973A /* PricesResourceRxSpec.swift in Sources */,
+				7CA6C381208FD4B500AC973A /* RxSpecHelpers.swift in Sources */,
+				ECD4C28920A2120A00A7E658 /* AddressResourceRxSpec.swift in Sources */,
+				EC4F450C20D16E490044F369 /* DictionaryMatcher.swift in Sources */,
+				7CA6C38C2090E09200AC973A /* TimeResourceRxSpec.swift in Sources */,
+				7CA6C377208FD30600AC973A /* SpecHelpers.swift in Sources */,
+				7C8F9CA72099161800373028 /* AccountsResourceRxSpec.swift in Sources */,
+				7CA6C383208FFB8400AC973A /* MockedSessionManager.swift in Sources */,
+				7C7BAB8B20BD63E5009E8A06 /* StubConstants.swift in Sources */,
+				ECE2D67420B3199A00C3E0BC /* WithdrawalResourceRxSpec.swift in Sources */,
+				EC4FE50B20990B3400F35A20 /* TransactionResourceRxSpec.swift in Sources */,
+				7CA6C3932090E73400AC973A /* SessionManagerSpec.swift in Sources */,
+				7CA6C3912090E5B800AC973A /* TokenResourceRxSpec.swift in Sources */,
+				7C87EE8520A1F7E400F1F5FD /* PaymentMethodResourceRxSpec.swift in Sources */,
+				EC9C0D1220AAED98007869A4 /* BuyResourceRxSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8AF2056A40200AFD71F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C937AD520ADB76F00EE974A /* GeneralDeviceInfo.swift in Sources */,
+				7CC2DB9A20A1B32F00C9758D /* PaymentMethodsAPI.swift in Sources */,
+				ECE2D66420B2D8C400C3E0BC /* DepositWithdrawalParameters.swift in Sources */,
+				EC9C0D0520A98EFA007869A4 /* TradeExpandOption.swift in Sources */,
+				EC480F882063E9A000A48CA6 /* NetworkConstants.swift in Sources */,
+				7CA5564B208E3F2B001926D8 /* PaginationParameters.swift in Sources */,
+				7C1F0D10207E26DA00B4B4C4 /* PricesResource.swift in Sources */,
+				EC9C0CE920A5F642007869A4 /* Buy.swift in Sources */,
+				EC36BC00207E56700092BCFE /* BaseResource.swift in Sources */,
+				ECCAF57D20B2CCA900950F9F /* DictionaryConvertible.swift in Sources */,
+				7C1F0CF9207E209400B4B4C4 /* ExchangeRatesAPI.swift in Sources */,
+				ECAE7EA62077A47700380F2C /* UserResource.swift in Sources */,
+				7CE0E8C220C0230500A3531E /* ServerTrustValidator.swift in Sources */,
+				7C1F0CFC207E229300B4B4C4 /* ExchangeRatesResource.swift in Sources */,
+				EC15553D2102137F0031D259 /* RedirectURIsValidator.swift in Sources */,
+				EC277C4721075DA600403C42 /* OAuthFlowType.swift in Sources */,
+				EC56E74820D7BFAE00EFA9D7 /* String+Random.swift in Sources */,
+				7C937A9520AB262E00EE974A /* SessionManagerProtocol.swift in Sources */,
+				7C1F0CFA207E209400B4B4C4 /* ExchangeRates.swift in Sources */,
+				EC3837AF205BF2FC0046DC9C /* OAuthURLBuilder.swift in Sources */,
+				ECE3BB5C2080DE1A009AC6DC /* TransactionNetwork.swift in Sources */,
+				7C937A8E20A999F300EE974A /* TokenAutoRefreshInterceptor.swift in Sources */,
+				EC3837B3205C1B910046DC9C /* OAuthErrorResponse.swift in Sources */,
+				7C87EE8820A2002F00F1F5FD /* Array+rawValues.swift in Sources */,
+				EC6643E620AF183800618ECC /* Sell.swift in Sources */,
+				ECE3BB5A2080DA87009AC6DC /* TransactionDetails.swift in Sources */,
+				ECCAF57920AF47FC00950F9F /* WithdrawalResource.swift in Sources */,
+				ECCAF57520AF47D600950F9F /* DepositResource.swift in Sources */,
+				EC2D14E520761108008CD344 /* ResponseModel.swift in Sources */,
+				EC6C54A620737198009F02B8 /* NetworkPromises.swift in Sources */,
+				EC74F52E205FEA0600276CA5 /* Result.swift in Sources */,
+				ECC1DE822069056A000ECEE3 /* ErrorResponse.swift in Sources */,
+				ECE3BB542080C1D8009AC6DC /* TransactionsAPI.swift in Sources */,
+				EC8B60D0205A8EDC003D5206 /* OAuthError.swift in Sources */,
+				7C937A9320AAE18C00EE974A /* Result+PromiseCallback.swift in Sources */,
+				EC74F532205FF23100276CA5 /* NetworkUtils.swift in Sources */,
+				ECAE7EA52077A47700380F2C /* UsersAPI.swift in Sources */,
+				ECE3BB562080C1E3009AC6DC /* Transaction.swift in Sources */,
+				EC6643E220AF116D00618ECC /* Account.swift in Sources */,
+				EC273F7E2056B07700056618 /* Coinbase.swift in Sources */,
+				EC20785B20A1B9A00054A091 /* AddressesAPI.swift in Sources */,
+				7CC2DBA920A1BCF000C9758D /* PaymentMethodLimit.swift in Sources */,
+				39F2ED5C2092494E00FF3B32 /* URLOpenerProtocol.swift in Sources */,
+				7C67269120938E2800CDE8C6 /* AccountResource.swift in Sources */,
+				ECAE7EA72077A47700380F2C /* User.swift in Sources */,
+				EC74F530205FEA2800276CA5 /* NetworkErrors.swift in Sources */,
+				39BF332C208E840F003BD80A /* CryptoAddress.swift in Sources */,
+				ECCFA3CB20723F690050C893 /* DefaultResponse.swift in Sources */,
+				EC6643E120AF116D00618ECC /* Currency.swift in Sources */,
+				EC9C0CEE20A5FAD2007869A4 /* Trade.swift in Sources */,
+				39BF333B208FDBD6003BD80A /* EmptyData.swift in Sources */,
+				ECCFA3CD207240960050C893 /* Response.swift in Sources */,
+				ECE3BB5E2080E05C009AC6DC /* ResourceObject.swift in Sources */,
+				EC9C0CE720A5F638007869A4 /* BuyResource.swift in Sources */,
+				EC480F862063E70F00A48CA6 /* CurrenciesAPI.swift in Sources */,
+				EC9C0CDF20A5D2F3007869A4 /* TradesAPI.swift in Sources */,
+				39BF333D208FE10B003BD80A /* ApplicationModel.swift in Sources */,
+				EC70B5BC20596B0400F68F0C /* OAuthConstants.swift in Sources */,
+				7C1F0D09207E257500B4B4C4 /* TimeInfo.swift in Sources */,
+				ECAE7EAC2077A8DE00380F2C /* CurrenciesResource.swift in Sources */,
+				7C1F0D22207E289C00B4B4C4 /* Price.swift in Sources */,
+				7C1F0D05207E250800B4B4C4 /* TimeResource.swift in Sources */,
+				7C1F0D08207E257500B4B4C4 /* TimeAPI.swift in Sources */,
+				EC20785920A1B9960054A091 /* AddressResource.swift in Sources */,
+				7CB2E5AC207E134D001D792D /* CurrencyInfo.swift in Sources */,
+				39FCCD312097837F003F1364 /* TransactionExpandOption.swift in Sources */,
+				EC945768208548EE007AAFD7 /* TransactionParameters.swift in Sources */,
+				EC0B305120C551AA00D61A9C /* TokenRefreshDataProvider.swift in Sources */,
+				7C3C02FF20B5C550002AED72 /* URLSessionProviderProtocol.swift in Sources */,
+				EC273F802056C0DE00056618 /* OAuth.swift in Sources */,
+				39BF3328208E7EC3003BD80A /* TransactionParty.swift in Sources */,
+				7CC2DBAD20A1BFC200C9758D /* NextRequirement.swift in Sources */,
+				ECAE7E9E2077A22400380F2C /* TokenResource.swift in Sources */,
+				7C8F9CAE209B7CE400373028 /* Logging.swift in Sources */,
+				EC2D14ED20762EFA008CD344 /* Warning.swift in Sources */,
+				EC56E74C20D7FCD600EFA9D7 /* AccountAccess.swift in Sources */,
+				ECCAF57720AF47E300950F9F /* Deposit.swift in Sources */,
+				ECCAF57B20AF480800950F9F /* Withdrawal.swift in Sources */,
+				EC74F52C205FE98800276CA5 /* SessionManager.swift in Sources */,
+				EC6C54A820738776009F02B8 /* ValidationOptionsProtocol.swift in Sources */,
+				EC2D14E7207629E8008CD344 /* UserToken.swift in Sources */,
+				ECAE7EA92077A47700380F2C /* AuthorizationInfo.swift in Sources */,
+				ECCFA3D0207241DD0050C893 /* ConvertibleFromData.swift in Sources */,
+				ECCFA3D22072587E0050C893 /* ResourceAPIProtocol.swift in Sources */,
+				ECAE7EA82077A47700380F2C /* Country.swift in Sources */,
+				ECCE3447206177AC00262B5D /* RequestConvertable.swift in Sources */,
+				7CC2DB9820A1B2B500C9758D /* PaymentMethodResource.swift in Sources */,
+				7CC2DBA720A1BCEA00C9758D /* PaymentMethodLimits.swift in Sources */,
+				ECB1C7B120650DC400D61180 /* TokensAPI.swift in Sources */,
+				EC9C0CE420A5F51D007869A4 /* TradeResourceProtocol.swift in Sources */,
+				7C1F0D23207E289C00B4B4C4 /* PricesAPI.swift in Sources */,
+				EC20785720A1B9860054A091 /* Address.swift in Sources */,
+				EC9C0CFE20A607DC007869A4 /* TradeParameters.swift in Sources */,
+				ECE3BB522080C1C9009AC6DC /* TransactionResource.swift in Sources */,
+				EC9C0CEB20A5F689007869A4 /* BuySellParameters.swift in Sources */,
+				7C6C9A6F2097C85C002B54DD /* SessionDelegate.swift in Sources */,
+				39BF332A208E83E8003BD80A /* EmailModel.swift in Sources */,
+				ECE5C09A206CFE940083EE44 /* Callback.swift in Sources */,
+				ECE3BB582080D3F3009AC6DC /* MoneyHash.swift in Sources */,
+				ECC1DE8420690918000ECEE3 /* ErrorModel.swift in Sources */,
+				7CC2DB9C20A1B33600C9758D /* PaymentMethod.swift in Sources */,
+				ECE5C098206CFCC50083EE44 /* State.swift in Sources */,
+				EC2D14EF20762FB6008CD344 /* Pagination.swift in Sources */,
+				EC7CFEBE20C93451008AAA35 /* RequestTransactionParameters.swift in Sources */,
+				EC4DAD7520DD442C00710ED4 /* AccessTokenProvider.swift in Sources */,
+				EC94576A20854916007AAFD7 /* SendTransactionParameters.swift in Sources */,
+				7C67269320938E3100CDE8C6 /* AccountsAPI.swift in Sources */,
+				EC6643E420AF182000618ECC /* SellResource.swift in Sources */,
+				7CC2DBA220A1B82A00C9758D /* PaymentMethodExpandOption.swift in Sources */,
+				ECE5C093206BD1CE0083EE44 /* Promise.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC38E8B92056A40200AFD71F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE2D66820B2E9BC00C3E0BC /* TradeResourceSpecProtocol.swift in Sources */,
+				ECE2D66A20B2EAFA00C3E0BC /* StubConstants.swift in Sources */,
+				7C1F0D1F207E280E00B4B4C4 /* PricesResourceSpec.swift in Sources */,
+				7C6C9A6D20977DC6002B54DD /* CoinbaseSpec.swift in Sources */,
+				7CA6C396209119C300AC973A /* TokenResourceSpec.swift in Sources */,
+				EC87D8A020B70A8F009A0080 /* IntegrationSpecProtocol.swift in Sources */,
+				7C33AB4D206D34D20066449A /* UsersSpec.swift in Sources */,
+				09196F0E20A459DB00334F92 /* RefreshTokenSpec.swift in Sources */,
+				39F2ED50208FFAC800FF3B32 /* TransactionPartySpec.swift in Sources */,
+				3944F10D2093BE260098276D /* OAuthURLBuilderSpec.swift in Sources */,
+				0937B5D1206E949F009E8826 /* CurrenciesResourceSpec.swift in Sources */,
+				7CC61F572072521B000EF8ED /* UserResourceSpec.swift in Sources */,
+				EC4F450B20D16E300044F369 /* DictionaryMatcher.swift in Sources */,
+				7C1F0D0D207E261900B4B4C4 /* TimeResourceSpec.swift in Sources */,
+				3944F10B2093B8640098276D /* MockedSessionManager.swift in Sources */,
+				7CA875722080C43F001384E4 /* IntegrationSpecHelpers.swift in Sources */,
+				7C67268F20938DC700CDE8C6 /* AccountsResourceSpec.swift in Sources */,
+				7CC2DB9520A1AA8E00C9758D /* PaymentMethodsResourceSpec.swift in Sources */,
+				EC87D89E20B70998009A0080 /* IntegrationQuickConfiguration.swift in Sources */,
+				39934020209795A400805D99 /* RequestConvertibleSpec.swift in Sources */,
+				EC945773208615AA007AAFD7 /* TransactionResourceSpec.swift in Sources */,
+				ECE2D68620B4185000C3E0BC /* WithdrawalResourceSpec.swift in Sources */,
+				0937B5C9206E9332009E8826 /* ResultMatchers.swift in Sources */,
+				399BEFD120927FE0008A0B8B /* OAuthSpec.swift in Sources */,
+				ECE2D66C20B2EDB600C3E0BC /* SellResourceSpec.swift in Sources */,
+				ECE9C2C52108C52B0072A429 /* ErrorsSpec.swift in Sources */,
+				ECE9C2C72108C56D0072A429 /* SafariControllerOpenerSpec.swift in Sources */,
+				7C87580620E127CD007C7FD9 /* PromiseSpec.swift in Sources */,
+				7C33AB49206D293D0066449A /* SpecHelpers.swift in Sources */,
+				ECE2D68420B417AA00C3E0BC /* DepositResourceSpec.swift in Sources */,
+				7CA87564207F7888001384E4 /* ErrorHandlingSpec.swift in Sources */,
+				ECE2D66620B2E69B00C3E0BC /* BuyResourceSpec.swift in Sources */,
+				7CD32C5D208E829F00048964 /* PaginationSpec.swift in Sources */,
+				EC20786520A1F4880054A091 /* AddressResourceSpec.swift in Sources */,
+				7C1F0D02207E241700B4B4C4 /* ExchangeRatesResourceSpec.swift in Sources */,
+				7C87580920E1300C007C7FD9 /* SessionManagerSpec.swift in Sources */,
+				7CA5564E208E409B001926D8 /* PaginationParametersSpec.swift in Sources */,
+				EC87D89C20B70680009A0080 /* MockedURLOpener.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7CA6C37C208FD37800AC973A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C33AA9020690B210066449A /* RxCoinbaseSDK */;
+			targetProxy = 7CA6C37B208FD37800AC973A /* PBXContainerItemProxy */;
+		};
+		EC38E8C02056A40200AFD71F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC38E8B32056A40200AFD71F /* CoinbaseSDK */;
+			targetProxy = EC38E8BF2056A40200AFD71F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7C33AAAB20690B210066449A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseRx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7C33AAAC20690B210066449A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseRx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7CA6C36E208FD1A900AC973A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7CA6C36F208FD1A900AC973A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC38E8C62056A40200AFD71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EC38E8C72056A40200AFD71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EC38E8C92056A40200AFD71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseSDK;
+				PRODUCT_NAME = $TARGET_NAME;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC38E8CA2056A40200AFD71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseSDK;
+				PRODUCT_NAME = $TARGET_NAME;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC38E8CC2056A40200AFD71F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC38E8CD2056A40200AFD71F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.CoinbaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C33AAAA20690B210066449A /* Build configuration list for PBXNativeTarget "RxCoinbaseSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C33AAAB20690B210066449A /* Debug */,
+				7C33AAAC20690B210066449A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CA6C36D208FD1A900AC973A /* Build configuration list for PBXNativeTarget "CoinbaseRxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CA6C36E208FD1A900AC973A /* Debug */,
+				7CA6C36F208FD1A900AC973A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC38E8AE2056A40100AFD71F /* Build configuration list for PBXProject "Coinbase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC38E8C62056A40200AFD71F /* Debug */,
+				EC38E8C72056A40200AFD71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC38E8C82056A40200AFD71F /* Build configuration list for PBXNativeTarget "CoinbaseSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC38E8C92056A40200AFD71F /* Debug */,
+				EC38E8CA2056A40200AFD71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC38E8CB2056A40200AFD71F /* Build configuration list for PBXNativeTarget "CoinbaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC38E8CC2056A40200AFD71F /* Debug */,
+				EC38E8CD2056A40200AFD71F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC38E8AB2056A40100AFD71F /* Project object */;
+}

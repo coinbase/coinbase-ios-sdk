@@ -1,0 +1,13 @@
+{
+  "data": {
+    "iso": "2018-03-02T13:34:02Z",
+    "epoch": 1519997642
+  },
+  "warnings": [
+    {
+      "id": "missing_version",
+      "message": "Please supply API version (YYYY-MM-DD) as CB-VERSION header",
+      "url": "https://developers.coinbase.com/api#versioning"
+    }
+  ]
+}

@@ -1,0 +1,920 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0ABA411820EF92CF000E8019 /* SpotPricesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA411720EF92CF000E8019 /* SpotPricesTableViewCell.swift */; };
+		7C01184E20AF10C800DAD9D7 /* CoinbaseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC273FA22056D01400056618 /* CoinbaseSDK.framework */; };
+		7C01184F20AF10C800DAD9D7 /* CoinbaseSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EC273FA22056D01400056618 /* CoinbaseSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C87581320ED1EDE007C7FD9 /* IndexedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87581220ED1EDE007C7FD9 /* IndexedDataSource.swift */; };
+		7C87581820EE0F44007C7FD9 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87581720EE0F44007C7FD9 /* CurrencyTableViewCell.swift */; };
+		7C87583720EFBEF3007C7FD9 /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87583620EFBEF3007C7FD9 /* PaymentMethodTableViewCell.swift */; };
+		7C87583E20EFD8EF007C7FD9 /* UIView+addCenteredActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87583D20EFD8EF007C7FD9 /* UIView+addCenteredActivityIndicator.swift */; };
+		7C87584820F35DDC007C7FD9 /* UITableView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C87584720F35DDC007C7FD9 /* UITableView+Helpers.swift */; };
+		7CA8E8A420F4B4DC00758731 /* ThemeRefreshControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA8E8A320F4B4DC00758731 /* ThemeRefreshControll.swift */; };
+		EC273F482056AC3300056618 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC273F472056AC3300056618 /* AppDelegate.swift */; };
+		EC273F4D2056AC3300056618 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC273F4B2056AC3300056618 /* Menu.storyboard */; };
+		EC273F4F2056AC3300056618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC273F4E2056AC3300056618 /* Assets.xcassets */; };
+		EC273F522056AC3300056618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC273F502056AC3300056618 /* LaunchScreen.storyboard */; };
+		EC273F5D2056AC3300056618 /* iOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC273F5C2056AC3300056618 /* iOS_ExampleTests.swift */; };
+		EC32096A20EE5C0F0011A9B8 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32096920EE5C0F0011A9B8 /* AccountTableViewCell.swift */; };
+		EC32096C20EE75320011A9B8 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32096B20EE75320011A9B8 /* TransactionsViewController.swift */; };
+		EC3AD20820ED28BB00C8B5FF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3AD20720ED28BB00C8B5FF /* Utils.swift */; };
+		EC4F03BE20F4E70F005D75C6 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F03BD20F4E70F005D75C6 /* TransactionTableViewCell.swift */; };
+		EC5249A920F5FE39007DE7A4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5249A820F5FE39007DE7A4 /* RoundedView.swift */; };
+		EC70B5B02057ED7600F68F0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70B5AF2057ED7600F68F0C /* Constants.swift */; };
+		EC71069C20EA467B0007D72B /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC71069B20EA467B0007D72B /* RoundedImageView.swift */; };
+		EC7106A220EA4B860007D72B /* CurrentUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7106A020EA4B860007D72B /* CurrentUser.storyboard */; };
+		EC7106A720EA4CE10007D72B /* SpotPrices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7106A520EA4CE10007D72B /* SpotPrices.storyboard */; };
+		EC7106AA20EA4D170007D72B /* Accounts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7106A820EA4D170007D72B /* Accounts.storyboard */; };
+		EC7106B620EA50050007D72B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106B520EA50050007D72B /* MenuViewController.swift */; };
+		EC7106B820EA50830007D72B /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106B720EA50830007D72B /* UserViewController.swift */; };
+		EC7106BA20EA50930007D72B /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106B920EA50930007D72B /* AccountsViewController.swift */; };
+		EC7106BC20EA509F0007D72B /* SpotPricesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106BB20EA509F0007D72B /* SpotPricesViewController.swift */; };
+		EC7106BE20EA50AA0007D72B /* CurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106BD20EA50AA0007D72B /* CurrenciesViewController.swift */; };
+		EC7106C020EA50B60007D72B /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106BF20EA50B60007D72B /* PaymentMethodsViewController.swift */; };
+		EC7106C320EA54990007D72B /* Currencies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7106C120EA54990007D72B /* Currencies.storyboard */; };
+		EC7106C620EA54A90007D72B /* PaymentMethods.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7106C420EA54A90007D72B /* PaymentMethods.storyboard */; };
+		EC7106C820EA92E60007D72B /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106C720EA92E60007D72B /* UserHeaderView.swift */; };
+		EC7106CA20EA942A0007D72B /* UserDetailsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106C920EA942A0007D72B /* UserDetailsStackView.swift */; };
+		EC7106CC20EA94450007D72B /* AuthorizationInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7106CB20EA94450007D72B /* AuthorizationInfoStackView.swift */; };
+		ECA52C9320E3A18D00749D7B /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52C9220E3A18D00749D7B /* TokenUtils.swift */; };
+		ECA52CA320E3D74200749D7B /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CA220E3D74200749D7B /* KeychainService.swift */; };
+		ECA52CA620E3DDAD00749D7B /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA52CA420E3DDAD00749D7B /* Authorization.storyboard */; };
+		ECA52CA820E3DE1400749D7B /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CA720E3DE1400749D7B /* AuthorizationViewController.swift */; };
+		ECA52CB020E63B8100749D7B /* ThemeGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CAF20E63B8000749D7B /* ThemeGradientView.swift */; };
+		ECA52CB220E63BA100749D7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CB120E63BA100749D7B /* GradientView.swift */; };
+		ECA52CB420E63BDA00749D7B /* GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CB320E63BDA00749D7B /* GradientColors.swift */; };
+		ECA52CB620E63C0800749D7B /* UIColor+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CB520E63C0800749D7B /* UIColor+Components.swift */; };
+		ECA52CB920E63C7A00749D7B /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CB820E63C7A00749D7B /* ThemeButton.swift */; };
+		ECA52CBD20E63F8100749D7B /* SquareWithCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CBC20E63F8100749D7B /* SquareWithCurve.swift */; };
+		ECA52CBF20E6759300749D7B /* RootControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CBE20E6759300749D7B /* RootControllerCoordinator.swift */; };
+		ECA52CC120E67DC300749D7B /* CoinbaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA52CC020E67DC300749D7B /* CoinbaseManager.swift */; };
+		ECFF6BDC20EA33FE0005A017 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF6BDB20EA33FE0005A017 /* UIViewController+PresentAlert.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7C01184C20AF10C400DAD9D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7CA6C370208FD1A900AC973A;
+			remoteInfo = CoinbaseRxTests;
+		};
+		7C01185020AF10C800DAD9D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EC38E8B32056A40200AFD71F;
+			remoteInfo = CoinbaseSDK;
+		};
+		7C33AAB6206910610066449A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7C33AAAD20690B210066449A;
+			remoteInfo = CoinbaseRx;
+		};
+		EC273F592056AC3300056618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F3C2056AC3300056618 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC273F432056AC3300056618;
+			remoteInfo = "iOS Example";
+		};
+		EC273FA12056D01400056618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC38E8B42056A40200AFD71F;
+			remoteInfo = "Coinbase iOS";
+		};
+		EC273FA32056D01400056618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC38E8BD2056A40200AFD71F;
+			remoteInfo = "CoinbaseTests iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7C01185220AF10C800DAD9D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7C01184F20AF10C800DAD9D7 /* CoinbaseSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0ABA411720EF92CF000E8019 /* SpotPricesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotPricesTableViewCell.swift; sourceTree = "<group>"; };
+		7C33AA8A206906950066449A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		7C87581220ED1EDE007C7FD9 /* IndexedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedDataSource.swift; sourceTree = "<group>"; };
+		7C87581720EE0F44007C7FD9 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		7C87583620EFBEF3007C7FD9 /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
+		7C87583D20EFD8EF007C7FD9 /* UIView+addCenteredActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addCenteredActivityIndicator.swift"; sourceTree = "<group>"; };
+		7C87584720F35DDC007C7FD9 /* UITableView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Helpers.swift"; sourceTree = "<group>"; };
+		7CA8E8A320F4B4DC00758731 /* ThemeRefreshControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRefreshControll.swift; sourceTree = "<group>"; };
+		EC273F442056AC3300056618 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC273F472056AC3300056618 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC273F4C2056AC3300056618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
+		EC273F4E2056AC3300056618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC273F512056AC3300056618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC273F532056AC3300056618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC273F582056AC3300056618 /* iOS ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC273F5C2056AC3300056618 /* iOS_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleTests.swift; sourceTree = "<group>"; };
+		EC273F5E2056AC3300056618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC273F9C2056D01400056618 /* Coinbase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Coinbase.xcodeproj; path = ../Coinbase.xcodeproj; sourceTree = "<group>"; };
+		EC32096920EE5C0F0011A9B8 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		EC32096B20EE75320011A9B8 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		EC3AD20720ED28BB00C8B5FF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EC4F03BD20F4E70F005D75C6 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		EC5249A820F5FE39007DE7A4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		EC70B5AF2057ED7600F68F0C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EC71069B20EA467B0007D72B /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		EC7106A120EA4B860007D72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CurrentUser.storyboard; sourceTree = "<group>"; };
+		EC7106A620EA4CE10007D72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SpotPrices.storyboard; sourceTree = "<group>"; };
+		EC7106A920EA4D170007D72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Accounts.storyboard; sourceTree = "<group>"; };
+		EC7106B520EA50050007D72B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EC7106B720EA50830007D72B /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		EC7106B920EA50930007D72B /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		EC7106BB20EA509F0007D72B /* SpotPricesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotPricesViewController.swift; sourceTree = "<group>"; };
+		EC7106BD20EA50AA0007D72B /* CurrenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesViewController.swift; sourceTree = "<group>"; };
+		EC7106BF20EA50B60007D72B /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
+		EC7106C220EA54990007D72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Currencies.storyboard; sourceTree = "<group>"; };
+		EC7106C520EA54A90007D72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PaymentMethods.storyboard; sourceTree = "<group>"; };
+		EC7106C720EA92E60007D72B /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
+		EC7106C920EA942A0007D72B /* UserDetailsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsStackView.swift; sourceTree = "<group>"; };
+		EC7106CB20EA94450007D72B /* AuthorizationInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInfoStackView.swift; sourceTree = "<group>"; };
+		ECA52C9220E3A18D00749D7B /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
+		ECA52CA220E3D74200749D7B /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		ECA52CA520E3DDAD00749D7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Authorization.storyboard; sourceTree = "<group>"; };
+		ECA52CA720E3DE1400749D7B /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		ECA52CAF20E63B8000749D7B /* ThemeGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeGradientView.swift; sourceTree = "<group>"; };
+		ECA52CB120E63BA100749D7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		ECA52CB320E63BDA00749D7B /* GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColors.swift; sourceTree = "<group>"; };
+		ECA52CB520E63C0800749D7B /* UIColor+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Components.swift"; sourceTree = "<group>"; };
+		ECA52CB820E63C7A00749D7B /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
+		ECA52CBC20E63F8100749D7B /* SquareWithCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareWithCurve.swift; sourceTree = "<group>"; };
+		ECA52CBE20E6759300749D7B /* RootControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootControllerCoordinator.swift; sourceTree = "<group>"; };
+		ECA52CC020E67DC300749D7B /* CoinbaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseManager.swift; sourceTree = "<group>"; };
+		ECFF6BDB20EA33FE0005A017 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC273F412056AC3300056618 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C01184E20AF10C800DAD9D7 /* CoinbaseSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC273F552056AC3300056618 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC273F3B2056AC3300056618 = {
+			isa = PBXGroup;
+			children = (
+				EC273F9C2056D01400056618 /* Coinbase.xcodeproj */,
+				EC273F462056AC3300056618 /* Source */,
+				EC273F5B2056AC3300056618 /* Tests */,
+				EC273F452056AC3300056618 /* Products */,
+				EC273F812056CE7F00056618 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EC273F452056AC3300056618 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F442056AC3300056618 /* iOS Example.app */,
+				EC273F582056AC3300056618 /* iOS ExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC273F462056AC3300056618 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F472056AC3300056618 /* AppDelegate.swift */,
+				EC70B5AF2057ED7600F68F0C /* Constants.swift */,
+				ECA52CBA20E63EB400749D7B /* ViewControllers */,
+				ECA52CC320E6A4AB00749D7B /* Views */,
+				ECA52C9E20E3D73500749D7B /* Utils */,
+				EC8B60D9205AB658003D5206 /* Supporting Files */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		EC273F5B2056AC3300056618 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F5C2056AC3300056618 /* iOS_ExampleTests.swift */,
+				EC273F5E2056AC3300056618 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		EC273F812056CE7F00056618 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C33AA8A206906950066449A /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC273F9D2056D01400056618 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC273FA22056D01400056618 /* CoinbaseSDK.framework */,
+				7C33AAB7206910610066449A /* RxCoinbaseSDK.framework */,
+				EC273FA42056D01400056618 /* CoinbaseTests.xctest */,
+				7C01184D20AF10C400DAD9D7 /* CoinbaseRxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC32096D20EE753B0011A9B8 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				EC32096B20EE75320011A9B8 /* TransactionsViewController.swift */,
+				EC4F03BD20F4E70F005D75C6 /* TransactionTableViewCell.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		EC3DA44B20ED2C4F001D6296 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106C720EA92E60007D72B /* UserHeaderView.swift */,
+				EC7106C920EA942A0007D72B /* UserDetailsStackView.swift */,
+				EC7106CB20EA94450007D72B /* AuthorizationInfoStackView.swift */,
+				EC71069B20EA467B0007D72B /* RoundedImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC7106AF20EA4F900007D72B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106A020EA4B860007D72B /* CurrentUser.storyboard */,
+				EC7106B720EA50830007D72B /* UserViewController.swift */,
+				EC3DA44B20ED2C4F001D6296 /* Views */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		EC7106B020EA4F9C0007D72B /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106A820EA4D170007D72B /* Accounts.storyboard */,
+				EC7106B920EA50930007D72B /* AccountsViewController.swift */,
+				EC32096920EE5C0F0011A9B8 /* AccountTableViewCell.swift */,
+				EC32096D20EE753B0011A9B8 /* Transactions */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		EC7106B120EA4FAA0007D72B /* SpotPrices */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106A520EA4CE10007D72B /* SpotPrices.storyboard */,
+				EC7106BB20EA509F0007D72B /* SpotPricesViewController.swift */,
+				0ABA411720EF92CF000E8019 /* SpotPricesTableViewCell.swift */,
+			);
+			path = SpotPrices;
+			sourceTree = "<group>";
+		};
+		EC7106B220EA4FB70007D72B /* Currencies */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106C120EA54990007D72B /* Currencies.storyboard */,
+				EC7106BD20EA50AA0007D72B /* CurrenciesViewController.swift */,
+				7C87581720EE0F44007C7FD9 /* CurrencyTableViewCell.swift */,
+			);
+			path = Currencies;
+			sourceTree = "<group>";
+		};
+		EC7106B320EA4FBF0007D72B /* PaymentMethods */ = {
+			isa = PBXGroup;
+			children = (
+				EC7106C420EA54A90007D72B /* PaymentMethods.storyboard */,
+				EC7106BF20EA50B60007D72B /* PaymentMethodsViewController.swift */,
+				7C87583620EFBEF3007C7FD9 /* PaymentMethodTableViewCell.swift */,
+			);
+			path = PaymentMethods;
+			sourceTree = "<group>";
+		};
+		EC7106B420EA4FD70007D72B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F4B2056AC3300056618 /* Menu.storyboard */,
+				EC7106B520EA50050007D72B /* MenuViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		EC8B60D9205AB658003D5206 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC273F4E2056AC3300056618 /* Assets.xcassets */,
+				EC273F502056AC3300056618 /* LaunchScreen.storyboard */,
+				EC273F532056AC3300056618 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECA52C9E20E3D73500749D7B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7C87581220ED1EDE007C7FD9 /* IndexedDataSource.swift */,
+				7C87583D20EFD8EF007C7FD9 /* UIView+addCenteredActivityIndicator.swift */,
+				ECA52CB520E63C0800749D7B /* UIColor+Components.swift */,
+				7C87584720F35DDC007C7FD9 /* UITableView+Helpers.swift */,
+				ECA52CBE20E6759300749D7B /* RootControllerCoordinator.swift */,
+				ECA52CC020E67DC300749D7B /* CoinbaseManager.swift */,
+				ECA52C9220E3A18D00749D7B /* TokenUtils.swift */,
+				ECA52CA220E3D74200749D7B /* KeychainService.swift */,
+				EC3AD20720ED28BB00C8B5FF /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		ECA52CAE20E63B6B00749D7B /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				ECA52CAF20E63B8000749D7B /* ThemeGradientView.swift */,
+				ECA52CB120E63BA100749D7B /* GradientView.swift */,
+				ECA52CB320E63BDA00749D7B /* GradientColors.swift */,
+			);
+			path = GradientView;
+			sourceTree = "<group>";
+		};
+		ECA52CB720E63C4D00749D7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ECA52CAE20E63B6B00749D7B /* GradientView */,
+				ECA52CBC20E63F8100749D7B /* SquareWithCurve.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ECA52CBA20E63EB400749D7B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ECA52CBB20E63EC200749D7B /* Authorization */,
+				EC7106B420EA4FD70007D72B /* Menu */,
+				EC7106AF20EA4F900007D72B /* User */,
+				EC7106B020EA4F9C0007D72B /* Accounts */,
+				EC7106B120EA4FAA0007D72B /* SpotPrices */,
+				EC7106B220EA4FB70007D72B /* Currencies */,
+				EC7106B320EA4FBF0007D72B /* PaymentMethods */,
+				ECFF6BDB20EA33FE0005A017 /* UIViewController+PresentAlert.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ECA52CBB20E63EC200749D7B /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				ECA52CA420E3DDAD00749D7B /* Authorization.storyboard */,
+				ECA52CA720E3DE1400749D7B /* AuthorizationViewController.swift */,
+				ECA52CB720E63C4D00749D7B /* Views */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		ECA52CC320E6A4AB00749D7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ECA52CB820E63C7A00749D7B /* ThemeButton.swift */,
+				7CA8E8A320F4B4DC00758731 /* ThemeRefreshControll.swift */,
+				EC5249A820F5FE39007DE7A4 /* RoundedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC273F432056AC3300056618 /* iOS Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC273F612056AC3300056618 /* Build configuration list for PBXNativeTarget "iOS Example" */;
+			buildPhases = (
+				EC273F402056AC3300056618 /* Sources */,
+				EC5249B120F65BDE007DE7A4 /* SwiftLint */,
+				EC273F412056AC3300056618 /* Frameworks */,
+				EC273F422056AC3300056618 /* Resources */,
+				7C01185220AF10C800DAD9D7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C01185120AF10C800DAD9D7 /* PBXTargetDependency */,
+			);
+			name = "iOS Example";
+			productName = "iOS Example";
+			productReference = EC273F442056AC3300056618 /* iOS Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC273F572056AC3300056618 /* iOS ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC273F642056AC3300056618 /* Build configuration list for PBXNativeTarget "iOS ExampleTests" */;
+			buildPhases = (
+				EC273F542056AC3300056618 /* Sources */,
+				EC273F552056AC3300056618 /* Frameworks */,
+				EC273F562056AC3300056618 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC273F5A2056AC3300056618 /* PBXTargetDependency */,
+			);
+			name = "iOS ExampleTests";
+			productName = "iOS ExampleTests";
+			productReference = EC273F582056AC3300056618 /* iOS ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC273F3C2056AC3300056618 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Coinbase;
+				TargetAttributes = {
+					EC273F432056AC3300056618 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					EC273F572056AC3300056618 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EC273F432056AC3300056618;
+					};
+				};
+			};
+			buildConfigurationList = EC273F3F2056AC3300056618 /* Build configuration list for PBXProject "iOS Example" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC273F3B2056AC3300056618;
+			productRefGroup = EC273F452056AC3300056618 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EC273F9D2056D01400056618 /* Products */;
+					ProjectRef = EC273F9C2056D01400056618 /* Coinbase.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				EC273F432056AC3300056618 /* iOS Example */,
+				EC273F572056AC3300056618 /* iOS ExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7C01184D20AF10C400DAD9D7 /* CoinbaseRxTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoinbaseRxTests.xctest;
+			remoteRef = 7C01184C20AF10C400DAD9D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7C33AAB7206910610066449A /* RxCoinbaseSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxCoinbaseSDK.framework;
+			remoteRef = 7C33AAB6206910610066449A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EC273FA22056D01400056618 /* CoinbaseSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CoinbaseSDK.framework;
+			remoteRef = EC273FA12056D01400056618 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EC273FA42056D01400056618 /* CoinbaseTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoinbaseTests.xctest;
+			remoteRef = EC273FA32056D01400056618 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC273F422056AC3300056618 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC7106A220EA4B860007D72B /* CurrentUser.storyboard in Resources */,
+				ECA52CA620E3DDAD00749D7B /* Authorization.storyboard in Resources */,
+				EC7106A720EA4CE10007D72B /* SpotPrices.storyboard in Resources */,
+				EC7106C320EA54990007D72B /* Currencies.storyboard in Resources */,
+				EC273F522056AC3300056618 /* LaunchScreen.storyboard in Resources */,
+				EC273F4F2056AC3300056618 /* Assets.xcassets in Resources */,
+				EC7106AA20EA4D170007D72B /* Accounts.storyboard in Resources */,
+				EC273F4D2056AC3300056618 /* Menu.storyboard in Resources */,
+				EC7106C620EA54A90007D72B /* PaymentMethods.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC273F562056AC3300056618 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EC5249B120F65BDE007DE7A4 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC273F402056AC3300056618 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC7106CA20EA942A0007D72B /* UserDetailsStackView.swift in Sources */,
+				ECA52CA820E3DE1400749D7B /* AuthorizationViewController.swift in Sources */,
+				7C87583720EFBEF3007C7FD9 /* PaymentMethodTableViewCell.swift in Sources */,
+				EC71069C20EA467B0007D72B /* RoundedImageView.swift in Sources */,
+				EC5249A920F5FE39007DE7A4 /* RoundedView.swift in Sources */,
+				EC7106B820EA50830007D72B /* UserViewController.swift in Sources */,
+				EC3AD20820ED28BB00C8B5FF /* Utils.swift in Sources */,
+				EC32096C20EE75320011A9B8 /* TransactionsViewController.swift in Sources */,
+				EC7106BC20EA509F0007D72B /* SpotPricesViewController.swift in Sources */,
+				7C87581320ED1EDE007C7FD9 /* IndexedDataSource.swift in Sources */,
+				ECA52CBD20E63F8100749D7B /* SquareWithCurve.swift in Sources */,
+				ECA52CBF20E6759300749D7B /* RootControllerCoordinator.swift in Sources */,
+				ECA52C9320E3A18D00749D7B /* TokenUtils.swift in Sources */,
+				7CA8E8A420F4B4DC00758731 /* ThemeRefreshControll.swift in Sources */,
+				EC32096A20EE5C0F0011A9B8 /* AccountTableViewCell.swift in Sources */,
+				EC7106CC20EA94450007D72B /* AuthorizationInfoStackView.swift in Sources */,
+				EC7106C020EA50B60007D72B /* PaymentMethodsViewController.swift in Sources */,
+				ECA52CA320E3D74200749D7B /* KeychainService.swift in Sources */,
+				ECA52CC120E67DC300749D7B /* CoinbaseManager.swift in Sources */,
+				7C87584820F35DDC007C7FD9 /* UITableView+Helpers.swift in Sources */,
+				EC7106B620EA50050007D72B /* MenuViewController.swift in Sources */,
+				7C87583E20EFD8EF007C7FD9 /* UIView+addCenteredActivityIndicator.swift in Sources */,
+				ECA52CB020E63B8100749D7B /* ThemeGradientView.swift in Sources */,
+				EC7106BA20EA50930007D72B /* AccountsViewController.swift in Sources */,
+				EC4F03BE20F4E70F005D75C6 /* TransactionTableViewCell.swift in Sources */,
+				EC7106C820EA92E60007D72B /* UserHeaderView.swift in Sources */,
+				ECA52CB420E63BDA00749D7B /* GradientColors.swift in Sources */,
+				EC273F482056AC3300056618 /* AppDelegate.swift in Sources */,
+				0ABA411820EF92CF000E8019 /* SpotPricesTableViewCell.swift in Sources */,
+				ECA52CB620E63C0800749D7B /* UIColor+Components.swift in Sources */,
+				ECA52CB920E63C7A00749D7B /* ThemeButton.swift in Sources */,
+				EC7106BE20EA50AA0007D72B /* CurrenciesViewController.swift in Sources */,
+				ECA52CB220E63BA100749D7B /* GradientView.swift in Sources */,
+				EC70B5B02057ED7600F68F0C /* Constants.swift in Sources */,
+				7C87581820EE0F44007C7FD9 /* CurrencyTableViewCell.swift in Sources */,
+				ECFF6BDC20EA33FE0005A017 /* UIViewController+PresentAlert.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC273F542056AC3300056618 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC273F5D2056AC3300056618 /* iOS_ExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7C01185120AF10C800DAD9D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoinbaseSDK;
+			targetProxy = 7C01185020AF10C800DAD9D7 /* PBXContainerItemProxy */;
+		};
+		EC273F5A2056AC3300056618 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC273F432056AC3300056618 /* iOS Example */;
+			targetProxy = EC273F592056AC3300056618 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC273F4B2056AC3300056618 /* Menu.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC273F4C2056AC3300056618 /* Base */,
+			);
+			name = Menu.storyboard;
+			sourceTree = "<group>";
+		};
+		EC273F502056AC3300056618 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC273F512056AC3300056618 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7106A020EA4B860007D72B /* CurrentUser.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7106A120EA4B860007D72B /* Base */,
+			);
+			name = CurrentUser.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7106A520EA4CE10007D72B /* SpotPrices.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7106A620EA4CE10007D72B /* Base */,
+			);
+			name = SpotPrices.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7106A820EA4D170007D72B /* Accounts.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7106A920EA4D170007D72B /* Base */,
+			);
+			name = Accounts.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7106C120EA54990007D72B /* Currencies.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7106C220EA54990007D72B /* Base */,
+			);
+			name = Currencies.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7106C420EA54A90007D72B /* PaymentMethods.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7106C520EA54A90007D72B /* Base */,
+			);
+			name = PaymentMethods.storyboard;
+			sourceTree = "<group>";
+		};
+		ECA52CA420E3DDAD00749D7B /* Authorization.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECA52CA520E3DDAD00749D7B /* Base */,
+			);
+			name = Authorization.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC273F5F2056AC3300056618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC273F602056AC3300056618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC273F622056AC3300056618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.sample.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC273F632056AC3300056618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.sample.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC273F652056AC3300056618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coinbase.iOS-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Example.app/iOS Example";
+			};
+			name = Debug;
+		};
+		EC273F662056AC3300056618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coinbase.iOS-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Example.app/iOS Example";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC273F3F2056AC3300056618 /* Build configuration list for PBXProject "iOS Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC273F5F2056AC3300056618 /* Debug */,
+				EC273F602056AC3300056618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC273F612056AC3300056618 /* Build configuration list for PBXNativeTarget "iOS Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC273F622056AC3300056618 /* Debug */,
+				EC273F632056AC3300056618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC273F642056AC3300056618 /* Build configuration list for PBXNativeTarget "iOS ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC273F652056AC3300056618 /* Debug */,
+				EC273F662056AC3300056618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC273F3C2056AC3300056618 /* Project object */;
+}

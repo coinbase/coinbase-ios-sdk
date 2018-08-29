@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": "user_id",
+        "name": "User Name",
+        "username": null,
+        "profile_location": null,
+        "profile_bio": null,
+        "profile_url": null,
+        "avatar_url": "https://images.coinbase.com/avatar?h=avatar",
+        "resource": "user",
+        "resource_path": "/v2/users/user_id",
+        "email": "user1@example.com"
+    }
+}

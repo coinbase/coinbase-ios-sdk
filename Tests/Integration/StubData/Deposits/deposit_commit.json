@@ -1,0 +1,34 @@
+{
+  "data": {
+    "id": "deposit_id",
+    "status": "created",
+    "payment_method": {
+      "id": "payment_method_id",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id"
+    },
+    "transaction": null,
+    "user_reference": "user_reference",
+    "created_at": "2018-04-13T15:29:52Z",
+    "updated_at": "2018-04-13T15:29:52Z",
+    "resource": "deposit",
+    "resource_path": "/v2/accounts/account_id/deposits/deposit_id",
+    "committed": true,
+    "payout_at": "2018-04-20T15:29:52Z",
+    "instant": false,
+    "fee": {
+      "amount": "0.00",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "hold_until": null,
+    "hold_days": 0
+  }
+}

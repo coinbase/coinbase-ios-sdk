@@ -1,0 +1,14 @@
+{
+    "data": {
+        "method": "oauth",
+        "scopes": [
+                   "wallet:user:read",
+                   "wallet:user:email"
+                   ],
+        "oauth_meta": {
+            "send_limit_amount": "50.00",
+            "send_limit_currency": "USD",
+            "send_limit_period": "day"
+        }
+    }
+}

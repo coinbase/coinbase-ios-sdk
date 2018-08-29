@@ -1,8 +1,0 @@
-language: objective-c
-xcode_workspace: Example/coinbase.xcworkspace
-xcode_scheme: coinbase
-xcode_sdk: iphonesimulator
-podfile: Example/Podfile
-
-notifications:
-  email: false

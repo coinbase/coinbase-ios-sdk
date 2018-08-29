@@ -1,0 +1,36 @@
+{
+    "data": {
+        "id": "sell_id",
+        "status": "created",
+        "payment_method": {
+            "id": "payment_method_id",
+            "resource": "payment_method",
+            "resource_path": "/v2/payment-methods/payment_method_id"
+        },
+        "transaction": null,
+        "user_reference": "user_reference",
+        "created_at": "2018-05-21T15:52:49Z",
+        "updated_at": "2018-05-21T15:52:49Z",
+        "resource": "sell",
+        "resource_path": "/v2/accounts/account_id/sells/sell_id",
+        "committed": false,
+        "payout_at": "2018-05-21T15:52:49Z",
+        "instant": true,
+        "fee": {
+            "amount": "0.99",
+            "currency": "USD"
+        },
+        "amount": {
+            "amount": "0.00020000",
+            "currency": "BTC"
+        },
+        "total": {
+            "amount": "0.68",
+            "currency": "USD"
+        },
+        "subtotal": {
+            "amount": "1.67",
+            "currency": "USD"
+        }
+    }
+}

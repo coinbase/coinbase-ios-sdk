@@ -1,0 +1,8 @@
+disabled_rules:
+  - trailing_whitespace
+  - force_cast
+
+included:
+  - Source
+
+line_length: 145
