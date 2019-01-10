@@ -1,0 +1,45 @@
+{
+  "pagination": {
+    "ending_before": null,
+    "starting_after": null,
+    "limit": 25,
+    "order": "desc",
+    "previous_uri": null,
+    "next_uri": null
+  },
+  "data": [
+    {
+      "id": "widthdrawal_id",
+      "status": "completed",
+      "payment_method": {
+        "id": "payment_method_id",
+        "resource": "payment_method",
+        "resource_path": "/v2/payment-methods/payment_method_id"
+      },
+      "transaction": {
+        "id": "transaction_id",
+        "resource": "transaction",
+        "resource_path": "/v2/accounts/account_id/transactions/transaction_id"
+      },
+      "user_reference": "user_reference",
+      "created_at": "2018-04-13T15:41:34Z",
+      "updated_at": "2018-04-17T15:44:31Z",
+      "resource": "withdrawal",
+      "resource_path": "/v2/accounts/account_id/withdrawals/widthdrawal_id",
+      "committed": true,
+      "payout_at": "2018-04-18T15:43:39Z",
+      "fee": {
+        "amount": "0.00",
+        "currency": "USD"
+      },
+      "amount": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "subtotal": {
+        "amount": "10.00",
+        "currency": "USD"
+      }
+    }
+  ]
+}

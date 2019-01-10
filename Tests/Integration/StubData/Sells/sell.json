@@ -1,0 +1,54 @@
+{
+  "data": {
+    "id": "sell_id",
+    "status": "completed",
+    "payment_method": {
+      "id": "payment_method_id",
+      "type": "ach_bank_account",
+      "name": "BANK ******1111",
+      "currency": "USD",
+      "primary_buy": false,
+      "primary_sell": true,
+      "allow_buy": true,
+      "allow_sell": true,
+      "allow_deposit": true,
+      "allow_withdraw": true,
+      "instant_buy": false,
+      "instant_sell": false,
+      "created_at": "2018-03-06T19:39:11Z",
+      "updated_at": "2018-03-14T01:26:52Z",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id",
+      "verified": true
+    },
+    "transaction": {
+      "id": "transaction_id",
+      "resource": "transaction",
+      "resource_path": "/v2/accounts/account_id/transactions/transaction_id"
+    },
+    "user_reference": "user_reference",
+    "created_at": "2018-04-11T08:22:58Z",
+    "updated_at": "2018-04-13T08:28:25Z",
+    "resource": "sell",
+    "resource_path": "/v2/accounts/account_id/sells/sell_id",
+    "committed": true,
+    "payout_at": "2018-04-14T08:28:21Z",
+    "instant": false,
+    "fee": {
+      "amount": "0.99",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "0.00020000",
+      "currency": "BTC"
+    },
+    "total": {
+      "amount": "0.37",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "1.36",
+      "currency": "USD"
+    }
+  }
+}

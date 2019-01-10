@@ -1,0 +1,31 @@
+{
+  "data": {
+    "id": "withdrawal_id",
+    "status": "created",
+    "payment_method": {
+      "id": "payment_method_id",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id"
+    },
+    "transaction": null,
+    "user_reference": "user_reference",
+    "created_at": "2018-04-13T15:41:34Z",
+    "updated_at": "2018-04-13T15:41:34Z",
+    "resource": "withdrawal",
+    "resource_path": "/v2/accounts/account_id/withdrawals/withdrawal_id",
+    "committed": false,
+    "payout_at": "2018-04-18T15:41:34Z",
+    "fee": {
+      "amount": "0.00",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "10.00",
+      "currency": "USD"
+    }
+  }
+}

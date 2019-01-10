@@ -1,0 +1,38 @@
+{
+  "data": {
+      "id": "transaction_id",
+      "type": "send",
+      "status": "completed",
+      "amount": {
+          "amount": "-0.00010000",
+          "currency": "BTC"
+      },
+      "native_amount": {
+          "amount": "-0.65",
+          "currency": "USD"
+      },
+      "description": null,
+      "created_at": "2018-04-06T10:10:37Z",
+      "updated_at": "2018-04-06T10:10:37Z",
+      "resource": "transaction",
+      "resource_path": "/v2/accounts/account_id/transactions/transaction_id",
+      "instant_exchange": false,
+      "network": {
+          "status": "off_blockchain"
+      },
+      "to": {
+          "resource": "email",
+          "email": "email@email.com",
+          "currency": "BTC"
+      },
+      "application": {
+          "id": "application_id",
+          "resource": "application",
+          "resource_path": "/v2/applications/application_id"
+      },
+      "details": {
+          "title": "Sent Bitcoin",
+          "subtitle": "To email@email.com"
+      }
+  }
+}

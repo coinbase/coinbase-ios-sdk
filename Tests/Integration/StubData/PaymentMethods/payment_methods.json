@@ -1,0 +1,180 @@
+{
+  "pagination": {
+    "ending_before": null,
+    "starting_after": null,
+    "limit": 25,
+    "order": "desc",
+    "previous_uri": null,
+    "next_uri": null
+  },
+  "data": [
+    {
+      "id": "payment_method_id",
+      "type": "fiat_account",
+      "name": "USD Wallet",
+      "currency": "USD",
+      "primary_buy": false,
+      "primary_sell": true,
+      "allow_buy": true,
+      "allow_sell": true,
+      "allow_deposit": true,
+      "allow_withdraw": true,
+      "instant_buy": true,
+      "instant_sell": true,
+      "created_at": "2018-03-14T01:30:38Z",
+      "updated_at": "2018-03-14T01:30:38Z",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id",
+      "limits": {
+        "type": "fiat_account",
+        "name": "Coinbase Account",
+        "buy": [
+          {
+            "period_in_days": 7,
+            "total": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "remaining": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "description": "$100,000 of your $100,000 weekly Coinbase account limit remaining",
+            "label": "Total USD limit",
+            "next_requirement": null
+          }
+        ],
+        "sell": [
+          {
+            "period_in_days": 7,
+            "total": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "remaining": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "description": "$100,000 of your $100,000 weekly Coinbase account limit remaining",
+            "label": "Total USD limit",
+            "next_requirement": null
+          }
+        ]
+      },
+      "fiat_account": {
+        "id": "fiat_account_id",
+        "name": "USD Wallet",
+        "primary": false,
+        "type": "fiat",
+        "currency": {
+          "code": "USD",
+          "name": "United States Dollar",
+          "color": "#0066cf",
+          "exponent": 2,
+          "type": "fiat"
+        },
+        "balance": {
+          "amount": "100.00",
+          "currency": "USD"
+        },
+        "created_at": "2018-03-14T01:30:38Z",
+        "updated_at": "2018-03-21T02:00:07Z",
+        "resource": "account",
+        "resource_path": "/v2/accounts/fiat_account_id"
+      },
+      "verified": true
+    },
+    {
+      "id": "payment_method_id2",
+      "type": "ach_bank_account",
+      "name": "BANK ******1111",
+      "currency": "USD",
+      "primary_buy": true,
+      "primary_sell": false,
+      "allow_buy": true,
+      "allow_sell": true,
+      "allow_deposit": true,
+      "allow_withdraw": true,
+      "instant_buy": false,
+      "instant_sell": false,
+      "created_at": "2018-03-06T19:39:11Z",
+      "updated_at": "2018-03-14T01:26:52Z",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id2",
+      "limits": {
+        "type": "bank",
+        "name": "Bank Account",
+        "buy": [
+          {
+            "period_in_days": 7,
+            "total": {
+              "amount": "3000.00",
+              "currency": "USD"
+            },
+            "remaining": {
+              "amount": "3000.00",
+              "currency": "USD"
+            },
+            "description": "$3,000 of your $3,000 weekly bank limit remaining",
+            "label": "Weekly bank limit",
+            "next_requirement": {
+              "type": "buy_history",
+              "volume": {
+                "amount": "3000.00",
+                "currency": "USD"
+              },
+              "amount_remaining": {
+                "amount": "2890.00",
+                "currency": "USD"
+              },
+              "time_after_starting": 5184000
+            }
+          }
+        ],
+        "sell": [
+          {
+            "period_in_days": 7,
+            "total": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "remaining": {
+              "amount": "100000.00",
+              "currency": "USD"
+            },
+            "description": "$100,000 of your $100,000 weekly bank limit remaining",
+            "label": "Weekly bank limit",
+            "next_requirement": {
+              "type": "buy_history",
+              "volume": {
+                "amount": "3000.00",
+                "currency": "USD"
+              },
+              "amount_remaining": {
+                "amount": "2890.00",
+                "currency": "USD"
+              },
+              "time_after_starting": 5184000
+            }
+          }
+        ],
+        "deposit": [
+          {
+            "period_in_days": 7,
+            "total": {
+              "amount": "3000.00",
+              "currency": "USD"
+            },
+            "remaining": {
+              "amount": "3000.00",
+              "currency": "USD"
+            },
+            "description": "$3,000 of your $3,000 weekly bank limit remaining",
+            "label": "Weekly bank limit"
+          }
+        ]
+      },
+      "verified": true
+    }
+  ]
+}

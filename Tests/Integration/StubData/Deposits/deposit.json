@@ -1,0 +1,76 @@
+{
+  "data": {
+    "id": "deposit_id",
+    "status": "completed",
+    "payment_method": {
+      "id": "payment_method_id",
+      "type": "ach_bank_account",
+      "name": "BANK ******1111",
+      "currency": "USD",
+      "primary_buy": false,
+      "primary_sell": true,
+      "allow_buy": true,
+      "allow_sell": true,
+      "allow_deposit": true,
+      "allow_withdraw": true,
+      "instant_buy": false,
+      "instant_sell": false,
+      "created_at": "2018-03-06T19:39:11Z",
+      "updated_at": "2018-03-14T01:26:52Z",
+      "resource": "payment_method",
+      "resource_path": "/v2/payment-methods/payment_method_id",
+      "verified": true
+    },
+    "transaction": {
+      "id": "transaction_id",
+      "type": "fiat_deposit",
+      "status": "completed",
+      "amount": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "native_amount": {
+        "amount": "10.00",
+        "currency": "USD"
+      },
+      "description": null,
+      "created_at": "2018-04-13T15:33:56Z",
+      "updated_at": "2018-04-19T15:33:57Z",
+      "resource": "transaction",
+      "resource_path": "/v2/accounts/account_id/transactions/transaction_id",
+      "instant_exchange": false,
+      "fiat_deposit": {
+        "id": "deposit_id",
+        "resource": "fiat_deposit",
+        "resource_path": "/v2/accounts/account_id/deposits/deposit_id"
+      },
+      "details": {
+        "title": "Deposited funds",
+        "subtitle": "From BANK ******1111",
+        "payment_method_name": "BANK ******1111"
+      }
+    },
+    "user_reference": "user_reference",
+    "created_at": "2018-04-13T15:29:52Z",
+    "updated_at": "2018-04-19T15:33:57Z",
+    "resource": "deposit",
+    "resource_path": "/v2/accounts/account_id/deposits/deposit_id",
+    "committed": true,
+    "payout_at": "2018-04-20T15:33:55Z",
+    "instant": false,
+    "fee": {
+      "amount": "0.00",
+      "currency": "USD"
+    },
+    "amount": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "subtotal": {
+      "amount": "10.00",
+      "currency": "USD"
+    },
+    "hold_until": null,
+    "hold_days": 0
+  }
+}

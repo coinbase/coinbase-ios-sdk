@@ -1,0 +1,40 @@
+{
+  "pagination": {
+    "ending_before": null,
+    "starting_after": null,
+    "limit": 25,
+    "order": "desc",
+    "previous_uri": null,
+    "next_uri": null
+  },
+  "data": [
+    {
+      "id": "address_id",
+      "address": "bitcoin_bitcoincash_litecoin_or_ethereum_address",
+      "name": "Address name",
+      "created_at": "2018-05-08T13:19:43Z",
+      "updated_at": "2018-05-08T13:19:43Z",
+      "network": "bitcoin",
+      "uri_scheme": "bitcoin",
+      "resource": "address",
+      "resource_path": "/v2/accounts/account_id/addresses/address_id",
+      "warning_title": "Only send Bitcoin (BTC) to this address",
+      "warning_details": "Sending any other digital asset, including Bitcoin Cash (BCH), will result in permanent loss.",
+      "callback_url": null
+    },
+    {
+      "id": "address_id_1",
+      "address": "bitcoin_bitcoincash_litecoin_or_ethereum_address_1",
+      "name": "Address name 1",
+      "created_at": "2018-05-08T13:06:00Z",
+      "updated_at": "2018-05-08T13:06:00Z",
+      "network": "bitcoin",
+      "uri_scheme": "bitcoin",
+      "resource": "address",
+      "resource_path": "/v2/accounts/account_id/addresses/address_id_1",
+      "warning_title": "Only send Bitcoin (BTC) to this address",
+      "warning_details": "Sending any other digital asset, including Bitcoin Cash (BCH), will result in permanent loss.",
+      "callback_url": null
+    }
+  ]
+}

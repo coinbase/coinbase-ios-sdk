@@ -1,0 +1,65 @@
+{
+  "pagination": {
+    "ending_before": null,
+    "starting_after": null,
+    "limit": 25,
+    "order": "desc",
+    "previous_uri": null,
+    "next_uri": null
+  },
+  "data": [
+    {
+      "id": "transaction_id",
+      "type": "send",
+      "status": "completed",
+      "amount": {
+        "amount": "0.00010000",
+        "currency": "BTC"
+      },
+      "native_amount": {
+        "amount": "0.5",
+        "currency": "USD"
+      },
+      "description": null,
+      "created_at": "2018-04-06T10:51:57Z",
+      "updated_at": "2018-04-06T10:57:03Z",
+      "resource": "transaction",
+      "resource_path": "/v2/accounts/account_id/transactions/transaction_id",
+      "instant_exchange": false,
+      "network": {
+        "status": "confirmed",
+        "hash": "hash_value"
+      },
+      "from": {
+        "resource": "bitcoin_network",
+        "currency": "BTC"
+      },
+      "address": {
+        "id": "address_id",
+        "address": "bitcoin_bitcoincash_litecoin_or_ethereum_address",
+        "name": null,
+        "created_at": "2018-04-02T16:21:22Z",
+        "updated_at": "2018-04-02T16:21:22Z",
+        "network": "bitcoin",
+        "uri_scheme": "bitcoin",
+        "resource": "address",
+        "resource_path": "/v2/accounts/account_id/addresses/address_id",
+        "warning_title": "Only send Bitcoin (BTC) to this address",
+        "warning_details": "Sending any other digital asset, including Bitcoin Cash (BCH), will result in permanent loss.",
+        "callback_url": null
+      },
+      "application": {
+        "id": "application_id",
+        "name": "Test API app",
+        "description": "Test application for testing the Coinbase API",
+        "image_url": null,
+        "resource": "application",
+        "resource_path": "/v2/applications/application_id"
+      },
+      "details": {
+        "title": "Received Bitcoin",
+        "subtitle": "From Bitcoin address"
+      }
+    }
+  ]
+}
