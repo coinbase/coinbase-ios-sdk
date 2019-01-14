@@ -1,7 +1,7 @@
 # Coinbase iOS SDK
 
 ![Platform](https://img.shields.io/badge/platform-iOS_11%2B-blue.svg)
-[![Language](https://img.shields.io/badge/language-swift_4.1-4BC51D.svg)](https://developer.apple.com/swift)
+[![Language](https://img.shields.io/badge/language-swift_4.2-4BC51D.svg)](https://developer.apple.com/swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/coinbase-official.svg?style=flat)](http://cocoadocs.org/docsets/coinbase-official)
 ![License](https://img.shields.io/cocoapods/l/coinbase-official.svg?style=flat)

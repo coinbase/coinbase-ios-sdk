@@ -30,7 +30,7 @@ public enum RootControllers {
         }
     }
     
-    var animationOptions: UIViewAnimationOptions {
+    var animationOptions: UIView.AnimationOptions {
         switch self {
         case .authorization:
             return [.transitionFlipFromLeft]

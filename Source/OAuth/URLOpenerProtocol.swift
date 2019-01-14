@@ -27,8 +27,8 @@ public protocol URLOpenerProtocol {
     ///
     ///       The block has no return value and takes a Boolean parameter indicating whether the URL was opened successfully.
     ///
-    func open(_ url: URL, options: [String: Any], completionHandler completion: ((Bool) -> Void)?)
-    
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey: Any], completionHandler completion: ((Bool) -> Void)?)
+
 }
 
 #if os(iOS)

@@ -11,11 +11,16 @@ import CoinbaseSDK
 class AccountTableViewCell: UITableViewCell {
 
     private enum CurrencyIconSuffixes: String {
-        case BTC
+        case BAT
         case BCH
+        case BTC
         case ETH
+        case ETC
         case LTC
         case USD
+        case USDC
+        case ZEC
+        case ZRX
     }
 
     @IBOutlet weak var iconImageView: UIImageView!

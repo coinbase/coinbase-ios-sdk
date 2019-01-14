@@ -85,7 +85,7 @@ internal struct SafariControllerOpener: URLOpenerProtocol {
         return UIApplication.shared.canOpenURL(url)
     }
     
-    func open(_ url: URL, options: [String: Any], completionHandler completion: ((Bool) -> Void)?) {
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey: Any], completionHandler completion: ((Bool) -> Void)?) {
         let safariController = SFSafariViewController(url: url)
         viewController?.present(safariController, animated: true) {
             completion?(true)

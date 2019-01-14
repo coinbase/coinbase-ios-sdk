@@ -25,6 +25,9 @@ class TokenResourceSpec: QuickSpec, IntegrationSpecProtocol {
             let refreshToken = "refreshToken"
             
             describe("get") {
+                beforeEach {
+                    token = nil
+                }
                 let expectedParameters = ["grant_type": "authorization_code",
                                           "code": code,
                                           "client_id": clientID,
@@ -51,6 +54,9 @@ class TokenResourceSpec: QuickSpec, IntegrationSpecProtocol {
                 }
             }
             describe("refresh") {
+                beforeEach {
+                    token = nil
+                }
                 let expectedParameters = ["grant_type": "refresh_token",
                                           "refresh_token": refreshToken,
                                           "client_id": clientID,

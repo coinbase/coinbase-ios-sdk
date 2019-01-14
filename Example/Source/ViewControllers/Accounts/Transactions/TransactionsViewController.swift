@@ -24,7 +24,7 @@ class TransactionsViewController: UIViewController {
     private var account: Account!
     private var paginationParameters: PaginationParameters?
     private var isLoading = false
-    private let paginationActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    private let paginationActivityIndicator = UIActivityIndicatorView(style: .white)
     
     // MARK: - Lifecycle Methods
     
