@@ -17,7 +17,7 @@ class MockedURLOpener: URLOpenerProtocol {
         return allowURLOpenning
     }
     
-    func open(_ url: URL, options: [String: Any], completionHandler completion: ((Bool) -> Void)?) {
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey: Any], completionHandler completion: ((Bool) -> Void)?) {
         print(#function)
         openedURL = url
     }

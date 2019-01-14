@@ -64,7 +64,7 @@ extension UITableView {
     
     // MARK: - Insert Rows with Completion
 
-    public func insertRows(at indexes: [IndexPath], with animation: UITableViewRowAnimation, completion: @escaping () -> Void) {
+    public func insertRows(at indexes: [IndexPath], with animation: UITableView.RowAnimation, completion: @escaping () -> Void) {
         CATransaction.begin()
         beginUpdates()
         CATransaction.setCompletionBlock(completion)

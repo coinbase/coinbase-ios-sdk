@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         CoinbaseManager.setupCoinbase()
         
         setupAppearance()
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if Coinbase.default.oauth.isDeeplinkRedirect(url: url) {
             return true
         }
@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupAppearance() {
         UIBarButtonItem.appearance().tintColor = .white
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: Fonts.medium, size: 16)!,
-                                                             NSAttributedStringKey.foregroundColor: UIColor.white],
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: Fonts.medium, size: 16)!,
+                                                             NSAttributedString.Key.foregroundColor: UIColor.white],
                                                             for: .normal)
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: Fonts.demiBold, size: 19)!,
-                                                            NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: Fonts.demiBold, size: 19)!,
+                                                            NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().barTintColor = Colors.lightBlue
     }
     

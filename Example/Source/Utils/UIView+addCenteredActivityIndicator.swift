@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
     
     func addCenteredActivityIndicator() -> UIActivityIndicatorView {
-        let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activity = UIActivityIndicatorView(style: .whiteLarge)
         activity.color = Colors.darkGray
         activity.hidesWhenStopped = true
         activity.startAnimating()
