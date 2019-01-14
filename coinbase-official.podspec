@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.author            = { 'Coinbase' => 'sohail.khanifar@coinbase.com' }
   s.source            = { git: 'https://github.com/coinbase/coinbase-ios-sdk.git', tag: s.version.to_s }
   s.social_media_url  = 'https://twitter.com/coinbase'
+  s.swift_version     = '4.2'
 
   s.platforms     = { ios: '11.0' }
   s.requires_arc  = true
