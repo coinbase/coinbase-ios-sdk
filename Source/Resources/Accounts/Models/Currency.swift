@@ -33,9 +33,15 @@ open class Currency: Decodable {
     ///     This property is not present for fiat currencies.
     ///
     public let addressRegex: String?
+
+    /// Presence of this parameter indicates that the currency requires a destination tag for send/receive
+    public let destinationTagName: String?
+
+    /// The destination tag regex
+    public let destinationTagRegex: String?
     
     private enum CodingKeys: String, CodingKey {
-        case code, name, color, exponent, type, addressRegex
+        case code, name, color, exponent, type, addressRegex, destinationTagName, destinationTagRegex
     }
     
     public required init(from decoder: Decoder) throws {
@@ -46,6 +52,8 @@ open class Currency: Decodable {
             self.exponent = try container.decodeIfPresent(Int.self, forKey: .exponent)
             self.type = try container.decodeIfPresent(String.self, forKey: .type)
             self.addressRegex = try container.decodeIfPresent(String.self, forKey: .addressRegex)
+            self.destinationTagName = try container.decodeIfPresent(String.self, forKey: .destinationTagName)
+            self.destinationTagRegex = try container.decodeIfPresent(String.self, forKey: .destinationTagRegex)
         } else if let code = try? decoder.singleValueContainer().decode(String.self) {
             self.code = code
             self.name = nil
@@ -53,6 +61,8 @@ open class Currency: Decodable {
             self.exponent = nil
             self.type = nil
             self.addressRegex = nil
+            self.destinationTagName = nil
+            self.destinationTagRegex = nil
         } else {
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Undefined resource type. Failed to decode."))
         }

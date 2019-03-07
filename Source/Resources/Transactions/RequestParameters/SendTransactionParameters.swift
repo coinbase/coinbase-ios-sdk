@@ -38,6 +38,9 @@ open class SendTransactionParameters: TransactionParameters {
     ///     Required if `toFinancialInstitiution` is true.
     ///
     public let financialInstitutionWebsite: String?
+
+    /// Indicates whether this send will/will not use a destination tag
+    public let noDestinationTag: Bool?
     
     /// Creates a new instance from given parameters.
     ///
@@ -87,12 +90,14 @@ open class SendTransactionParameters: TransactionParameters {
                 fee: String? = nil,
                 idem: String? = nil,
                 toFinancialInstitiution: Bool? = nil,
-                financialInstitutionWebsite: String? = nil) {
+                financialInstitutionWebsite: String? = nil,
+                noDestinationTag: Bool? = false) {
         self.skipNotifications = skipNotifications
         self.fee = fee
         self.idem = idem
         self.toFinancialInstitiution = toFinancialInstitiution
         self.financialInstitutionWebsite = financialInstitutionWebsite
+        self.noDestinationTag = noDestinationTag
         super.init(type: TransactionType.send, to: to, amount: amount, currency: currency, description: description)
     }
     
@@ -115,6 +120,9 @@ open class SendTransactionParameters: TransactionParameters {
         if let financialInstitutionWebsite = financialInstitutionWebsite {
             dictionary[ParameterKeys.financialInstitutionWebsite] = financialInstitutionWebsite
         }
+        if let noDestinationTag = noDestinationTag {
+            dictionary[ParameterKeys.noDestinationTag] = noDestinationTag
+        }
         return dictionary
     }
     
@@ -126,6 +134,7 @@ open class SendTransactionParameters: TransactionParameters {
         static let idem = "idem"
         static let toFinancialInstitiution = "to_financial_institution"
         static let financialInstitutionWebsite = "financial_institution_website"
+        static let noDestinationTag = "no_destination_tag"
     }
     
 }
