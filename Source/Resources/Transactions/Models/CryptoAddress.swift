@@ -13,29 +13,53 @@ open class CryptoAddress: Decodable {
     
     /// Resource type.
     public let resource: String
-    /// Address.
-    public let address: String?
+    /// Address info.
+    public let addressInfo: AddressInfo?
     
     private enum CodingKeys: String, CodingKey {
-        case resource, address
+        case resource, addressInfo
     }
     
     /// Creates a new instance from given parameters.
     ///
     /// - Parameters:
     ///   - resource: Resource type.
-    ///   - address: Address.
+    ///   - addressInfo: Address info.
     ///
-    internal init(resource: String, address: String) {
+    internal init(resource: String, addressInfo: AddressInfo) {
         self.resource = resource
-        self.address = address
+        self.addressInfo = addressInfo
     }
     
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         resource = try values.decode(String.self, forKey: .resource)
-        address = try values.decodeIfPresent(String.self, forKey: .address)
+        addressInfo = try values.decodeIfPresent(AddressInfo.self, forKey: .addressInfo)
     }
     
+}
+
+/// Address info object for `to` objects in transactions list
+open class AddressInfo: Decodable {
+
+    /// The recipient address
+    public let address: String
+
+    private enum CodingKeys: String, CodingKey {
+        case address
+    }
+
+    /// Creates a new instance from given parameters.
+    ///
+    /// - Parameters:
+    ///   - id: The address
+    internal init(address: String) {
+        self.address = address
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        address = try values.decode(String.self, forKey: .address)
+    }
 }

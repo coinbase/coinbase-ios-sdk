@@ -41,8 +41,10 @@ public enum TransactionParty: Decodable {
             let cryptoAddress = try decoder.singleValueContainer().decode(CryptoAddress.self)
             self = .cryptoAddress(cryptoAddress)
         default:
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [],
-                                                                    debugDescription: "Undefined resource type. Failed to decode."))
+            throw DecodingError.dataCorrupted(DecodingError.Context(
+                codingPath: [],
+                debugDescription: "Undefined resource type. Failed to decode.")
+            )
         }
     }
     
