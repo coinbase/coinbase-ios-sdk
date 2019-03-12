@@ -18,7 +18,7 @@ class TransactionPartySpec: QuickSpec, IntegrationSpecProtocol {
         let transactionID = StubConstants.transactionID
         
         let user = User(id: "user_id", resourcePath: "user/user_id")
-        let cryptoAddress = CryptoAddress(resource: "bitcoin_address", address: "address")
+        let cryptoAddress = CryptoAddress(resource: "bitcoin_address", addressInfo: AddressInfo(address: "address"))
         let email = EmailModel(email: "email@email.com")
         let account = Account(id: StubConstants.accountID, resourcePath: "account_path")
         describe("TransactionParty") {
