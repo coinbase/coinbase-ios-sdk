@@ -91,7 +91,7 @@ open class SendTransactionParameters: TransactionParameters {
                 idem: String? = nil,
                 toFinancialInstitiution: Bool? = nil,
                 financialInstitutionWebsite: String? = nil,
-                noDestinationTag: Bool? = false) {
+                noDestinationTag: Bool? = nil) {
         self.skipNotifications = skipNotifications
         self.fee = fee
         self.idem = idem
