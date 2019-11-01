@@ -66,11 +66,15 @@ class TransactionsViewController: UIViewController {
     }
     
     private func loadNextPage() {
-        guard let paginationParameters = paginationParameters, !isLoading else {
+        guard
+            let paginationParameters = paginationParameters,
+            let accountId = account.id,
+            !isLoading
+        else {
             return
         }
         isLoading = true
-        coinbase.transactionResource.list(accountID: account.id, page: paginationParameters) { [weak self] result in
+        coinbase.transactionResource.list(accountID: accountId, page: paginationParameters) { [weak self] result in
             self?.isLoading = false
             switch result {
             case .success(let responseModel):

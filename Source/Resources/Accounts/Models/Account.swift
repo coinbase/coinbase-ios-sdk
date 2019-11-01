@@ -1,9 +1,9 @@
 //
 //  Account.swift
 //  Coinbase
-//  
+//
 //  Copyright © 2018 Coinbase, Inc.. All rights reserved.
-// 
+//
 import Foundation
 
 /// Represents all of a user’s accounts, including bitcoin, bitcoin cash, litecoin and
@@ -18,27 +18,27 @@ import Foundation
 open class Account: Decodable {
     
     /// Resource ID.
-    public let id: String
+    public let id: String?
     /// User or system defined name.
-	public let name: String?
+    public let name: String?
     /// Whether this account is primary.
-	public let primary: Bool?
+    public let primary: Bool?
     /// Type of this account.
     ///
     /// See also: `AccountType` constants.
-	public let type: String?
+    public let type: String?
     /// Account’s currency.
     public let currency: Currency?
     /// Balance of this account in it's currency.
-	public let balance: MoneyHash?
+    public let balance: MoneyHash?
     /// Resource creation date.
-	public let createdAt: Date?
+    public let createdAt: Date?
     /// Resource update date.
-	public let updatedAt: Date?
+    public let updatedAt: Date?
     /// Resource type. Constant: **"account"**.
-	public let resource: String
+    public let resource: String
     /// Path for the location under `api.coinbase.com`.
-	public let resourcePath: String
+    public let resourcePath: String
     
     private enum CodingKeys: String, CodingKey {
         case id, name, primary, type, currency, balance, createdAt, updatedAt, resource, resourcePath
@@ -74,7 +74,7 @@ open class Account: Decodable {
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try values.decode(String.self, forKey: .id)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         primary = try values.decodeIfPresent(Bool.self, forKey: .primary)
         type = try values.decodeIfPresent(String.self, forKey: .type)
@@ -85,7 +85,7 @@ open class Account: Decodable {
         resource = try values.decode(String.self, forKey: .resource)
         resourcePath = try values.decode(String.self, forKey: .resourcePath)
     }
-
+    
 }
 
 /// List of available account types.
