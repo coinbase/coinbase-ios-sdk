@@ -24,9 +24,9 @@ import Foundation
 open class User: Decodable {
 
     // MARK: - User’s public information (default)
-    
+
     /// Resource ID.
-    public let id: String
+    public let id: String?
     /// User’s public name.
     public let name: String?
     /// Username.
@@ -42,15 +42,15 @@ open class User: Decodable {
     /// Resource type. Constant: **"user"**.
     public let resource: String
     /// Path for the location under `api.coinbase.com`.
-    public let resourcePath: String
+    public let resourcePath: String?
 
     // MARK: - Information available with `wallet:user:email` scope
-    
+
     /// Email.
     public let email: String?
 
     // MARK: - Information available with `wallet:user:read` scope
-    
+
     /// User's timezone.
     public let timeZone: String?
     /// Local currency used to display amounts converted from BTC.
@@ -69,7 +69,7 @@ open class User: Decodable {
     ///     Requires additional scopes.
     ///
     public let sendsDisabled: Bool?
-    
+
     private enum CodingKeys: String, CodingKey {
         case id, name, username, profileLocation, profileBio, profileURL = "profileUrl", avatarURL = "avatarUrl", resource,
         resourcePath, email, timeZone, nativeCurrency, bitcoinUnit, state, country, createdAt, sendsDisabled
@@ -107,9 +107,9 @@ open class User: Decodable {
         self.avatarURL = avatarURL
         self.resource = "user"
         self.resourcePath = resourcePath
-        
+
         self.email = email
-        
+
         self.timeZone = timeZone
         self.nativeCurrency = nativeCurrency
         self.bitcoinUnit = bitcoinUnit
@@ -118,11 +118,11 @@ open class User: Decodable {
         self.createdAt = createdAt
         self.sendsDisabled = sendsDisabled
     }
-    
+
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try values.decode(String.self, forKey: .id)
+
+        id = try values.decodeIfPresent(String.self, forKey: .id)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         username = try values.decodeIfPresent(String.self, forKey: .username)
         profileLocation = try values.decodeIfPresent(String.self, forKey: .profileLocation)
@@ -130,10 +130,8 @@ open class User: Decodable {
         profileURL = try values.decodeIfPresent(String.self, forKey: .profileURL)
         avatarURL = try values.decodeIfPresent(String.self, forKey: .avatarURL)
         resource = try values.decode(String.self, forKey: .resource)
-        resourcePath = try values.decode(String.self, forKey: .resourcePath)
-        
+        resourcePath = try values.decodeIfPresent(String.self, forKey: .resourcePath)
         email = try values.decodeIfPresent(String.self, forKey: .email)
-        
         timeZone = try values.decodeIfPresent(String.self, forKey: .timeZone)
         nativeCurrency = try values.decodeIfPresent(String.self, forKey: .nativeCurrency)
         bitcoinUnit = try values.decodeIfPresent(String.self, forKey: .bitcoinUnit)
@@ -142,5 +140,5 @@ open class User: Decodable {
         createdAt = try values.decodeIfPresent(Date.self, forKey: .createdAt)
         sendsDisabled = try values.decodeIfPresent(Bool.self, forKey: .sendsDisabled)
     }
-    
+
 }
