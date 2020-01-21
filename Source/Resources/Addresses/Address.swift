@@ -37,15 +37,18 @@ open class Address: Decodable {
     public let legacyAddress: String?
     /// Callback URL.
     public let callbackURL: String?
-    
+    /// Address info.
+    public let addressInfo: AddressInfo?
+
     private enum CodingKeys: String, CodingKey {
         case id, address, name, network, createdAt, updatedAt, resource, resourcePath,
-        uriScheme, warningTitle, warningDetails, legacyAddress, callbackURL = "callbackUrl"
+        uriScheme, warningTitle, warningDetails, legacyAddress, callbackURL = "callbackUrl",
+        addressInfo
     }
-    
+
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         id = try values.decode(String.self, forKey: .id)
         address = try values.decodeIfPresent(String.self, forKey: .address)
         name = try values.decodeIfPresent(String.self, forKey: .name)
@@ -59,6 +62,7 @@ open class Address: Decodable {
         warningDetails = try values.decodeIfPresent(String.self, forKey: .warningDetails)
         legacyAddress = try values.decodeIfPresent(String.self, forKey: .legacyAddress)
         callbackURL = try values.decodeIfPresent(String.self, forKey: .callbackURL)
+        addressInfo = try values.decodeIfPresent(AddressInfo.self, forKey: .addressInfo)
     }
 
 }
