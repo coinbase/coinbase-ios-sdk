@@ -46,20 +46,26 @@ open class AddressInfo: Decodable {
     /// The recipient address
     public let address: String
 
+    /// The recipient optional destination tag
+    public let destinationTag: String?
+
     private enum CodingKeys: String, CodingKey {
-        case address
+        case address, destinationTag
     }
 
     /// Creates a new instance from given parameters.
     ///
     /// - Parameters:
     ///   - id: The address
-    internal init(address: String) {
+    ///   - destinationTag: The destination tag
+    internal init(address: String, destinationTag: String? = nil) {
         self.address = address
+        self.destinationTag = destinationTag
     }
 
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         address = try values.decode(String.self, forKey: .address)
+        destinationTag = try values.decodeIfPresent(String.self, forKey: .destinationTag)
     }
 }
