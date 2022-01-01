@@ -1,5 +1,9 @@
 # Coinbase iOS SDK
 
+*This library is deprecated.*
+
+*Thank you all for your contributions.*
+
 ![Platform](https://img.shields.io/badge/platform-iOS_11%2B-blue.svg)
 [![Language](https://img.shields.io/badge/language-swift_4.2-4BC51D.svg)](https://developer.apple.com/swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
